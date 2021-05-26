@@ -1,0 +1,154 @@
+<div qva-direction x-dir-setting="{{options.direction}}" class="qv-tooltip qvt-chart-tooltip" qva-press="hideTooltip($event)" tid="qv-chart-tooltip" ng-class="{'above':alwaysOnTop}" ng-style="styling">
+	<div class="chart-tooltip-arrow"></div>
+	<div class="qv-chart-tooltip-inner">
+		<div ng-repeat="item in content" class="qv-chart-tooltip-item">
+			<div class="qv-chart-tooltip-content">
+				<div qva-direction x-dir-text="{{item.header}}" x-dir-setting="{{options.direction}}" class='qv-tp-header' ng-if="item.header !== undefined">
+					<strong>{{item.header}}</strong>
+				</div>
+				<table>
+					<tr class="qv-tp-row" qv-set-init-height>
+						<td ng-if="item.rows.length > 1" style="width: 13px; position: relative;">
+							<div class="partial-box">
+								<div class="whisker">
+								</div>
+								<div class="line">
+								</div>
+								<div class="filler">
+								</div>
+							</div>
+						</td>
+						<td ng-if="item.rows.length > 1" style="width: 25px; position: relative;">
+							<div class="alignment-line align-box"></div>
+						</td>
+						<td ng-if="item.rows.length > 1">
+							<div class="circle"></div>
+						</td>
+
+						<td class='qv-tp-item'>
+							<span qva-direction x-dir-text="{{item.rows[4].label}}" class="qv-tp-rowPart" ng-class="{'single' : (content.length + item.rows.length) <= 3}">{{item.rows[4].label}}</span>
+							<span>:&nbsp;</span>
+						</td>
+						<td ng-if="!item.rows[4].template" class='qv-tp-value'>
+							<div class="qv-tp-rowPart" dir="ltr">{{item.rows[4].value}}</div>
+						</td>
+						<td ng-if="item.rows[4].template" class='qv-tp-template qv-tp-value' ng-bind-html="item.rows[4].template">
+						</td>
+					</tr>
+
+					<tr class="qv-tp-row" qv-set-init-height>
+						<td ng-if="item.rows.length > 1" style="width: 13px; position: relative;">
+							<div class="partial-box">
+								<div class="box box-extension">
+								</div>
+								<div class="end-line">
+								</div>
+							</div>
+						</td>
+						<td ng-if="item.rows.length > 1" style="width: 25px; position: relative;">
+							<div class="alignment-line align-box"></div>
+						</td>
+						<td ng-if="item.rows.length > 1">
+							<div class="circle"></div>
+						</td>
+
+						<td class='qv-tp-item'>
+							<span qva-direction x-dir-text="{{item.rows[3].label}}" class="qv-tp-rowPart" ng-class="{'single' : (content.length + item.rows.length) <= 3}">{{item.rows[3].label}}</span>
+							<span>:&nbsp;</span>
+						</td>
+						<td ng-if="!item.rows[3].template" class='qv-tp-value'>
+							<div class="qv-tp-rowPart" dir="ltr">{{item.rows[3].value}}</div>
+						</td>
+						<td ng-if="item.rows[3].template" class='qv-tp-template qv-tp-value' ng-bind-html="item.rows[3].template">
+						</td>
+					</tr>
+
+					<tr class="qv-tp-row" qv-set-init-height>
+						<td ng-if="item.rows.length > 1" style="width: 13px; position: relative;">
+							<div class="partial-box">
+								<div class="median-line"></div>
+								<div class="box full-box">
+								</div>
+								<div class="box full-box-reverse">
+								</div>
+							</div>
+						</td>
+						<td ng-if="item.rows.length > 1" style="width: 25px; position: relative;">
+							<div class="alignment-line align-box"></div>
+						</td>
+						<td ng-if="item.rows.length > 1">
+							<div class="circle"></div>
+						</td>
+
+						<td class='qv-tp-item'>
+							<span qva-direction x-dir-text="{{item.rows[2].label}}" class="qv-tp-rowPart" ng-class="{'single' : (content.length + item.rows.length) <= 3}">{{item.rows[2].label}}</span>
+							<span>:&nbsp;</span>
+						</td>
+						<td ng-if="!item.rows[2].template" class='qv-tp-value'>
+							<div class="qv-tp-rowPart" dir="ltr">{{item.rows[2].value}}</div>
+						</td>
+						<td ng-if="item.rows[2].template" class='qv-tp-template qv-tp-value' ng-bind-html="item.rows[2].template">
+						</td>
+					</tr>
+
+					<tr class="qv-tp-row" qv-set-init-height>
+						<td ng-if="item.rows.length > 1" style="width: 13px; position: relative;">
+							<div class="partial-box">
+								<div class="box invert-pos lower-box">
+								</div>
+								<div class="line">
+								</div>
+							</div>
+						</td>
+						<td ng-if="item.rows.length > 1" style="width: 25px; position: relative;">
+							<div class="alignment-line align-box"></div>
+						</td>
+						<td ng-if="item.rows.length > 1">
+							<div class="circle"></div>
+						</td>
+
+						<td class='qv-tp-item'>
+							<span qva-direction x-dir-text="{{item.rows[1].label}}" class="qv-tp-rowPart" ng-class="{'single' : (content.length + item.rows.length) <= 3}">{{item.rows[1].label}}</span>
+							<span>:&nbsp;</span>
+						</td>
+						<td ng-if="!item.rows[1].template" class='qv-tp-value'>
+							<div class="qv-tp-rowPart" dir="ltr">{{item.rows[1].value}}</div>
+						</td>
+						<td ng-if="item.rows[1].template" class='qv-tp-template qv-tp-value' ng-bind-html="item.rows[1].template">
+						</td>
+					</tr>
+
+					<tr class="qv-tp-row" qv-set-init-height>
+						<td ng-if="item.rows.length > 1" style="width: 13px; position: relative;">
+							<div class="partial-box">
+								<div class="whisker">
+								</div>
+								<div class="end-line">
+								</div>
+								<div class="filler">
+								</div>
+							</div>
+						</td>
+						<td ng-if="item.rows.length > 1" style="width: 25px; position: relative;">
+							<div class="alignment-line align-box"></div>
+						</td>
+						<td ng-if="item.rows.length > 1">
+							<div class="circle"></div>
+						</td>
+
+						<td class='qv-tp-item'>
+							<span qva-direction x-dir-text="{{item.rows[0].label}}" class="qv-tp-rowPart" ng-class="{'single' : (content.length + item.rows.length) <= 3}">{{item.rows[0].label}}</span>
+							<span>:&nbsp;</span>
+						</td>
+						<td ng-if="!item.rows[0].template" class='qv-tp-value'>
+							<div class="qv-tp-rowPart" dir="ltr">{{item.rows[0].value}}</div>
+						</td>
+						<td ng-if="item.rows[0].template" class='qv-tp-template qv-tp-value' ng-bind-html="item.rows[0].template">
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="qv-chart-tooltip-excess" ng-if="numberInExcess > 0" q-translation="Object.ChartTooltip.NMore,{{numberInExcess}}">More</div>
+</div>

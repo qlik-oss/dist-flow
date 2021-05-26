@@ -1,0 +1,14 @@
+const SORTER_BASE_SORTING_SETTINGS = {
+  ASCII: {
+    ELEMENT: undefined,
+    SORT_BY_EXPRESSION: undefined,
+    SORT_BY_ASCII: 1,
+    SORT_BY_NUMERIC: 1,
+    SORT_BY_LOAD_ORDER: 1,
+  },
+};
+
+Object.freeze(SORTER_BASE_SORTING_SETTINGS.ASCII);
+Object.freeze(SORTER_BASE_SORTING_SETTINGS);
+
+export default SORTER_BASE_SORTING_SETTINGS;

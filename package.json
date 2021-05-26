@@ -1,0 +1,61 @@
+{
+  "private": true,
+  "version": "0.0.1",
+  "description": "444 charts",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production lerna run build --ignore '@qlik/*-ext' --stream",
+    "build:watch": "lerna run build:watch --stream --no-sort --concurrency 99",
+    "bump": "./scripts/version.sh",
+    "lint": "lerna run lint",
+    "specs": "node scripts/generate-specs.js && pretty-quick --pattern 'charts/*/api-specifications/*'",
+    "test": "npm run test:unit && npm run test:integration",
+    "test:sense": "aw puppeteer -c aw.config.js --glob 'test/sense-integration/**/*.spec.js' --mocha.timeout 30000",
+    "test:unit": "aw -c aw.config.js --coverage --nyc.reportDir 'coverage'",
+    "test:unit:watch": "aw -c aw.config.js -w --coverage --nyc.reportDir 'coverage'",
+    "test:integration": "aw puppeteer -c aw.config.js --glob 'test/integration/**/*.spec.js'",
+    "test:integration:ci": "node ./scripts/integration-test.js",
+    "test:rendering": "aw -c aw.config.js --glob 'test/rendering/**/*.spec.js' --mocha.bail false",
+    "test:rendering:ci": "node ./scripts/rendering-test.js",
+    "validate": "node ./tools/validate-packages.js",
+    "version": "yarn specs && git add **/*/api-specifications"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js, jsx}": [
+      "eslint"
+    ]
+  },
+  "devDependencies": {
+    "@after-work.js/aw": "6.0.14",
+    "@nebula.js/cli": "1.1.1",
+    "@nebula.js/cli-build": "1.1.1",
+    "@nebula.js/cli-serve": "1.1.1",
+    "@nebula.js/cli-sense": "1.1.1",
+    "babel-eslint": "10.1.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb": "18.1.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-mocha": "6.3.0",
+    "eslint-plugin-prettier": "3.1.3",
+    "eslint-plugin-react": "7.19.0",
+    "prettier": "2.0.5"
+  },
+  "workspaces": [
+    "charts/*",
+    "chart-modules/*"
+  ],
+  "resolutions": {
+    "**/caniuse-lite": "1.0.30001051",
+    "**/puppeteer": "2.0.0"
+  }
+}

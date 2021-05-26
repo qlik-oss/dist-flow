@@ -1,0 +1,13 @@
+{
+  "command": {
+    "version": {
+      "allowBranch": ["master", "release/**"],
+      "conventionalCommits": true,
+      "message": "chore(release): publish 🚀 [skip ci]"
+    }
+  },
+  "ignoreChanges": ["**/*.md", "**/*.spec.js", "**/__tests__/**"],
+  "version": "independent",
+  "npmClient": "yarn",
+  "useWorkspaces": true
+}

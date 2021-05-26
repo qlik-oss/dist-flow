@@ -1,0 +1,62 @@
+{
+  "root": true,
+  "env": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2018
+  },
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["prettier"],
+  "rules": {
+    "import/extensions": 0,
+    "import/no-extraneous-dependencies": [2, { "devDependencies": true, "peerDependencies": true }],
+    "no-plusplus": 0,
+    "prettier/prettier": 2,
+    "react/destructuring-assignment": [0, "always"],
+    "react/jsx-props-no-spreading": 0,
+
+    "no-param-reassign": "off",
+    "no-shadow": "off",
+    "no-underscore-dangle": "off",
+    "prefer-destructuring": "off",
+    "prefer-spread": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.spec.js"],
+      "env": {
+        "browser": true,
+        "node": true,
+        "mocha": true
+      },
+      "globals": {
+        "chai": false,
+        "expect": false,
+        "sinon": false,
+        "page": false,
+        "aw": false
+      },
+      "parserOptions": {
+        "sourceType": "module",
+        "ecmaVersion": 2018
+      },
+      "plugins": ["mocha"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off",
+        "mocha/no-exclusive-tests": "error",
+        "no-unused-expressions": 0
+      }
+    },
+    {
+      "files": ["test/integration/**/*.js"],
+      "globals": {
+        "page": false,
+        "window": false,
+        "document": false
+      }
+    }
+  ]
+}

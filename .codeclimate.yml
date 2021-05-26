@@ -1,0 +1,39 @@
+version: '2'
+checks:
+  argument-count:
+    enabled: false
+  complex-logic:
+    enabled: false
+  file-lines:
+    enabled: false
+  method-complexity:
+    enabled: false
+  method-count:
+    enabled: false
+  method-lines:
+    enabled: false
+  nested-control-flow:
+    enabled: false
+  return-statements:
+    enabled: false
+  similar-code:
+    enabled: false
+    config:
+      threshold: 70
+  identical-code:
+    enabled: false
+    config:
+      threshold: 70
+exclude_patterns:
+  - '.circleci/'
+  - '.github/'
+  - '.vscode/'
+  - 'coverage/'
+  - 'docs/'
+  - 'node_modules/'
+  - 'examples/'
+  - 'scripts/'
+  - 'test/'
+  - 'tools/'
+  - 'dist/'
+  - 'gradle'
