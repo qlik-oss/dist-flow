@@ -3,12 +3,12 @@ export default {
     {
       path: '/qHyperCubeDef',
       dimensions: {
-        min: 0,
-        max: 0,
+        min: 1,
+        max: 2,
       },
       measures: {
         min: 1,
-        max: 50,
+        max: 1,
       },
     },
   ],
