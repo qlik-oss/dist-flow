@@ -1,6 +1,11 @@
 import PicassoQ from 'picasso-plugin-q/dist/picasso-q';
 import selectionUtils from './selection-utils';
-import eventUtils from '../../utils/event-utils';
+// import eventUtils from '../../utils/event-utils';
+
+// TODO: fix
+const eventUtils = {
+  showLockedFeedback: () => {},
+};
 
 function SelectionActions(model, chartInstance, selectionsApi) {
   function fn() {}

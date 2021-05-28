@@ -1822,7 +1822,7 @@
     "@nodelib/fs.scandir" "2.1.3"
     fastq "^1.6.0"
 
-"@qlik/chart-modules@0.10.0", "@qlik/chart-modules@^0.10.0":
+"@qlik/chart-modules@0.10.0":
   version "0.10.0"
   resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/chart-modules/-/@qlik/chart-modules-0.10.0.tgz#9e45cc4af328311166ba1fac64f9ad08e9c6ce21"
   integrity sha1-nkXMSvMoMRFmuh+sZPmtCOnGziE=
@@ -4634,7 +4634,7 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
     assign-symbols "^1.0.0"
     is-extendable "^1.0.1"
 
-extend@3.0.2, extend@^3.0.2:
+extend@3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
 
@@ -7671,15 +7671,30 @@ phin@^2.9.1:
   version "2.9.3"
   resolved "https://registry.yarnpkg.com/phin/-/phin-2.9.3.tgz#f9b6ac10a035636fb65dfc576aaaa17b8743125c"
 
+picasso-plugin-hammer@>=0.35.1:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/picasso-plugin-hammer/-/picasso-plugin-hammer-1.2.0.tgz#224ed107e3743f95e5ec26c5a3d12fa38e768b2b"
+  integrity sha512-8/fjo0LhYA6g3ucfcApwyxTZ5ai8av5n2Pk5JY/j6MZkMdLepIVxYfX0S8KEQoXaScKvIJz69xAPAN+nkz6rAw==
+
 picasso-plugin-q@0.34.0:
   version "0.34.0"
   resolved "https://registry.yarnpkg.com/picasso-plugin-q/-/picasso-plugin-q-0.34.0.tgz#ec4afd8eb4f5f6e2e3c8b4abf495b1576a7b4e53"
   integrity sha512-WsVoaIqwqf29mnuIX1Xm3nnqol+k+4HRT1dNzq8ChudF6c9qxbHNQrqEpWLMvKouPP/NlergGFO2OY9Wo9h+ig==
 
+picasso-plugin-q@>=0.35.1:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/picasso-plugin-q/-/picasso-plugin-q-1.2.0.tgz#416c9997815bfe247ed899b24a03759175bc1b6d"
+  integrity sha512-1K05EsURNJQvY+HoV++1f7n0nUA5BGij2Lm3RbwetHAGQj0sy6Eriw++Oi6Zu/CjPodJErV7p6wirhnrl8dQbA==
+
 picasso.js@0.34.0:
   version "0.34.0"
   resolved "https://registry.yarnpkg.com/picasso.js/-/picasso.js-0.34.0.tgz#ac4b01926bc9d641032d2e97d906d4efeb98204b"
   integrity sha512-Wot3FpTtBcgqr2IPd1eo6t3Y6fF63yjFuULizu6HRIeWpy4+sGGDU8VgX0pc+fRPL7ZzabbulsFIWeN8MhOk4A==
+
+picasso.js@>=0.35.1:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/picasso.js/-/picasso.js-1.2.0.tgz#582e254e949dbbf020cc9d51e79055db98ac8cfe"
+  integrity sha512-YsgVqHlOA8C6X3QQHjz9I2whjIcnVLxCklmNQHll6CgqujuAb7O3dJyVClws+ORbM2HALZKG/TVhzAjXoJwYqA==
 
 picomatch@^2.0.4, picomatch@^2.0.7:
   version "2.1.1"
@@ -8330,6 +8345,11 @@ puppeteer@2.0.0, puppeteer@8.0.0:
 q@^1.1.2:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
+
+qlik-modifiers@0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/qlik-modifiers/-/qlik-modifiers-0.5.1.tgz#df81fe57e24fc88f7271e91bc23ab960144667a4"
+  integrity sha512-jQXt3oH7UwO5mhwUf0fHiUMRNutb1Fsq2jjN4NQ5Q0ZvBzhjrJPGcIpMMIcU4tmrYabkXS/GaVMA3Oa38jzpsw==
 
 qs@6.7.0:
   version "6.7.0"

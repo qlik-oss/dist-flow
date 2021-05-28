@@ -22,7 +22,8 @@
     "no-shadow": "off",
     "no-underscore-dangle": "off",
     "prefer-destructuring": "off",
-    "prefer-spread": "off"
+    "prefer-spread": "off",
+    "func-names": "off"
   },
   "overrides": [
     {

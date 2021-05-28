@@ -2,6 +2,7 @@ import {
   useConstraints,
   useEffect,
   useElement,
+  useModel,
   usePromise,
   useRect,
   useSelections,
@@ -19,6 +20,7 @@ import data from './data';
 // import picSelections from './pic-selections';
 // import definition from './pic-definition';
 import ChartView from './boxplot-view';
+import BackednAPi from './backend-api';
 
 // onResize(layout, options) {
 //   if (!this._paintCalled) {
@@ -56,11 +58,10 @@ export default function supernova(env) {
     },
     component() {
       const element = useElement();
-      // eslint-disable-next-line no-unused-vars
       const selections = useSelections();
       const layout = useStaleLayout();
-      // eslint-disable-next-line no-unused-vars
       const rect = useRect();
+      const model = useModel();
       // eslint-disable-next-line no-unused-vars
       const constraints = useConstraints();
       const translator = useTranslator();
@@ -72,8 +73,8 @@ export default function supernova(env) {
         const $scope = null;
         const $element = $(element);
         const options = null;
-        const backendApi = null;
-        const selectionsApi = null;
+        const backendApi = new BackednAPi(model);
+        const selectionsApi = selections;
         const tooltipApi = null;
         const view = new ChartView(
           env.flags,
@@ -137,12 +138,13 @@ export default function supernova(env) {
         throw error;
       }
 
-      // useEffect(() => {
-      //   if (!instance) {
-      //     return;
-      //   }
-      //   instance.update();
-      // }, [rect.width, rect.height, instance]);
+      usePromise(async () => {
+        if (!instance) {
+          return;
+        }
+        const $element = null;
+        await instance.resize($element, layout);
+      }, [rect.width, rect.height]);
     },
   };
 }

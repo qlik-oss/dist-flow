@@ -56,10 +56,7 @@ export default function supernova(env) {
     },
     component() {
       const element = useElement();
-      // eslint-disable-next-line no-unused-vars
-      const selections = useSelections();
       const layout = useStaleLayout();
-      // eslint-disable-next-line no-unused-vars
       const rect = useRect();
       // eslint-disable-next-line no-unused-vars
       const constraints = useConstraints();
@@ -135,12 +132,13 @@ export default function supernova(env) {
         throw error;
       }
 
-      // useEffect(() => {
-      //   if (!instance) {
-      //     return;
-      //   }
-      //   instance.update();
-      // }, [rect.width, rect.height, instance]);
+      usePromise(async () => {
+        if (!instance) {
+          return;
+        }
+        const $element = null;
+        await instance.resize($element, layout);
+      }, [rect.width, rect.height]);
     },
   };
 }

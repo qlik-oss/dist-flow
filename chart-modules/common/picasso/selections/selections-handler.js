@@ -1,8 +1,21 @@
-import Touche from 'touchejs';
+// import Touche from 'touchejs';
 import extend from 'extend';
 import Actions from './selection-actions';
-import interaction from '../../views/selections/interaction-handler';
-import eventUtils from '../../utils/event-utils';
+// import interaction from '../../views/selections/interaction-handler';
+// import eventUtils from '../../utils/event-utils';
+
+// TODO: fix
+const eventUtils = {
+  showLockedFeedback: () => {},
+};
+const Touche = {
+  preventGestures: () => {},
+};
+const interaction = {
+  CtrlToggle: { bind: () => {}, unbind: () => {} },
+  ShiftToggle: { bind: () => {}, unbind: () => {} },
+  KeyPressed: { bind: () => {}, unbind: () => {} },
+};
 
 const DEFAULT_OPTIONS = {
   data: ['elemNo'],
@@ -242,7 +255,9 @@ function Selections(options) {
         // On tap end, picaso will run rendering in the same frame, and if this is a heavy job then long tap end will happen before tap end finish. This can trigger the radial context menu.
         // So we prevent long tap end here.
         Touche.preventGestures();
-        !context.sleep && actions.update(added, removed, context.brush);
+        if (!context.sleep) {
+          actions.update(added, removed, context.brush);
+        }
       };
       context.brush.on('update', context.listeners.update);
       context.brush.on('start', context.listeners.start);

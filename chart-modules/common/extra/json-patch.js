@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import originalExtend from 'extend';
 
 const JSONPatch = {};

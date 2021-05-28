@@ -6,7 +6,7 @@ import { getValue } from '@qlik/chart-modules';
 import ChartView from '@qlik/common/picasso/chart-view';
 import ChartBuilder from '@qlik/common/picasso/chart-builder/chart-builder';
 import DerivedProperties from '@qlik/common/picasso/derived-properties/derived-properties';
-// import SelectionHandler from '@qlik/common/picasso/selections/selections-handler';
+import SelectionHandler from '@qlik/common/picasso/selections/selections-handler';
 import DependentInteractions from '@qlik/common/picasso/selections/dependent-interactions';
 // import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import ScrollHandler from '@qlik/common/picasso/scroll/scroll-handler';
@@ -218,21 +218,20 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     const dataPaths = includeOutliers ? [BOX_PATH, OUTLIERS_PATH] : [BOX_PATH];
 
     if (this.hasOption('selections')) {
-      // TODO: selections
-      this._selectionHandler = null;
-      // this._selectionHandler = SelectionHandler.create({
-      //   model: backendApi.model,
-      //   chartInstance: this.chartInstance,
-      //   selectionsApi,
-      //   dataPaths,
-      //   isLassoDisabled: this.isLassoDisabled.bind(this),
-      // });
+      this._selectionHandler = SelectionHandler.create({
+        model: backendApi.model,
+        chartInstance: this.chartInstance,
+        selectionsApi,
+        dataPaths,
+        isLassoDisabled: this.isLassoDisabled.bind(this),
+      });
     }
     if (this.hasOption('tooltips')) {
       // TOOD: tooltip
       // const $templateCache = qvangular.getService('$templateCache');
       // $templateCache.put(tooltipTemplateUrl, boxplotTooltipTemplate);
       // this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
+      this._tooltipHandler = { on: () => {}, off: () => {}, setUp: () => {}, closeTooltip: () => {} };
     }
     this._scrollHandler = new ScrollHandler(
       this.chartInstance,
@@ -244,8 +243,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     );
     this._dataScroller = new DataScroller(backendApi, this.getData, this._scrollHandler);
 
-    // TODO: outliers cache
-    // this.backendApi.setCacheOptions({ maxStackedValues: MAX_OUTLIERS });
+    this.backendApi.setCacheOptions({ maxStackedValues: MAX_OUTLIERS });
     this._colorCache = {};
 
     this.setDataPaths(dataPaths);
@@ -621,7 +619,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     // Create components
     const chartBuilder = ChartBuilder.create({
       chartID,
-      layoutMode: this.getLayoutMode(layout),
+      theme: this.theme,
+      // layoutMode: this.getLayoutMode(layout),
     });
 
     let dimAxisSelectionSettings = {};
@@ -795,7 +794,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       },
 
       // Measure range
-      enableAreaRange: !!this.env.flags.isEnabled('BOX_MEASURE_RANGE'),
+      enableAreaRange: !!this.flags.isEnabled('BOX_MEASURE_RANGE'),
       areaRange: {
         brushKey: 'select',
         brushAxis: isHorizontal ? 'x-axis' : 'y-axis',
@@ -1017,8 +1016,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       const includeOutliers = getValue(layout, 'boxplotDef.elements.outliers.include');
       const propPaths = [];
       const dataPaths = [BOX_PATH];
-      // TODO: fix
-      // self.backendApi.setPath('/qUndoExclude/box/qHyperCubeDef');
+      self.backendApi.setPath('/qUndoExclude/box/qHyperCubeDef');
       if (getHasSecondDimension(layout)) {
         propPaths.push('/qUndoExclude/box/qHyperCubeDef');
       }
@@ -1028,9 +1026,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
         self._dataScroller.updateOutliersCache(layout);
       }
       self.setDataPaths(dataPaths);
-      // TODO: fix
-      // self.backendApi.setPaths(propPaths);
-      // self.backendApi.updateCache(undoExclude.box);
+      self.backendApi.setPaths(propPaths);
+      self.backendApi.updateCache(undoExclude.box);
 
       if (getHasSecondDimension(layout)) {
         const start = self.options.viewState ? self.options.viewState.scroll : self._scrollHandler.getScrollState();

@@ -1,6 +1,6 @@
 import { getValue, setValue } from '@qlik/chart-modules';
 import attributeExpsUtil from '../extra/attribute-expression-util';
-import LogicHelper from '../../client/utils/property-logic/property-logic-helper';
+import LogicHelper from '../extra/property-logic-helper';
 import NumberFormatUtil from '../extra/number-format-util';
 // import { isEnabled } from '../../../services/feature-flags';
 
