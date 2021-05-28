@@ -4,15 +4,13 @@ import {
   useElement,
   usePromise,
   useRect,
-  useSelections,
   useState,
   useStaleLayout,
   useTheme,
   useTranslator,
 } from '@nebula.js/stardust';
-import picassojs from 'picasso.js';
-import picassoQ from 'picasso-plugin-q';
 import $ from 'jquery';
+import picassoSetup from '@qlik/common/picasso/picasso-setup';
 
 import properties from './object-properties';
 import data from './data';
@@ -46,8 +44,7 @@ import ChartView from './waterfallchart-view';
 // },
 
 export default function supernova(env) {
-  const picasso = picassojs();
-  picasso.use(picassoQ);
+  const picasso = picassoSetup();
 
   return {
     qae: {

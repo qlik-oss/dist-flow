@@ -186,10 +186,10 @@ function setRangeSelStatus(lockedDim, layout) {
   return rangeSelStatus;
 }
 
-function getColorFromExpValue(obj) {
+function getColorFromExpValue(obj, theme) {
   let color = Color.retriveColor(obj.qNum === 'NaN' ? obj.qText : obj.qNum, 'argb');
   if (color.isInvalid()) {
-    color = Color.retriveColor(chartStyleUtils.Theme.dataColors.nullColor);
+    color = Color.retriveColor(theme.dataColors.nullColor);
   }
   return color.toRGBA();
 }
@@ -290,8 +290,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
   },
   _getBoxMarkerSettings(layout, selectionSettings, tooltipSettings) {
     const boxFillColor = layout.boxplotDef.color.auto
-      ? chartStyleUtils.getStyle(chartID, 'box.box', 'fill')
-      : chartStyleUtils.Theme.resolveColor(layout.boxplotDef.color.box.paletteColor);
+      ? this.theme.getStyle(chartID, 'box.box', 'fill')
+      : this.theme.getColorPickerColor(layout.boxplotDef.color.box.paletteColor);
     const contrastMedianLine = chartStyleUtils.getContrastingGrey(boxFillColor).toHex();
 
     // Do not use selection trigger when selecting in inner dimension
@@ -308,14 +308,14 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       settings: {
         whisker: {
           width: 0.5,
-          stroke: chartStyleUtils.getStyle(chartID, 'box.whisker', 'stroke'),
+          stroke: this.theme.getStyle(chartID, 'box.whisker', 'stroke'),
           show: layout.boxplotDef.presentation.whiskers.show,
         },
         box: {
           width: 0.5,
           maxWidthPx: 30,
           fill: boxFillColor,
-          stroke: chartStyleUtils.getStyle(chartID, 'box.box', 'stroke'),
+          stroke: this.theme.getStyle(chartID, 'box.box', 'stroke'),
           strokeWidth: 1,
         },
         median: {
@@ -327,7 +327,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
         },
         line: {
           strokeWidth: 1,
-          stroke: chartStyleUtils.getStyle(chartID, 'box.line', 'stroke'),
+          stroke: this.theme.getStyle(chartID, 'box.line', 'stroke'),
         },
         orientation: layout.orientation,
       },
@@ -405,7 +405,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     if (!layout.boxplotDef.color.auto && layout.boxplotDef.color.mode === 'byExpression') {
       if (layout.qUndoExclude.box.qHyperCube.qMeasureInfo[0].qAttrExprInfo.length === 0) {
         // For backward compatibility
-        boxMarkerSettings.settings.box.fill = Color.retriveColor(chartStyleUtils.Theme.dataColors.nullColor).toRGBA();
+        boxMarkerSettings.settings.box.fill = Color.retriveColor(this.theme.dataColors.nullColor).toRGBA();
       } else {
         const attrExprs = ObjectUtils.mapArrayToObject(
           layout.qUndoExclude.box.qHyperCube.qMeasureInfo[0].qAttrExprInfo,
@@ -427,7 +427,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
               if (typeof v.qNum === 'number') {
                 return Color.retriveColor(v.qNum, 'argb').toRGBA();
               }
-              return Color.retriveColor(chartStyleUtils.Theme.dataColors.nullColor).toRGBA();
+              return Color.retriveColor(this.theme.dataColors.nullColor).toRGBA();
             },
           };
           boxMarkerSettings.settings.box.fill = { ref: 'color' };
@@ -450,7 +450,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     );
     qMatrix.forEach((row) => {
       colorCache[row[0].qElemNumber] = getColorFromExpValue(
-        row[1].qAttrExps.qValues[attrExprs.colorByExpression.index]
+        row[1].qAttrExps.qValues[attrExprs.colorByExpression.index],
+        this.theme
       );
     });
   },
@@ -477,8 +478,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
 
   _getPointMarkerSettings(layout, selectionSettings, tooltipSettings) {
     const pointFillColor = layout.boxplotDef.color.auto
-      ? chartStyleUtils.Theme.dataColors.primaryColor
-      : chartStyleUtils.Theme.resolveColor(layout.boxplotDef.color.point.paletteColor);
+      ? this.theme.dataColors.primaryColor
+      : this.theme.getColorPickerColor(layout.boxplotDef.color.point.paletteColor);
     const pointStrokeColor = chartStyleUtils.getContrastingTransparent(pointFillColor);
 
     const brushTrigger = getSelectionSettingsArray(selectionSettings.trigger);
@@ -553,7 +554,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     if (!layout.boxplotDef.color.auto && layout.boxplotDef.color.mode === 'byExpression') {
       if (layout.qUndoExclude.box.qHyperCube.qMeasureInfo[0].qAttrExprInfo.length === 0) {
         // For backward compatibility
-        pointMarkerSettings.settings.fill = Color.retriveColor(chartStyleUtils.Theme.dataColors.nullColor).toRGBA();
+        pointMarkerSettings.settings.fill = Color.retriveColor(this.theme.dataColors.nullColor).toRGBA();
       } else {
         // Until picasso fully suport using box color for outlier color
         const qMatrix = layout.qUndoExclude.box.qHyperCube.qDataPages[0].qMatrix;
@@ -570,7 +571,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
             true
           );
           pointMarkerSettings.settings.fill = getColorFromExpValue(
-            qMatrix[0][0].qAttrExps.qValues[attrExprs.colorByExpression.index]
+            qMatrix[0][0].qAttrExps.qValues[attrExprs.colorByExpression.index],
+            this.theme
           );
         }
       }
@@ -656,7 +658,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       };
     }
     const tooltipSettings = { point: {}, box: {} };
-    if (this.hasOption('tooltips')) {
+    if (this.hasOption('tooltips') && false) {
       tooltipSettings.point = this._tooltipHandler.setUp({
         dataPath: OUTLIERS_PATH,
         data: hasSecondDimension ? ['inner', dimensionDirection] : ['inner'],
