@@ -1,0 +1,50 @@
+{
+  "name": "@nebula.js/sn-histogram",
+  "version": "0.23.3",
+  "description": "Histogram supernova",
+  "author": "QlikTech International AB",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qlik-oss/nebula.js.git"
+  },
+  "keywords": [
+    "qlik",
+    "nebula",
+    "supernova",
+    "histogram"
+  ],
+  "files": [
+    "api-specifications",
+    "dist",
+    "sn-histogram.js",
+    "sn-histogram.qext"
+  ],
+  "qext": {
+    "name": "Histogram",
+    "icon": "histogram"
+  },
+  "main": "dist/sn-histogram.js",
+  "scripts": {
+    "build": "nebula build",
+    "lint": "eslint src",
+    "start": "nebula serve --type histogram",
+    "sense": "nebula sense"
+  },
+  "dependencies": {
+    "@qlik/chart-modules": "0.10.0",
+    "@qlik/common": "0.0.1",
+    "extend": "3.0.2",
+    "hammerjs": "^2.0.8",
+    "jquery": "3.6.0",
+    "picasso-plugin-hammer": ">=0.35.1",
+    "picasso-plugin-q": ">=0.35.1",
+    "picasso.js": ">=0.35.1"
+  },
+  "peerDependencies": {
+    "@nebula.js/stardust": ">=1.1.1"
+  }
+}
