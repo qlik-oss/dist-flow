@@ -14,7 +14,19 @@ const chartID = 'histogram';
 // Implementation details
 //
 
-function init(flags, layout, picasso, translator, theme, $scope, $element, options, backendApi, selectionsApi, tooltipApi) {
+function init(
+  flags,
+  layout,
+  picasso,
+  translator,
+  theme,
+  $scope,
+  $element,
+  options,
+  backendApi,
+  selectionsApi,
+  tooltipApi
+) {
   this._super(picasso, $scope, $element, options, backendApi, selectionsApi, tooltipApi);
   this.flags = flags;
   this.translator = translator;
