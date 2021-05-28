@@ -1,0 +1,52 @@
+{
+  "name": "@nebula.js/sn-distributionplot",
+  "version": "0.23.3",
+  "description": "Distributionplot supernova",
+  "author": "QlikTech International AB",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qlik-oss/nebula.js.git"
+  },
+  "keywords": [
+    "qlik",
+    "nebula",
+    "supernova",
+    "distributionplot",
+    "distplot"
+  ],
+  "files": [
+    "api-specifications",
+    "dist",
+    "sn-distplot.js",
+    "sn-distplot.qext"
+  ],
+  "qext": {
+    "name": "Distributionplot",
+    "icon": "distplot"
+  },
+  "main": "dist/sn-distplot.js",
+  "scripts": {
+    "build": "nebula build",
+    "lint": "eslint src",
+    "start": "nebula serve --type distributionplot",
+    "sense": "nebula sense"
+  },
+  "dependencies": {
+    "@qlik/chart-modules": "0.10.0",
+    "@qlik/common": "0.0.1",
+    "extend": "3.0.2",
+    "hammerjs": "^2.0.8",
+    "jquery": "3.6.0",
+    "picasso-plugin-hammer": ">=0.35.1",
+    "picasso-plugin-q": ">=0.35.1",
+    "picasso.js": ">=0.35.1",
+    "qlik-modifiers": "0.5.1"
+  },
+  "peerDependencies": {
+    "@nebula.js/stardust": ">=1.1.1"
+  }
+}
