@@ -189,7 +189,7 @@ function setRangeSelStatus(lockedDim, layout) {
 function getColorFromExpValue(obj, theme) {
   let color = Color.retriveColor(obj.qNum === 'NaN' ? obj.qText : obj.qNum, 'argb');
   if (color.isInvalid()) {
-    color = Color.retriveColor(theme.dataColors.nullColor);
+    color = Color.retriveColor(theme.getDataColorSpecials().nil);
   }
   return color.toRGBA();
 }
@@ -405,7 +405,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     if (!layout.boxplotDef.color.auto && layout.boxplotDef.color.mode === 'byExpression') {
       if (layout.qUndoExclude.box.qHyperCube.qMeasureInfo[0].qAttrExprInfo.length === 0) {
         // For backward compatibility
-        boxMarkerSettings.settings.box.fill = Color.retriveColor(this.theme.dataColors.nullColor).toRGBA();
+        boxMarkerSettings.settings.box.fill = Color.retriveColor(this.theme.getDataColorSpecials().nil).toRGBA();
       } else {
         const attrExprs = ObjectUtils.mapArrayToObject(
           layout.qUndoExclude.box.qHyperCube.qMeasureInfo[0].qAttrExprInfo,
@@ -427,7 +427,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
               if (typeof v.qNum === 'number') {
                 return Color.retriveColor(v.qNum, 'argb').toRGBA();
               }
-              return Color.retriveColor(this.theme.dataColors.nullColor).toRGBA();
+              return Color.retriveColor(this.theme.getDataColorSpecials().nil).toRGBA();
             },
           };
           boxMarkerSettings.settings.box.fill = { ref: 'color' };
@@ -478,7 +478,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
 
   _getPointMarkerSettings(layout, selectionSettings, tooltipSettings) {
     const pointFillColor = layout.boxplotDef.color.auto
-      ? this.theme.dataColors.primaryColor
+      ? this.theme.getDataColorSpecials().primary
       : this.theme.getColorPickerColor(layout.boxplotDef.color.point.paletteColor);
     const pointStrokeColor = chartStyleUtils.getContrastingTransparent(pointFillColor);
 
@@ -554,7 +554,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     if (!layout.boxplotDef.color.auto && layout.boxplotDef.color.mode === 'byExpression') {
       if (layout.qUndoExclude.box.qHyperCube.qMeasureInfo[0].qAttrExprInfo.length === 0) {
         // For backward compatibility
-        pointMarkerSettings.settings.fill = Color.retriveColor(this.theme.dataColors.nullColor).toRGBA();
+        pointMarkerSettings.settings.fill = Color.retriveColor(this.theme.getDataColorSpecials().nil).toRGBA();
       } else {
         // Until picasso fully suport using box color for outlier color
         const qMatrix = layout.qUndoExclude.box.qHyperCube.qDataPages[0].qMatrix;

@@ -311,10 +311,10 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     };
   },
 
-  _getBoxMarkerSettings(layout, selectionSettings, theme) {
+  _getBoxMarkerSettings(layout, selectionSettings) {
     const boxFillColor = layout.color.point.auto
-      ? theme.getStyle(CONSTANTS.CHART_ID, 'box', 'fill')
-      : theme.getColorPickerColor(layout.color.box.paletteColor);
+      ? this.theme.getStyle(CONSTANTS.CHART_ID, 'box', 'fill')
+      : this.theme.getColorPickerColor(layout.color.box.paletteColor);
     const brushTrigger = getSelectionSettingsArray(selectionSettings.trigger);
     const brushConsume = getSelectionSettingsArray(selectionSettings.consume);
 
@@ -337,7 +337,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         chart: this,
         box: {
           fill: boxFillColor,
-          stroke: chartStyleUtils.getStyle(CONSTANTS.CHART_ID, 'box', 'stroke'),
+          stroke: this.theme.getStyle(CONSTANTS.CHART_ID, 'box', 'stroke'),
           strokeWidth: 0,
           width: CONSTANTS.POINT_BANDWIDTH_BASE_RATIO,
           maxWidthPx: CONSTANTS.MAX_POINT_BASE_SIZE_PX,
@@ -400,7 +400,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   _getPointMarkerSettings(layout, selectionSettings, tooltipSettings) {
-    const pointFillColor = chartStyleUtils.Theme.resolveColor(layout.color.point.paletteColor);
+    const pointFillColor = this.theme.getColorPickerColor(layout.color.point.paletteColor);
     const pointStroke = chartStyleUtils.getContrastingTransparent(pointFillColor);
     let strokeWidth = 1; // For old objects - without the dataPoint.border property
 
@@ -410,7 +410,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
     const brushTrigger = getSelectionSettingsArray(selectionSettings.trigger);
     const brushConsume = getSelectionSettingsArray(selectionSettings.consume);
-    if (this.hasOption('tooltips')) {
+    if (this.hasOption('tooltips') && false) {
       brushTrigger.push(tooltipSettings.point.trigger);
       brushConsume.push.apply(brushConsume, tooltipSettings.point.consume);
     }
@@ -612,6 +612,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   _getLegendData(selectionSettings) {
+    return undefined;
+    // eslint-disable-next-line no-unreachable
     const colorMap = this.getColoringMap();
     const colorDataInfo = colorMap.getColorDataInfo();
     let source;
@@ -1000,7 +1002,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   getDisclaimerAttributes(layout) {
-    const showDisclaimer = this.falgs.isEnabled('SHOW_DISCLAIMER') ? !(layout.showDisclaimer === false) : true;
+    const showDisclaimer = this.flags.isEnabled('SHOW_DISCLAIMER') ? !(layout.showDisclaimer === false) : true;
     const scrollSettings =
       this.hasOption('navigation') && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
     let explicitLimitedData;
