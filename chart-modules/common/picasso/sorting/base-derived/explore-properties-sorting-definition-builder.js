@@ -1,4 +1,4 @@
-import util from '../../../../../js/lib/util';
+import { getValue } from '@qlik/chart-modules';
 
 const explorePropertiesSortingDefinitionBuilder = {
   buildDefinition,
@@ -17,7 +17,7 @@ function buildDefinition(baseHyperCubeDefPath, chartSortingPath, sortedDimension
     translation: 'properties.sorting',
     icon: 'ascending',
     show(data) {
-      return util.getValue(data, `${baseHyperCubeDefPath}.qDimensions.length`, 0) > 1;
+      return getValue(data, `${baseHyperCubeDefPath}.qDimensions.length`, 0) > 1;
     },
     items: {
       sortingOptions: {
@@ -46,7 +46,7 @@ function buildDefinition(baseHyperCubeDefPath, chartSortingPath, sortedDimension
             currentChartSortProperty = 'sortByAscii';
           }
 
-          const chartSorting = util.getValue(properties, chartSortingPath);
+          const chartSorting = getValue(properties, chartSortingPath);
 
           if (!chartSorting.sortCriteria) {
             chartSorting.sortCriteria = {};
@@ -77,7 +77,7 @@ function buildDefinition(baseHyperCubeDefPath, chartSortingPath, sortedDimension
             return 0;
           }
 
-          return util.getValue(data, dimensionSortCriteriaPath + currentDimensionSortProperty);
+          return getValue(data, dimensionSortCriteriaPath + currentDimensionSortProperty);
         },
       },
     },
@@ -92,13 +92,13 @@ function getCurrentSortPropertyInfo(data, dimensionSortCriteriaPath) {
     dimension: '',
   };
 
-  if (util.getValue(data, `${dimensionSortCriteriaPath}qSortByExpression`, 0) !== 0) {
+  if (getValue(data, `${dimensionSortCriteriaPath}qSortByExpression`, 0) !== 0) {
     currentSortPropertyInfo.chart = 'sortByExpression';
     currentSortPropertyInfo.dimension = 'qSortByExpression';
-  } else if (util.getValue(data, `${dimensionSortCriteriaPath}qSortByNumeric`, 0) !== 0) {
+  } else if (getValue(data, `${dimensionSortCriteriaPath}qSortByNumeric`, 0) !== 0) {
     currentSortPropertyInfo.chart = 'sortByNumeric';
     currentSortPropertyInfo.dimension = 'qSortByNumeric';
-  } else if (util.getValue(data, `${dimensionSortCriteriaPath}qSortByAscii`, 0) !== 0) {
+  } else if (getValue(data, `${dimensionSortCriteriaPath}qSortByAscii`, 0) !== 0) {
     currentSortPropertyInfo.chart = 'sortByAscii';
     currentSortPropertyInfo.dimension = 'qSortByAscii';
   }

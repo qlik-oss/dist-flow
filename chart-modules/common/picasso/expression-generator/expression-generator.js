@@ -1,3 +1,5 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 import ExpressionWrapper from './expression-wrapper';
 import ExpressionReplacer from './expression-replacer';
 
@@ -13,21 +15,19 @@ const ExpressionGenerator = {
 //  variations: (Array) array of strings with variations on the same key that if the value is empty should also be empty
 function generateExpression(template, mappings) {
   const explicitMappings = {};
-  let expression;
-  let variationExpressions;
 
   if (mappings) {
     for (const key in mappings) {
       const mapping = mappings[key];
 
-      expression = mapping.wrap ? ExpressionWrapper.wrapExpression(mapping.value) : mapping.value;
+      const expression = mapping.wrap ? ExpressionWrapper.wrapExpression(mapping.value) : mapping.value;
 
       explicitMappings[key] = expression;
 
       const variations = mapping.variations || [];
 
       variations.forEach((variation) => {
-        variationExpressions = assembleVariation(variation, expression, key);
+        const variationExpressions = assembleVariation(variation, expression, key);
         explicitMappings[variation] = variationExpressions;
       });
     }

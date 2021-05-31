@@ -1,3 +1,5 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
 const layoutModes = {
   SPARK: { width: 0, height: 0 },
   XSMALL: { width: 150, height: 75 },

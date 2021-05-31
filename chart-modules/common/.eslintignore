@@ -1,0 +1,9 @@
+dist/
+coverage/
+node_modules/
+
+# should be temporary
+*.spec.js
+tooltip-actions.js
+tooltips-handler.js
+disclaimer-component.js

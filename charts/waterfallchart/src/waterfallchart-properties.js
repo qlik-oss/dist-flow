@@ -1,8 +1,8 @@
 import extend from 'extend';
+import { getValue } from '@qlik/chart-modules';
 import translator from '../../../js/lib/translator';
-import waterfallUtils from './waterfallchart-utils';
 import defaultProperties from '../../../assets/client/property-panel/default-properties';
-import propertyResolver from '../../../assets/client/utils/property-resolver';
+import waterfallUtils from './waterfallchart-utils';
 
 function colorIsNotAuto(data) {
   return !data.color.auto;
@@ -248,7 +248,7 @@ const colors = {
           ],
           defaultValue: 'auto',
           show(data) {
-            return propertyResolver.getValue(data, 'legend.show', true);
+            return getValue(data, 'legend.show', true);
           },
         },
       },

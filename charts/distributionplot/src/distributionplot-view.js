@@ -185,7 +185,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         selectionsApi,
         isLassoDisabled: this.isLassoDisabled.bind(this),
         selectPaths: ['qUndoExclude/qHyperCubeDef'],
-     });
+      });
     }
     if (this.hasOption('tooltips')) {
       // TODO: fix tooltip

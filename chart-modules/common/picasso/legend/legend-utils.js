@@ -1,6 +1,11 @@
 // import Touche from 'touchejs';
 // import translator from '../../../../js/lib/translator';
 
+// TODO: fix
+const Touche = {
+  preventGestures: () => {},
+};
+
 const NULL_ELEMNO = -2;
 const OTHERS_ELEMNO = -3;
 const LEGEND_DISPLAY_OREDER = 200;

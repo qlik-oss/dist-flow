@@ -174,7 +174,7 @@ function setColorByPropertyDef(properties, item, expression, keepMode) {
     case 'measure':
       mode = 'byMeasure';
       properties.byMeasureDef = { label: item.name, key: item.id, type: 'libraryItem' };
-      if (isEnabled('MASTER_MEASURE_FORMAT') && properties.formatting) {
+      if (properties.formatting) {
         NumberFormatUtil.useMasterNumberFormat(properties.formatting);
       }
       break;

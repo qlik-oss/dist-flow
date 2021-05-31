@@ -1,3 +1,7 @@
+/* eslint-disable prefer-rest-params */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-restricted-syntax */
+
 /* Simple JavaScript Inheritance
  * By John Resig http://ejohn.org/
  * MIT Licensed.
