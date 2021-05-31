@@ -43,7 +43,7 @@ function init(
       model: backendApi.model,
       chartInstance: this.chartInstance,
       selectionsApi,
-      selectPaths: ['qUndoExclude/box/qHyperCubeDef'],
+      selectPaths: ['/qUndoExclude/box/qHyperCubeDef'],
     });
   }
 
@@ -195,7 +195,7 @@ function updateData(layout) {
             model,
             hashData,
             generateDerivedProperties(layout, properties) {
-              return cubesGenerator.generateHyperCubes(layout, properties, model.app);
+              return cubesGenerator.generateHyperCubes(layout, properties, model.app, self.translator);
             },
           };
 

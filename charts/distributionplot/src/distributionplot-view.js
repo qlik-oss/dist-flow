@@ -184,7 +184,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         chartInstance: this.chartInstance,
         selectionsApi,
         isLassoDisabled: this.isLassoDisabled.bind(this),
-        selectPaths: ['qUndoExclude/qHyperCubeDef'],
+        selectPaths: ['/qUndoExclude/qHyperCubeDef'],
       });
     }
     if (this.hasOption('tooltips')) {

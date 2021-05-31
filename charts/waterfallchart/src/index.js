@@ -75,9 +75,6 @@ export default function supernova(env) {
         instance.theme = theme;
         instance.updateConstraints(constraints);
 
-        // TODO: confim selection if triggered from engine (another websocket to the same session (browser tab))
-        // TODO: usingDerivedProperties
-
         await instance.updateData(layout);
         const $element = null;
         await instance.paint($element, layout);

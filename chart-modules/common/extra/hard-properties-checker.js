@@ -4,8 +4,9 @@ export default {
 };
 
 function canModifyHardProperties(state, model, propsOrLayout) {
-  const permissions = getPermissions(state, model, propsOrLayout) || {};
-  return !!permissions.update;
+  return propsOrLayout.qMeta.privileges.indexOf('update') !== -1;
+  // const permissions = getPermissions(state, model, propsOrLayout) || {};
+  // return !!permissions.update;
 }
 
 function getPermissions(state, model, propsOrLayout) {

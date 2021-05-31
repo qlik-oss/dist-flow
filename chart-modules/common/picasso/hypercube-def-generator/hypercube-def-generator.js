@@ -40,15 +40,16 @@ function generateHyperCubeDef(template, hyperCubeDef, hyperCube, app, mappings) 
   );
 }
 
-function getAllHyperCubeExpressions(hyperCubeDef, hyperCube, app) {
+async function getAllHyperCubeExpressions(hyperCubeDef, hyperCube, app) {
   const dimensions = hyperCubeDef.qDimensions.map((dimension, index) =>
     getExpressionFromDimension(dimension, app, index, hyperCube)
   );
   const measures = hyperCubeDef.qMeasures.map((measure) => getExpressionFromMeasure(measure, app));
-  return Promise.all({
-    dimensions: Promise.all(dimensions),
-    measures: Promise.all(measures),
-  });
+
+  return {
+    dimensions: await Promise.all(dimensions),
+    measures: await Promise.all(measures),
+  };
 }
 
 function getExpressionFromDimension(dimension, app, index, hyperCube) {
