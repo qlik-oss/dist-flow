@@ -126,14 +126,7 @@ function createChartSettings(chartView, layout) {
   if (this._dependentActions) {
     this._dependentActions.destroy();
   }
-  this._dependentActions = DependentInteractions.create(
-    handlers,
-    chartView.isOn.bind(chartView),
-    'vertical',
-    isRtl,
-    keys,
-    rangeSelStatus
-  );
+  this._dependentActions = DependentInteractions.create(handlers, 'vertical', isRtl, keys, rangeSelStatus);
 
   chartBuilder.addPreset('dimension-measure-chart', {
     // common
@@ -198,7 +191,7 @@ function createChartSettings(chartView, layout) {
 
     // scroll
     hasNavigation: chartView.hasOption('navigation'),
-    isNavigationEnabledFn: chartView.isOn.bind(this),
+    isNavigationEnabledFn: () => chartView._scrollHandler.isOn(),
 
     // ref-lines
     refLines: layout.refLine && layout.refLine.refLines,

@@ -14,34 +14,7 @@ import picassoSetup from '@qlik/common/picasso/picasso-setup';
 
 import properties from './object-properties';
 import data from './data';
-// import picSelections from './pic-selections';
-// import definition from './pic-definition';
 import ChartView from './waterfallchart-view';
-
-// onResize(layout, options) {
-//   if (!this._paintCalled) {
-//     return Deferred.resolve();
-//   }
-//   const view = this.view;
-//   const $scope = this.$scope;
-//   view.refreshSelections();
-//   return Deferred.resolve()
-//     .then(() => {
-//       let element = view.$element;
-//       if ($scope.ext.hasDefaultTemplate()) {
-//         // Use the contained div as content - for extension backwards compatibility
-//         element = element.children().first();
-//       }
-//       return view.resize(element, layout, options);
-//     })
-//     .catch((err) => {
-//       if (process.env.NODE_ENV === 'development') {
-//         if (typeof err !== 'undefined') {
-//           console.error(err);
-//         }
-//       }
-//     });
-// },
 
 function usePromiseNoError(...args) {
   const [, error] = usePromise(...args);
@@ -62,7 +35,6 @@ export default function supernova(env) {
       const element = useElement();
       const layout = useStaleLayout();
       const rect = useRect();
-      // eslint-disable-next-line no-unused-vars
       const constraints = useConstraints();
       const translator = useTranslator();
       const theme = useTheme();
@@ -88,18 +60,10 @@ export default function supernova(env) {
           tooltipApi
         );
 
-        // const s = picSelections({
-        //   selections,
-        //   brush: p.brush('selection'),
-        //   picassoQ,
-        // });
-
         setInstance(view);
 
         return () => {
-          // s.release();
           view.destroy();
-          // p.destroy();
         };
       }, []);
 
@@ -109,6 +73,7 @@ export default function supernova(env) {
         }
         // update theme
         instance.theme = theme;
+        instance.updateConstraints(constraints);
 
         // TODO: confim selection if triggered from engine (another websocket to the same session (browser tab))
         // TODO: usingDerivedProperties

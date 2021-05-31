@@ -217,17 +217,16 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     const includeOutliers = getValue(layout, 'boxplotDef.elements.outliers.include');
     const dataPaths = includeOutliers ? [BOX_PATH, OUTLIERS_PATH] : [BOX_PATH];
 
-    if (this.hasOption('selections')) {
-      this._selectionHandler = SelectionHandler.create({
-        model: backendApi.model,
-        chartInstance: this.chartInstance,
-        selectionsApi,
-        dataPaths,
-        isLassoDisabled: this.isLassoDisabled.bind(this),
-      });
-    }
+    this._selectionHandler = SelectionHandler.create({
+      model: backendApi.model,
+      chartInstance: this.chartInstance,
+      selectionsApi,
+      dataPaths,
+      selectPaths: dataPaths.map((p) => `/${p}Def`),
+      isLassoDisabled: this.isLassoDisabled.bind(this),
+    });
     if (this.hasOption('tooltips')) {
-      // TOOD: tooltip
+      // TODO: tooltip
       // const $templateCache = qvangular.getService('$templateCache');
       // $templateCache.put(tooltipTemplateUrl, boxplotTooltipTemplate);
       // this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
@@ -262,6 +261,15 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     );
   },
 
+  updateConstraints(constraints) {
+    const navigation = !constraints.active;
+    const tooltip = !constraints.passive;
+    const selection = !constraints.select && !constraints.active;
+
+    this._scrollHandler[navigation ? 'on' : 'off']();
+    this._tooltipHandler[tooltip ? 'on' : 'off']();
+    this._selectionHandler[selection ? 'on' : 'off']();
+  },
   on() {
     this._super();
 
@@ -739,14 +747,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     if (this._dependentActions) {
       this._dependentActions.destroy();
     }
-    this._dependentActions = DependentInteractions.create(
-      handlers,
-      this.isOn.bind(this),
-      layout.orientation,
-      isRtl,
-      keys,
-      rangeSelStatus
-    );
+    this._dependentActions = DependentInteractions.create(handlers, layout.orientation, isRtl, keys, rangeSelStatus);
 
     chartBuilder.addPreset('dimension-measure-chart', {
       // common
@@ -775,7 +776,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
 
       // scroll
       hasNavigation: this.hasOption('navigation'),
-      isNavigationEnabledFn: this.isOn.bind(this),
+      isNavigationEnabledFn: () => this._scrollHandler.isOn(),
       scrollSettings:
         this.hasOption('navigation') && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 

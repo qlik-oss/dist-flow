@@ -10,7 +10,7 @@ export default function setup() {
   // default to use canvas renderer
   picasso.renderer.prio(['canvas']);
   // if (DebugFlags.DEVELOPER) {
-  picasso.logger.level(picassojs.logger.LOG_LEVEL.WARN);
+  // picasso.logger.level(picassojs.logger.LOG_LEVEL.WARN);
   // }
 
   picasso.use(PicassoQ);

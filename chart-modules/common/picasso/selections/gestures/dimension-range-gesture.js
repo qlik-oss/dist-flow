@@ -20,13 +20,13 @@ function callDimensionRangeGesture(state, gesturesFns, gesturesParams, dimAxis) 
           return false;
         }
         if (state.majoring) {
-          return gesturesFns.isEnabledFn();
+          return gesturesFns.isSelectionEnabled();
         }
         const targets =
           gesturesParams.active.gesture === 'majorrange' ? [dimAxis, gesturesParams.keys.componentKey] : [dimAxis];
         const hitComp = onComponentChecker.isOnComponentForRange(e, targets, this);
 
-        state.majoring = gesturesFns.isEnabledFn() && !!e && !!hitComp;
+        state.majoring = gesturesFns.isSelectionEnabled() && !!e && !!hitComp;
         return state.majoring && !!gesturesParams.keys.dimRangeBrushKey;
       },
     },

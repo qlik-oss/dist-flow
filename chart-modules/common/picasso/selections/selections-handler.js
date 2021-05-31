@@ -48,17 +48,17 @@ function Selections(options) {
   if (!options || !options.model || !options.chartInstance || !options.selectionsApi) {
     throw Error('Selections-handler: Missing input');
   }
-  const model = options.model;
   const chartInstance = options.chartInstance;
   const selectionsApi = options.selectionsApi;
   const dataPaths = options.dataPaths || [''];
+  const selectPaths = options.selectPaths;
 
   let selectionContexts = [];
   let ctrlPressed;
   let shiftPressed;
   const selectionsApiRestoreHelper = { propertiesToRestore: {} };
   let on = false;
-  const actions = Actions(model, chartInstance, selectionsApi);
+  const actions = Actions(chartInstance, selectionsApi, selectPaths);
 
   // Not need for a function, so turned it into an object
   const fn = {};
@@ -216,8 +216,8 @@ function Selections(options) {
           }
         });
 
-        if (selectionsApi.selectionsMade) {
-          model.resetMadeSelections();
+        if (selectionsApi.canClear()) {
+          selectionsApi.clear();
         }
       }
     };
@@ -311,19 +311,27 @@ function Selections(options) {
     interaction.CtrlToggle.bind(ctrlToggle);
     interaction.ShiftToggle.bind(shiftToggle);
 
-    selectionsApiRestoreHelper.unbindDeactivated = selectionsApi.watchDeactivated(() => {
+    const onDeactivated = () => {
       selectionContexts.forEach((context) => {
         context.brush.end();
       });
       interaction.KeyPressed.unbind(keyPressed);
       lasso = false;
-    });
+    };
+    selectionsApi.on('deactivated', onDeactivated);
+    selectionsApiRestoreHelper.unbindDeactivated = () => {
+      selectionsApi.removeListener('deactivated', onDeactivated);
+    };
 
-    selectionsApiRestoreHelper.unbindActivated = selectionsApi.watchActivated(() => {
+    const onActivated = () => {
       interaction.KeyPressed.bind(keyPressed);
-    });
+    };
+    selectionsApi.on('activated', onActivated);
+    selectionsApiRestoreHelper.unbindActivated = () => {
+      selectionsApi.removeListener('activated', onActivated);
+    };
   };
-
+  fn.isOn = () => on;
   fn.off = function () {
     if (!on) {
       return;

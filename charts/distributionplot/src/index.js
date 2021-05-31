@@ -16,35 +16,8 @@ import picassoSetup from '@qlik/common/picasso/picasso-setup';
 
 import properties from './object-properties';
 import data from './data';
-// import picSelections from './pic-selections';
-// import definition from './pic-definition';
 import ChartView from './distributionplot-view';
 import BackednAPi from './backend-api';
-
-// onResize(layout, options) {
-//   if (!this._paintCalled) {
-//     return Deferred.resolve();
-//   }
-//   const view = this.view;
-//   const $scope = this.$scope;
-//   view.refreshSelections();
-//   return Deferred.resolve()
-//     .then(() => {
-//       let element = view.$element;
-//       if ($scope.ext.hasDefaultTemplate()) {
-//         // Use the contained div as content - for extension backwards compatibility
-//         element = element.children().first();
-//       }
-//       return view.resize(element, layout, options);
-//     })
-//     .catch((err) => {
-//       if (process.env.NODE_ENV === 'development') {
-//         if (typeof err !== 'undefined') {
-//           console.error(err);
-//         }
-//       }
-//     });
-// },
 
 export default function supernova(env) {
   const picasso = picassoSetup();
@@ -56,12 +29,10 @@ export default function supernova(env) {
     },
     component() {
       const element = useElement();
-      // eslint-disable-next-line no-unused-vars
       const selections = useSelections();
       const layout = useStaleLayout();
       const rect = useRect();
       const model = useModel();
-      // eslint-disable-next-line no-unused-vars
       const constraints = useConstraints();
       const translator = useTranslator();
       const theme = useTheme();
@@ -89,18 +60,10 @@ export default function supernova(env) {
           tooltipApi
         );
 
-        // const p = picasso.chart({
-        //   element,
-        //   data: [],
-        //   settings: {},
-        // });
-
         setInstance(view);
 
         return () => {
-          // s.release();
           view.destroy();
-          // p.destroy();
         };
       }, []);
 
@@ -109,6 +72,7 @@ export default function supernova(env) {
           return;
         }
         instance.theme = theme;
+        instance.updateConstraints(constraints);
 
         // TODO: confim selection if triggered from engine (another websocket to the same session (browser tab))
         // TODO: usingDerivedProperties

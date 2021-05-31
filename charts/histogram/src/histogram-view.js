@@ -43,6 +43,7 @@ function init(
       model: backendApi.model,
       chartInstance: this.chartInstance,
       selectionsApi,
+      selectPaths: ['qUndoExclude/box/qHyperCubeDef'],
     });
   }
 
@@ -55,6 +56,13 @@ function init(
   this.setDataPaths(['qUndoExclude/box/qHyperCube']);
 }
 
+function updateConstraints(constraints) {
+  const tooltip = !constraints.passive;
+  const selection = !constraints.select && !constraints.active;
+
+  this._tooltipHandler[tooltip ? 'on' : 'off']();
+  this._selectionHandler[selection ? 'on' : 'off']();
+}
 function on() {
   if (this._on) {
     return;
@@ -232,6 +240,7 @@ const HistogramView = ChartView.extend('Histogram', {
     tooltips: true,
   },
   init,
+  updateConstraints,
   on,
   off,
   createChartSettings: function createChartSettings(layout) {

@@ -184,7 +184,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         chartInstance: this.chartInstance,
         selectionsApi,
         isLassoDisabled: this.isLassoDisabled.bind(this),
-      });
+        selectPaths: ['qUndoExclude/qHyperCubeDef'],
+     });
     }
     if (this.hasOption('tooltips')) {
       // TODO: fix tooltip
@@ -236,6 +237,15 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     );
   },
 
+  updateConstraints(constraints) {
+    const navigation = !constraints.active;
+    const tooltip = !constraints.passive;
+    const selection = !constraints.select && !constraints.active;
+
+    this._scrollHandler[navigation ? 'on' : 'off']();
+    this._tooltipHandler[tooltip ? 'on' : 'off']();
+    this._selectionHandler[selection ? 'on' : 'off']();
+  },
   on() {
     this._super();
     if (this.hasOption('tooltips')) {
@@ -769,14 +779,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     if (this._dependentActions) {
       this._dependentActions.destroy();
     }
-    this._dependentActions = DependentInteractions.create(
-      handlers,
-      this.isOn.bind(this),
-      layout.orientation,
-      isRtl,
-      keys,
-      rangeSelStatus
-    );
+    this._dependentActions = DependentInteractions.create(handlers, layout.orientation, isRtl, keys, rangeSelStatus);
 
     chartBuilder.addPreset('dimension-measure-chart', {
       // common
@@ -806,7 +809,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       // scroll
       hasNavigation: this.hasOption('navigation'),
 
-      isNavigationEnabledFn: this.isOn.bind(this),
+      isNavigationEnabledFn: () => this._scrollHandler.isOn(),
       scrollSettings:
         this.hasOption('navigation') && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 

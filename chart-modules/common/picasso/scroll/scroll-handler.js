@@ -9,6 +9,7 @@ ScrollHandler.prototype.setItemSize = setItemSize;
 ScrollHandler.prototype.getItemSize = getItemSize;
 ScrollHandler.prototype.getScrollViewSizeInItem = getScrollViewSizeInItem;
 ScrollHandler.prototype.on = on;
+ScrollHandler.prototype.isOn = isOn;
 ScrollHandler.prototype.off = off;
 ScrollHandler.prototype.updateViewState = updateViewState;
 ScrollHandler.prototype.onResize = onResize;
@@ -100,7 +101,9 @@ function on() {
   });
   this._on = true;
 }
-
+function isOn() {
+  return this._on;
+}
 function off() {
   if (!this._on) {
     return;
@@ -168,7 +171,6 @@ function calculateScrollViewSizeInItem() {
   const n = Math.floor(scrollSize / this.getItemSize());
   this._scrollViewSizeInItem = Math.max(n, 1); // Number of visible items should be at least 1
 }
-
 
 function getMouseWheelData(orgEvent) {
   let delta = 0;

@@ -102,16 +102,6 @@ const ChartView = BaseView.extend({
     this._dataPaths = dataPaths;
   },
 
-  // setInteractionState(state) {
-  //   this._super(state);
-  //   const inAnalysisState = state === InteractionStates.ANALYSIS;
-  //   if (inAnalysisState && !this._on) {
-  //     this.on();
-  //   } else if (!inAnalysisState && this._on) {
-  //     this.off();
-  //   }
-  // },
-
   hasOption(key) {
     return !!this.options[key];
   },
@@ -122,9 +112,6 @@ const ChartView = BaseView.extend({
     }
 
     this._on = true;
-  },
-  isOn() {
-    return this._on; // used by object.js
   },
   off() {
     if (!this._on) {
@@ -336,7 +323,6 @@ const ChartView = BaseView.extend({
       }
     }
   },
-  refreshSelections() {},
   suppressOnPaint(layout) {
     if (this.$scope.object._forcePaint) {
       this.$scope.object._forcePaint = false;

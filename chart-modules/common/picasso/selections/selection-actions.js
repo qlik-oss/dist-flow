@@ -7,39 +7,13 @@ const eventUtils = {
   showLockedFeedback: () => {},
 };
 
-function SelectionActions(model, chartInstance, selectionsApi) {
+function SelectionActions(chartInstance, selectionsApi, paths) {
   function fn() {}
 
   function update(added, removed, brush) {
-    /* if ( added.length + removed.length < 1 ) {
-            return;
-        } */
-
     const selections = PicassoQ.qBrushHelper(brush);
-    if (selections.length) {
-      if (selections[0].method === 'resetMadeSelections') {
-        model[selections[0].method].apply(model).catch((e) => {
-          console.warn('err', e);
-        });
-        return;
-      }
-
-      selectionsApi.activate();
-      selectionsApi.selectionsMade = true; // eslint-disable-line no-param-reassign
-    }
-
     selections.forEach((s) => {
-      model[s.method]
-        .apply(model, s.params)
-        .then((result) => {
-          if (!result) {
-            // For example, if we make a range selection and don't cover any data points, then reset the selection
-            model.resetMadeSelections();
-          }
-        })
-        .catch((e) => {
-          console.warn('err', e);
-        });
+      selectionsApi.select(s);
     });
   }
 
@@ -49,8 +23,8 @@ function SelectionActions(model, chartInstance, selectionsApi) {
     if (filterResult.itemsAreLocked) {
       eventUtils.showLockedFeedback(filterResult.lockedFields);
     }
-    if (!selectionsApi.active && !filterResult.itemsAreLocked && (startOnEmptySelection || itms.length > 0)) {
-      selectionsApi.activate(); // Make sure to always pop up selections tool
+    if (!selectionsApi.isActive() && !filterResult.itemsAreLocked && (startOnEmptySelection || itms.length > 0)) {
+      selectionsApi.begin(paths);
       brush.start();
       brush.emit('update', [], []); // and activate our brush
     }

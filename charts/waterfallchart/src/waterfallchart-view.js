@@ -58,6 +58,13 @@ function updateScrollHandlerState(b) {
   this._scrollHandler.setDisabled(!this.hasOption('navigation') || !!b);
 }
 
+function updateConstraints(constraints) {
+  const navigation = !constraints.active;
+  const tooltip = !constraints.passive;
+
+  this._scrollHandler[navigation ? 'on' : 'off']();
+  this._tooltipHandler[tooltip ? 'on' : 'off']();
+}
 function on() {
   this._super();
   if (this.hasOption('tooltips')) {
@@ -329,7 +336,7 @@ function createChartSettings(layout) {
   if (this._dependentActions) {
     this._dependentActions.destroy();
   }
-  this._dependentActions = DependentInteractions.create(handlers, this.isOn.bind(this), 'vertical', isRtl, keys);
+  this._dependentActions = DependentInteractions.create(handlers, 'vertical', isRtl, keys);
 
   chartBuilder.addPreset('dimension-measure-chart', {
     // common
@@ -366,7 +373,7 @@ function createChartSettings(layout) {
 
     // scroll
     hasNavigation: this.hasOption('navigation'),
-    isNavigationEnabledFn: this.isOn.bind(this),
+    isNavigationEnabledFn: () => this._scrollHandler.isOn(),
     scrollSettings:
       this.hasOption('navigation') && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 
@@ -471,6 +478,7 @@ const waterfallChartView = ChartView.extend('WaterfallChart', {
     tooltips: true,
   },
   init,
+  updateConstraints,
   on,
   off,
   createChartSettings,

@@ -9,7 +9,7 @@ import navBtnGesture from './gestures/navigational-button-gesture';
  * Creates Picasso components for interaction component that are dependent on eatchother
  */
 
-function DependentInteractions(handlers, isEnabledFn, orientation, isRtl, keys, rangeSelStatus) {
+function DependentInteractions(handlers, orientation, isRtl, keys, rangeSelStatus) {
   const ret = {};
 
   orientation = orientation || 'vertical'; // eslint-disable-line no-param-reassign
@@ -100,7 +100,9 @@ function DependentInteractions(handlers, isEnabledFn, orientation, isRtl, keys, 
   let gestures = [];
 
   const gesturesFns = {
-    isEnabledFn,
+    isSelectionEnabled: () => handlers.selectionHandler && handlers.selectionHandler.isOn(),
+    isNavigationEnabled: () => handlers.scrollHandler && handlers.scrollHandler.isOn(),
+    // isEnabledFn,
     doEmit,
     switchTo,
     getBrushConfig,
@@ -135,7 +137,7 @@ function DependentInteractions(handlers, isEnabledFn, orientation, isRtl, keys, 
 
     // Ordering matters here because the tap event, because the above gesture does not return anything
     // and we want don't want to call the navigational button enable function for all tap events
-    gestures.unshift(navBtnGesture.callNavBtnGesture(gesturesFns.isEnabledFn, legendBrushKey));
+    gestures.unshift(navBtnGesture.callNavBtnGesture(gesturesFns.isNavigationEnabled, legendBrushKey));
 
     gestures.push(lassoGesture.callLassoGesture(state, gesturesFns, gesturesParams));
 
@@ -178,7 +180,9 @@ function DependentInteractions(handlers, isEnabledFn, orientation, isRtl, keys, 
 
   ret.gestures = gestures;
   ret.destroy = function () {
-    handlers.scrollHandler && handlers.scrollHandler.getScrollApi().removeListener('update', onScrollUpdate);
+    if (handlers.scrollHandler) {
+      handlers.scrollHandler.getScrollApi().removeListener('update', onScrollUpdate);
+    }
   };
 
   return ret;

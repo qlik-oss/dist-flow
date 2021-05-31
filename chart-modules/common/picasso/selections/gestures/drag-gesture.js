@@ -15,11 +15,11 @@ function callDragGesture(state, gesturesFns, gesturesParams, hasSelections, isRt
       event: 'drag',
       enable(manager, e) {
         if (state.dragging) {
-          return gesturesFns.isEnabledFn();
+          return gesturesFns.isNavigationEnabled();
         }
 
         state.dragging =
-          gesturesFns.isEnabledFn() &&
+          gesturesFns.isNavigationEnabled() &&
           !!e &&
           !!this.chart
             .componentsFromPoint({ x: e.center.x, y: e.center.y })

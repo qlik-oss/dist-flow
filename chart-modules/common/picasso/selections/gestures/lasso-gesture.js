@@ -18,10 +18,12 @@ function callLassoGesture(state, gesturesFns, gesturesParams) {
       threshold: 1,
       enable(manager, e) {
         if (state.lassoing) {
-          return gesturesFns.isEnabledFn();
+          return gesturesFns.isSelectionEnabled();
         }
         const hitComp = onComponentChecker.isOnComponentForLasso(e, gesturesParams, this);
-        return gesturesFns.isEnabledFn() && e && (getLassoState(gesturesParams.handlers) || state.lassoing) && hitComp;
+        return (
+          gesturesFns.isSelectionEnabled() && e && (getLassoState(gesturesParams.handlers) || state.lassoing) && hitComp
+        );
       },
       event: 'lasso',
     },

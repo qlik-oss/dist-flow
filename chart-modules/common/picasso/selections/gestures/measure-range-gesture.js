@@ -22,7 +22,7 @@ function callMeasureRangeGesture(state, gesturesFns, gesturesParams, measureAxis
         }
 
         if (state.measureSelecting) {
-          return gesturesFns.isEnabledFn();
+          return gesturesFns.isSelectionEnabled();
         }
         const targets =
           gesturesParams.active.gesture === 'measurerange'
@@ -30,7 +30,7 @@ function callMeasureRangeGesture(state, gesturesFns, gesturesParams, measureAxis
             : [measureAxis];
         const hitComp = onComponentChecker.isOnComponentForRange(e, targets, this);
 
-        state.measureSelecting = gesturesFns.isEnabledFn() && !!e && !!hitComp;
+        state.measureSelecting = gesturesFns.isSelectionEnabled() && !!e && !!hitComp;
         return state.measureSelecting && !!gesturesParams.keys.measureRangeBrushKey;
       },
     },
