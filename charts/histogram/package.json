@@ -31,7 +31,7 @@
   "scripts": {
     "build": "nebula build",
     "lint": "eslint src",
-    "start": "nebula serve --type histogram",
+    "start": "nebula serve --type histogram --config ../../nebula.config.js",
     "sense": "nebula sense"
   },
   "dependencies": {

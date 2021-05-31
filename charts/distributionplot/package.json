@@ -32,7 +32,7 @@
   "scripts": {
     "build": "nebula build",
     "lint": "eslint src",
-    "start": "nebula serve --type distributionplot",
+    "start": "nebula serve --type distributionplot --config ../../nebula.config.js",
     "sense": "nebula sense"
   },
   "dependencies": {

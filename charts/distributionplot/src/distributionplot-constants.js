@@ -2,7 +2,7 @@ const CONSTANTS = {
   DATA_PATH: 'qUndoExclude',
   HYPERCUBE_DEF_PATH: 'qHyperCubeDef',
   HYPERCUBE_PATH: 'qHyperCube',
-  CHART_ID: 'distributionPlot',
+  CHART_ID: 'object.distributionPlot',
 
   AUTO_SORT: 'sorting.autoSort',
   SORT_CRITERIA: 'sorting.sortCriteria',

@@ -25,7 +25,7 @@ import CubeGenerator from './boxplot-cubes-generator';
 // import boxplotTooltipTemplate from './boxplot-tooltip/boxplot-tooltip-picture.ng.html';
 // import './boxplot-tooltip/boxplot-tooltip-picture-directive';
 
-const chartID = 'boxPlot';
+const chartID = 'object.boxPlot';
 const dataPath = 'qUndoExclude';
 const BOX_PATH = `${dataPath}/box/qHyperCube`;
 const OUTLIERS_PATH = `${dataPath}/outliers/qHyperCube`;

@@ -9,7 +9,7 @@ import boxplotSorter from './sorting/boxplot-sorter';
 import ObjectUtils from '../../../assets/general/utils/object-utils/object-utils';
 import { isEnabled } from '../../../services/feature-flags';
 
-const chartID = 'boxPlot';
+const chartID = 'object.boxPlot';
 
 const SORTING_REFS = {
   AUTO_SORT: 'boxplotDef.sorting.autoSort',

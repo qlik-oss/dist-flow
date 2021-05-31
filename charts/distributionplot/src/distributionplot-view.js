@@ -576,9 +576,13 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     };
 
     pointMarkerSettings.settings.fill = function (d) {
+      return undefined;
+      // eslint-disable-next-line no-unreachable
       return getFillColor(d.datum).toRGBA();
     };
     pointMarkerSettings.settings.stroke = function (d) {
+      return undefined;
+      // eslint-disable-next-line no-unreachable
       const fill = getFillColor(d.datum);
       return chartStyleUtils.getContrastingTransparent(fill);
     };

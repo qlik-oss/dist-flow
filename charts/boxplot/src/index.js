@@ -88,15 +88,9 @@ export default function supernova(env) {
           tooltipApi
         );
 
-        // const p = picasso.chart({
-        //   element,
-        //   data: [],
-        //   settings: {},
-        // });
-
         // const s = picSelections({
         //   selections,
-        //   brush: p.brush('selection'),
+        //   brush: view.chart.brush('selection'),
         //   picassoQ,
         // });
 
@@ -113,6 +107,7 @@ export default function supernova(env) {
         if (!instance) {
           return;
         }
+        instance.theme = theme;
 
         // TODO: confim selection if triggered from engine (another websocket to the same session (browser tab))
         // TODO: usingDerivedProperties
@@ -120,18 +115,7 @@ export default function supernova(env) {
         await instance.updateData(layout);
         const $element = null;
         await instance.paint($element, layout);
-        // instance.update({
-        //   data: [
-        //     {
-        //       type: 'q',
-        //       key: 'qHyperCube',
-        //       data: layout.qHyperCube,
-        //     },
-        //   ],
-        //   settings: definition({ layout, constraints }),
-        // });
-        // instance
-      }, [layout, instance]);
+      }, [layout, instance, theme.name()]);
       if (error) {
         throw error;
       }

@@ -7,7 +7,7 @@ import BoxMarker from './box-marker';
 import Label from './label';
 // import propertyResolver from '../../../../assets/client/utils/property-resolver';
 
-const chartID = 'histogram';
+const chartID = 'object.histogram';
 
 //
 // Implementation details

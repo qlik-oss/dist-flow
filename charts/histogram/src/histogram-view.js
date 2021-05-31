@@ -8,7 +8,7 @@ import histogramMappings from './derived-properties/histogram-mappings';
 import ChartSettings from './chart-settings/chart-settings';
 
 const namespace = '.histogram';
-const chartID = 'histogram';
+const chartID = 'object.histogram';
 
 //
 // Implementation details

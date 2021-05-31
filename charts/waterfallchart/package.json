@@ -31,7 +31,7 @@
   "scripts": {
     "build": "nebula build",
     "lint": "eslint src",
-    "start": "nebula serve --type waterfallchart",
+    "start": "nebula serve --type waterfallchart --config ../../nebula.config.js",
     "sense": "nebula sense"
   },
   "dependencies": {

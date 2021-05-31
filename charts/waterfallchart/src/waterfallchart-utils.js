@@ -1,4 +1,4 @@
-const CHART_ID = 'waterfallChart';
+const CHART_ID = 'object.waterfallChart';
 
 function getShapeColor(layout, theme, name, defaultColor) {
   const layoutColor = layout.color || layout.qDef.color;
@@ -12,7 +12,7 @@ function getShapeColor(layout, theme, name, defaultColor) {
 }
 
 function getColorForPositiveValue(layout, theme) {
-  return theme.getColorPickerColor(getShapeColor(layout, theme, 'positiveValue', '#4477AA'));
+  return theme.getColorPickerColor(getShapeColor(layout, theme, 'positiveValue'));
 }
 
 function getColorForNegativeValue(layout, theme) {
