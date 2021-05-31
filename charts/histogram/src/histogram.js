@@ -10,7 +10,6 @@ import HypercubeApi from '../../../assets/objects/backend-api/hypercube-api';
 import template from './histogram.ng.html';
 import propertyMapper from '../../../assets/client/utils/property-mapper';
 import objectConversion from '../../../assets/objects/conversion/object-conversion';
-import BINNING_DEFAULTS from './binning-defaults';
 
 export default {
   type: 'histogram',
@@ -19,27 +18,6 @@ export default {
   View: HistogramView,
   definition: histogramPropertiesDefinition,
   softDefinition: histogramExplorePropertiesDefinition,
-  initialProperties: {
-    sorting: {
-      autoSort: true,
-    },
-    qHyperCubeDef: {
-      qDimensions: [],
-      qMeasures: [],
-      qMode: 'S',
-      qAlwaysFullyExpanded: true,
-      qSuppressZero: false,
-      qSuppressMissing: true,
-    },
-    bins: {
-      auto: BINNING_DEFAULTS.AUTO,
-      binCount: undefined,
-      binSize: BINNING_DEFAULTS.BIN_SIZE,
-      offset: BINNING_DEFAULTS.OFFSET,
-      countDistinct: BINNING_DEFAULTS.COUNT_DISTINCT,
-      binMode: BINNING_DEFAULTS.BIN_MODE,
-    },
-  },
   support: {
     cssScaling: false,
     snapshot: true,

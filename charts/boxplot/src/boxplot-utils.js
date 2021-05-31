@@ -247,15 +247,15 @@ function getNameExpression(elementName, calcParam, mode, translator) {
   return { name: returnString, type: 'expression' };
 }
 
-boxplotUtils.getDefaultNameTemplate = function (elementName, boxProps) {
+boxplotUtils.getDefaultNameTemplate = function (elementName, boxProps, translator) {
   const mode = boxProps.calculations.mode;
   const calcParam = boxProps.calculations.parameters[mode];
   let nameTemplate;
 
   if (mode === boxplotUtils.BOXMODES.FRACTILES.value) {
-    nameTemplate = getNameExpressionForFractilesMode(elementName, calcParam, mode);
+    nameTemplate = getNameExpressionForFractilesMode(elementName, calcParam, mode, translator);
   } else {
-    nameTemplate = getNameExpression(elementName, calcParam, mode);
+    nameTemplate = getNameExpression(elementName, calcParam, mode, translator);
   }
 
   return nameTemplate;

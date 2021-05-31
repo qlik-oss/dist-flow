@@ -30,25 +30,26 @@ class SoftPropertyHandler {
     return Promise.resolve(false);
   }
 
-  mergeSoftPatches() {
+  async mergeSoftPatches() {
     if (!this._model) {
-      return Promise.resolve();
+      return;
     }
 
-    const self = this;
+    const propertiesPromise = this._model.getProperties();
+    const effectivePromise = this._model.getEffectiveProperties();
 
-    return Promise.all({
-      properties: this._model.getProperties(),
-      effective: this._model.getEffectiveProperties(),
-    }).then((args) => {
-      if (args.properties.qExtendsId) {
-        return;
-      }
-      const patches = JSONPatch.generate(args.properties, args.effective);
-      JSONPatch.apply(args.properties, patches);
-      self._model.setProperties(args.properties).then(() => {
-        self._model.clearSoftPatches();
-      });
+    const properties = await propertiesPromise;
+    const effective = await effectivePromise;
+
+    if (properties.qExtendsId) {
+      return;
+    }
+    const patches = JSONPatch.generate(properties, effective);
+    JSONPatch.apply(properties, patches);
+
+    const self = this;
+    self._model.setProperties(properties).then(() => {
+      self._model.clearSoftPatches();
     });
   }
 }

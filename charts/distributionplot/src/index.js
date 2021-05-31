@@ -74,8 +74,16 @@ export default function supernova(env) {
         instance.theme = theme;
         instance.updateConstraints(constraints);
 
+        const isSnapshot = !!layout.snapshotData;
+        if (!isSnapshot) {
+          const properties = await model.getEffectiveProperties();
+          const updatingDerivedProperties = await instance.updateDerivedProperties(properties, layout);
+          if (updatingDerivedProperties) {
+            return;
+          }
+        }
+
         // TODO: confim selection if triggered from engine (another websocket to the same session (browser tab))
-        // TODO: usingDerivedProperties
 
         await instance.updateData(layout);
         const $element = null;

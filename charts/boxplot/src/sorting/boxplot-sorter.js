@@ -6,7 +6,7 @@ import elementsRetriever from './boxplot-sorting-elements-retriever';
 //
 // Implementation details
 //
-function applySorting(properties, layout) {
+function applySorting(properties, layout, translator) {
   const getSettingsFn = function () {
     return settingsRetriever.getSettings(layout);
   };
@@ -14,7 +14,7 @@ function applySorting(properties, layout) {
   const getElementsFn = function () {
     const settings = getSettingsFn();
 
-    return elementsRetriever.getElements(properties, settings);
+    return elementsRetriever.getElements(properties, settings, translator);
   };
 
   const sorter = sorterFactory.create(getSettingsFn, getElementsFn);

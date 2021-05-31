@@ -179,7 +179,7 @@ function generateHyperCubes(props, drillIndexes, layout, app, translator) {
         if (customLabel) {
           label = `='${customLabel}'`;
         } else {
-          const defaultNameTemplate = boxplotUtils.getDefaultNameTemplate(boxElement, boxProps);
+          const defaultNameTemplate = boxplotUtils.getDefaultNameTemplate(boxElement, boxProps, translator);
 
           if (defaultNameTemplate.type === 'expression') {
             label = `=${bpExprGen.replaceDefaultExpression(
@@ -215,7 +215,7 @@ function generateHyperCubes(props, drillIndexes, layout, app, translator) {
     );
 
     if (hasTwoDimensions) {
-      boxplotSorter.applySorting(props, layout);
+      boxplotSorter.applySorting(props, layout, translator);
     }
 
     if (!boxProps.elements || !boxProps.elements.outliers || !boxProps.elements.outliers.include) {
