@@ -12,9 +12,7 @@ const Touche = {
   preventGestures: () => {},
 };
 const interaction = {
-  CtrlToggle: { bind: () => {}, unbind: () => {} },
   ShiftToggle: { bind: () => {}, unbind: () => {} },
-  KeyPressed: { bind: () => {}, unbind: () => {} },
 };
 
 const DEFAULT_OPTIONS = {
@@ -54,7 +52,6 @@ function Selections(options) {
   const selectPaths = options.selectPaths;
 
   let selectionContexts = [];
-  let ctrlPressed;
   let shiftPressed;
   const selectionsApiRestoreHelper = { propertiesToRestore: {} };
   let on = false;
@@ -63,18 +60,14 @@ function Selections(options) {
   // Not need for a function, so turned it into an object
   const fn = {};
 
-  // Chart-wide functionality
-  function ctrlToggle(pressed) {
-    ctrlPressed = pressed;
-  }
-
   function shiftToggle(pressed) {
     shiftPressed = pressed;
     // We run this here so that the selections toolbar can pick up the changed state
     selectionsApi.refreshToolbar();
   }
 
-  function keyPressed(key) {
+  function confirmOrCancelSelection(event) {
+    const key = event.keyCode;
     if (key === ESCAPE) {
       selectionsApi.cancel();
     } else if (key === ENTER) {
@@ -173,8 +166,8 @@ function Selections(options) {
 
     const selectionTrigger = {
       on: 'tap',
-      action() {
-        return ctrlPressed || options.isSingleSelect ? 'set' : 'toggle';
+      action(e) {
+        return e.ctrlKey || options.isSingleSelect ? 'set' : 'toggle';
       },
       contexts: opts.contexts,
       data: opts.data,
@@ -308,14 +301,13 @@ function Selections(options) {
 
     register();
 
-    interaction.CtrlToggle.bind(ctrlToggle);
     interaction.ShiftToggle.bind(shiftToggle);
 
     const onDeactivated = () => {
       selectionContexts.forEach((context) => {
         context.brush.end();
       });
-      interaction.KeyPressed.unbind(keyPressed);
+      document.removeEventListener('keyup', confirmOrCancelSelection);
       lasso = false;
     };
     selectionsApi.on('deactivated', onDeactivated);
@@ -324,7 +316,7 @@ function Selections(options) {
     };
 
     const onActivated = () => {
-      interaction.KeyPressed.bind(keyPressed);
+      document.addEventListener('keyup', confirmOrCancelSelection);
     };
     selectionsApi.on('activated', onActivated);
     selectionsApiRestoreHelper.unbindActivated = () => {
@@ -339,9 +331,8 @@ function Selections(options) {
     on = false;
     deregister();
 
-    interaction.CtrlToggle.unbind(ctrlToggle);
     interaction.ShiftToggle.unbind(shiftToggle);
-    interaction.KeyPressed.unbind(keyPressed);
+    document.removeEventListener('keyup', confirmOrCancelSelection);
 
     selectionsApiRestoreHelper.unbindActivated();
     selectionsApiRestoreHelper.unbindDeactivated();
@@ -356,9 +347,6 @@ function Selections(options) {
   fn.allFieldsLocked = function () {
     return areAllFieldsLocked();
   };
-
-  /* fn.destroy = function () {
-    } */
 
   return fn;
 }
