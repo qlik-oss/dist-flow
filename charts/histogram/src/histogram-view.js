@@ -32,9 +32,7 @@ function init(
   this.translator = translator;
   this.theme = theme;
 
-  // TODO: add __do_not_use_findShapes for tests
-  // const chartElement = $element.find('.picasso-chart')[0];
-  // chartElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
+  this.picassoElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
 
   this._derivedProperties = new DerivedProperties();
 
