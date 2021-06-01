@@ -166,7 +166,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     tooltips: true,
   },
 
-  init(flags, layout, picasso, translator, theme, $scope, $element, options, backendApi, selectionsApi, tooltipApi) {
+  init(lasso, flags, picasso, translator, theme, $scope, $element, options, backendApi, selectionsApi, tooltipApi) {
     this._super(picasso, $scope, $element, options, backendApi, selectionsApi);
     this.flags = flags;
     this.translator = translator;
@@ -185,6 +185,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         selectionsApi,
         isLassoDisabled: this.isLassoDisabled.bind(this),
         selectPaths: ['/qUndoExclude/qHyperCubeDef'],
+        lasso,
       });
     }
     if (this.hasOption('tooltips')) {
@@ -1162,7 +1163,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   isLassoDisabled() {
-    const layout = this.$scope.layout;
+    const layout = this.layout;
     const isInnerDimSingleSelect = !!(
       layout.qHyperCube.qDimensionInfo &&
       layout.qHyperCube.qDimensionInfo.length > 1 &&

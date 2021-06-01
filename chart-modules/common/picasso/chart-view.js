@@ -252,48 +252,6 @@ const ChartView = BaseView.extend({
     this._colorMap.release();
   },
 
-  getSelectionToolbar() {
-    const buttons = [];
-    if (this.hasOption('selections') && this._selectionHandler) {
-      const view = this;
-      buttons.push({
-        name: 'Tooltip.ToggleOnLassoSelection',
-        tid: 'selection-toolbar.toggleLasso',
-        isIcon: true,
-        buttonClass: 'sel-toolbar-icon-toggle',
-        iconClass: 'lui-icon lui-icon--lasso',
-        action() {
-          view._selectionHandler.toggleLasso();
-        },
-        isActive() {
-          const isActive = view._selectionHandler.lassoState();
-          this.name = isActive ? 'Tooltip.ToggleOffLassoSelection' : 'Tooltip.ToggleOnLassoSelection';
-          return isActive;
-        },
-        isDisabled() {
-          if (view.isLassoDisabled && view.isLassoDisabled()) {
-            return true;
-          }
-          return false;
-        },
-      });
-      buttons.push({
-        name: 'Tooltip.clearSelection',
-        tid: 'selection-toolbar.clear',
-        isIcon: true,
-        buttonClass: 'clear',
-        iconClass: 'lui-icon lui-icon--clear-selections',
-        action() {
-          this.selectionsApi.clear();
-        },
-        isDisabled() {
-          return !this.selectionsApi.selectionsMade;
-        },
-      });
-    }
-    // return new DefaultSelectionToolbar(this.backendApi, this._selectionsApi, false, false, buttons, []);
-  },
-
   isLassoDisabled() {
     return true;
   },

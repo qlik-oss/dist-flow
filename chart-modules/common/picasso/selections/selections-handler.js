@@ -1,7 +1,6 @@
 // import Touche from 'touchejs';
 import extend from 'extend';
 import Actions from './selection-actions';
-// import interaction from '../../views/selections/interaction-handler';
 // import eventUtils from '../../utils/event-utils';
 
 // TODO: fix
@@ -10,9 +9,6 @@ const eventUtils = {
 };
 const Touche = {
   preventGestures: () => {},
-};
-const interaction = {
-  ShiftToggle: { bind: () => {}, unbind: () => {} },
 };
 
 const DEFAULT_OPTIONS = {
@@ -32,6 +28,7 @@ const DEFAULT_OPTIONS = {
 
 const ESCAPE = 27;
 const ENTER = 13;
+const SHIFT = 16;
 
 /**
  * Create a new Selections handler
@@ -50,9 +47,9 @@ function Selections(options) {
   const selectionsApi = options.selectionsApi;
   const dataPaths = options.dataPaths || [''];
   const selectPaths = options.selectPaths;
+  const lasso = options.lasso;
 
   let selectionContexts = [];
-  let shiftPressed;
   const selectionsApiRestoreHelper = { propertiesToRestore: {} };
   let on = false;
   const actions = Actions(chartInstance, selectionsApi, selectPaths);
@@ -60,10 +57,12 @@ function Selections(options) {
   // Not need for a function, so turned it into an object
   const fn = {};
 
-  function shiftToggle(pressed) {
-    shiftPressed = pressed;
-    // We run this here so that the selections toolbar can pick up the changed state
-    selectionsApi.refreshToolbar();
+  let lastShift = false;
+  function shiftToggle(e) {
+    if (e.keyCode === SHIFT && e.shiftKey !== lastShift) {
+      lastShift = e.shiftKey;
+      lasso.toggle();
+    }
   }
 
   function confirmOrCancelSelection(event) {
@@ -291,8 +290,6 @@ function Selections(options) {
     });
   };
 
-  let lasso = false;
-
   fn.on = function () {
     if (on) {
       return;
@@ -301,14 +298,18 @@ function Selections(options) {
 
     register();
 
-    interaction.ShiftToggle.bind(shiftToggle);
+    document.addEventListener('keydown', shiftToggle);
+    document.addEventListener('keyup', shiftToggle);
 
     const onDeactivated = () => {
       selectionContexts.forEach((context) => {
         context.brush.end();
       });
       document.removeEventListener('keyup', confirmOrCancelSelection);
-      lasso = false;
+      // TODO reset lasso on deselect
+      // if (lasso.active()) {
+      //   lasso.toggle();
+      // }
     };
     selectionsApi.on('deactivated', onDeactivated);
     selectionsApiRestoreHelper.unbindDeactivated = () => {
@@ -331,7 +332,8 @@ function Selections(options) {
     on = false;
     deregister();
 
-    interaction.ShiftToggle.unbind(shiftToggle);
+    document.removeEventListener('keydown', shiftToggle);
+    document.removeEventListener('keyup', shiftToggle);
     document.removeEventListener('keyup', confirmOrCancelSelection);
 
     selectionsApiRestoreHelper.unbindActivated();
@@ -339,10 +341,7 @@ function Selections(options) {
   };
 
   fn.lassoState = function () {
-    return shiftPressed && !isLassoDisabled() ? !lasso : lasso;
-  };
-  fn.toggleLasso = function () {
-    lasso = !lasso;
+    return lasso.active() && !isLassoDisabled();
   };
   fn.allFieldsLocked = function () {
     return areAllFieldsLocked();

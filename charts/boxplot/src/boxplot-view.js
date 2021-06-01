@@ -202,7 +202,20 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     tooltips: true,
   },
 
-  init(flags, layout, picasso, translator, theme, $scope, $element, options, backendApi, selectionsApi, tooltipApi) {
+  init(
+    lasso,
+    flags,
+    layout,
+    picasso,
+    translator,
+    theme,
+    $scope,
+    $element,
+    options,
+    backendApi,
+    selectionsApi,
+    tooltipApi
+  ) {
     this._super(picasso, $scope, $element, options, backendApi, selectionsApi, tooltipApi);
     this.flags = flags;
     this.translator = translator;
@@ -210,9 +223,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
 
     this._derivedProperties = new DerivedProperties();
 
-    // TODO: add __do_not_use_findShapes for tests
-    // const chartElement = $element.find('.picasso-chart')[0];
-    // chartElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
+    this.picassoElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
 
     const includeOutliers = getValue(layout, 'boxplotDef.elements.outliers.include');
     const dataPaths = includeOutliers ? [BOX_PATH, OUTLIERS_PATH] : [BOX_PATH];
@@ -224,6 +235,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       dataPaths,
       selectPaths: dataPaths.map((p) => `/${p}Def`),
       isLassoDisabled: this.isLassoDisabled.bind(this),
+      lasso,
     });
     if (this.hasOption('tooltips')) {
       // TODO: tooltip
@@ -1049,7 +1061,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
   },
 
   isLassoDisabled() {
-    const layout = this.$scope.layout;
+    const layout = this.layout;
     const dimsInfo = getValue(layout, 'boxplotDef.qHyperCube.qDimensionInfo');
     const isAllDimsSingleSelect =
       dimsInfo.length === dimsInfo.filter((dimInfo) => dimInfo.qIsOneAndOnlyOne === true).length;

@@ -15,8 +15,8 @@ const chartID = 'object.histogram';
 //
 
 function init(
+  lasso,
   flags,
-  layout,
   picasso,
   translator,
   theme,
@@ -44,6 +44,7 @@ function init(
       chartInstance: this.chartInstance,
       selectionsApi,
       selectPaths: ['/qUndoExclude/box/qHyperCubeDef'],
+      lasso,
     });
   }
 

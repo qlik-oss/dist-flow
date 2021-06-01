@@ -13,6 +13,7 @@ import {
 } from '@nebula.js/stardust';
 import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
+import useLasso from '@qlik/common/nebula/use-lasso';
 
 import properties from './object-properties';
 import data from './data';
@@ -36,6 +37,7 @@ export default function supernova(env) {
       const constraints = useConstraints();
       const translator = useTranslator();
       const theme = useTheme();
+      const lasso = useLasso();
 
       const [instance, setInstance] = useState();
 
@@ -47,8 +49,8 @@ export default function supernova(env) {
         const selectionsApi = selections;
         const tooltipApi = null;
         const view = new ChartView(
+          lasso,
           env.flags,
-          layout,
           picasso,
           translator,
           theme,
