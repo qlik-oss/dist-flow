@@ -30,7 +30,7 @@ export default function create({ app, layout, localeInfo, model, picasso, theme,
     },
     createConfig: () => ({
       layout,
-      hc: layout.qHyperCube,
+      hc: layout.qUndoExclude.qHyperCube,
       legendProps: layout.legend,
       colorProps: {
         ...layout.color.point,
