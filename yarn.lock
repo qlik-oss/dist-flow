@@ -2706,10 +2706,10 @@
   dependencies:
     "@octokit/openapi-types" "^7.2.3"
 
-"@qlik/chart-modules@0.10.0":
-  version "0.10.0"
-  resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/chart-modules/-/@qlik/chart-modules-0.10.0.tgz#9e45cc4af328311166ba1fac64f9ad08e9c6ce21"
-  integrity sha1-nkXMSvMoMRFmuh+sZPmtCOnGziE=
+"@qlik/chart-modules@0.11.0":
+  version "0.11.0"
+  resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/chart-modules/-/@qlik/chart-modules-0.11.0.tgz#a4d80d9cb286ee3d568fd51ad6f65dfab64d81b6"
+  integrity sha1-pNgNnLKG7j1Wj9Ua1vZd+rZNgbY=
 
 "@qlik/encoder@0.2.0":
   version "0.2.0"
