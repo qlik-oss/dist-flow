@@ -1,19 +1,12 @@
 import extend from 'extend';
 import { getValue, debouncer } from '@qlik/chart-modules';
 
-// import _ from 'underscore';
-// import Picasso from 'picasso.js/dist/picasso';
 import BaseView from '../extra/base-view';
-// import DefaultSelectionToolbar from '../extension/default-selection-toolbar';
-// import setupPicasso from './picasso-setup';
 import ChartBuilder from './chart-builder/chart-builder';
 // import Disclaimer from './disclaimer/disclaimer';
 // import InteractionStates from '../utils/interaction-states';
-// import layoutUtil from '../utils/layout';
 // import ColorMap from '../views/charts/representation/combo-color-map';
 // import States from '../utils/states';
-
-// setupPicasso();
 
 function getData(backendApi, hyperCube, rect) {
   let page = {
@@ -120,14 +113,6 @@ const ChartView = BaseView.extend({
     this._on = false;
   },
 
-  // getLayoutMode(layout) {
-  //   const m =
-  //     !this.options.freeResize && layout.snapshotData
-  //       ? layoutUtil.getLayoutMode(layout.snapshotData.content.size.w, layout.snapshotData.content.size.h)
-  //       : this._layoutMode || this.options.layoutMode;
-  //   return m;
-  // },
-
   getColor(id, value, measureIndex, rowIndex) {
     return this._colorMap.getColor(id, value, measureIndex, rowIndex);
   },
@@ -142,10 +127,6 @@ const ChartView = BaseView.extend({
 
   setColorMapData(data, viz) {
     return this._colorMap.setData(data, viz);
-  },
-
-  getLegend() {
-    return this._colorMap.getLegendDataProvider();
   },
 
   setFreeResize(freeResize) {
@@ -182,7 +163,6 @@ const ChartView = BaseView.extend({
       // There are cases where resize is run before updateData, therefore layout is undefined
       return undefined;
     }
-    // this._layoutMode = layoutUtil.getLayoutMode(this.picassoElement.clientWidth, this.picassoElement.clientHeight);
     return this.paint($element, this.layout);
   },
 
@@ -212,9 +192,6 @@ const ChartView = BaseView.extend({
     this.layout = extend(true, {}, layout);
     this.layout.permissions = layout.permissions;
     return Promise.resolve();
-  },
-  getLocaleInfo() {
-    return this.backendApi.localeInfo;
   },
 
   updateChart(layout, settings, isPartialData) {

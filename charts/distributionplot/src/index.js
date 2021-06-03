@@ -1,4 +1,5 @@
 import {
+  useAppLayout,
   useConstraints,
   useEffect,
   useElement,
@@ -38,6 +39,7 @@ export default function supernova(env) {
       const translator = useTranslator();
       const theme = useTheme();
       const lasso = useLasso();
+      const appLayout = useAppLayout();
 
       const [instance, setInstance] = useState();
 
@@ -74,6 +76,7 @@ export default function supernova(env) {
           return;
         }
         instance.theme = theme;
+        instance.appLayout = appLayout;
         instance.updateConstraints(constraints);
 
         const isSnapshot = !!layout.snapshotData;
@@ -90,7 +93,7 @@ export default function supernova(env) {
         await instance.updateData(layout);
         const $element = null;
         await instance.paint($element, layout);
-      }, [layout, instance, theme.name()]);
+      }, [layout, instance, theme.name(), appLayout]);
       if (error) {
         throw error;
       }

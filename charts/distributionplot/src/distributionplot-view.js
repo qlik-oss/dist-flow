@@ -10,16 +10,14 @@ import ScrollHandler from '@qlik/common/picasso/scroll/scroll-handler';
 import legendUtils from '@qlik/common/picasso/legend/legend-utils';
 
 import stringUtil from '@qlik/common/extra/string-util';
-import Color from '@qlik/common/extra/color-cache';
 import chartStyleUtils from '@qlik/common/extra/chart-style-utils';
 import hypercubeUtil from '@qlik/common/extra/hypercube-util';
-import DimensionColorUtil from '@qlik/common/extra/dimension-color-util';
-// import ChartDataHelper from '../../../assets/objects/views/charts/chart-data-helper';
 
 import Jitter from './jitter';
 import columnOrderAdapter from './distributionplot-column-order-adapter';
 import CONSTANTS from './distributionplot-constants';
 import distributionPlotCubeGenerator from './distributionplot-cube-generator';
+import createColorService from './create-color-service';
 
 const DATA_PATH = CONSTANTS.DATA_PATH;
 const HYPERCUBE_PATH = CONSTANTS.HYPERCUBE_PATH;
@@ -171,6 +169,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     this.flags = flags;
     this.translator = translator;
     this.theme = theme;
+    this.picasso = picasso;
 
     this.picassoElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
 
@@ -409,8 +408,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   _getPointMarkerSettings(layout, selectionSettings, tooltipSettings) {
-    const pointFillColor = this.theme.getColorPickerColor(layout.color.point.paletteColor);
-    const pointStroke = chartStyleUtils.getContrastingTransparent(pointFillColor);
+    // const pointFillColor = this.theme.getColorPickerColor(layout.color.point.paletteColor);
+    // const pointStroke = chartStyleUtils.getContrastingTransparent(pointFillColor);
     let strokeWidth = 1; // For old objects - without the dataPoint.border property
 
     if (layout.dataPoint && layout.dataPoint.border === false) {
@@ -425,17 +424,17 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     }
     const obj = this;
 
+    const fillFn = this.colorService.getColor();
     const pointMarkerSettings = {
       require: ['chart'],
       displayOrder: 1100,
       settings: {
         chart: this,
-        fill(d) {
-          return d.datum.innerElemNo.value === -3 || d.datum.elemNo.value === -3
-            ? chartStyleUtils.Theme.dataColors.othersColor
-            : pointFillColor;
+        fill: fillFn,
+        stroke: (d) => {
+          const fill = fillFn(d);
+          return chartStyleUtils.getContrastingTransparent(fill);
         },
-        stroke: pointStroke,
         size: 0.3,
         strokeWidth,
         sizeLimits: {
@@ -491,6 +490,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
               },
               reduceLabel: 'none',
             },
+            ...this.colorService.getDatumProps(),
           },
         },
       },
@@ -509,92 +509,20 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       };
     }
 
-    if (!layout.color.point.auto && layout.color.point.mode === 'byExpression') {
-      const colorSource = 'qMeasureInfo/0/qAttrExprInfo/0';
-      pointMarkerSettings.data.extract.props.pointColorNumeric = {
-        field: colorSource,
-        reduce: 'first',
-        value(v) {
-          if (typeof v.qNum === 'number') {
-            return Color.retriveColor(v.qNum, 'argb').toRGBA();
-          }
-          return Color.retriveColor(chartStyleUtils.Theme.dataColors.nullColor).toRGBA();
-        },
-      };
-      pointMarkerSettings.data.extract.props.pointColorString = {
-        field: colorSource,
-        reduce: 'first',
-        value(v) {
-          return v && v.qText;
-        },
-      };
-      pointMarkerSettings.settings.fill = function (d) {
-        if (typeof d.datum.pointColorString.value === 'string') {
-          const color = Color.retriveColor(d.datum.pointColorString.value);
-          if (!color.isInvalid()) {
-            return color.toRGBA();
-          }
-        }
-        return d.datum.pointColorNumeric.value;
-      };
-    }
-
     this.setDataPaths([`${DATA_PATH}/${HYPERCUBE_PATH}`]);
-    if (!layout.color.point.auto && layout.color.point.mode === 'byDimension') {
-      let colorField;
-      if (layout[DATA_PATH].legendData) {
-        const dimIndex = hypercubeUtil.hasSecondDimension(layout, DATA_PATH) ? 1 : 0;
-        const attrDimInfo = layout[DATA_PATH][HYPERCUBE_PATH].qDimensionInfo[dimIndex].qAttrDimInfo[0];
-        if (!attrDimInfo.qError) {
-          colorField = `qDimensionInfo/${dimIndex}/qAttrDimInfo/0`;
-          pointMarkerSettings.data.extract.props.colorElemNo = { field: colorField };
-          pointMarkerSettings.data.extract.props.colorByDim = {
-            field: colorField,
-            value(v) {
-              return v;
-            },
-          };
-          this.chartInstance
-            .brush('select-color')
-            .addKeyAlias(`${DATA_PATH}/legendData/qDimensionInfo/0`, `${DATA_PATH}/${HYPERCUBE_PATH}/${colorField}`);
-          this.setDataPaths([`${DATA_PATH}/${HYPERCUBE_PATH}`, `${DATA_PATH}/legendData`]);
-        }
-      } else {
-        const colorDataInfo = this.getColoringMap().getColorDataInfo();
-        if (colorDataInfo.valid && !colorDataInfo.altMode) {
-          colorField = `qDimensionInfo/${colorDataInfo.dimIndex}`;
-          pointMarkerSettings.data.extract.props.colorElemNo = { field: colorField };
-          pointMarkerSettings.data.extract.props.colorByDim = {
-            field: colorField,
-            value(v) {
-              return v;
-            },
-          };
-        }
-      }
-    }
-
-    const measureDirection = layout.orientation !== 'horizontal' ? 'y' : 'x';
-
-    const getFillColor = function (data) {
-      const id = [data.elemNo.value, data.innerElemNo.value];
-      const measureIdx = 0;
-      const value = data[measureDirection].value;
-      const rowIndex = data.row.value;
-      return obj.getColoringMap().getColor(id, value, measureIdx, rowIndex);
-    };
-
-    pointMarkerSettings.settings.fill = function (d) {
-      return undefined;
-      // eslint-disable-next-line no-unreachable
-      return getFillColor(d.datum).toRGBA();
-    };
-    pointMarkerSettings.settings.stroke = function (d) {
-      return undefined;
-      // eslint-disable-next-line no-unreachable
-      const fill = getFillColor(d.datum);
-      return chartStyleUtils.getContrastingTransparent(fill);
-    };
+    // if (!layout.color.point.auto && layout.color.point.mode === 'byDimension') {
+    //   let colorField;
+    //   if (layout[DATA_PATH].legendData) {
+    //     const dimIndex = hypercubeUtil.hasSecondDimension(layout, DATA_PATH) ? 1 : 0;
+    //     const attrDimInfo = layout[DATA_PATH][HYPERCUBE_PATH].qDimensionInfo[dimIndex].qAttrDimInfo[0];
+    //     if (!attrDimInfo.qError) {
+    //       this.chartInstance
+    //         .brush('select-color')
+    //         .addKeyAlias(`${DATA_PATH}/legendData/qDimensionInfo/0`, `${DATA_PATH}/${HYPERCUBE_PATH}/${colorField}`);
+    //       this.setDataPaths([`${DATA_PATH}/${HYPERCUBE_PATH}`, `${DATA_PATH}/legendData`]);
+    //     }
+    //   }
+    // }
 
     // TODO: This code should be enabled when data limitation problem for stacked hyper cube is fixed(QLIK-80557)
     /*
@@ -893,6 +821,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     // Add snapshot settings
     const settings = chartBuilder.getSettings();
     this.addSnapshotChartSettings(settings, layout);
+    settings.scales = { ...settings.scales, ...this.colorService.getScales() };
 
     return settings;
   },
@@ -1029,33 +958,16 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   _updateColorMapData(layout) {
-    // TODO: fix color map
-    return Promise.resolve();
-
-    // eslint-disable-next-line no-unreachable
-    const pointColor = extend({ mode: 'primary', auto: false }, layout.color.point);
-    const data = {
-      color: extend(true, {}, pointColor),
-      visualization: layout.visualization,
-      qHyperCube: layout.qUndoExclude.qHyperCube,
-    };
-    if (hypercubeUtil.hasSecondDimension(this.layout, DATA_PATH) && DimensionColorUtil.isByNthDimension(data.color)) {
-      // change 0 -> & 1 -> 0 to match reordering in generated hypercube
-      data.color.byDimDef.activeDimensionIndex = 1 - data.color.byDimDef.activeDimensionIndex;
-    }
-
-    // TODO: update color map
-    // const cube = layout.qUndoExclude.qHyperCube;
-    // const tree = ChartDataHelper.prepareData(
-    //   cube.qStackedDataPages[0].qData,
-    //   cube.qMeasureInfo,
-    //   cube.qDimensionInfo,
-    //   layout
-    // ).dimensionTree;
-    // this.getColoringMap().setDimensionTree(tree);
-
-    // eslint-disable-next-line consistent-return
-    return this.setColorMapData(data, layout.visualization);
+    this.colorService = createColorService({
+      app: this.backendApi.model.app,
+      layout,
+      localeInfo: this.localeInfo,
+      model: this.backendApi.model,
+      picasso: this.picasso,
+      theme: this.theme,
+      translator: this.translator,
+    });
+    return this.colorService.initialize();
   },
   _createColorLegendCube(dataPages) {
     const dimIndex = hypercubeUtil.hasSecondDimension(this.layout, DATA_PATH) ? 1 : 0;
@@ -1073,17 +985,18 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
   _updateColorData() {
     const self = this;
-    return self._updateColorMapData(this.layout).then(() => {
-      const colorDataInfo = self.getColoringMap().getColorDataInfo();
-      if (colorDataInfo && colorDataInfo.legendPath) {
-        const legendPath = `/${DATA_PATH}${colorDataInfo.legendPath}`;
-        return self.backendApi.getData(colorDataInfo.legendPages, legendPath).then((dataPages) => {
-          self.layout[DATA_PATH].legendData = self._createColorLegendCube(dataPages);
-        });
-      }
-      self.layout[DATA_PATH].legendData = null;
-      return undefined;
-    });
+    return self._updateColorMapData(this.layout);
+    // return self._updateColorMapData(this.layout).then(() => {
+    //   const colorDataInfo = self.getColoringMap().getColorDataInfo();
+    //   if (colorDataInfo && colorDataInfo.legendPath) {
+    //     const legendPath = `/${DATA_PATH}${colorDataInfo.legendPath}`;
+    //     return self.backendApi.getData(colorDataInfo.legendPages, legendPath).then((dataPages) => {
+    //       self.layout[DATA_PATH].legendData = self._createColorLegendCube(dataPages);
+    //     });
+    //   }
+    //   self.layout[DATA_PATH].legendData = null;
+    //   return undefined;
+    // });
   },
 
   updateDerivedProperties(properties, layout) {
@@ -1153,9 +1066,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         if (self._destroyed) {
           return Promise.reject();
         }
-        return undefined;
-        // TODO: fix
-        // return self._updateColorData();
+        return self._updateColorData();
       });
     });
   },
