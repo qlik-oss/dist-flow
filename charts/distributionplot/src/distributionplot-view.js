@@ -614,7 +614,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         {
           dataPath: DATA_PATH,
           contexts: ['select-color'],
-          data: ['colorElemNo'],
+          data: ['color'],
           startOnEmptySelection: false,
         },
         true
