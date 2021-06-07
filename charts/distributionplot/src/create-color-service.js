@@ -1,3 +1,4 @@
+import extend from 'extend';
 import { colorService as createColorService } from '@qlik/chart-modules';
 
 const hasBase = (i) => i.baseColor || (i.coloring && i.coloring.baseColor);
@@ -17,7 +18,17 @@ function useBaseColors(layout) {
   return base;
 }
 
+function switchActiveDimIndex(byDimDef) {
+  if (byDimDef?.activeDimensionIndex === 0) {
+    byDimDef.activeDimensionIndex = 1;
+  } else if (byDimDef?.activeDimensionIndex === 1) {
+    byDimDef.activeDimensionIndex = 0;
+  }
+}
+
 export default function create({ app, layout, localeInfo, model, picasso, theme, translator }) {
+  const colorSettings = extend(true, {}, layout.color.point);
+  switchActiveDimIndex(colorSettings.byDimDef); // compensate for that the distribution plot dimension are in an different order
   return createColorService({
     app,
     model,
@@ -33,7 +44,7 @@ export default function create({ app, layout, localeInfo, model, picasso, theme,
       hc: layout.qUndoExclude.qHyperCube,
       legendProps: layout.legend,
       colorProps: {
-        ...layout.color.point,
+        ...colorSettings,
         useBaseColors: useBaseColors(layout),
       },
     }),
