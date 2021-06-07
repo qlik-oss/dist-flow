@@ -822,6 +822,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     const settings = chartBuilder.getSettings();
     this.addSnapshotChartSettings(settings, layout);
     settings.scales = { ...settings.scales, ...this.colorService.getScales() };
+    settings.palettes = this.colorService.getPalettes();
 
     return settings;
   },
