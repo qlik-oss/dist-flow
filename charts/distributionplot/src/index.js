@@ -1,4 +1,5 @@
 import {
+  useApp,
   useAppLayout,
   useConstraints,
   useEffect,
@@ -39,6 +40,7 @@ export default function supernova(env) {
       const translator = useTranslator();
       const theme = useTheme();
       const lasso = useLasso();
+      const app = useApp();
       const appLayout = useAppLayout();
 
       const [instance, setInstance] = useState();
@@ -63,7 +65,7 @@ export default function supernova(env) {
           selectionsApi,
           tooltipApi
         );
-
+        view.app = app;
         setInstance(view);
 
         return () => {

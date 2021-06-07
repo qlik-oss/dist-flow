@@ -205,6 +205,9 @@ const ChartView = BaseView.extend({
       },
       data: getValue(layout, path.replace(/\//g, '.')),
     }));
+    if (this.colorService) {
+      data.push(...this.colorService.getData());
+    }
 
     this.chartInstance.update({
       data,

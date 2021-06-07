@@ -38,6 +38,7 @@ export default function create({ app, layout, localeInfo, model, picasso, theme,
       localeInfo,
       theme,
       key: 'color', // KEYS.SCALE.MAIN.COLOR, KEYS.SCALE.COLOR
+      definitionPath: '/qUndoExclude/qHyperCubeDef',
     },
     createConfig: () => ({
       layout,

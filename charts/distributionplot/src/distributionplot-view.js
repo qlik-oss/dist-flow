@@ -408,8 +408,6 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   _getPointMarkerSettings(layout, selectionSettings, tooltipSettings) {
-    // const pointFillColor = this.theme.getColorPickerColor(layout.color.point.paletteColor);
-    // const pointStroke = chartStyleUtils.getContrastingTransparent(pointFillColor);
     let strokeWidth = 1; // For old objects - without the dataPoint.border property
 
     if (layout.dataPoint && layout.dataPoint.border === false) {
@@ -510,19 +508,6 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     }
 
     this.setDataPaths([`${DATA_PATH}/${HYPERCUBE_PATH}`]);
-    // if (!layout.color.point.auto && layout.color.point.mode === 'byDimension') {
-    //   let colorField;
-    //   if (layout[DATA_PATH].legendData) {
-    //     const dimIndex = hypercubeUtil.hasSecondDimension(layout, DATA_PATH) ? 1 : 0;
-    //     const attrDimInfo = layout[DATA_PATH][HYPERCUBE_PATH].qDimensionInfo[dimIndex].qAttrDimInfo[0];
-    //     if (!attrDimInfo.qError) {
-    //       this.chartInstance
-    //         .brush('select-color')
-    //         .addKeyAlias(`${DATA_PATH}/legendData/qDimensionInfo/0`, `${DATA_PATH}/${HYPERCUBE_PATH}/${colorField}`);
-    //       this.setDataPaths([`${DATA_PATH}/${HYPERCUBE_PATH}`, `${DATA_PATH}/legendData`]);
-    //     }
-    //   }
-    // }
 
     // TODO: This code should be enabled when data limitation problem for stacked hyper cube is fixed(QLIK-80557)
     /*
@@ -814,7 +799,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         ? layout.legend.show !== false
         : !layout.color.point.auto && layout.color.point.mode === 'byDimension'; // For old apps without layout.legend
       if (showLegend) {
-        this.addLegend(chartBuilder, layout.legend, isRtl, legendSelectionSettings);
+        this.addLegend(chartBuilder, isRtl, legendSelectionSettings);
       }
     }
 
@@ -834,33 +819,31 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
    * @param isRtl {Boolean}
    * @returns {void}
    */
-  addLegend(chartBuilder, legend, isRtl, legendSelectionSettings) {
-    const legendData = this._getLegendData(legendSelectionSettings);
-    if (legendData) {
-      const legendOptions = {
-        dock: legend ? legend.dock : 'auto',
-        chartWidth: this.picassoElement.clientWidth,
-        chartHeight: this.picassoElement.clientHeight,
-        show: !legend || legend.show !== false,
-        showTitle: !legend || legend.showTitle !== false,
-        type: 'circle',
-        tableMode: true,
-      };
-      const catLeg = chartBuilder.addComponent(legendData.type, legendData.settings, legendOptions);
-      const orientation = catLeg.dock; // Needed to find out how the legend is actually docked when in auto mode
+  addLegend(chartBuilder, isRtl, legendSelectionSettings) {
+    const config = {
+      eventName: 'legend-c',
+      key: 'colorLegend',
+      styleReference: 'object.comboChart',
+      rtl: isRtl,
+      settings: {
+        item: {
+          shape: {
+            type: 'circle',
+            size: 10,
+          },
+        },
+      },
+    };
+    const { components } = this.colorService.getLegend(config);
 
-      // Add interactions (pan, press ) for categorical color legend
-      if (this.hasOption('navigation') && this.isOn()) {
-        const isHorizontal = orientation === 'top' || orientation === 'bottom';
-        const legendGestures = legendUtils.getCategoricalLegendPanGesture('legend', isHorizontal, isRtl);
-        const settings = chartBuilder.getSettings();
-        if (!settings.interactions || !settings.interactions.length || !settings.interactions[0].gestures) {
-          chartBuilder.addInteraction({}, { gestures: legendGestures });
-        } else {
-          settings.interactions[0].gestures = settings.interactions[0].gestures.concat(legendGestures);
-        }
-      }
+    if (components.length > 0) {
+      components[0].brush = {
+        consume: legendSelectionSettings.consume.map((c) => extend(true, c, { style: { active: null } })),
+        trigger: legendSelectionSettings.trigger,
+      };
     }
+
+    chartBuilder.settings.components.push(...components);
   },
 
   resize($element, layout) {
@@ -958,9 +941,9 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     };
   },
 
-  _updateColorMapData(layout) {
+  async _updateColorMapData(layout) {
     this.colorService = createColorService({
-      app: this.backendApi.model.app,
+      app: this.app,
       layout,
       localeInfo: this.localeInfo,
       model: this.backendApi.model,
@@ -968,7 +951,12 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       theme: this.theme,
       translator: this.translator,
     });
-    return this.colorService.initialize();
+    await this.colorService.initialize();
+    const colorField = this.colorService.getSettings().field;
+    const brush = this.chartInstance.brush('select-color');
+    if (/qAttrDimInfo/.test(colorField)) {
+      brush.addKeyAlias('attrDim/qDimensionInfo/0', `${DATA_PATH}/${HYPERCUBE_PATH}/${colorField}`);
+    }
   },
   _createColorLegendCube(dataPages) {
     const dimIndex = hypercubeUtil.hasSecondDimension(this.layout, DATA_PATH) ? 1 : 0;
@@ -985,19 +973,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     };
   },
   _updateColorData() {
-    const self = this;
-    return self._updateColorMapData(this.layout);
-    // return self._updateColorMapData(this.layout).then(() => {
-    //   const colorDataInfo = self.getColoringMap().getColorDataInfo();
-    //   if (colorDataInfo && colorDataInfo.legendPath) {
-    //     const legendPath = `/${DATA_PATH}${colorDataInfo.legendPath}`;
-    //     return self.backendApi.getData(colorDataInfo.legendPages, legendPath).then((dataPages) => {
-    //       self.layout[DATA_PATH].legendData = self._createColorLegendCube(dataPages);
-    //     });
-    //   }
-    //   self.layout[DATA_PATH].legendData = null;
-    //   return undefined;
-    // });
+    return this._updateColorMapData(this.layout);
   },
 
   updateDerivedProperties(properties, layout) {
@@ -1005,7 +981,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     const model = self.backendApi.model;
 
     return self._derivedProperties
-      .addDefaultHyperCubeHash(properties.qHyperCubeDef, layout.qHyperCube, model.app, getHashData(properties))
+      .addDefaultHyperCubeHash(properties.qHyperCubeDef, layout.qHyperCube, self.app, getHashData(properties))
       .then((hashData) => {
         const derivedSettings = {
           layout,
@@ -1013,7 +989,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
           model,
           hashData,
           generateDerivedProperties(layout, properties) {
-            return distributionPlotCubeGenerator.generateHyperCube(layout, properties, model.app);
+            return distributionPlotCubeGenerator.generateHyperCube(layout, properties, self.app);
           },
         };
 
