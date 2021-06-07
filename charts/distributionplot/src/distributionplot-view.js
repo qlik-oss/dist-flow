@@ -834,8 +834,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         },
       },
     };
-    const { components } = this.colorService.getLegend(config);
-
+    let { components } = this.colorService.getLegend(config);
+    components = components.filter((c) => !!c);
     if (components.length > 0) {
       components[0].brush = {
         consume: legendSelectionSettings.consume.map((c) => extend(true, c, { style: { active: null } })),
