@@ -9,7 +9,7 @@ describe('waterfall settings', () => {
   });
 
   it('should return correct chartId', () => {
-    expect(waterfallUtils.chartID, 'waterfallUtils.chartID').to.be.equal('waterfallChart');
+    expect(waterfallUtils.chartID, 'waterfallUtils.chartID').to.be.equal('object.waterfallChart');
   });
 
   describe('value types', () => {

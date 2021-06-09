@@ -3,6 +3,14 @@ import CubeGenerator from '../waterfallchart-cube-generator-by-measures';
 
 const expect = chai.expect;
 describe('Cube generator', () => {
+  let theme;
+  beforeEach(() => {
+    theme = {
+      getStyle: jest.fn(),
+      getColorPickerColor: jest.fn().mockImplementation((color) => color.color),
+    };
+  });
+
   describe('getGeneratedDimensionPath', () => {
     it('should return correct value in case 1', () => {
       expect(CubeGenerator.getGeneratedDimensionPath(0)).to.equal('qDimensionInfo/0');
@@ -49,7 +57,7 @@ describe('Cube generator', () => {
     it('should return correct value in case 1.1', () => {
       layout.qHyperCube.qMeasureInfo[0] = { valueType: normal, subtotal: {}, qFallbackTitle: measure1 };
       layout.qHyperCube.qDataPages[0].qMatrix[0] = [{ qNum: 100, qText: '15G' }];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -65,7 +73,7 @@ describe('Cube generator', () => {
     it('should return correct value in case 1.2', () => {
       layout.qHyperCube.qMeasureInfo[0] = { valueType: inverse, subtotal: {}, qFallbackTitle: measure1 };
       layout.qHyperCube.qDataPages[0].qMatrix[0] = [{ qNum: 100, qText: '20M' }];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -81,7 +89,7 @@ describe('Cube generator', () => {
     it('should return correct value in case 1.3', () => {
       layout.qHyperCube.qMeasureInfo[0] = { valueType: subtotal, subtotal: {}, qFallbackTitle: measure1 };
       layout.qHyperCube.qDataPages[0].qMatrix[0] = [{ qNum: 100, qText: '25K' }];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -101,7 +109,7 @@ describe('Cube generator', () => {
         qFallbackTitle: measure1,
       };
       layout.qHyperCube.qDataPages[0].qMatrix[0] = [{ qNum: 100, qText: '30' }];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -128,7 +136,7 @@ describe('Cube generator', () => {
         qFallbackTitle: measure1,
       };
       layout.qHyperCube.qDataPages[0].qMatrix[0] = [{ qNum: 100, qText: '35' }];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -155,7 +163,7 @@ describe('Cube generator', () => {
         qFallbackTitle: measure1,
       };
       layout.qHyperCube.qDataPages[0].qMatrix[0] = [{ qNum: 100, qText: '40' }];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -175,7 +183,7 @@ describe('Cube generator', () => {
         { qNum: 100, qText: '45' },
         { qNum: -20, qText: '50' },
       ];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -202,7 +210,7 @@ describe('Cube generator', () => {
         { qNum: 100, qText: '55' },
         { qNum: -20, qText: '60' },
       ];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -229,7 +237,7 @@ describe('Cube generator', () => {
         { qNum: 100, qText: '65' },
         { qNum: -20, qText: '70' },
       ];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -260,7 +268,7 @@ describe('Cube generator', () => {
         { qNum: 100, qText: '75' },
         { qNum: -20, qText: '80' },
       ];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -298,7 +306,7 @@ describe('Cube generator', () => {
         { qNum: 100, qText: '85' },
         { qNum: -20, qText: '90' },
       ];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);
@@ -336,7 +344,7 @@ describe('Cube generator', () => {
         { qNum: 100, qText: '95' },
         { qNum: -20, qText: '100' },
       ];
-      CubeGenerator.generateHyperCube(layout);
+      CubeGenerator.generateHyperCube(layout, theme);
       const hypercube = layout.generated.qHyperCube;
       expect(hypercube.qDimensionInfo.length).to.equal(2);
       expect(hypercube.qMeasureInfo.length).to.equal(3);

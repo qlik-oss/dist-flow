@@ -32,6 +32,8 @@ module.exports = {
     'charts/histogram/src/__tests__/histogram-export.spec.js',
     'charts/histogram/src/__tests__/histogram-numeric-values-handler.spec.js',
     'charts/histogram/src/__tests__/histogram.spec.js',
+    'charts/waterfallchart/src/__tests__/waterfallchart-data-definition.spec.js',
+    'charts/waterfallchart/src/__tests__/waterfallchart-properties.spec.js',
   ],
 
   // collectCoverageFrom: [
