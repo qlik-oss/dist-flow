@@ -32,7 +32,7 @@
     "build": "nebula build",
     "lint": "eslint src",
     "start": "nebula serve --type boxplot --config ../../nebula.config.js",
-    "sense": "nebula sense"
+    "sense": "nebula sense --partial"
   },
   "dependencies": {
     "@qlik/chart-modules": "0.11.0",
