@@ -1,4 +1,3 @@
-// import translator from '../../../../js/lib/translator';
 import boxplotUtils from '../boxplot-utils';
 
 //

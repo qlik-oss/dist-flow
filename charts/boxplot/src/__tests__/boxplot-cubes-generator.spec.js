@@ -3,7 +3,6 @@ import sinon from 'sinon';
 import CubeGenerator from '../boxplot-cubes-generator';
 import boxplotUtils from '../boxplot-utils';
 import boxplotSorter from '../sorting/boxplot-sorter';
-import translator from '../../../../js/lib/translator';
 
 const expect = chai.expect;
 
@@ -124,8 +123,9 @@ function mockBasicProps() {
 describe('Generate hypercubes for boxplot', () => {
   const sandbox = sinon.createSandbox();
   let app;
+  let translator;
 
-  before(() => {
+  beforeEach(() => {
     const getMock = function (id) {
       return Promise.resolve({
         getProperties() {
@@ -139,85 +139,67 @@ describe('Generate hypercubes for boxplot', () => {
       getMeasure: getMock,
     };
 
-    sandbox.stub(translator, 'get').callsFake((translationKey) => `${translationKey}_translated`);
+    translator = {
+      get: (translationKey) => `${translationKey}_translated`,
+    };
 
     boxplotSorter.applySorting = sandbox.spy();
-  });
 
-  beforeEach(() => {
     resetBoxCube();
   });
 
   afterEach(() => {
     boxplotSorter.applySorting.resetHistory();
-  });
-
-  after(() => {
     sandbox.restore();
   });
 
-  it('should generate one cube for the boxes and one for the outliers', () => {
+  it('should generate one cube for the boxes and one for the outliers', async () => {
     mockBasicProps();
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(generatedProps.box.qHyperCubeDef.qDimensions, 'dimensions in generated box cube').to.not.be.empty;
-
     expect(generatedProps.box.qHyperCubeDef.qMeasures, 'measures in generated box cube').to.not.be.empty;
-
     expect(generatedProps.outliers.qHyperCubeDef.qDimensions, 'dimensions in generated outliers cube').to.not.be.empty;
-
     expect(generatedProps.outliers.qHyperCubeDef.qMeasures, 'measures in generated outliers cube').to.not.be.empty;
   });
 
   // Have to keep the outliers cube due to engine error (related to removal of outliers cube + applyPatch -> setProperties)
-  /* it( 'should not generate outliers cube when elements.outliers.include is set to false', function () {
+  /* it( 'should not generate outliers cube when elements.outliers.include is set to false', async () => {
 
         mockBasicProps();
         boxProperties.boxplotDef.elements.outliers.include = false;
 
-        CubeGenerator.generateHyperCubes( boxProperties );
-
-        window.flush();
+        await CubeGenerator.generateHyperCubes( boxProperties );
 
         expect( generatedProps.outliers,
             'generated outliers cube' ).to.be.undefined;
     } ); */
 
-  it('should generate correct amount of dimensions and measures', () => {
+  it('should generate correct amount of dimensions and measures', async () => {
     mockBasicProps();
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(generatedProps.box.qHyperCubeDef.qDimensions.length, '1 dimension in generated box cube').to.equal(1);
-
     expect(generatedProps.box.qHyperCubeDef.qMeasures.length, '5 measures in generated box cube').to.equal(5);
-
     expect(
       generatedProps.outliers.qHyperCubeDef.qDimensions.length,
       '3 dimensions in generated outliers cube'
     ).to.equal(3);
-
     expect(generatedProps.outliers.qHyperCubeDef.qMeasures.length, '1 measure in generated outliers cube').to.equal(1);
   });
 
-  it('should generate a box cube with one dimension and 5 measures', () => {
+  it('should generate a box cube with one dimension and 5 measures', async () => {
     mockBasicProps();
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(generatedProps.outliers.qHyperCubeDef.qDimensions, '1 dimension in generated outliers cube').to.not.be.empty;
-
     expect(generatedProps.outliers.qHyperCubeDef.qMeasures, '5 measures in generated outliers cube').to.not.be.empty;
   });
 
-  it("should fetch master measures and use it's expression in box cube", () => {
+  it("should fetch master measures and use it's expression in box cube", async () => {
     boxProperties.boxplotDef.qHyperCubeDef.qDimensions = [
       {
         qDef: {
@@ -241,16 +223,14 @@ describe('Generate hypercubes for boxplot', () => {
       qDef: {},
     });
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     generatedProps.box.qHyperCubeDef.qMeasures.forEach((measure) => {
       expect(measure.qDef.qDef, 'expression from master measure').to.contain('MasterField1');
     });
   });
 
-  it('should fetch master drilldown dimension and use current expression in box cube', () => {
+  it('should fetch master drilldown dimension and use current expression in box cube', async () => {
     boxProperties.boxplotDef.qHyperCubeDef.qDimensions = [
       {
         qDef: {
@@ -275,16 +255,14 @@ describe('Generate hypercubes for boxplot', () => {
       },
     });
 
-    CubeGenerator.generateHyperCubes(boxProperties, [0, 1], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [0, 1], layout, app, translator);
 
     generatedProps.box.qHyperCubeDef.qMeasures.forEach((measure) => {
       expect(measure.qDef.qDef, 'expression from drilldown dimension').to.contain('DillField2');
     });
   });
 
-  it('should support fields on the fly', () => {
+  it('should support fields on the fly', async () => {
     boxProperties.boxplotDef.qHyperCubeDef.qDimensions = [
       {
         qDef: {
@@ -309,9 +287,7 @@ describe('Generate hypercubes for boxplot', () => {
       },
     });
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     generatedProps.box.qHyperCubeDef.qMeasures.forEach((measure) => {
       expect(measure.qDef.qDef, 'expression from fields on the fly diemnsion').to.contain(
@@ -320,7 +296,7 @@ describe('Generate hypercubes for boxplot', () => {
     });
   });
 
-  it('should support custom element expressions', () => {
+  it('should support custom element expressions', async () => {
     mockBasicProps();
 
     boxProperties.boxplotDef.elements = {
@@ -334,9 +310,7 @@ describe('Generate hypercubes for boxplot', () => {
 
     boxProperties.boxplotDef.calculations.auto = false;
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(generatedProps.box.qHyperCubeDef.qMeasures[0].qDef.qDef, 'custom First Whisker expression').to.contain(
       'customFirstWhisker'
@@ -359,7 +333,7 @@ describe('Generate hypercubes for boxplot', () => {
     );
   });
 
-  it('should generate all expressions when using auto calculations', () => {
+  it('should generate all expressions when using auto calculations', async () => {
     mockBasicProps();
 
     boxProperties.boxplotDef.elements = {
@@ -368,9 +342,7 @@ describe('Generate hypercubes for boxplot', () => {
 
     boxProperties.boxplotDef.calculations.auto = true;
 
-    CubeGenerator.generateHyperCubes(boxProperties, undefined, layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, undefined, layout, app, translator);
 
     expect(
       generatedProps.box.qHyperCubeDef.qMeasures[0].qDef.qDef,
@@ -378,30 +350,27 @@ describe('Generate hypercubes for boxplot', () => {
     ).to.not.contain('customFirstWhisker');
   });
 
-  it('should generate box measures based on boxplot mode', () => {
+  it('should generate box measures based on boxplot mode', async () => {
     mockBasicProps();
     boxProperties.boxplotDef.calculations.mode = boxplotUtils.BOXMODES.STDDEV.value;
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(generatedProps.box.qHyperCubeDef.qMeasures[0].qDef.qDef, 'sttdev specific expression').to.contain('Stdev(');
 
     boxProperties.boxplotDef.calculations.mode = boxplotUtils.BOXMODES.FRACTILES.value;
-    CubeGenerator.generateHyperCubes(boxProperties, undefined, layout, app);
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, undefined, layout, app, translator);
 
     expect(generatedProps.box.qHyperCubeDef.qMeasures[0].qDef.qDef, 'fractiles specific expression').to.contain(
       'Fractile('
     );
 
     boxProperties.boxplotDef.calculations.mode = boxplotUtils.BOXMODES.TUKEY.value;
-    CubeGenerator.generateHyperCubes(boxProperties, undefined, layout, app);
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, undefined, layout, app, translator);
 
     expect(generatedProps.box.qHyperCubeDef.qMeasures[0].qDef.qDef, 'tukey specific expression').to.contain('1.5'); // 1.5 is specific for tukey
   });
 
-  it('should not apply sorting if has single dimension', () => {
+  it('should not apply sorting if has single dimension', async () => {
     mockBasicProps();
 
     boxProperties.boxplotDef.qHyperCubeDef.qDimensions.splice(
@@ -409,19 +378,15 @@ describe('Generate hypercubes for boxplot', () => {
       boxProperties.boxplotDef.qHyperCubeDef.qDimensions.length - 1
     );
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(boxplotSorter.applySorting.notCalled, 'not call applySorting').to.be.true;
   });
 
-  it('should apply sorting if has two dimensions', () => {
+  it('should apply sorting if has two dimensions', async () => {
     mockBasicProps();
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(boxplotSorter.applySorting.calledOnce, 'call applySorting').to.be.true;
 
@@ -431,7 +396,7 @@ describe('Generate hypercubes for boxplot', () => {
     ).to.be.true;
   });
 
-  it('should allow custom name', () => {
+  it('should allow custom name', async () => {
     mockBasicProps();
 
     boxProperties.boxplotDef.calculations.auto = false;
@@ -444,9 +409,7 @@ describe('Generate hypercubes for boxplot', () => {
       outliers: { include: false },
     };
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(
       generatedProps.box.qHyperCubeDef.qMeasures[0].qAttributeExpressions[0].qExpression,
@@ -474,7 +437,7 @@ describe('Generate hypercubes for boxplot', () => {
     ).to.contain('customLastWhisker');
   });
 
-  it('should not use custom name when using auto calculations', () => {
+  it('should not use custom name when using auto calculations', async () => {
     mockBasicProps();
 
     boxProperties.boxplotDef.calculations.auto = true;
@@ -489,9 +452,7 @@ describe('Generate hypercubes for boxplot', () => {
       outliers: { include: false },
     };
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(
       generatedProps.box.qHyperCubeDef.qMeasures[0].qAttributeExpressions[0].qExpression,
@@ -519,7 +480,7 @@ describe('Generate hypercubes for boxplot', () => {
     ).to.contain('properties.boxplot.calculationMode.tukey.elements.lastWhisker_translated');
   });
 
-  it('should support using expression as labels', () => {
+  it('should support using expression as labels', async () => {
     mockBasicProps();
 
     boxProperties.boxplotDef.calculations.auto = false;
@@ -531,9 +492,7 @@ describe('Generate hypercubes for boxplot', () => {
       lastWhisker: { name: { qStringExpression: { qExpr: 'customLastWhiskerExpr' } } },
     };
 
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(
       generatedProps.box.qHyperCubeDef.qMeasures[0].qAttributeExpressions[0].qExpression,
@@ -561,7 +520,7 @@ describe('Generate hypercubes for boxplot', () => {
     ).to.contain('customLastWhiskerExpr');
   });
 
-  it('should copy number format to box measures', () => {
+  it('should copy number format to box measures', async () => {
     const numFormat = {
       qDec: '.',
       qThou: ',',
@@ -572,9 +531,7 @@ describe('Generate hypercubes for boxplot', () => {
 
     mockBasicProps();
     boxProperties.boxplotDef.qHyperCubeDef.qMeasures[0].qDef.qNumFormat = numFormat;
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(generatedProps.box.qHyperCubeDef.qMeasures[0].qDef.qNumFormat, 'first whisker num format').to.deep.equals(
       numFormat
@@ -593,12 +550,10 @@ describe('Generate hypercubes for boxplot', () => {
     );
   });
 
-  it('should not copy label expression to box measures', () => {
+  it('should not copy label expression to box measures', async () => {
     mockBasicProps();
     boxProperties.boxplotDef.qHyperCubeDef.qMeasures[0].qDef.qLabelExpression = '=expr';
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(generatedProps.box.qHyperCubeDef.qMeasures[0].qDef.qLabelExpression, 'first whisker label expression').to.be
       .undefined;
@@ -612,13 +567,11 @@ describe('Generate hypercubes for boxplot', () => {
       .undefined;
   });
 
-  it('should copy qCalcCond and qCalcCondition to the box and outliers cubes', () => {
+  it('should copy qCalcCond and qCalcCondition to the box and outliers cubes', async () => {
     mockBasicProps();
     boxProperties.boxplotDef.qHyperCubeDef.qCalcCond = 'qCalcCond';
     boxProperties.boxplotDef.qHyperCubeDef.qCalcCondition = 'qCalcCondition';
-    CubeGenerator.generateHyperCubes(boxProperties, [], layout, app);
-
-    window.flush();
+    await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(generatedProps.box.qHyperCubeDef.qCalcCond, 'qCalcCond in generated box cube').to.equals('qCalcCond');
     expect(generatedProps.box.qHyperCubeDef.qCalcCondition, 'qCalcCondition in generated box cube').to.equals(

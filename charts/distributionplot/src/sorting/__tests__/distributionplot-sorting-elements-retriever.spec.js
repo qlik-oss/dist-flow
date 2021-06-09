@@ -1,4 +1,3 @@
-// 
 import chai from 'chai';
 import sinon from 'sinon';
 import distplotSortingElementsRetriever from '../distributionplot-sorting-elements-retriever';

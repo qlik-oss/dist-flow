@@ -1,4 +1,3 @@
-
 import chai from 'chai';
 import propsLogic from '../boxplot-properties-logic';
 

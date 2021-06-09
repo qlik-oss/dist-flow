@@ -1,7 +1,6 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import boxplotData from '../boxplot-data';
-import translator from '../../../../js/lib/translator';
 
 const expect = chai.expect;
 
@@ -9,6 +8,7 @@ describe('boxplot-data', () => {
   let sandbox;
   let measureProperties;
   let dimensionProperties;
+  let translator;
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
@@ -24,7 +24,9 @@ describe('boxplot-data', () => {
       orientation: '',
     };
 
-    sandbox.stub(translator, 'get').callsFake((property) => property);
+    translator = {
+      get: (property) => property,
+    };
   });
 
   afterEach(() => {

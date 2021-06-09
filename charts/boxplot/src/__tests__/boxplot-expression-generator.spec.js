@@ -1,4 +1,3 @@
-
 import chai from 'chai';
 import BoxplotExpressionGenerator from '../boxplot-expression-generator';
 

@@ -1,9 +1,7 @@
-// 
 import chai from 'chai';
 import sinon from 'sinon';
 import boxplotSortingElementsRetriever from '../boxplot-sorting-elements-retriever';
 import boxplotUtils from '../../boxplot-utils';
-import translator from '../../../../../js/lib/translator';
 
 const expect = chai.expect;
 let sandbox;
@@ -11,6 +9,7 @@ let sandbox;
 describe('boxplot-sorting-elements-retriever', () => {
   let properties;
   let settings;
+  let translator;
   const oldBoxElements = boxplotUtils.BOXELEMENTS;
 
   beforeEach(() => {
@@ -28,7 +27,9 @@ describe('boxplot-sorting-elements-retriever', () => {
       },
     };
 
-    sandbox.stub(translator, 'get').callsFake((translationKey) => `${translationKey}_translated`);
+    translator = {
+      get: sinon.stub().callsFake((translationKey) => `${translationKey}_translated`),
+    };
 
     properties = {
       qUndoExclude: {
@@ -83,7 +84,7 @@ describe('boxplot-sorting-elements-retriever', () => {
 
     it('should return element ids ordered the same as elements returned by getElements', () => {
       const elementIds = boxplotSortingElementsRetriever.getElementIds(properties);
-      const elements = boxplotSortingElementsRetriever.getElements(properties, settings);
+      const elements = boxplotSortingElementsRetriever.getElements(properties, settings, translator);
 
       elementIds.forEach((id, index) => {
         expect(id).to.equal(elements[index].id);
@@ -93,7 +94,7 @@ describe('boxplot-sorting-elements-retriever', () => {
 
   describe('getElements', () => {
     it('should call translator.get with correct translation keys', () => {
-      boxplotSortingElementsRetriever.getElements(properties, settings);
+      boxplotSortingElementsRetriever.getElements(properties, settings, translator);
 
       expect(translator.get.calledThrice).to.be.true;
       expect(translator.get.getCall(0).calledWithExactly('boxMiddleTranslationKey')).to.be.true;
@@ -102,7 +103,7 @@ describe('boxplot-sorting-elements-retriever', () => {
     });
 
     it('should return correct elements', () => {
-      const elements = boxplotSortingElementsRetriever.getElements(properties, settings);
+      const elements = boxplotSortingElementsRetriever.getElements(properties, settings, translator);
 
       expect(elements).to.deep.equal([
         {
@@ -127,7 +128,7 @@ describe('boxplot-sorting-elements-retriever', () => {
     });
 
     it('should return elements ordered the same as element ids returned by getElementIds', () => {
-      const elements = boxplotSortingElementsRetriever.getElements(properties, settings);
+      const elements = boxplotSortingElementsRetriever.getElements(properties, settings, translator);
       const elementIds = boxplotSortingElementsRetriever.getElementIds(properties);
 
       elements.forEach((element, index) => {
