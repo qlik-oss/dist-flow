@@ -19,6 +19,7 @@ import properties from './object-properties';
 import data from './data';
 import ChartView from './histogram-view';
 import BackednAPi from './backend-api';
+import ext from './ext';
 
 export default function supernova(env) {
   const picasso = picassoSetup();
@@ -28,6 +29,7 @@ export default function supernova(env) {
       properties,
       data,
     },
+    ext: ext(env),
     component() {
       const element = useElement();
       const selections = useSelections();
