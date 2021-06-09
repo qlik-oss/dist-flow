@@ -113,20 +113,8 @@ const ChartView = BaseView.extend({
     this._on = false;
   },
 
-  getColor(id, value, measureIndex, rowIndex) {
-    return this._colorMap.getColor(id, value, measureIndex, rowIndex);
-  },
-
   getColoringMap() {
     return this._colorMap;
-  },
-
-  getColorMap() {
-    return this._colorMap.getColorScale();
-  },
-
-  setColorMapData(data, viz) {
-    return this._colorMap.setData(data, viz);
   },
 
   setFreeResize(freeResize) {
@@ -253,14 +241,6 @@ const ChartView = BaseView.extend({
     };
   },
 
-  initialize() {
-    // To fix QLIK-90252 for picasso charts
-    if (this.options) {
-      if (!Number.isNaN(+this.options.interactionState) && this.options.interactionState !== null) {
-        this.setInteractionState(this.options.interactionState);
-      }
-    }
-  },
   suppressOnPaint(layout) {
     if (this.$scope.object._forcePaint) {
       this.$scope.object._forcePaint = false;

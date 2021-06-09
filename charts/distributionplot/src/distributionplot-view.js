@@ -537,31 +537,6 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     return pointSelectionLayerSettings;
   },
 
-  _getLegendData(selectionSettings) {
-    return undefined;
-    // eslint-disable-next-line no-unreachable
-    const colorMap = this.getColoringMap();
-    const colorDataInfo = colorMap.getColorDataInfo();
-    let source;
-    let dimIndex;
-    if (colorDataInfo.altMode) {
-      source = `${DATA_PATH}/legendData`;
-      dimIndex = 0;
-    } else {
-      source = `${DATA_PATH}/${HYPERCUBE_PATH}`;
-      dimIndex = colorDataInfo.dimIndex;
-    }
-
-    return legendUtils.getLegendData({
-      colorMap,
-      legendData: this.layout[DATA_PATH].legendData && this.layout[DATA_PATH].legendData.qDataPages[0].qMatrix,
-      selectionSettings,
-      dimIndex,
-      source,
-      translator: this.translator,
-    });
-  },
-
   createChartSettings(layout) {
     const isRtl = this.options.direction === 'rtl';
     const hasVisibleComponentsProps = layout.presentation && layout.presentation.visibleComponents;
