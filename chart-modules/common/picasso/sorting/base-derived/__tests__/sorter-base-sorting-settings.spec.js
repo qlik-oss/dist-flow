@@ -1,4 +1,3 @@
-
 import chai from 'chai';
 import BASE_SORTING_SETTINGS from '../sorter-base-sorting-settings';
 

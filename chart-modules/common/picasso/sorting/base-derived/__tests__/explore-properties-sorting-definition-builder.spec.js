@@ -1,4 +1,3 @@
-
 import chai from 'chai';
 import sinon from 'sinon';
 import sortingDefinitionBuilder from '../explore-properties-sorting-definition-builder';

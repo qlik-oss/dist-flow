@@ -1,4 +1,3 @@
-
 import chai from 'chai';
 import sorterFactory from '../sorter-factory';
 import Sorter from '../Sorter';

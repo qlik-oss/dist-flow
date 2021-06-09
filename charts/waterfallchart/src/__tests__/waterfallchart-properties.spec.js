@@ -1,4 +1,3 @@
-
 import chai from 'chai';
 import waterfallChartProperties from '../waterfallchart-properties';
 import waterfallUtils from '../waterfallchart-utils';
