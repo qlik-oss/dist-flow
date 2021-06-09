@@ -1,5 +1,4 @@
-// import '../../../../../../test/unit/node-setup';
-import chai from 'chai';
+// import chai from 'chai';
 import cubesGenerator from '../histogram-cubes-generator';
 
 const expect = chai.expect;

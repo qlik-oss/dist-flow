@@ -1,4 +1,3 @@
-// import '../../../../../test/unit/node-setup';
 
 import chai from 'chai';
 import CubeGenerator from '../waterfallchart-cube-generator-by-measures';

@@ -1,12 +1,18 @@
-import '../../../../../../../../test/unit/node-setup';
 import chai from 'chai';
 import refLineUtil from '../ref-line-util';
-import chartStyleUtils from '../../../../../extra/chart-style-utils';
 
 const expect = chai.expect;
 const lrm = String.fromCharCode(8206);
 
 describe('chart builder - ref-line util', () => {
+  let theme;
+  beforeEach(() => {
+    theme = {
+      getStyle: jest.fn(),
+      getColorPickerColor: jest.fn().mockReturnValue('theme color'),
+    };
+  });
+
   describe('lineSettings', () => {
     it('should return correct lineSettings', () => {
       const paletteColor = 7;
@@ -20,13 +26,14 @@ describe('chart builder - ref-line util', () => {
         },
         {
           paletteColor,
+          theme,
         }
       );
 
       expect(lineSettings).to.deep.equal({
         value: 2,
         line: {
-          stroke: chartStyleUtils.Theme.resolveColor(paletteColor),
+          stroke: 'theme color',
           strokeDasharray: undefined,
         },
         label: {
@@ -53,6 +60,7 @@ describe('chart builder - ref-line util', () => {
         },
         {
           paletteColor,
+          theme,
         }
       );
 
@@ -65,9 +73,11 @@ describe('chart builder - ref-line util', () => {
           text: label,
           vAlign: 0.2,
           align: 0.8,
-          fill: chartStyleUtils.Theme.resolveColor(paletteColor),
-          fontFamily: 'QlikView Sans, sans-serif',
-          fontSize: '12px',
+          fill: 'theme color',
+          // fontFamily: 'QlikView Sans, sans-serif',
+          // fontSize: '12px',
+          fontFamily: undefined,
+          fontSize: undefined,
           maxWidthPx: 135,
         },
       });

@@ -1,8 +1,6 @@
-import '../../../../../../../test/unit/node-setup';
-
+import extend from 'extend';
 import chai from 'chai';
 import sinon from 'sinon';
-import angular from 'angular';
 import Sorter from '../Sorter';
 
 const expect = chai.expect;
@@ -394,13 +392,12 @@ describe('Sorter', () => {
         elementId: 'boxMiddle',
         sortCriteria: {
           sortByExpression: 1,
-          sortByAscii: undefined,
           sortByNumeric: -1,
           sortByLoadOrder: 0,
         },
       };
 
-      let original = angular.copy(chartSorting);
+      let original = extend(true, {}, chartSorting);
 
       sorter.applyCustomSorting(dimension, chartSorting);
 
@@ -413,7 +410,7 @@ describe('Sorter', () => {
         },
       };
 
-      original = angular.copy(chartSorting);
+      original = extend(true, {}, chartSorting);
 
       sorter.applyCustomSorting(dimension, chartSorting);
 

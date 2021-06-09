@@ -1,4 +1,3 @@
-import '../../../../../../test/unit/node-setup';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import PicassoMock from '../../__tests__/picasso-mock';

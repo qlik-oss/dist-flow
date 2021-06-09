@@ -1,4 +1,3 @@
-import '../../../../../../test/unit/node-setup';
 import chai from 'chai';
 import sinon from 'sinon';
 import DependentInteractions from '../dependent-interactions';
@@ -53,7 +52,7 @@ describe('Dependent Interactions', () => {
   describe('test components', () => {
     let gestures;
     beforeEach(() => {
-      gestures = DependentInteractions.create(handlers, true, 'vertical', false, keys, rangeSelStatus).gestures;
+      gestures = DependentInteractions.create(handlers, 'vertical', false, keys, rangeSelStatus).gestures;
     });
 
     it('Should setup default interaction', () => {
@@ -99,7 +98,7 @@ describe('Dependent Interactions', () => {
     let rangeMea;
     /* clearTap, */ let pan;
     beforeEach(() => {
-      interactions = DependentInteractions.create(handlers, true, 'vertical', false, keys, rangeSelStatus);
+      interactions = DependentInteractions.create(handlers, 'vertical', false, keys, rangeSelStatus);
       gestures = interactions.gestures;
       // clearTap = gestures[0];
       lasso = gestures[2];

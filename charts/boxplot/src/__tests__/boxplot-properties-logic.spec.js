@@ -1,4 +1,3 @@
-// import '../../../../../test/unit/node-setup';
 
 import chai from 'chai';
 import propsLogic from '../boxplot-properties-logic';

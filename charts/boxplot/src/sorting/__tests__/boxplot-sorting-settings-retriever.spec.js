@@ -1,5 +1,4 @@
-// import '../../../../../../test/unit/node-setup';
-
+// 
 import chai from 'chai';
 import boxplotSortingSettingsRetriever from '../boxplot-sorting-settings-retriever';
 import SETTINGS from '../boxplot-sorting-settings';

@@ -1,5 +1,4 @@
-// import '../../../../../../test/unit/node-setup';
-
+// 
 import chai from 'chai';
 import sinon from 'sinon';
 import sorterFactory from '@qlik/common/picasso/sorting/base-derived/sorter-factory';

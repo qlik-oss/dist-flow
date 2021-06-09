@@ -1,5 +1,4 @@
-// import '../../../../../../test/unit/node-setup';
-import chai from 'chai';
+// import chai from 'chai';
 import binSizeCalculator from '../bin-size-calculator';
 
 const expect = chai.expect;

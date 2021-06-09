@@ -1,4 +1,3 @@
-import '../../../../../../test/unit/node-setup';
 import chai from 'chai';
 import AttributesUtil from '../disclaimer-attributes-util';
 import DisclaimersConfig from '../disclaimers-config';

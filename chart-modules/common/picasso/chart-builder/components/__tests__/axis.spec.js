@@ -1,4 +1,3 @@
-import '../../../../../../../test/unit/node-setup';
 import chai from 'chai';
 import axis from '../axis';
 
@@ -6,8 +5,12 @@ const expect = chai.expect;
 
 describe('chart builder - axis component', () => {
   let expectedSettings;
+  let theme;
 
   beforeEach(() => {
+    theme = {
+      getStyle: jest.fn().mockImplementation((chartID, path, attr) => `themed:${path}.${attr}`),
+    };
     expectedSettings = {
       key: 'axis',
       type: 'axis',
@@ -15,28 +18,32 @@ describe('chart builder - axis component', () => {
       brush: { trigger: [], consume: [] },
       settings: {
         title: {
-          fontSize: '12px',
-          fontFamily: 'QlikView Sans, sans-serif',
-          fill: '#333333',
+          fontSize: 'themed:axis.title.fontSize',
+          fontFamily: 'themed:axis.title.fontFamily',
+          fill: 'themed:axis.title.color',
         },
-        line: { show: true, strokeWidth: 1, stroke: '#cccccc' },
+        line: {
+          show: true,
+          strokeWidth: 1,
+          stroke: 'themed:axis.line.major.color',
+        },
         labels: {
-          fill: '#595959',
-          fontSize: '12px',
-          fontFamily: 'QlikView Sans, sans-serif',
+          fill: 'themed:axis.label.name.color',
+          fontSize: 'themed:axis.label.name.fontSize',
+          fontFamily: 'themed:axis.label.name.fontFamily',
           mode: 'auto',
           tiltAngle: 40,
           maxEdgeBleed: 75,
           maxSize: 150,
         },
-        ticks: { stroke: '#cccccc' },
-        minorTicks: { stroke: '#cccccc' },
+        ticks: { stroke: 'themed:axis.line.major.color' },
+        minorTicks: { stroke: 'themed:axis.line.major.color' },
       },
     };
   });
 
   it('should return axis settings with default values', () => {
-    const axisSettings = axis();
+    const axisSettings = axis(null, { theme });
     expect(axisSettings).to.deep.equal(expectedSettings);
   });
 
@@ -44,7 +51,7 @@ describe('chart builder - axis component', () => {
     expectedSettings.key = 'x-axis';
     expectedSettings.scale = 'x';
 
-    const axisSettings = axis.xAxis();
+    const axisSettings = axis.xAxis(null, { theme });
 
     expect(axisSettings).to.deep.equal(expectedSettings);
   });
@@ -54,7 +61,7 @@ describe('chart builder - axis component', () => {
     expectedSettings.dock = 'left';
     expectedSettings.scale = 'y';
 
-    const axisSettings = axis.yAxis(null);
+    const axisSettings = axis.yAxis(null, { theme });
 
     expect(axisSettings).to.deep.equal(expectedSettings);
   });
@@ -64,7 +71,7 @@ describe('chart builder - axis component', () => {
     expectedSettings.scale = 'x';
     expectedSettings.settings.labels.tiltAngle = -40;
 
-    const axisSettings = axis.xAxis({}, { isRtl: true });
+    const axisSettings = axis.xAxis({}, { isRtl: true, theme });
 
     expect(axisSettings).to.deep.equal(expectedSettings);
   });

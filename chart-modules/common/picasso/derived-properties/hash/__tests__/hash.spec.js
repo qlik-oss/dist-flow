@@ -1,4 +1,3 @@
-import '../../../../../../../test/unit/node-setup';
 import sinon from 'sinon';
 import { expect } from 'chai';
 import hash from '../hash';

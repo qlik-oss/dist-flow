@@ -1,28 +1,28 @@
-import '../../../../../../../test/unit/node-setup';
 import chai from 'chai';
 import gridLine from '../grid-line';
 
 const expect = chai.expect;
 
 describe('chart builder - grid-line component', () => {
+  let theme;
+  beforeEach(() => {
+    theme = {
+      getStyle: jest.fn().mockReturnValue('value-in-theme'),
+    };
+  });
+
   const expectedSettings = {
     displayOrder: -1,
     key: 'grid-line',
     type: 'grid-line',
     x: null,
     y: null,
-    ticks: { stroke: '#cccccc' },
-    minorTicks: { stroke: '#cccccc' },
+    ticks: { stroke: 'value-in-theme' },
+    minorTicks: { stroke: 'value-in-theme' },
   };
 
   it('should return grid line settings with default values', () => {
-    const gridLineSettings = gridLine();
-
-    expect(gridLineSettings).to.deep.equal(expectedSettings);
-  });
-
-  it('should return grid line settings with extended values', () => {
-    const gridLineSettings = gridLine();
+    const gridLineSettings = gridLine(null, { theme });
 
     expect(gridLineSettings).to.deep.equal(expectedSettings);
   });

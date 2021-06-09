@@ -1,4 +1,3 @@
-import '../../../../../../../test/unit/node-setup';
 import chai from 'chai';
 import sinon from 'sinon';
 import DependentInteractions from '../../dependent-interactions';
@@ -17,6 +16,9 @@ describe('Lasso gesture', () => {
     getItemSize() {
       return 1;
     },
+    isOn() {
+      return true;
+    },
   };
 
   afterEach(() => {
@@ -27,6 +29,9 @@ describe('Lasso gesture', () => {
     pauseEngineCalls() {},
     resumeEngineCalls() {},
     addComponent() {},
+    isOn() {
+      return true;
+    },
   };
 
   const handlers = {
@@ -82,12 +87,8 @@ describe('Lasso gesture', () => {
     let interactions;
     let lasso;
 
-    const enabledFn = function () {
-      return true;
-    };
-
     beforeEach(() => {
-      interactions = DependentInteractions.create(handlers, enabledFn, 'vertical', false, keys, rangeSelStatus);
+      interactions = DependentInteractions.create(handlers, 'vertical', false, keys, rangeSelStatus);
       gestures = interactions.gestures;
       lasso = gestures[2];
 

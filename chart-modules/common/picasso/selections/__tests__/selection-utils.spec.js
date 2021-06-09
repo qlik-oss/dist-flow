@@ -1,4 +1,3 @@
-import '../../../../../../test/unit/node-setup';
 import chai from 'chai';
 import selectionUtils from '../selection-utils';
 

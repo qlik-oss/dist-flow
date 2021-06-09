@@ -1,5 +1,4 @@
-// import '../../../../../../test/unit/node-setup';
-import chai from 'chai';
+// import chai from 'chai';
 import sinon from 'sinon';
 import util from '../../../../../js/lib/util';
 import DimensionAxis from '../dimension-axis';

@@ -1,4 +1,3 @@
-import '../../../../../../../test/unit/node-setup';
 import chai from 'chai';
 import sinon from 'sinon';
 import DependentInteractions from '../../dependent-interactions';
@@ -17,6 +16,9 @@ describe('Area range gesture', () => {
     getItemSize() {
       return 1;
     },
+    isOn() {
+      return true;
+    },
   };
 
   afterEach(() => {
@@ -27,6 +29,9 @@ describe('Area range gesture', () => {
     pauseEngineCalls() {},
     resumeEngineCalls() {},
     addComponent() {},
+    isOn() {
+      return true;
+    },
   };
 
   const handlers = {
@@ -90,12 +95,8 @@ describe('Area range gesture', () => {
     let interactions;
     let rangeArea;
 
-    const enabledFn = function () {
-      return true;
-    };
-
     beforeEach(() => {
-      interactions = DependentInteractions.create(handlers, enabledFn, 'vertical', false, keys, rangeSelStatus);
+      interactions = DependentInteractions.create(handlers, 'vertical', false, keys, rangeSelStatus);
       gestures = interactions.gestures;
       rangeArea = gestures[4];
 

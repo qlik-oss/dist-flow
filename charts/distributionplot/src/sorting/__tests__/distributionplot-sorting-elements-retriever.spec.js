@@ -1,5 +1,4 @@
-// import '../../../../../../test/unit/node-setup';
-
+// 
 import chai from 'chai';
 import sinon from 'sinon';
 import distplotSortingElementsRetriever from '../distributionplot-sorting-elements-retriever';

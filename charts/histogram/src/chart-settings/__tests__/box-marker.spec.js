@@ -1,5 +1,4 @@
-// import '../../../../../../test/unit/node-setup';
-import chai from 'chai';
+// import chai from 'chai';
 import sinon from 'sinon';
 import chartStyleUtils from '../../../../../assets/objects/utils/chart-style-utils';
 import histogramUtils from '../../histogram-utils';

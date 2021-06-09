@@ -1,4 +1,3 @@
-// import '../../../../../test/unit/node-setup';
 import chai from 'chai';
 import sinon from 'sinon';
 import CubeGenerator from '../boxplot-cubes-generator';

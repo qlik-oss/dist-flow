@@ -1,7 +1,7 @@
-import '../../../../../../../test/unit/node-setup';
 import sinon from 'sinon';
 import { expect } from 'chai';
-import SoftPropertyHandler from '../../../../../client/soft-property-panel/soft-property-handler';
+import SoftPropertyHandler from '../../../../extra/soft-property-handler';
+import hardPropertiesChecker from '../../../../extra/hard-properties-checker';
 import save from '../save';
 
 describe('derived properties save', () => {
@@ -44,39 +44,15 @@ describe('derived properties save', () => {
       };
 
       sandbox.stub(SoftPropertyHandler.prototype, 'saveSoftProperties');
+      sandbox.stub(hardPropertiesChecker, 'canModifyHardProperties');
     });
 
     afterEach(() => {
       sandbox.verifyAndRestore();
     });
 
-    it('should store the properties as soft properties if the user lacks update permission', () => {
-      model.app.layout.permissions.update = false;
-      layout.qHasSoftPatches = false;
-      layout.qExtendsId = '';
-
-      save.saveDerivedProperties(model, layout, properties, prevProperties, mockedState);
-
-      expect(model.setProperties.notCalled).to.be.true;
-      expect(SoftPropertyHandler.prototype.saveSoftProperties.calledWithExactly(prevProperties, properties));
-    });
-
-    it('should store the properties as soft properties if it have soft patches', () => {
-      layout.qHasSoftPatches = true;
-      model.app.layout.permissions = true;
-      layout.qExtendsId = '';
-
-      save.saveDerivedProperties(model, layout, properties, prevProperties, mockedState);
-
-      expect(model.setProperties.notCalled).to.be.true;
-      expect(SoftPropertyHandler.prototype.saveSoftProperties.calledWithExactly(prevProperties, properties));
-    });
-
-    it("should store the properties as soft properties if it's a master item", () => {
-      // This this test was added after the discovery of SUI-1363
-      layout.qExtendsId = 'QWERTY';
-      model.app.layout.permissions = true;
-      layout.qHasSoftPatches = false;
+    it('should store the properties as soft properties if the properties can not be modified', () => {
+      hardPropertiesChecker.canModifyHardProperties.returns(false);
 
       save.saveDerivedProperties(model, layout, properties, prevProperties, mockedState);
 
