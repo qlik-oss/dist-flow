@@ -44,7 +44,7 @@ function getFractileExpression(percentile, innerDim, outerDim, innerMeasureStrin
   return expression;
 }
 
-function getElements(measureExpressions, dimensionExpressions, settings) {
+function getElements(measureExpressions, dimensionExpressions, settings, translator) {
   const innerDimString = dimensionExpressions[0];
   const outerDimString = dimensionExpressions[1];
   const innerMeasureString = measureExpressions[0];

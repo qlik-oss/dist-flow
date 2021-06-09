@@ -25,6 +25,9 @@ module.exports = {
     'chart-modules/common/picasso/tooltip/__tests__/tooltips-handler.spec.js',
     'charts/boxplot/src/__tests__/boxplot-data.spec.js',
     'charts/boxplot/src/__tests__/boxplot-properties.spec.js',
+    'charts/distributionplot/src/__tests__/distributionplot-data.spec.js',
+    'charts/distributionplot/src/__tests__/distributionplot-properties.spec.js',
+    'charts/distributionplot/src/__tests__/distributionplot.spec.js',
   ],
 
   // collectCoverageFrom: [

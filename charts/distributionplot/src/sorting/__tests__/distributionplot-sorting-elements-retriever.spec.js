@@ -1,7 +1,6 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import distplotSortingElementsRetriever from '../distributionplot-sorting-elements-retriever';
-import translator from '../../../../../js/lib/translator';
 
 const expect = chai.expect;
 let sandbox;
@@ -13,11 +12,14 @@ describe('distributionplot-sorting-elements-retriever', () => {
   let measureExpressions;
   let dimensionExpressions;
   let settings;
+  let translator;
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
 
-    sandbox.stub(translator, 'get').callsFake((translationKey) => `${translationKey}_translated`);
+    translator = {
+      get: sinon.stub().callsFake((translationKey) => `${translationKey}_translated`),
+    };
 
     measureExpressions = [measureName];
 
@@ -46,7 +48,12 @@ describe('distributionplot-sorting-elements-retriever', () => {
 
     it('should return element ids ordered the same as elements returned by getElements', () => {
       const elementIds = distplotSortingElementsRetriever.getElementIds();
-      const elements = distplotSortingElementsRetriever.getElements(measureExpressions, dimensionExpressions, settings);
+      const elements = distplotSortingElementsRetriever.getElements(
+        measureExpressions,
+        dimensionExpressions,
+        settings,
+        translator
+      );
 
       elementIds.forEach((id, index) => {
         expect(id).to.equal(elements[index].id);
@@ -59,7 +66,7 @@ describe('distributionplot-sorting-elements-retriever', () => {
       const measures = [measureName];
       const dimensions = [innerDimName, outerDimName];
 
-      distplotSortingElementsRetriever.getElements(measures, dimensions, {});
+      distplotSortingElementsRetriever.getElements(measures, dimensions, {}, translator);
 
       expect(translator.get.calledTwice).to.be.true;
       expect(translator.get.getCall(0).calledWithExactly('properties.distributionPlot.min')).to.be.true;
@@ -67,7 +74,12 @@ describe('distributionplot-sorting-elements-retriever', () => {
     });
 
     it('should return correct elements', () => {
-      const elements = distplotSortingElementsRetriever.getElements(measureExpressions, dimensionExpressions, settings);
+      const elements = distplotSortingElementsRetriever.getElements(
+        measureExpressions,
+        dimensionExpressions,
+        settings,
+        translator
+      );
 
       expect(elements).to.deep.equal([
         {
@@ -86,7 +98,12 @@ describe('distributionplot-sorting-elements-retriever', () => {
     });
 
     it('should return elements ordered the same as element ids returned by getElementIds', () => {
-      const elements = distplotSortingElementsRetriever.getElements(measureExpressions, dimensionExpressions, settings);
+      const elements = distplotSortingElementsRetriever.getElements(
+        measureExpressions,
+        dimensionExpressions,
+        settings,
+        translator
+      );
       const elementIds = distplotSortingElementsRetriever.getElementIds();
 
       elements.forEach((element, index) => {

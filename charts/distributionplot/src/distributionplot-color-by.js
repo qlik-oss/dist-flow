@@ -1,4 +1,4 @@
-import util from '../../../js/lib/util';
+import { getValue } from '@qlik/chart-modules';
 
 const COMMON_COLOR_PROPS = [
   'altLabel',
@@ -44,7 +44,7 @@ function importColors(properties) {
 }
 function exportColors(properties) {
   move(properties.color.point, properties.color, COMMON_COLOR_PROPS);
-  properties.color.colorExpression = util.getValue(properties, 'color.point.expression.qValueExpression.qExpr', '');
+  properties.color.colorExpression = getValue(properties, 'color.point.expression.qValueExpression.qExpr', '');
   delete properties.color.point.expression;
 }
 

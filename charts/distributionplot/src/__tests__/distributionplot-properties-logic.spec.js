@@ -1,8 +1,7 @@
-
+import extend from 'extend';
 import chai from 'chai';
 import sinon from 'sinon';
 import distplotPropsLogic from '../distributionplot-properties-logic';
-import util from '../../../../js/lib/util';
 
 // -- Variables --
 

@@ -87,48 +87,41 @@ describe('distplot-sorting-service', () => {
   });
 
   describe('applySorting', () => {
-    it('should set correct qInterColumnSortOrder', () => {
+    it('should set correct qInterColumnSortOrder', async () => {
       properties.qUndoExclude.qHyperCubeDef.qDimensions = [{}, {}];
 
-      distplotSorter.applySorting(properties, layout, app);
-
-      window.flush();
+      await distplotSorter.applySorting(properties, layout, app);
 
       expect(properties.qUndoExclude.qHyperCubeDef.qInterColumnSortOrder, 'two dimensions').to.deep.equal([0, 2, 1]);
 
       properties.qUndoExclude.qHyperCubeDef.qDimensions.push({});
 
-      distplotSorter.applySorting(properties, layout, app);
-
-      window.flush();
+      await distplotSorter.applySorting(properties, layout, app);
 
       expect(properties.qUndoExclude.qHyperCubeDef.qInterColumnSortOrder, 'more than two dimensions').to.deep.equal([
-        0, 2, 1,
+        0,
+        2,
+        1,
       ]);
 
       properties.qUndoExclude.qHyperCubeDef.qDimensions = [{}];
 
-      distplotSorter.applySorting(properties, layout, app);
-
-      window.flush();
+      await distplotSorter.applySorting(properties, layout, app);
 
       expect(properties.qUndoExclude.qHyperCubeDef.qInterColumnSortOrder, 'less than two dimensions').to.deep.equal([
-        1, 0,
+        1,
+        0,
       ]);
     });
 
-    it('should create sorter via sorterFactory', () => {
-      distplotSorter.applySorting(properties, layout, app);
-
-      window.flush();
+    it('should create sorter via sorterFactory', async () => {
+      await distplotSorter.applySorting(properties, layout, app);
 
       expect(sorterFactory.create.calledOnce, 'call count').to.be.true;
     });
 
-    it('should pass a function that returns correct settings as first argument to sorterFactory', () => {
-      distplotSorter.applySorting(properties, layout, app);
-
-      window.flush();
+    it('should pass a function that returns correct settings as first argument to sorterFactory', async () => {
+      await distplotSorter.applySorting(properties, layout, app);
 
       const firstSorterFactoryArg = sorterFactory.create.getCall(0).args[0];
 
@@ -138,10 +131,8 @@ describe('distplot-sorting-service', () => {
       expect(settingsRetriever.getSettings.calledWithExactly(layout)).to.be.true;
     });
 
-    it('should pass a function that returns correct elements as second argument to sorterFactory', () => {
-      distplotSorter.applySorting(properties, layout, app);
-
-      window.flush();
+    it('should pass a function that returns correct elements as second argument to sorterFactory', async () => {
+      await distplotSorter.applySorting(properties, layout, app);
 
       const secondSorterFactoryArg = sorterFactory.create.getCall(0).args[1];
 
@@ -159,10 +150,8 @@ describe('distplot-sorting-service', () => {
       expect(thirdGetElementsArg).to.equal(settings);
     });
 
-    it('should call sorterFacade.applySorting with correct arguments', () => {
-      distplotSorter.applySorting(properties, layout, app);
-
-      window.flush();
+    it('should call sorterFacade.applySorting with correct arguments', async () => {
+      await distplotSorter.applySorting(properties, layout, app);
 
       expect(sorterFacade.applySorting.calledOnce, 'call count').to.be.true;
 
