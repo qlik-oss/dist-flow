@@ -1,10 +1,9 @@
-
 import sinon from 'sinon';
 import chai from 'chai';
 import $ from 'jquery';
+import derivedProperties from '@qlik/common/picasso/derived-properties/derived-properties';
 import histogramExt from '../histogram';
 import generator from '../../../../assets/objects/utils/__tests__/hypercube-generator';
-import derivedProperties from '@qlik/common/picasso/derived-properties/derived-properties';
 
 const expect = chai.expect;
 

@@ -1,12 +1,26 @@
-
 import chai from 'chai';
-import histogramProperties from '../histogram-properties';
+import histogramPropertiesFn from '../histogram-properties';
 
 const expect = chai.expect;
 
 describe('histogram-properties ', () => {
   describe('Binning', () => {
-    const binning = histogramProperties.items.bins;
+    let binning;
+    beforeEach(() => {
+      const theme = {};
+      const env = {
+        anything: {
+          sense: {
+            theme,
+          },
+        },
+        translator: {
+          get: (x) => x,
+        },
+      };
+      const histogramProperties = histogramPropertiesFn(env);
+      binning = histogramProperties.items.bins;
+    });
 
     it('should be able to adjust the number of bins when auto is false and binMode is maxCount', () => {
       const data = {

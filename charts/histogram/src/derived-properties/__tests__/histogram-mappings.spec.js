@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import chai from 'chai';
-import util from '../../../../../js/lib/util';
+import * as util from '@qlik/chart-modules';
 import histogramUtils from '../../histogram-utils';
 import binSizeCalculator from '../bin-size-calculator';
 import histogramMappings from '../histogram-mappings';
@@ -16,6 +16,7 @@ describe('Histogram derived properties expression generator mappings ', () => {
         const mapping = mappings[name];
 
         expect(mapping).to.be.an('object', `Mapping ${name} to be object`);
+        // eslint-disable-next-line no-prototype-builtins
         expect(mapping.hasOwnProperty('value')).to.equal(true, `Mapping ${name} object to have .value property`);
       });
     }
@@ -135,7 +136,7 @@ describe('Histogram derived properties expression generator mappings ', () => {
       const mappingValues = histogramMappings.getMappingValues(layout);
 
       histogramUtilsMock.verify();
-      utilMock.verify();
+      // utilMock.verify();
       binSizeCalculatorMock.verify();
 
       expect(mappingValues.binSize).to.equal(binInfo.binSize, 'binSize');

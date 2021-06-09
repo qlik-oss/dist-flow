@@ -1,4 +1,4 @@
-// import chai from 'chai';
+import chai from 'chai';
 import cubesGenerator from '../histogram-cubes-generator';
 
 const expect = chai.expect;
@@ -47,96 +47,68 @@ describe('Generate hyper cube for histogram', () => {
     };
   });
 
-  it('should generate a hypercube at the correct location in the properties', (done) => {
-    cubesGenerator.generateHyperCubes(layout, properties, app).then(() => {
-      expect(properties.qUndoExclude.box.qHyperCubeDef).to.be.an('object');
-      done();
-    });
-
-    window.flush();
+  it('should generate a hypercube at the correct location in the properties', async () => {
+    await cubesGenerator.generateHyperCubes(layout, properties, app);
+    expect(properties.qUndoExclude.box.qHyperCubeDef).to.be.an('object');
   });
 
-  it('should generate a dimension and measure based on the provided field name', (done) => {
-    cubesGenerator.generateHyperCubes(layout, properties, app).then(() => {
-      const cube = properties.qUndoExclude.box.qHyperCubeDef;
-      const dimensions = cube.qDimensions;
-      const measures = cube.qMeasures;
+  it('should generate a dimension and measure based on the provided field name', async () => {
+    await cubesGenerator.generateHyperCubes(layout, properties, app);
 
-      expect(dimensions.length).to.equal(1);
-      expect(dimensions[0].qDef.qFieldDefs).to.deep.equal(['=Class(aggr([City],[City]),10)']);
+    const cube = properties.qUndoExclude.box.qHyperCubeDef;
+    const dimensions = cube.qDimensions;
+    const measures = cube.qMeasures;
 
-      expect(measures.length).to.equal(1);
-      expect(measures[0].qDef.qDef).to.equal('Count([City])');
+    expect(dimensions.length).to.equal(1);
+    expect(dimensions[0].qDef.qFieldDefs).to.deep.equal(['=Class(aggr([City],[City]),10)']);
 
-      done();
-    });
-
-    window.flush();
+    expect(measures.length).to.equal(1);
+    expect(measures[0].qDef.qDef).to.equal('Count([City])');
   });
 
-  it('should sort the dimension numerically ascending', (done) => {
-    cubesGenerator.generateHyperCubes(layout, properties, app).then(() => {
-      const sortCriterias = properties.qUndoExclude.box.qHyperCubeDef.qDimensions[0].qDef.qSortCriterias;
+  it('should sort the dimension numerically ascending', async () => {
+    await cubesGenerator.generateHyperCubes(layout, properties, app);
 
-      expect(sortCriterias).to.be.an('array');
-      expect(sortCriterias.length).to.equal(1);
-      expect(sortCriterias[0].qSortByNumeric).to.equal(1);
+    const sortCriterias = properties.qUndoExclude.box.qHyperCubeDef.qDimensions[0].qDef.qSortCriterias;
 
-      done();
-    });
-
-    window.flush();
+    expect(sortCriterias).to.be.an('array');
+    expect(sortCriterias.length).to.equal(1);
+    expect(sortCriterias[0].qSortByNumeric).to.equal(1);
   });
 
-  it('should store the qFieldLabel on the derived properties', (done) => {
-    cubesGenerator.generateHyperCubes(layout, properties, app).then(() => {
-      expect(properties.qUndoExclude.box.qHyperCubeDef.qDimensions[0].qDef.qFieldLabels[0]).to.equal(
-        layout.qHyperCube.qDimensionInfo[0].qFallbackTitle
-      );
+  it('should store the qFieldLabel on the derived properties', async () => {
+    await cubesGenerator.generateHyperCubes(layout, properties, app);
 
-      done();
-    });
-
-    window.flush();
+    expect(properties.qUndoExclude.box.qHyperCubeDef.qDimensions[0].qDef.qFieldLabels[0]).to.equal(
+      layout.qHyperCube.qDimensionInfo[0].qFallbackTitle
+    );
   });
 
-  it('should store the measureAxis.label on the derived properties', (done) => {
-    cubesGenerator.generateHyperCubes(layout, properties, app).then(() => {
-      expect(properties.qUndoExclude.box.qHyperCubeDef.qMeasures[0].qDef.qLabel).to.equal(layout.measureAxis.label);
+  it('should store the measureAxis.label on the derived properties', async () => {
+    await cubesGenerator.generateHyperCubes(layout, properties, app);
 
-      done();
-    });
-
-    window.flush();
+    expect(properties.qUndoExclude.box.qHyperCubeDef.qMeasures[0].qDef.qLabel).to.equal(layout.measureAxis.label);
   });
 
-  it('should store the binSize on the derived properties', (done) => {
-    cubesGenerator.generateHyperCubes(layout, properties, app).then(() => {
-      expect(properties.qUndoExclude.bins.binSize).to.equal(layout.bins.binSize);
+  it('should store the binSize on the derived properties', async () => {
+    await cubesGenerator.generateHyperCubes(layout, properties, app);
 
-      done();
-    });
-
-    window.flush();
+    expect(properties.qUndoExclude.bins.binSize).to.equal(layout.bins.binSize);
   });
 
-  it('should generate the Sturges formula expression in auto mode', (done) => {
+  it('should generate the Sturges formula expression in auto mode', async () => {
     layout.bins.auto = true;
 
-    cubesGenerator.generateHyperCubes(layout, properties, app).then(() => {
-      expect(properties.qUndoExclude.bins.binCount).to.deep.equal({
-        qValueExpression: {
-          qExpr: '=Ceil(Log10(Count([City])) / Log10(2)) + 1',
-        },
-      });
+    await cubesGenerator.generateHyperCubes(layout, properties, app);
 
-      done();
+    expect(properties.qUndoExclude.bins.binCount).to.deep.equal({
+      qValueExpression: {
+        qExpr: '=Ceil(Log10(Count([City])) / Log10(2)) + 1',
+      },
     });
-
-    window.flush();
   });
 
-  it("should use the derived binCount in maxCount mode if the user haven't provided an custom expression", (done) => {
+  it("should use the derived binCount in maxCount mode if the user haven't provided an custom expression", async () => {
     layout.bins.binMode = 'maxCount';
     layout.qUndoExclude = {
       bins: {
@@ -145,25 +117,17 @@ describe('Generate hyper cube for histogram', () => {
     };
     properties.bins.binCount = undefined;
 
-    cubesGenerator.generateHyperCubes(layout, properties, app).then(() => {
-      expect(properties.qUndoExclude.bins.binCount).to.deep.equal(layout.qUndoExclude.bins.binCount);
+    await cubesGenerator.generateHyperCubes(layout, properties, app);
 
-      done();
-    });
-
-    window.flush();
+    expect(properties.qUndoExclude.bins.binCount).to.deep.equal(layout.qUndoExclude.bins.binCount);
   });
 
-  it('should use the provided expression in maxCount mode', (done) => {
+  it('should use the provided expression in maxCount mode', async () => {
     layout.bins.binMode = 'maxCount';
     properties.bins.binCount = '=Count([City])';
 
-    cubesGenerator.generateHyperCubes(layout, properties, app).then(() => {
-      expect(properties.qUndoExclude.bins.binCount).to.equal(properties.bins.binCount);
+    await cubesGenerator.generateHyperCubes(layout, properties, app);
 
-      done();
-    });
-
-    window.flush();
+    expect(properties.qUndoExclude.bins.binCount).to.equal(properties.bins.binCount);
   });
 });

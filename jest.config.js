@@ -28,6 +28,10 @@ module.exports = {
     'charts/distributionplot/src/__tests__/distributionplot-data.spec.js',
     'charts/distributionplot/src/__tests__/distributionplot-properties.spec.js',
     'charts/distributionplot/src/__tests__/distributionplot.spec.js',
+    'charts/histogram/src/__tests__/histogram-data.spec.js',
+    'charts/histogram/src/__tests__/histogram-export.spec.js',
+    'charts/histogram/src/__tests__/histogram-numeric-values-handler.spec.js',
+    'charts/histogram/src/__tests__/histogram.spec.js',
   ],
 
   // collectCoverageFrom: [

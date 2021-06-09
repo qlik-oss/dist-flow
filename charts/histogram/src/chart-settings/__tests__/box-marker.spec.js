@@ -1,6 +1,6 @@
-// import chai from 'chai';
+import chai from 'chai';
 import sinon from 'sinon';
-import chartStyleUtils from '../../../../../assets/objects/utils/chart-style-utils';
+// import chartStyleUtils from '../../../../../assets/objects/utils/chart-style-utils';
 import histogramUtils from '../../histogram-utils';
 import BoxMarker from '../box-marker';
 
@@ -13,9 +13,15 @@ describe('Histogram picasso component - box-marker', () => {
   let dimensionSelectionSettings;
   let measureSelectionSettings;
   let tooltipSettings;
+  let theme;
   const sandbox = sinon.createSandbox();
 
   beforeEach(() => {
+    theme = {
+      getStyle: jest.fn(),
+      getColorPickerColor: jest.fn().mockReturnValue('theme color'),
+    };
+
     layout = {
       color: {
         bar: {
@@ -35,6 +41,7 @@ describe('Histogram picasso component - box-marker', () => {
       hasOption() {
         return true;
       },
+      theme,
     };
 
     basicSelectionSettings = {
@@ -77,10 +84,8 @@ describe('Histogram picasso component - box-marker', () => {
   });
 
   it('should have the correct fil color', () => {
-    const themeMock = sinon.mock(chartStyleUtils.Theme);
     const fillColor = '#000000';
-
-    themeMock.expects('resolveColor').once().withArgs(layout.color.bar.paletteColor).returns(fillColor);
+    theme.getColorPickerColor = sinon.mock().once().withArgs(layout.color.bar.paletteColor).returns(fillColor);
 
     const boxMarker = BoxMarker.createSettings(
       chartView,
@@ -91,16 +96,14 @@ describe('Histogram picasso component - box-marker', () => {
       tooltipSettings
     );
 
-    themeMock.verify();
+    theme.getColorPickerColor.verify();
 
     expect(boxMarker.settings.box.fill).to.equal(fillColor);
   });
 
   it('should have a light grey stroke color when the fill color is dark', () => {
-    const themeMock = sinon.mock(chartStyleUtils.Theme);
     const fillColor = '#000000';
-
-    themeMock.expects('resolveColor').once().withArgs(layout.color.bar.paletteColor).returns(fillColor);
+    theme.getColorPickerColor = sinon.mock().once().withArgs(layout.color.bar.paletteColor).returns(fillColor);
 
     const boxMarker = BoxMarker.createSettings(
       chartView,
@@ -111,16 +114,16 @@ describe('Histogram picasso component - box-marker', () => {
       tooltipSettings
     );
 
-    themeMock.verify();
+    theme.getColorPickerColor.verify();
 
     expect(boxMarker.settings.box.stroke).to.equal('#cccccc');
   });
 
   it('should have a dark grey stroke color when the fill color is light', () => {
-    const themeMock = sinon.mock(chartStyleUtils.Theme);
+    const themeMock = sinon.mock(chartView.theme);
     const fillColor = '#ffffff';
 
-    themeMock.expects('resolveColor').once().withArgs(layout.color.bar.paletteColor).returns(fillColor);
+    themeMock.expects('getColorPickerColor').once().withArgs(layout.color.bar.paletteColor).returns(fillColor);
 
     const boxMarker = BoxMarker.createSettings(
       chartView,

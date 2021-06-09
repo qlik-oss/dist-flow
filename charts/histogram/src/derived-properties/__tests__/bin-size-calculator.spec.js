@@ -1,4 +1,4 @@
-// import chai from 'chai';
+import chai from 'chai';
 import binSizeCalculator from '../bin-size-calculator';
 
 const expect = chai.expect;

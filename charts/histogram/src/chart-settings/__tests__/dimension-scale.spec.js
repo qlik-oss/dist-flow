@@ -1,6 +1,6 @@
-// import chai from 'chai';
+import chai from 'chai';
 import sinon from 'sinon';
-import util from '../../../../../js/lib/util';
+import { setValue } from '@qlik/chart-modules';
 import histogramUtils from '../../histogram-utils';
 import DimensionScale from '../dimension-scale';
 
@@ -68,7 +68,7 @@ describe('Histogram picasso component - dimension scale', () => {
 
     const layout = {};
 
-    util.setValue(layout, 'qUndoExclude.box.qHyperCube.qDimensionInfo.0', dimInfo);
+    setValue(layout, 'qUndoExclude.box.qHyperCube.qDimensionInfo.0', dimInfo);
 
     histogramUtilsMock.expects('isAutoBin').once().returns(false);
 
