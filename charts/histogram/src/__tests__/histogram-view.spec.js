@@ -2,13 +2,13 @@ import sinon from 'sinon';
 import chai from 'chai';
 import $ from 'jquery';
 import derivedProperties from '@qlik/common/picasso/derived-properties/derived-properties';
-import histogramExt from '../histogram';
-import generator from '../../../../assets/objects/utils/__tests__/hypercube-generator';
+import picassoSetup from '@qlik/common/picasso/picasso-setup';
+import Histogram from '../histogram-view';
+import generator from './hypercube-generator';
 
 const expect = chai.expect;
 
 describe('Histogram', () => {
-  const Histogram = histogramExt.View;
   let histogram;
   let $element;
   let options;
@@ -16,6 +16,11 @@ describe('Histogram', () => {
   let selectionsApi;
   let tooltipApi;
   let properties;
+  let lasso;
+  let flags;
+  let picasso;
+  let translator;
+  let theme;
   const sandbox = sinon.createSandbox();
 
   beforeEach(() => {
@@ -90,10 +95,25 @@ describe('Histogram', () => {
       destroy() {},
     };
 
-    // fieldName = properties.qHyperCubeDef.qDimensions[0].qDef.qFieldDefs[0];
+    lasso = null;
+    flags = null;
+    picasso = picassoSetup();
+    translator = null;
+    theme = null;
 
-    histogram = new Histogram(undefined, $element, options, backendApi, selectionsApi, tooltipApi);
-    // histogram.backendApi = backendApi;
+    histogram = new Histogram(
+      lasso,
+      flags,
+      picasso,
+      translator,
+      theme,
+      undefined,
+      $element,
+      options,
+      backendApi,
+      selectionsApi,
+      tooltipApi
+    );
   });
 
   afterEach(() => {
@@ -103,38 +123,32 @@ describe('Histogram', () => {
   // TODO: Add test that makes sure the generator function is called from updateDerivedProperties
 
   describe('updateData', () => {
-    it('should make sure the derived properties are up to date before getting data', (done) => {
+    it('should make sure the derived properties are up to date before getting data', async () => {
       sandbox.stub(derivedProperties.prototype, 'isDerivedUpToDate').returns(false);
       sandbox.stub(derivedProperties.prototype, 'updateDerivedProperties').returns(Promise.resolve());
       sandbox.spy(histogram, 'getData');
 
-      histogram.updateData(histogram.backendApi.model.layout).then(() => {
-        expect(derivedProperties.prototype.isDerivedUpToDate).to.have.been.called;
-        expect(derivedProperties.prototype.updateDerivedProperties).to.have.been.called;
-        expect(histogram.getData).to.not.have.been.called;
-        done();
-      });
-      window.flush();
+      await histogram.updateData(histogram.backendApi.model.layout);
+
+      expect(derivedProperties.prototype.isDerivedUpToDate).to.have.been.called;
+      expect(derivedProperties.prototype.updateDerivedProperties).to.have.been.called;
+      expect(histogram.getData).to.not.have.been.called;
     });
 
-    it('should get new data if the derived properties are up to date', (done) => {
+    it('should get new data if the derived properties are up to date', async () => {
       sandbox.stub(derivedProperties.prototype, 'isDerivedUpToDate').returns(true);
       sandbox.stub(derivedProperties.prototype, 'updateDerivedProperties').returns(Promise.resolve());
       sandbox.stub(histogram, 'getData').returns(Promise.resolve());
 
-      histogram.updateData(histogram.backendApi.model.layout).then(() => {
-        const layout = histogram.backendApi.model.layout;
+      await histogram.updateData(histogram.backendApi.model.layout);
+      const layout = histogram.backendApi.model.layout;
 
-        expect(derivedProperties.prototype.isDerivedUpToDate).to.have.been.called;
-        expect(derivedProperties.prototype.updateDerivedProperties).to.not.have.been.called;
-        expect(histogram.getData).to.have.been.calledWith(histogram.backendApi, layout.qUndoExclude.box.qHyperCube, {
-          height: layout.qHyperCube.qSize.qcy,
-          width: 2,
-        });
-
-        done();
+      expect(derivedProperties.prototype.isDerivedUpToDate).to.have.been.called;
+      expect(derivedProperties.prototype.updateDerivedProperties).to.not.have.been.called;
+      expect(histogram.getData).to.have.been.calledWith(histogram.backendApi, layout.qUndoExclude.box.qHyperCube, {
+        height: layout.qHyperCube.qSize.qcy,
+        width: 2,
       });
-      window.flush();
     });
   });
 });

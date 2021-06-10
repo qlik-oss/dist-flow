@@ -1,6 +1,7 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import $ from 'jquery';
+import picassoSetup from '@qlik/common/picasso/picasso-setup';
 import WaterfallChartView from '../waterfallchart-view';
 import CubeGenerator from '../waterfallchart-cube-generator-by-measures';
 
@@ -60,16 +61,7 @@ describe('Waterfallchart-view', () => {
     };
     tooltipApi = {};
 
-    const chartInstance = {
-      update: () => {},
-      scroll: () => ({
-        moveTo: () => {},
-        update: () => {},
-      }),
-    };
-    picasso = {
-      chart: () => chartInstance,
-    };
+    picasso = picassoSetup();
 
     sandbox = sinon.createSandbox();
     sandbox.stub(CubeGenerator, 'generateHyperCube');

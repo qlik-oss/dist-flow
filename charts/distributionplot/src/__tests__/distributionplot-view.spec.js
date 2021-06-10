@@ -1,24 +1,29 @@
 
 import chai from 'chai';
 import sinon from 'sinon';
-import angular from 'angular';
-import DistributionPlotExt from '../distributionplot';
+import $ from 'jquery';
+import picassoSetup from '@qlik/common/picasso/picasso-setup';
+import DistributionPlot from '../distributionplot-view';
 
 const expect = chai.expect;
 let sandbox;
 
 describe('Distributionplot', () => {
-  const DistributionPlot = DistributionPlotExt.View;
   let distributionplot;
   let $element;
   let options;
   let backendApi;
   let selectionsApi;
   let tooltipApi;
+  let lasso;
+  let flags;
+  let picasso;
+  let translator;
+  let theme;
 
   beforeEach(() => {
-    $element = angular.element("<div><div style='width: 100px; height: 100px' class='picasso-chart'></div></div>");
-    document.body.appendChild($element[0]);
+    $element = $("<div><div style='width: 100px; height: 100px' class='picasso-chart'></div></div>");
+    // document.body.appendChild($element[0]);
     options = {};
     backendApi = {
       setPath: sinon.stub(),
@@ -60,6 +65,11 @@ describe('Distributionplot', () => {
       watchActivated() {},
     };
     tooltipApi = {};
+    lasso = null;
+    flags = null;
+    picasso = picassoSetup();
+    translator = null;
+    theme = null;
     sandbox = sinon.createSandbox();
   });
 
@@ -68,25 +78,48 @@ describe('Distributionplot', () => {
     $element.remove();
   });
 
-  it('should work when export sheet to pdf', () => {
+  it('should work when export sheet to pdf', async () => {
     options.navigation = true;
     options.viewState = { scroll: 70 };
     backendApi.model.layout.qUndoExclude.qHyperCube.qStackedDataPages[0].qData[0].qSubNodes.length = 27;
     backendApi.model.layout.qUndoExclude.qHyperCube.qStackedDataPages[0].qData[0].qDown = 73;
-    distributionplot = new DistributionPlot(undefined, $element, options, backendApi, selectionsApi, tooltipApi);
+    distributionplot = new DistributionPlot(
+      lasso,
+      flags,
+      picasso,
+      translator,
+      theme,
+      undefined,
+      $element,
+      options,
+      backendApi,
+      selectionsApi,
+      tooltipApi
+    );
     distributionplot.layout = backendApi.model.layout;
     sandbox.stub(distributionplot, 'getSlicedData').returns(Promise.resolve());
     sandbox.stub(distributionplot._scrollHandler, 'getScrollViewSizeInItem').returns(30);
     sandbox.stub(distributionplot, 'updateScrollHandlerState');
     sandbox.stub(distributionplot, '_updateColorData');
-    distributionplot.updateData(backendApi.model.layout);
-    window.flush();
+    await distributionplot.updateData(backendApi.model.layout);
     expect(distributionplot.getSlicedData).have.been.calledWith(options.viewState.scroll, 30);
   });
 
   it('should not render distribution plot when no data', () => {
     backendApi.model.layout.qUndoExclude.qHyperCube.qStackedDataPages = [{ qData: [] }];
-    distributionplot = new DistributionPlot(undefined, $element, options, backendApi, selectionsApi, tooltipApi);
+    distributionplot = new DistributionPlot(
+      lasso,
+      flags,
+      picasso,
+      translator,
+      theme,
+      undefined,
+      $element,
+      options,
+      backendApi,
+      selectionsApi,
+      tooltipApi
+    );
     const result = distributionplot.createChartSettings(backendApi.model.layout);
     expect(result.components).to.eql([]);
   });

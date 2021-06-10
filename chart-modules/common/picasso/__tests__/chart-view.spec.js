@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import ChartView from '../chart-view';
+import picassoSetup from '../picasso-setup';
 
 describe('chart-view', () => {
   let picasso;
@@ -41,12 +42,7 @@ describe('chart-view', () => {
       watchActivated() {},
       watchDeactivated() {},
     };
-    const chartInstance = {
-      update: jest.fn(),
-    };
-    picasso = {
-      chart: jest.fn().mockReturnValue(chartInstance),
-    };
+    picasso = picassoSetup();
     myChart = new MyChart(picasso, scope, $container, options, backendApi, selectionsApi);
 
     layout = {
