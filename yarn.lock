@@ -2919,6 +2919,13 @@
   resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/encoder/-/@qlik/encoder-0.2.0.tgz#08407b2f8129f9e624afa191a0777e15b1297e85"
   integrity sha1-CEB7L4Ep+eYkr6GRoHd+FbEpfoU=
 
+"@qlik/object-conversion@0.4.0":
+  version "0.3.0"
+  resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/object-conversion/-/@qlik/object-conversion-0.3.0.tgz#cfc87bca1308eb921606bce2395b1abf334c3790"
+  integrity sha1-z8h7yhMI65IWBrziOVsavzNMN5A=
+  dependencies:
+    qlik-modifiers "0.5.1"
+
 "@qlik/sense-themes-default@1.13.0":
   version "1.13.0"
   resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/sense-themes-default/-/@qlik/sense-themes-default-1.13.0.tgz#7a336cf037365a32cc81c8bbbcb62ea7309672f6"

@@ -1,15 +1,31 @@
 import chai from 'chai';
-import waterfallChartProperties from '../waterfallchart-properties';
+import waterfallChartPropertiesFn from '../waterfallchart-properties';
 import waterfallUtils from '../waterfallchart-utils';
 
 const expect = chai.expect;
 
 describe('waterfallchart-properties', () => {
+  let waterfallChartProperties;
+  beforeAll(() => {
+    const translator = {
+      get: () => {},
+    }
+    const env = { translator };
+    waterfallChartProperties = waterfallChartPropertiesFn(env);
+  });
+
   describe('measures', () => {
-    const measures = waterfallChartProperties.items.data.items.measures;
+    let measures;
+    beforeAll(() => {
+      measures = waterfallChartProperties.items.data.items.measures;
+    });
 
     describe('value type', () => {
-      const valueType = measures.items.valueType;
+      let valueType;
+      beforeAll(() => {
+        valueType = measures.items.valueType;
+      });
+
       it('should use correct ref', () => {
         expect(valueType.ref).to.equal('qDef.valueType');
       });
@@ -26,7 +42,11 @@ describe('waterfallchart-properties', () => {
     });
 
     describe('subtotal', () => {
-      const subTotal = measures.items.subTotal;
+      let subTotal;
+      beforeAll(() => {
+        subTotal = measures.items.subTotal;
+      });
+
       it('should use correct ref', () => {
         expect(subTotal.ref).to.equal('qDef.subtotal.enable');
       });
@@ -41,7 +61,11 @@ describe('waterfallchart-properties', () => {
     });
 
     describe('subtotal label', () => {
-      const subTotalLabel = measures.items.subTotalLabel;
+      let subTotalLabel;
+      beforeAll(() => {
+        subTotalLabel = measures.items.subTotalLabel;
+      });
+
       it('should use correct ref', () => {
         expect(subTotalLabel.ref).to.equal('qDef.subtotal.label');
       });
@@ -74,10 +98,16 @@ describe('waterfallchart-properties', () => {
   });
 
   describe('colors', () => {
-    const colors = waterfallChartProperties.items.settings.items.colors.items.colors;
+    let colors;
+    beforeAll(() => {
+      colors = waterfallChartProperties.items.settings.items.colors.items.colors;
+    });
 
     describe('positive value color', () => {
-      const positiveValueColor = colors.items.positiveValueColor;
+      let positiveValueColor;
+      beforeAll(() => {
+        positiveValueColor = colors.items.positiveValueColor;
+      });
       it('should use correct ref', () => {
         expect(positiveValueColor.ref).to.equal('color.positiveValue.paletteColor');
       });
@@ -87,7 +117,10 @@ describe('waterfallchart-properties', () => {
     });
 
     describe('negative value color', () => {
-      const negativeValueColor = colors.items.negativeValueColor;
+      let negativeValueColor;
+      beforeAll(() => {
+        negativeValueColor = colors.items.negativeValueColor;
+      });
       it('should use correct ref', () => {
         expect(negativeValueColor.ref).to.equal('color.negativeValue.paletteColor');
       });
@@ -97,7 +130,10 @@ describe('waterfallchart-properties', () => {
     });
 
     describe('subtotal color', () => {
-      const subtotalColor = colors.items.subtotalColor;
+      let subtotalColor;
+      beforeAll(() => {
+        subtotalColor = colors.items.subtotalColor;
+      });
       it('should use correct ref', () => {
         expect(subtotalColor.ref).to.equal('color.subtotal.paletteColor');
       });

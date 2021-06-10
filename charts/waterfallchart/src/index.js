@@ -14,6 +14,7 @@ import picassoSetup from '@qlik/common/picasso/picasso-setup';
 
 import properties from './object-properties';
 import data from './waterfallchart-data-definition';
+import ext from './ext';
 import ChartView from './waterfallchart-view';
 
 function usePromiseNoError(...args) {
@@ -31,6 +32,7 @@ export default function supernova(env) {
       properties,
       data: data(env),
     },
+    ext: ext(env),
     component() {
       const element = useElement();
       const layout = useStaleLayout();

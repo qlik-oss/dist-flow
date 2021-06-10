@@ -27,7 +27,6 @@ module.exports = {
     'charts/distributionplot/src/__tests__/distributionplot-properties.spec.js',
     'charts/histogram/src/__tests__/histogram-export.spec.js',
     'charts/histogram/src/__tests__/histogram-numeric-values-handler.spec.js',
-    'charts/waterfallchart/src/__tests__/waterfallchart-properties.spec.js',
   ],
 
   // collectCoverageFrom: [
