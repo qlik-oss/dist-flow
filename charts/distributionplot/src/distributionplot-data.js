@@ -1,6 +1,4 @@
-import translator from '../../../js/lib/translator';
-
-function fixInterColumnSortOrder(dimension, data) {
+function fixInterColumnSortOrder(data) {
   if (data.qHyperCubeDef.qInterColumnSortOrder.length === 2) {
     // makes sure we always sort by the outer dimension (second)
     data.qHyperCubeDef.qInterColumnSortOrder = [1, 0];
@@ -9,26 +7,17 @@ function fixInterColumnSortOrder(dimension, data) {
   }
 }
 
-function setColorVars(data, handler) {
-  const dims = handler.getDimensions();
+function setColorVars(data) {
+  const dims = data.qHyperCubeDef.qDimensions;
   if (dims.length > 1 && data.color) {
     data.color.point.persistent = true;
   }
 }
 
-const data = {
-  measures: {
-    min: 1,
-    max: 1,
-    description(properties) {
-      const translationProperty = properties.orientation === 'horizontal' ? 'properties.xAxis' : 'properties.yAxis';
-      return translator.get(translationProperty);
-    },
-    add() /* measure, data, handler */ {},
-    move() /* measure, data, handler */ {},
-    remove() /* measure, data, handler */ {},
-  },
-  dimensions: {
+export default function (env) {
+  const { translator } = env;
+
+  const dimensions = {
     min: 1,
     max: 2,
     description(properties, index) {
@@ -40,19 +29,36 @@ const data = {
       }
       return translator.get(translationProperty);
     },
-    add(dimension, data, handler) {
-      fixInterColumnSortOrder(dimension, data);
-      setColorVars(data, handler);
+    added(dimension, data) {
+      fixInterColumnSortOrder(data);
+      setColorVars(data);
     },
-    move(dimension, data, handler) {
-      fixInterColumnSortOrder(dimension, data);
-      setColorVars(data, handler);
+    moved(dimension, data) {
+      fixInterColumnSortOrder(data);
+      setColorVars(data);
     },
-    remove(dimension, data, handler) {
-      fixInterColumnSortOrder(dimension, data);
-      setColorVars(data, handler);
+    removed(dimension, data) {
+      fixInterColumnSortOrder(data);
+      setColorVars(data);
     },
-  },
-};
+  };
 
-export default data;
+  const measures = {
+    min: 1,
+    max: 1,
+    description(properties) {
+      const translationProperty = properties.orientation === 'horizontal' ? 'properties.xAxis' : 'properties.yAxis';
+      return translator.get(translationProperty);
+    },
+  };
+
+  return {
+    targets: [
+      {
+        path: '/qHyperCubeDef',
+        dimensions,
+        measures,
+      },
+    ],
+  };
+}

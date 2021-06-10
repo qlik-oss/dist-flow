@@ -16,7 +16,7 @@ import picassoSetup from '@qlik/common/picasso/picasso-setup';
 import useLasso from '@qlik/common/nebula/use-lasso';
 
 import properties from './object-properties';
-import data from './data';
+import data from './histogram-data';
 import ChartView from './histogram-view';
 import BackednAPi from './backend-api';
 import ext from './ext';
@@ -27,7 +27,7 @@ export default function supernova(env) {
   return {
     qae: {
       properties,
-      data,
+      data: data(env),
     },
     ext: ext(env),
     component() {

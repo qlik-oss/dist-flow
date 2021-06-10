@@ -1,6 +1,6 @@
 import chai from 'chai';
 import sinon from 'sinon';
-import boxplotData from '../boxplot-data';
+import boxplotDataFn from '../boxplot-data';
 
 const expect = chai.expect;
 
@@ -9,6 +9,7 @@ describe('boxplot-data', () => {
   let measureProperties;
   let dimensionProperties;
   let translator;
+  let boxplotData;
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
@@ -27,6 +28,8 @@ describe('boxplot-data', () => {
     translator = {
       get: (property) => property,
     };
+    const env = { translator };
+    boxplotData = boxplotDataFn(env).targets[0];
   });
 
   afterEach(() => {

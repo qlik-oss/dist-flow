@@ -1,7 +1,6 @@
 import chai from 'chai';
 import sinon from 'sinon';
-import distplotData from '../distributionplot-data';
-import translator from '../../../../js/lib/translator';
+import distplotDataFn from '../distributionplot-data';
 
 const expect = chai.expect;
 
@@ -9,6 +8,7 @@ describe('distributionplot-data', () => {
   let sandbox;
   let measureProperties;
   let dimensionProperties;
+  let distplotData;
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
@@ -21,7 +21,11 @@ describe('distributionplot-data', () => {
       orientation: '',
     };
 
-    sandbox.stub(translator, 'get').callsFake((property) => property);
+    const translator = {
+      get: (property) => property,
+    };
+    const env = { translator };
+    distplotData = distplotDataFn(env).targets[0];
   });
 
   afterEach(() => {

@@ -1,21 +1,15 @@
 import chai from 'chai';
-import sinon from 'sinon';
-import waterfallData from '../waterfallchart-data-definition';
-import translator from '../../../../js/lib/translator';
+import waterfallDataFn from '../waterfallchart-data-definition';
 
 const expect = chai.expect;
 
 describe('waterfall-data-definition', () => {
-  let sandbox;
+  let waterfallData;
 
   beforeEach(() => {
-    sandbox = sinon.createSandbox();
-
-    sandbox.stub(translator, 'get').callsFake((property) => property);
-  });
-
-  afterEach(() => {
-    sandbox.restore();
+    const translator = { get: (property) => property };
+    const env = { translator };
+    waterfallData = waterfallDataFn(env).targets[0];
   });
 
   describe('measures.description', () => {

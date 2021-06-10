@@ -1,21 +1,17 @@
 import chai from 'chai';
-import sinon from 'sinon';
-import histogramData from '../histogram-data';
-import translator from '../../../../js/lib/translator';
+import histogramDataFn from '../histogram-data';
 
 const expect = chai.expect;
 
 describe('histogram-data', () => {
-  let sandbox;
+  let histogramData;
 
   beforeEach(() => {
-    sandbox = sinon.createSandbox();
-
-    sandbox.stub(translator, 'get').callsFake((property) => property);
-  });
-
-  afterEach(() => {
-    sandbox.restore();
+    const translator = {
+      get: (property) => property,
+    };
+    const env = { translator };
+    histogramData = histogramDataFn(env).targets[0];
   });
 
   describe('dimensions.description', () => {

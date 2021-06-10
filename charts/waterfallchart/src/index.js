@@ -13,7 +13,7 @@ import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
 
 import properties from './object-properties';
-import data from './data';
+import data from './waterfallchart-data-definition';
 import ChartView from './waterfallchart-view';
 
 function usePromiseNoError(...args) {

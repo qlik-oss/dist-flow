@@ -1,18 +1,7 @@
-import translator from '../../../js/lib/translator';
+export default function data(env) {
+  const { translator } = env;
 
-const data = {
-  measures: {
-    min: 1,
-    max: 1,
-    description(properties) {
-      const translationProperty = properties.orientation === 'horizontal' ? 'properties.xAxis' : 'properties.yAxis';
-      return translator.get(translationProperty);
-    },
-    add() /* measure, data, handler */ {},
-    move() /* measure, data, handler */ {},
-    remove() /* measure, data, handler */ {},
-  },
-  dimensions: {
+  const dimensions = {
     min: 1,
     max: 2,
     description(properties, index) {
@@ -24,10 +13,24 @@ const data = {
       }
       return translator.get(translationProperty);
     },
-    add() /* measure, data, handler */ {},
-    move() /* measure, data, handler */ {},
-    remove() /* measure, data, handler */ {},
-  },
-};
+  };
 
-export default data;
+  const measures = {
+    min: 1,
+    max: 1,
+    description(properties) {
+      const translationProperty = properties.orientation === 'horizontal' ? 'properties.xAxis' : 'properties.yAxis';
+      return translator.get(translationProperty);
+    },
+  };
+
+  return {
+    targets: [
+      {
+        path: '/boxplotDef/qHyperCubeDef',
+        dimensions,
+        measures,
+      },
+    ],
+  };
+}
