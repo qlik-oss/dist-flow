@@ -389,11 +389,11 @@ describe('Generate hypercubes for boxplot', () => {
     await CubeGenerator.generateHyperCubes(boxProperties, [], layout, app, translator);
 
     expect(boxplotSorter.applySorting.calledOnce, 'call applySorting').to.be.true;
-
-    expect(
-      boxplotSorter.applySorting.calledWithExactly(boxProperties, layout),
-      'call applySorting with correct arguments'
-    ).to.be.true;
+    expect(boxplotSorter.applySorting, 'call applySorting with correct arguments').to.be.calledWithExactly(
+      boxProperties,
+      layout,
+      translator
+    );
   });
 
   it('should allow custom name', async () => {
