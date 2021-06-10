@@ -8,11 +8,16 @@ export default function data(env) {
       return translator.get('Visualization.Histogram.Binning');
     },
   };
+  const measures = {
+    min: 0,
+    max: 0,
+  };
   return {
     targets: [
       {
         path: '/qHyperCubeDef',
         dimensions,
+        measures,
       },
     ],
   };
