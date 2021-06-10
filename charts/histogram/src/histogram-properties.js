@@ -184,7 +184,6 @@ export default function propertyDefinition(env) {
   };
 
   const dimensions = {
-    uses: 'dimensions',
     translation: 'Common.Fields',
     alternativeTranslation: 'properties.alternative.fields',
     items: {
@@ -236,24 +235,10 @@ export default function propertyDefinition(env) {
     },
   };
 
-  const measures = {
-    uses: 'measures',
-  };
-
-  const innerData = {
+  const data = {
     uses: 'data',
-    // grouped: true,
     items: {
       dimensions,
-      measures,
-    },
-  };
-
-  const data = {
-    translation: 'Common.Data',
-    type: 'items',
-    items: {
-      innerData,
     },
   };
 

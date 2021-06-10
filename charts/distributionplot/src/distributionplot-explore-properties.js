@@ -1,11 +1,8 @@
 import extend from 'extend';
-import sortingDefinitionBuilder from '../../../assets/objects/picasso/sorting/base-derived/explore-properties-sorting-definition-builder';
+import sortingDefinitionBuilder from '@qlik/common/picasso/sorting/base-derived/explore-properties-sorting-definition-builder';
 import settingsRetriever from './sorting/distributionplot-sorting-settings-retriever';
 import elementsRetriever from './sorting/distributionplot-sorting-elements-retriever';
-import propertyLogicModule from '../../../assets/client/utils/default-property-logic';
 import propsLogic from './distributionplot-properties-logic';
-
-const propertyLogic = propertyLogicModule.getLogicFor('explore', 'distributionplot');
 
 const sorting = sortingDefinitionBuilder.buildDefinition(
   'qHyperCubeDef',
@@ -92,7 +89,20 @@ const color = {
       uses: 'color',
       items: {
         mode: {
-          options: propertyLogic.color.colorMode.options,
+          options: [
+            {
+              value: 'auto',
+              translation: 'Common.Auto',
+            },
+            {
+              value: 'primary',
+              translation: 'properties.colorMode.primary',
+            },
+            {
+              value: 'byDimension',
+              translation: 'properties.colorMode.byDimension',
+            },
+          ],
           diffs: ['color.point.mode', 'color.point.auto'],
           setPropertyValue(data, v) {
             if (v === 'auto') {

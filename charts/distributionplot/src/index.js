@@ -19,6 +19,7 @@ import useLasso from '@qlik/common/nebula/use-lasso';
 
 import properties from './object-properties';
 import data from './distributionplot-data';
+import ext from './ext';
 import ChartView from './distributionplot-view';
 import BackednAPi from './backend-api';
 
@@ -30,6 +31,7 @@ export default function supernova(env) {
       properties,
       data: data(env),
     },
+    ext: ext(env),
     component() {
       const element = useElement();
       const selections = useSelections();

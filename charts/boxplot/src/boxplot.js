@@ -3,13 +3,9 @@ import HyperCubePropertyHandler from '../../../assets/objects/utils/data-propert
 import propertyMapper from '../../../assets/client/utils/property-mapper';
 import objectConversion from '../../../assets/objects/conversion/object-conversion';
 
-import boxPlotPropertiesDefinition from './boxplot-properties';
-import boxPlotDataDefinition from './boxplot-data';
-import boxPlotExplorePropertiesDefinition from './boxplot-explore-properties';
 import BoxPlotApi from './boxplot-api';
 import template from './boxplot.ng.html';
 import './boxplot-tooltip/boxplot-tooltip-picture-directive';
-import BoxPlot from './boxplot-view';
 
 const dataPath = 'qUndoExclude';
 const HYPERCUBE_PATH = 'boxplotDef';
@@ -18,9 +14,6 @@ export default {
   type: 'boxplot',
   BackendApi: BoxPlotApi,
   template,
-  View: BoxPlot,
-  definition: boxPlotPropertiesDefinition,
-  softDefinition: boxPlotExplorePropertiesDefinition.get(HYPERCUBE_PATH),
   initialProperties: {
     boxplotDef: {
       sorting: {
@@ -36,19 +29,6 @@ export default {
       },
     },
   },
-  support: {
-    cssScaling: false,
-    snapshot: true,
-    export: true,
-    exportData: true,
-    sharing: true,
-    viewData: true,
-  },
-  options: {
-    hyperCubePath: HYPERCUBE_PATH,
-    usingDerivedProperties: true,
-  },
-  data: boxPlotDataDefinition,
   importProperties() {
     const propTree = objectConversion.hypercube.importProperties.apply(
       objectConversion.hypercube.importProperties,

@@ -1,7 +1,4 @@
-import distributionPlotPropertiesDefinition from './distributionplot-properties';
 import propsLogic from './distributionplot-properties-logic';
-import distributionPlotDataDefinition from './distributionplot-data';
-import distributionPlotExplorePropertiesDefinition from './distributionplot-explore-properties';
 import distributionPlotColorBy from './distributionplot-color-by';
 import CONSTANTS from './distributionplot-constants';
 import HyperCubePropertyHandler from '../../../assets/objects/utils/data-properties/hypercube-handler';
@@ -9,7 +6,6 @@ import CachedStackedApi from '../../../assets/objects/backend-api/cached-stacked
 import template from './distributionplot.ng.html';
 import propertyMapper from '../../../assets/client/utils/property-mapper';
 import objectConversion from '../../../assets/objects/conversion/object-conversion';
-import DistributionPlot from './distributionplot-view';
 
 const DATA_PATH = CONSTANTS.DATA_PATH;
 const HYPERCUBE_DEF_PATH = CONSTANTS.HYPERCUBE_DEF_PATH;
@@ -24,9 +20,6 @@ export default {
   type: 'distributionPlot',
   BackendApi: CustomAPI,
   template,
-  View: DistributionPlot,
-  definition: distributionPlotPropertiesDefinition,
-  softDefinition: distributionPlotExplorePropertiesDefinition,
   initialProperties: {
     sorting: {
       autoSort: true,
@@ -43,19 +36,6 @@ export default {
       bubbleScales: 100, // This means 100% to make bubbles having full size as they are now
     },
   },
-  options: {
-    usingDerivedProperties: true,
-    colorByPath: 'color.point',
-  },
-  support: {
-    cssScaling: false,
-    snapshot: true,
-    export: true,
-    exportData: true,
-    sharing: true,
-    viewData: true,
-  },
-  data: distributionPlotDataDefinition,
   importProperties(exportedFmt, initialProperties, definition) {
     const propTree = objectConversion.axisChart.importProperties.call(
       objectConversion,

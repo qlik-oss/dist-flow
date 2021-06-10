@@ -18,6 +18,7 @@ import useLasso from '@qlik/common/nebula/use-lasso';
 import properties from './object-properties';
 import data from './boxplot-data';
 import ChartView from './boxplot-view';
+import ext from './ext';
 import BackednAPi from './backend-api';
 
 export default function supernova(env) {
@@ -28,6 +29,7 @@ export default function supernova(env) {
       properties,
       data: data(env),
     },
+    ext: ext(env),
     component() {
       const element = useElement();
       const selections = useSelections();

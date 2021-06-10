@@ -1,4 +1,4 @@
-import sortingDefinitionBuilder from '../../../assets/objects/picasso/sorting/base-derived/explore-properties-sorting-definition-builder';
+import sortingDefinitionBuilder from '@qlik/common/picasso/sorting/base-derived/explore-properties-sorting-definition-builder';
 import settingsRetriever from './sorting/boxplot-sorting-settings-retriever';
 import elementsRetriever from './sorting/boxplot-sorting-elements-retriever';
 
