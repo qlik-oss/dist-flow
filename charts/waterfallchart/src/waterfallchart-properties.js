@@ -354,10 +354,10 @@ export default function propertyDefinition(env) {
       });
     },
     items: {
-      // TODO: need to deside how to do this
-      // numberFormatting: extend(true, {}, defaultProperties.measures.items.numberFormatting, {
-      //   items: { numberFormattingType: undefined },
-      // }),
+      numberFormatting: {
+        uses: 'measures.items.numberFormatting',
+        items: { numberFormattingType: undefined },
+      },
     },
   };
 
