@@ -21,7 +21,7 @@ function validate(properties) {
   }
 }
 
-function setSorting(properties, layout, expressions) {
+function setSorting(properties, layout, expressions, translator) {
   if (!properties.qUndoExclude) {
     return;
   }
@@ -45,7 +45,7 @@ function setSorting(properties, layout, expressions) {
   const getElementsFn = function () {
     const settings = getSettingsFn();
 
-    return elementsRetriever.getElements(expressions.measures, expressions.dimensions, settings);
+    return elementsRetriever.getElements(expressions.measures, expressions.dimensions, settings, translator);
   };
 
   const sorter = sorterFactory.create(getSettingsFn, getElementsFn);
@@ -55,16 +55,16 @@ function setSorting(properties, layout, expressions) {
   sorterFacade.applySorting(sorter, outerDimension, chartSorting);
 }
 
-function applySorting(properties, layout, app, exps) {
+function applySorting(properties, layout, app, exps, translator) {
   validate(properties);
 
   if (exps) {
-    return setSorting(properties, layout, exps);
+    return setSorting(properties, layout, exps, translator);
   }
 
   return HyperCubeDefGenerator.getAllHyperCubeExpressions(properties.qHyperCubeDef, layout.qHyperCube, app).then(
     (expressions) => {
-      setSorting(properties, layout, expressions);
+      setSorting(properties, layout, expressions, translator);
     }
   );
 }

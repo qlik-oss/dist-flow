@@ -7,7 +7,6 @@ import SelectionHandler from '@qlik/common/picasso/selections/selections-handler
 import DependentInteractions from '@qlik/common/picasso/selections/dependent-interactions';
 // import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import ScrollHandler from '@qlik/common/picasso/scroll/scroll-handler';
-import legendUtils from '@qlik/common/picasso/legend/legend-utils';
 
 import stringUtil from '@qlik/common/extra/string-util';
 import chartStyleUtils from '@qlik/common/extra/chart-style-utils';
@@ -964,7 +963,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
           model,
           hashData,
           generateDerivedProperties(layout, properties) {
-            return distributionPlotCubeGenerator.generateHyperCube(layout, properties, self.app);
+            return distributionPlotCubeGenerator.generateHyperCube(layout, properties, self.app, self.translator);
           },
         };
 

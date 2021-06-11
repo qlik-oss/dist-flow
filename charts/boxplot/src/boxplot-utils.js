@@ -57,9 +57,9 @@ const boxplotUtils = {
       value: 'tukey',
       translation: 'properties.boxplot.calculationMode.tukey',
       calcParameters: [
-        { value: 1, labelKey: 'properties.boxplot.calculationMode.tukey.short' },
-        { value: 1.5, labelKey: 'properties.boxplot.calculationMode.tukey.medium' },
-        { value: 2, labelKey: 'properties.boxplot.calculationMode.tukey.long' },
+        { value: 1, translation: 'properties.boxplot.calculationMode.tukey.short' },
+        { value: 1.5, translation: 'properties.boxplot.calculationMode.tukey.medium' },
+        { value: 2, translation: 'properties.boxplot.calculationMode.tukey.long' },
       ],
       defaultCalcParam: 1.5,
       getBoxExpressions(calcParameter) {
@@ -89,10 +89,10 @@ const boxplotUtils = {
       value: 'fractiles',
       translation: 'properties.boxplot.calculationMode.fractiles',
       calcParameters: [
-        { value: 0, labelKey: 'properties.boxplot.calculationMode.fractiles.minmax' },
-        { value: 0.01, labelKey: 'properties.boxplot.calculationMode.fractiles.first' },
-        { value: 0.05, labelKey: 'properties.boxplot.calculationMode.fractiles.fifth' },
-        { value: 0.1, labelKey: 'properties.boxplot.calculationMode.fractiles.tenth' },
+        { value: 0, translation: 'properties.boxplot.calculationMode.fractiles.minmax' },
+        { value: 0.01, translation: 'properties.boxplot.calculationMode.fractiles.first' },
+        { value: 0.05, translation: 'properties.boxplot.calculationMode.fractiles.fifth' },
+        { value: 0.1, translation: 'properties.boxplot.calculationMode.fractiles.tenth' },
       ],
       defaultCalcParam: 0.01,
       getBoxExpressions(calcParameter) {
@@ -113,9 +113,9 @@ const boxplotUtils = {
       value: 'stdDev',
       translation: 'properties.boxplot.calculationMode.stdDev',
       calcParameters: [
-        { value: 2, labelKey: 'properties.boxplot.calculationMode.stdDev.short' },
-        { value: 3, labelKey: 'properties.boxplot.calculationMode.stdDev.medium' },
-        { value: 4, labelKey: 'properties.boxplot.calculationMode.stdDev.long' },
+        { value: 2, translation: 'properties.boxplot.calculationMode.stdDev.short' },
+        { value: 3, translation: 'properties.boxplot.calculationMode.stdDev.medium' },
+        { value: 4, translation: 'properties.boxplot.calculationMode.stdDev.long' },
       ],
       defaultCalcParam: 3,
       getBoxExpressions(calcParameter) {

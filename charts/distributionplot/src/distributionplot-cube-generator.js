@@ -9,7 +9,7 @@ import distplotUtils from './distributionplot-utils';
 import distplotSorter from './sorting/distributionplot-sorter';
 import elementsRetriever from './sorting/distributionplot-sorting-elements-retriever';
 
-function generateHyperCube(layout, properties, app) {
+function generateHyperCube(layout, properties, app, translator) {
   if (!properties.qUndoExclude) {
     properties.qUndoExclude = {};
   }
@@ -34,7 +34,7 @@ function generateHyperCube(layout, properties, app) {
   if (distplotUtils.hasMultipleDimensions(properties)) {
     return HyperCubeDefGenerator.getAllHyperCubeExpressions(properties.qHyperCubeDef, layout.qHyperCube, app).then(
       (expressions) => {
-        distplotSorter.applySorting(properties, layout, app, expressions);
+        distplotSorter.applySorting(properties, layout, app, expressions, translator);
 
         // Box min max values
         const firstDimString = expressions.dimensions[0];

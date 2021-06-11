@@ -23,7 +23,8 @@ const properties = {
     qHyperCubeDef: {
       qDimensions: [],
       qMeasures: [],
-      qInitialDataFetch: [{ qWidth: 10, qHeight: 500 }],
+      qMode: 'S',
+      qAlwaysFullyExpanded: true,
       qSuppressZero: false,
       qSuppressMissing: true,
     },
@@ -134,6 +135,18 @@ const properties = {
      */
     presentation: {
       // TODO:
+    },
+    /**
+     * Wrapper for sorting properties which will be set on the outer dimension.
+     * @type {object}
+     */
+    sorting: {
+      /**
+       * Sort automatically
+       * @type {boolean}
+       * @default
+       */
+      autoSort: true,
     },
   },
   /**

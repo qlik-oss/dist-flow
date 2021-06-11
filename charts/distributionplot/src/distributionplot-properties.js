@@ -25,7 +25,7 @@ function persistentColorsShowFunc(data) {
 }
 
 export default function propertyDefinition(env) {
-  const { flags } = env;
+  const { flags, translator } = env;
   const theme = env.anything.sense.theme;
 
   const lookupColorInPalette = (color) => {
@@ -702,7 +702,7 @@ export default function propertyDefinition(env) {
           ).then((expressions) => {
             const settings = settingsRetriever.getSettings(args.layout);
 
-            return elementsRetriever.getElements(expressions.measures, expressions.dimensions, settings);
+            return elementsRetriever.getElements(expressions.measures, expressions.dimensions, settings, translator);
           });
         },
       },
@@ -740,7 +740,7 @@ export default function propertyDefinition(env) {
         show: distplotUtils.hasMultipleDimensions,
         change(data, handler, properties, args) {
           if (properties && distplotUtils.hasMultipleDimensions(properties) && args.layout) {
-            return distplotSorter.applySorting(properties, args.layout, args.model.app);
+            return distplotSorter.applySorting(properties, args.layout, args.model.app, null, translator);
           }
           return undefined;
         },

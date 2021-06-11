@@ -17,7 +17,7 @@ const SORTING_REFS = {
 };
 
 export default function propertyDefinition(env) {
-  const { flags } = env;
+  const { flags, translator } = env;
   const theme = env.anything.sense.theme;
 
   const lookupColorInPalette = (color) => {
@@ -287,7 +287,7 @@ export default function propertyDefinition(env) {
           }
 
           const settings = settingsRetriever.getSettings(args.layout);
-          const elements = elementsRetriever.getElements(args.properties, settings);
+          const elements = elementsRetriever.getElements(args.properties, settings, translator);
 
           return Promise.resolve(elements);
         },
@@ -335,7 +335,7 @@ export default function propertyDefinition(env) {
         ],
         show: hasMultipleDimensions,
         change(data, handler, properties, args) {
-          boxplotSorter.applySorting(properties, args.layout);
+          boxplotSorter.applySorting(properties, args.layout, translator);
         },
       },
       sortingItems: {

@@ -9,7 +9,7 @@ describe('waterfallchart-properties', () => {
   beforeAll(() => {
     const translator = {
       get: () => {},
-    }
+    };
     const env = { translator };
     waterfallChartProperties = waterfallChartPropertiesFn(env);
   });
