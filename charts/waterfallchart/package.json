@@ -25,7 +25,7 @@
   ],
   "qext": {
     "name": "Waterfall",
-    "icon": "waterfall"
+    "icon": "waterfallchart"
   },
   "main": "dist/sn-waterfall.js",
   "scripts": {
