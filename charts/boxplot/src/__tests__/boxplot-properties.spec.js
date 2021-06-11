@@ -1,10 +1,9 @@
 import chai from 'chai';
 import sinon from 'sinon';
-import boxplotProperties from '../boxplot-properties';
+import boxplotPropertiesFn from '../boxplot-properties';
 import boxplotSorter from '../sorting/boxplot-sorter';
 import settingsRetriever from '../sorting/boxplot-sorting-settings-retriever';
 import elementsRetriever from '../sorting/boxplot-sorting-elements-retriever';
-import * as featureFlags from '../../../../services/feature-flags';
 
 const expect = chai.expect;
 let sandbox;
@@ -13,6 +12,9 @@ const returnedElements = [{}];
 let isEnabledStub;
 
 describe('boxplot-properties', () => {
+  let boxplotProperties;
+  let translator;
+
   beforeEach(() => {
     sandbox = sinon.createSandbox();
 
@@ -26,7 +28,23 @@ describe('boxplot-properties', () => {
 
     sandbox.stub(Promise, 'resolve');
 
-    isEnabledStub = sandbox.stub(featureFlags, 'isEnabled').returns(true);
+    isEnabledStub = sandbox.stub().returns(true);
+
+    const flags = {
+      isEnabled: isEnabledStub,
+    };
+    const theme = {};
+    translator = {};
+    const env = {
+      anything: {
+        sense: {
+          theme,
+        },
+      },
+      flags,
+      translator,
+    };
+    boxplotProperties = boxplotPropertiesFn(env);
   });
 
   afterEach(() => {
@@ -34,10 +52,16 @@ describe('boxplot-properties', () => {
   });
 
   describe('sorting', () => {
-    const sorting = boxplotProperties.items.sorting;
+    let sorting;
+    beforeEach(() => {
+      sorting = boxplotProperties.items.sorting;
+    });
 
     describe('autoSort', () => {
-      const autoSort = sorting.items.autoSort;
+      let autoSort;
+      beforeEach(() => {
+        autoSort = sorting.items.autoSort;
+      });
 
       it('should use correct ref', () => {
         expect(autoSort.ref).to.equal('boxplotDef.sorting.autoSort');
@@ -85,7 +109,7 @@ describe('boxplot-properties', () => {
 
           expect(boxplotSorter.applySorting.calledOnce, 'boxplotSorter.applySorting call count').to.be.true;
           expect(
-            boxplotSorter.applySorting.calledWithExactly(properties, args.layout),
+            boxplotSorter.applySorting.calledWithExactly(properties, args.layout, translator),
             'boxplotSorter.applySorting arguments'
           ).to.be.true;
         });
@@ -144,7 +168,10 @@ describe('boxplot-properties', () => {
       });
 
       describe('expression', () => {
-        const expressionItems = sorting.items.sortingItems.items.expression.items;
+        let expressionItems;
+        beforeEach(() => {
+          expressionItems = sorting.items.sortingItems.items.expression.items;
+        });
 
         describe('toggled', () => {
           it('should use correct ref', () => {
@@ -233,7 +260,7 @@ describe('boxplot-properties', () => {
 
               expect(elementsRetriever.getElements.calledOnce, 'elementsRetriever.getElements call count').to.be.true;
               expect(
-                elementsRetriever.getElements.calledWithExactly(args.properties, returnedSettings),
+                elementsRetriever.getElements.calledWithExactly(args.properties, returnedSettings, translator),
                 'calledWithExactly'
               ).to.be.true;
             });
@@ -303,7 +330,10 @@ describe('boxplot-properties', () => {
       });
 
       describe('numeric', () => {
-        const numericItems = sorting.items.sortingItems.items.numeric.items;
+        let numericItems;
+        beforeEach(() => {
+          numericItems = sorting.items.sortingItems.items.numeric.items;
+        });
 
         describe('numericToggled', () => {
           it('should use correct ref', () => {
@@ -340,7 +370,10 @@ describe('boxplot-properties', () => {
       });
 
       describe('ascii', () => {
-        const asciiItems = sorting.items.sortingItems.items.ascii.items;
+        let asciiItems;
+        beforeEach(() => {
+          asciiItems = sorting.items.sortingItems.items.ascii.items;
+        });
 
         describe('asciiToggled', () => {
           it('should use correct ref', () => {
@@ -377,7 +410,10 @@ describe('boxplot-properties', () => {
       });
 
       describe('default sort message', () => {
-        const defaultSortMessage = sorting.items.sortingItems.items.defaultSortMessage;
+        let defaultSortMessage;
+        beforeEach(() => {
+          defaultSortMessage = sorting.items.sortingItems.items.defaultSortMessage;
+        });
 
         describe('show', () => {
           it('should return true if sortByExpression, sortByNumeric and sortByAscii are 0', () => {
@@ -469,7 +505,10 @@ describe('boxplot-properties', () => {
     });
 
     describe('no data', () => {
-      const noData = sorting.items.noData;
+      let noData;
+      beforeEach(() => {
+        noData = sorting.items.noData;
+      });
 
       describe('show', () => {
         it('shold return true if not multiple dimensions', () => {
@@ -504,8 +543,12 @@ describe('boxplot-properties', () => {
   });
 
   describe('general', () => {
-    const general = boxplotProperties.items.settings.items.general;
-    const showDisclaimer = general.items.showDisclaimer;
+    let general;
+    let showDisclaimer;
+    beforeEach(() => {
+      general = boxplotProperties.items.settings.items.general;
+      showDisclaimer = general.items.showDisclaimer;
+    });
 
     it('should use correct ref', () => {
       expect(showDisclaimer.ref).to.equal('showDisclaimer');

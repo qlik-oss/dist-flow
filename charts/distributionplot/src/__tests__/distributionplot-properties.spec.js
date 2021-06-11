@@ -1,17 +1,29 @@
-
 import chai from 'chai';
 import sinon from 'sinon';
-import distributionplotProperties from '../distributionplot-properties';
-import * as featureFlags from '../../../../services/feature-flags';
+import distributionplotPropertiesFn from '../distributionplot-properties';
 
 const expect = chai.expect;
 let sandbox;
 let isEnabledStub;
 
 describe('distributionplot-properties', () => {
+  let distributionplotProperties;
   beforeEach(() => {
     sandbox = sinon.createSandbox();
-    isEnabledStub = sandbox.stub(featureFlags, 'isEnabled').returns(true);
+    isEnabledStub = sandbox.stub().returns(true);
+    const flags = {
+      isEnabled: isEnabledStub,
+    };
+    const theme = {};
+    const env = {
+      anything: {
+        sense: {
+          theme,
+        },
+      },
+      flags,
+    };
+    distributionplotProperties = distributionplotPropertiesFn(env);
   });
 
   afterEach(() => {
@@ -19,8 +31,12 @@ describe('distributionplot-properties', () => {
   });
 
   describe('general', () => {
-    const general = distributionplotProperties.items.settings.items.general;
-    const showDisclaimer = general.items.showDisclaimer;
+    let general;
+    let showDisclaimer;
+    beforeEach(() => {
+      general = distributionplotProperties.items.settings.items.general;
+      showDisclaimer = general.items.showDisclaimer;
+    });
 
     it('should use correct ref', () => {
       expect(showDisclaimer.ref).to.equal('showDisclaimer');
