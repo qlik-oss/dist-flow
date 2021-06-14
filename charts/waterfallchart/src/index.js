@@ -11,6 +11,7 @@ import {
 } from '@nebula.js/stardust';
 import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
+import setupSnapshot from '@qlik/common/nebula/snapshot';
 
 import properties from './object-properties';
 import data from './waterfallchart-data-definition';
@@ -89,6 +90,8 @@ export default function supernova(env) {
         const $element = null;
         await instance.resize($element, layout);
       }, [rect.width, rect.height]);
+
+      setupSnapshot(instance);
     },
   };
 }

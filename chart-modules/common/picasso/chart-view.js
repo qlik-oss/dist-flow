@@ -5,7 +5,6 @@ import BaseView from '../extra/base-view';
 import ChartBuilder from './chart-builder/chart-builder';
 // import Disclaimer from './disclaimer/disclaimer';
 // import InteractionStates from '../utils/interaction-states';
-// import ColorMap from '../views/charts/representation/combo-color-map';
 // import States from '../utils/states';
 
 function getData(backendApi, hyperCube, rect) {
@@ -66,7 +65,6 @@ const ChartView = BaseView.extend({
     // this._disclaimer = new Disclaimer(options);
     this._disclaimer = { set: () => {}, display: () => {} };
     this._updateDisclaimerDebounce = debouncer(this.updateDisclaimer.bind(this), 250);
-    // this._colorMap = new ColorMap({ autoMode: 'primary' }, backendApi.model.app);
     this._dataPaths = ['qHyperCube'];
 
     const self = this;
@@ -111,10 +109,6 @@ const ChartView = BaseView.extend({
       return;
     }
     this._on = false;
-  },
-
-  getColoringMap() {
-    return this._colorMap;
   },
 
   setFreeResize(freeResize) {
@@ -217,7 +211,6 @@ const ChartView = BaseView.extend({
     this._super();
     this.off();
     this.chartInstance.destroy();
-    this._colorMap.release();
   },
 
   isLassoDisabled() {

@@ -1044,6 +1044,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
           getData(pages) {
             return self.backendApi.model.getHyperCubeStackData('/qUndoExclude/outliers/qHyperCubeDef', pages);
           },
+          setOptions: () => {},
         };
       }
       self.setDataPaths(dataPaths);

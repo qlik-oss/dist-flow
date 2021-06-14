@@ -14,6 +14,7 @@ import {
 import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
 import useLasso from '@qlik/common/nebula/use-lasso';
+import setupSnapshot from '@qlik/common/nebula/snapshot';
 
 import properties from './object-properties';
 import data from './boxplot-data';
@@ -105,6 +106,8 @@ export default function supernova(env) {
         const $element = null;
         await instance.resize($element, layout);
       }, [rect.width, rect.height]);
+
+      setupSnapshot(instance);
     },
   };
 }
