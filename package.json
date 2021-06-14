@@ -8,6 +8,7 @@
     "bump": "./scripts/version.sh",
     "lint": "lerna run lint",
     "specs": "node scripts/generate-specs.js && pretty-quick --pattern 'charts/*/api-specifications/*'",
+    "sense:watch": "lerna run  --stream --no-sort --concurrency 99 sense -- --watch",
     "test": "npm run test:unit && npm run test:integration",
     "test:sense": "aw puppeteer -c aw.config.js --glob 'test/sense-integration/**/*.spec.js' --mocha.timeout 30000",
     "test:unit": "jest",
