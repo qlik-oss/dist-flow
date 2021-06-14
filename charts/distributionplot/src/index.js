@@ -6,7 +6,6 @@ import {
   useElement,
   useModel,
   usePromise,
-  useRect,
   useSelections,
   useState,
   useStaleLayout,
@@ -16,6 +15,7 @@ import {
 import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
 import useLasso from '@qlik/common/nebula/use-lasso';
+import useResize from '@qlik/common/nebula/resize';
 import setupSnapshot from '@qlik/common/nebula/snapshot';
 
 import properties from './object-properties';
@@ -37,7 +37,6 @@ export default function supernova(env) {
       const element = useElement();
       const selections = useSelections();
       const layout = useStaleLayout();
-      const rect = useRect();
       const model = useModel();
       const constraints = useConstraints();
       const translator = useTranslator();
@@ -103,14 +102,7 @@ export default function supernova(env) {
         throw error;
       }
 
-      usePromise(async () => {
-        if (!instance) {
-          return;
-        }
-        const $element = null;
-        await instance.resize($element, layout);
-      }, [rect.width, rect.height]);
-
+      useResize(instance);
       setupSnapshot(instance);
     },
   };

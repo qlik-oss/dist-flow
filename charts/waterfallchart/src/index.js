@@ -2,8 +2,8 @@ import {
   useConstraints,
   useEffect,
   useElement,
+  useOptions,
   usePromise,
-  useRect,
   useState,
   useStaleLayout,
   useTheme,
@@ -11,6 +11,7 @@ import {
 } from '@nebula.js/stardust';
 import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
+import useResize from '@qlik/common/nebula/resize';
 import setupSnapshot from '@qlik/common/nebula/snapshot';
 
 import properties from './object-properties';
@@ -37,8 +38,8 @@ export default function supernova(env) {
     component() {
       const element = useElement();
       const layout = useStaleLayout();
-      const rect = useRect();
       const constraints = useConstraints();
+      const options = useOptions();
       const translator = useTranslator();
       const theme = useTheme();
 
@@ -47,7 +48,6 @@ export default function supernova(env) {
       useEffect(() => {
         const $scope = null;
         const $element = $(element);
-        const options = null;
         const backendApi = null;
         const selectionsApi = null;
         const tooltipApi = null;
@@ -74,6 +74,7 @@ export default function supernova(env) {
         if (!instance) {
           return;
         }
+        instance.options = options;
         // update theme
         instance.theme = theme;
         instance.updateConstraints(constraints);
@@ -83,14 +84,7 @@ export default function supernova(env) {
         await instance.paint($element, layout);
       }, [layout, instance, theme.name()]);
 
-      usePromiseNoError(async () => {
-        if (!instance) {
-          return;
-        }
-        const $element = null;
-        await instance.resize($element, layout);
-      }, [rect.width, rect.height]);
-
+      useResize(instance);
       setupSnapshot(instance);
     },
   };
