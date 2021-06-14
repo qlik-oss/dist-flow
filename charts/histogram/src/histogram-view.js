@@ -169,7 +169,8 @@ function updateData(layout) {
 
     const model = self.backendApi.model;
 
-    if (self.backendApi.isSnapshot) {
+    const isSnapshot = !!this.layout.snapshotData;
+    if (isSnapshot) {
       return Promise.resolve();
     }
 

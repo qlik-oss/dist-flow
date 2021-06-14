@@ -67,7 +67,8 @@ function updateOnScrollViewChanged() {
   if (this.layout && hypercubeUtil.hasSecondDimension(this.layout, DATA_PATH)) {
     // Only run this if there are 2 dimensions
     this._scrollHandler.onResize();
-    if (this.backendApi && !this.backendApi.isSnapshot) {
+    const isSnapshot = !!this.layout.snapshotData;
+    if (!isSnapshot) {
       updateCacheSize.call(this);
     }
   }
@@ -839,7 +840,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   paint($element) {
-    if (!this.backendApi.isSnapshot && !this.options.viewState) {
+    const isSnapshot = !!this.layout.snapshotData;
+    if (!isSnapshot && !this.options.viewState) {
       this.updateScrollHandlerState(false);
     }
 
@@ -860,7 +862,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     const self = this;
     const _super = this._super;
     if (
-      !this.backendApi.isSnapshot &&
+      !isSnapshot &&
       hypercubeUtil.hasSecondDimension(layout, DATA_PATH) &&
       this._scrollHandler.isDataSizeChanged(
         getValue(layout, `${DATA_PATH}.${HYPERCUBE_PATH}.qStackedDataPages.0.qData.0.qSubNodes.length`),
@@ -973,6 +975,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
   updateData(layout) {
     const self = this;
+    const isSnapshot = !!layout.snapshotData;
 
     return self._super(layout).then(() => {
       if (self._destroyed) {
@@ -982,7 +985,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
       self._scrollHandler.setOptions({ direction: layout.orientation === 'horizontal' ? 'vertical' : 'horizontal' }); // the scroll orientation is inverted to the chart orientation
 
-      if (self.backendApi.isSnapshot) {
+      if (isSnapshot) {
         columnOrderAdapter.toAfter(layout);
 
         self.getColoringMap().setSnapshotChartData(layout.snapshotData.content.chartData);
