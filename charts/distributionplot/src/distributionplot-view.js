@@ -876,19 +876,21 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     return this._updateColorMapData(layout).then(() => _super.call(self, $element /* , layout */));
   },
 
-  setSnapshotData(snapshotLayout) {
+  async setSnapshotData(snapshotLayout) {
     this._super(snapshotLayout);
-    const snapshotChartData = snapshotLayout.snapshotData.content.chartData;
-    const colorMapSnapshotData = this.getColoringMap().getSnapshotChartData();
-    colorMapSnapshotData.forEach((obj) => {
-      snapshotChartData[obj.key] = obj.data;
-    });
+
+    const colorData = await this.colorService.getSnapshotData();
+    snapshotLayout.snapshotData.content.chartData = {
+      ...snapshotLayout.snapshotData.content.chartData,
+      ...colorData,
+    };
+
     snapshotLayout[DATA_PATH][HYPERCUBE_PATH].qStackedDataPages = this.layout[DATA_PATH][
       HYPERCUBE_PATH
     ].qStackedDataPages;
     snapshotLayout[DATA_PATH].legendData = this.layout[DATA_PATH].legendData;
     columnOrderAdapter.toBefore(snapshotLayout);
-    return Promise.resolve(snapshotLayout);
+    return snapshotLayout;
   },
   getViewState() {
     return {
@@ -988,7 +990,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       if (isSnapshot) {
         columnOrderAdapter.toAfter(layout);
 
-        self.getColoringMap().setSnapshotChartData(layout.snapshotData.content.chartData);
+        // TODO: migrate? legend color data for old snapshots
         return self._updateColorMapData(layout);
       }
       self.updateScrollHandlerState(true); // No need to run it in snapshot mode
