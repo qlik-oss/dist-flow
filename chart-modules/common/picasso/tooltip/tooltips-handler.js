@@ -2,11 +2,14 @@ import extend from 'extend';
 // import Support from '../../../general/utils/support';
 import TooltipAction from './tooltip-actions';
 import formatting from '../formatting';
+import { createFilter, createContent } from './tooltip-content';
+import createTooltip from './tooltips-component';
 
 // TODO: useDeviceType
-const Support = { treatAsDesktop: () => false };
+const Support = { treatAsDesktop: () => true };
 
 const DEFAULT_OPTIONS = {
+  tooltipKey: 'tooltip',
   data: [''],
   contexts: ['tooltip'],
   headerResolver(values) {
@@ -30,7 +33,7 @@ const DEFAULT_OPTIONS = {
  * @returns {Object} The selections handler instance
  */
 function Tooltips(chartInstance, tooltipApi, $element, chartType) {
-  if (!chartInstance || !tooltipApi) {
+  if (!chartInstance /* || !tooltipApi */) {
     throw Error('Tooltips-handler: Missing input');
   }
 
@@ -64,12 +67,39 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
       deRegContext(tooltipContexts[opts.contexts[0]]);
     }
 
-    const context = createContext(opts, chartInstance, chartType);
+    const context = createContext(opts, chartInstance);
     tooltipContexts[opts.contexts[0]] = context;
 
     if (on) {
       registerContext(context);
     }
+
+    const tooltipInfo = {
+      data: context.data,
+      headerResolver: context.headerResolver,
+      rowResolver: context.rowResolver,
+      direction: context.direction,
+      chartView: context.chartView,
+      attrDimPath: context.attrDimPath,
+      measureRows: context.measureRows,
+      labelData: context.labelData,
+      filterShapes: context.filterShapes,
+      dataPath: options.dataPath,
+      chartInstance,
+    };
+
+    // const dataset = chartInstance.dataset(dataPath);
+
+    const component = createTooltip({
+      key: options.tooltipKey,
+      rtl: context.direction === 'rtl',
+      fontFamily: options.chartView.theme.getStyle(chartType, 'tooltip', 'fontFamily'),
+      filter: createFilter(context.filterShapes),
+      content: createContent(tooltipInfo, options.dataPath),
+    });
+
+    const settings = options.chartBuilder.getSettings();
+    settings.components.push(component);
 
     return {
       trigger: {
@@ -80,6 +110,7 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
         globalPropagation: 'stop',
       },
       consume: opts.contexts.map((c) => ({ context: c })),
+      component,
     };
   };
 
@@ -144,6 +175,7 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
 
   function mouseLeave() {
     closeTooltip();
+    // eslint-disable-next-line guard-for-in, no-restricted-syntax
     for (const prop in tooltipContexts) {
       tooltipContexts[prop].brush.clear();
     }
@@ -191,18 +223,15 @@ export default {
 
 // Internal Utils
 
-function createContext(options, chartInstance, chartType) {
+function createContext(options, chartInstance) {
   return {
     brush: chartInstance.brush(options.contexts[0]),
     action: TooltipAction.create(
-      options.chartView,
       chartInstance,
       options.componentKey,
       options.data,
-      options.dataPath,
       options.contexts[0],
-      options.template,
-      chartType
+      options.tooltipKey
     ),
     data: options.data,
     headerResolver: options.headerResolver,

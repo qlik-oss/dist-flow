@@ -56,7 +56,7 @@ const ChartView = BaseView.extend({
     tooltips: false,
   },
 
-  init(picasso, $scope, $element, options, backendApi, selectionsApi /* , tooltipApi */) {
+  init(picasso, $scope, $element, options, backendApi, selectionsApi) {
     this._super($scope, $element, extend({}, this.defaultOptions, options), backendApi);
 
     this._selectionsApi = selectionsApi;
