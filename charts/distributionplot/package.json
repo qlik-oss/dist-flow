@@ -42,8 +42,7 @@
     "jquery": "3.6.0",
     "picasso-plugin-hammer": ">=0.35.1",
     "picasso-plugin-q": ">=0.35.1",
-    "picasso.js": ">=0.35.1",
-    "qlik-modifiers": "0.5.1"
+    "picasso.js": ">=0.35.1"
   },
   "devDependencies": {
     "@qlik/common": "0.0.1"
