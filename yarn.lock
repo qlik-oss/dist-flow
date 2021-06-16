@@ -2919,7 +2919,7 @@
   resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/encoder/-/@qlik/encoder-0.2.0.tgz#08407b2f8129f9e624afa191a0777e15b1297e85"
   integrity sha1-CEB7L4Ep+eYkr6GRoHd+FbEpfoU=
 
-"@qlik/object-conversion@0.4.0":
+"@qlik/object-conversion@0.3.0":
   version "0.3.0"
   resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/object-conversion/-/@qlik/object-conversion-0.3.0.tgz#cfc87bca1308eb921606bce2395b1abf334c3790"
   integrity sha1-z8h7yhMI65IWBrziOVsavzNMN5A=
@@ -6976,6 +6976,15 @@ fs-extra@9.1.0:
   integrity sha512-hcg3ZmepS30/7BSFqRvoo3DOMQu7IjqxO5nCDt+zM9XWjb33Wg7ziNT+Qvqbuc3+gWpzO02JubVyk2G4Zvo1OQ==
   dependencies:
     at-least-node "^1.0.0"
+    graceful-fs "^4.2.0"
+    jsonfile "^6.0.1"
+    universalify "^2.0.0"
+
+fs-extra@^10.0.0:
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.0.tgz#9ff61b655dde53fb34a82df84bb214ce802e17c1"
+  integrity sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==
+  dependencies:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
     universalify "^2.0.0"
