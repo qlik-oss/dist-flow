@@ -98,6 +98,8 @@ function createChartSettings(chartView, layout) {
   const tooltipSettings = { box: {} };
   if (chartView.hasOption('tooltips')) {
     tooltipSettings.box = chartView._tooltipHandler.setUp({
+      chartBuilder,
+      chartView,
       data: [''],
       contexts: ['boxTip'],
       componentKey: 'box-marker',

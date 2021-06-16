@@ -1,7 +1,7 @@
 import { getValue } from '@qlik/chart-modules';
 import ChartView from '@qlik/common/picasso/chart-view';
 import SelectionHandler from '@qlik/common/picasso/selections/selections-handler';
-// import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
+import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import DerivedProperties from '@qlik/common/picasso/derived-properties/derived-properties';
 import cubesGenerator from './derived-properties/histogram-cubes-generator';
 import histogramMappings from './derived-properties/histogram-mappings';
@@ -47,9 +47,7 @@ function init(
   }
 
   if (this.hasOption('tooltips')) {
-    // TODO: fix tooltip
-    // this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
-    this._tooltipHandler = { on: () => {}, off: () => {}, setUp: () => {}, closeTooltip: () => {} };
+    this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
   }
 
   this.setDataPaths(['qUndoExclude/box/qHyperCube']);

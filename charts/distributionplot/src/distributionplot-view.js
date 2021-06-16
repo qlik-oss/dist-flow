@@ -5,7 +5,7 @@ import ChartBuilder from '@qlik/common/picasso/chart-builder/chart-builder';
 import DerivedProperties from '@qlik/common/picasso/derived-properties/derived-properties';
 import SelectionHandler from '@qlik/common/picasso/selections/selections-handler';
 import DependentInteractions from '@qlik/common/picasso/selections/dependent-interactions';
-// import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
+import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import ScrollHandler from '@qlik/common/picasso/scroll/scroll-handler';
 
 import stringUtil from '@qlik/common/extra/string-util';
@@ -186,9 +186,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       });
     }
     if (this.hasOption('tooltips')) {
-      // TODO: fix tooltip
-      // this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, CONSTANTS.CHART_ID);
-      this._tooltipHandler = { on: () => {}, off: () => {}, setUp: () => {}, closeTooltip: () => {} };
+      this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, CONSTANTS.CHART_ID);
     }
     this._scrollHandler = new ScrollHandler(
       this.chartInstance,
@@ -416,7 +414,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
     const brushTrigger = getSelectionSettingsArray(selectionSettings.trigger);
     const brushConsume = getSelectionSettingsArray(selectionSettings.consume);
-    if (this.hasOption('tooltips') && false) {
+    if (this.hasOption('tooltips')) {
       brushTrigger.push(tooltipSettings.point.trigger);
       brushConsume.push.apply(brushConsume, tooltipSettings.point.consume);
     }
@@ -633,6 +631,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     const self = this;
     if (this.hasOption('tooltips')) {
       tooltipSettings.point = this._tooltipHandler.setUp({
+        chartBuilder,
         data: hypercubeUtil.hasSecondDimension(layout, DATA_PATH) ? ['innerElemNo', 'elemNo'] : ['innerElemNo'],
         contexts: ['pointTip'],
         componentKey: 'point-marker',

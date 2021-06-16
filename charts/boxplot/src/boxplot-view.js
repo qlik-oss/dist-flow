@@ -8,7 +8,7 @@ import ChartBuilder from '@qlik/common/picasso/chart-builder/chart-builder';
 import DerivedProperties from '@qlik/common/picasso/derived-properties/derived-properties';
 import SelectionHandler from '@qlik/common/picasso/selections/selections-handler';
 import DependentInteractions from '@qlik/common/picasso/selections/dependent-interactions';
-// import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
+import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import ScrollHandler from '@qlik/common/picasso/scroll/scroll-handler';
 import DisclaimerAttributesUtil from '@qlik/common/picasso/disclaimer/disclaimer-attributes-util';
 import formatting from '@qlik/common/picasso/formatting';
@@ -238,11 +238,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       lasso,
     });
     if (this.hasOption('tooltips')) {
-      // TODO: tooltip
-      // const $templateCache = qvangular.getService('$templateCache');
-      // $templateCache.put(tooltipTemplateUrl, boxplotTooltipTemplate);
-      // this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
-      this._tooltipHandler = { on: () => {}, off: () => {}, setUp: () => {}, closeTooltip: () => {} };
+      this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
     }
     this._scrollHandler = new ScrollHandler(
       this.chartInstance,
@@ -678,8 +674,11 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       };
     }
     const tooltipSettings = { point: {}, box: {} };
-    if (this.hasOption('tooltips') && false) {
+    if (this.hasOption('tooltips')) {
       tooltipSettings.point = this._tooltipHandler.setUp({
+        chartBuilder,
+        chartView: this,
+        tooltipKey: 'point-tooltip',
         dataPath: OUTLIERS_PATH,
         data: hasSecondDimension ? ['inner', dimensionDirection] : ['inner'],
         contexts: ['pointTip'],
@@ -695,6 +694,9 @@ const BoxPlot = ChartView.extend('BoxPlot', {
         labelData: hasSecondDimension ? ['tooltip', 'outer'] : ['tooltip'],
       });
       tooltipSettings.box = this._tooltipHandler.setUp({
+        chartBuilder,
+        chartView: this,
+        tooltipKey: 'box-tooltip',
         template: tooltipTemplateUrl,
         dataPath: BOX_PATH,
         data: [''],
@@ -855,6 +857,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
 
     // Add snapshot settings
     this.addSnapshotChartSettings(settings, layout);
+
     return settings;
   },
 

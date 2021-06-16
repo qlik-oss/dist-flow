@@ -3,7 +3,7 @@ import ChartBuilder from '@qlik/common/picasso/chart-builder/chart-builder';
 import chartStyleUtils from '@qlik/common/extra/chart-style-utils';
 import ScrollHandler from '@qlik/common/picasso/scroll/scroll-handler';
 import DependentInteractions from '@qlik/common/picasso/selections/dependent-interactions';
-// import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
+import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import formatting from '@qlik/common/picasso/formatting';
 import stringUtil from '@qlik/common/extra/string-util';
 import CubeGenerator from './waterfallchart-cube-generator-by-measures';
@@ -22,9 +22,7 @@ function init(picasso, translator, theme, $scope, $element, options, backendApi,
   this.translator = translator;
   this.theme = theme;
   if (this.hasOption('tooltips')) {
-    // TODO: fix tooltip
-    // this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
-    this._tooltipHandler = { on: () => {}, off: () => {}, setUp: () => {}, closeTooltip: () => {} };
+    this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
   }
   this._scrollHandler = new ScrollHandler(
     this.chartInstance,
@@ -295,34 +293,33 @@ function createChartSettings(layout) {
     theme: this.theme,
     // layoutMode: this.getLayoutMode(layout),
   });
-  let tooltipSettings;
   const width = this.picassoElement.clientWidth;
   const height = this.picassoElement.clientHeight;
 
   // TODO: fix tooltip
-  if (this.hasOption('tooltips') && false) {
-    tooltipSettings = { box: {} };
-    tooltipSettings.box = this._tooltipHandler.setUp({
-      data: [''],
-      contexts: ['boxTip'],
-      componentKey: 'box-marker',
-      direction: this.options.direction,
-      headerResolver() {
-        return undefined; // Waterfall does not have dimension
-      },
-      rowResolver(field, measureContent, shapeData) {
-        const color = shapeData.boxColor.value;
-        const value = formatting.formatMeasureValue(field, measureContent);
-        return {
-          value,
-          label: shapeData.tooltip.value.qText,
-          template: `<div class="color-template-wrapper"><div class="color-dot" style="background:${color}"></div><span dir="ltr">${value}</span></div>`,
-        };
-      },
-      labelData: ['tooltip'], // Should be a mapped path under extract, mandatory to display tooltip
-      measureRows: ['measure'], // Should be a mapped path under extract, mandatory to display tooltip
-    });
-  }
+  const tooltipSettings = {};
+  tooltipSettings.box = this._tooltipHandler.setUp({
+    chartBuilder,
+    chartView: this,
+    data: [''],
+    contexts: ['boxTip'],
+    componentKey: 'box-marker',
+    direction: this.options.direction,
+    headerResolver() {
+      return undefined; // Waterfall does not have dimension
+    },
+    rowResolver(field, measureContent, shapeData) {
+      const color = shapeData.boxColor.value;
+      const value = formatting.formatMeasureValue(field, measureContent);
+      return {
+        value,
+        label: shapeData.tooltip.value.qText,
+        color,
+      };
+    },
+    labelData: ['tooltip'], // Should be a mapped path under extract, mandatory to display tooltip
+    measureRows: ['measure'], // Should be a mapped path under extract, mandatory to display tooltip
+  });
 
   const handlers = {
     scrollHandler: this.hasOption('navigation') && this._scrollHandler,
