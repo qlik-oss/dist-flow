@@ -9,30 +9,13 @@
     "lint": "lerna run lint",
     "specs": "node scripts/generate-specs.js && pretty-quick --pattern 'charts/*/api-specifications/*'",
     "sense:watch": "lerna run  --stream --no-sort --concurrency 99 sense -- --watch",
-    "test": "npm run test:unit && npm run test:integration",
-    "test:sense": "aw puppeteer -c aw.config.js --glob 'test/sense-integration/**/*.spec.js' --mocha.timeout 30000",
+    "test": "npm run test:unit",
     "test:unit": "jest",
-    "test:integration": "aw puppeteer -c aw.config.js --glob 'test/integration/**/*.spec.js'",
-    "test:integration:ci": "node ./scripts/integration-test.js",
-    "test:rendering": "aw -c aw.config.js --glob 'test/rendering/**/*.spec.js' --mocha.bail false",
-    "test:rendering:ci": "node ./scripts/rendering-test.js",
-    "validate": "node ./tools/validate-packages.js",
     "version": "yarn specs && git add **/*/api-specifications"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS && lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js, jsx}": [
-      "eslint"
-    ]
-  },
   "devDependencies": {
     "@after-work.js/aw": "6.0.14",
     "@nebula.js/cli": "1.1.1",
