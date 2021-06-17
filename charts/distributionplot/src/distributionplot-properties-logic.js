@@ -1,5 +1,5 @@
 // import propertyResolver from '../../../assets/client/utils/property-resolver';
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import AdvancedColorer from '@qlik/common/picasso/advanced-colorer';
 
 // Privates

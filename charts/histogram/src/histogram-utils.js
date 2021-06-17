@@ -1,4 +1,4 @@
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import isInteger from '@qlik/common/extra/is-integer';
 import isNumeric from '@qlik/common/extra/is-numeric';
 import BINNING_DEFAULTS from './binning-defaults';

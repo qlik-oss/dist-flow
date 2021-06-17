@@ -2909,11 +2909,6 @@
   dependencies:
     "@octokit/openapi-types" "^7.2.3"
 
-"@qlik/chart-modules@0.11.0":
-  version "0.11.0"
-  resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/chart-modules/-/@qlik/chart-modules-0.11.0.tgz#a4d80d9cb286ee3d568fd51ad6f65dfab64d81b6"
-  integrity sha1-pNgNnLKG7j1Wj9Ua1vZd+rZNgbY=
-
 "@qlik/encoder@0.2.0":
   version "0.2.0"
   resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/encoder/-/@qlik/encoder-0.2.0.tgz#08407b2f8129f9e624afa191a0777e15b1297e85"
@@ -11888,6 +11883,11 @@ puppeteer@2.0.0, puppeteer@8.0.0:
 q@^1.1.2, q@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
+
+qlik-chart-modules@0.13.4:
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/qlik-chart-modules/-/qlik-chart-modules-0.13.4.tgz#f4d668b140acb0cc40c4e06e821b72e8f6467ad4"
+  integrity sha512-TRBpIOrmzm86AjI9VN3TfZUZG/0nknnif8cVRwewgfyAacZyE3aoYzO+b8G08luyUIGw62IAb2C8wQ4mJQYWWQ==
 
 qlik-modifiers@0.5.1:
   version "0.5.1"

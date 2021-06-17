@@ -1,4 +1,4 @@
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import isNumeric from '@qlik/common/extra/is-numeric';
 import histogramUtils from '../histogram-utils';
 import binSizeCalculator from './bin-size-calculator';

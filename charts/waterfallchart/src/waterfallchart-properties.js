@@ -1,5 +1,5 @@
 import extend from 'extend';
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 // import defaultProperties from '../../../assets/client/property-panel/default-properties';
 import waterfallUtils from './waterfallchart-utils';
 

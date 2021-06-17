@@ -1,4 +1,4 @@
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import isInteger from '@qlik/common/extra/is-integer';
 import histogramUtils from './histogram-utils';
 import propsLogic from './histogram-properties-logic';

@@ -1,4 +1,4 @@
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import HyperCubeDefGenerator from '@qlik/common/picasso/hypercube-def-generator/hypercube-def-generator';
 import sortOrderBuilder from '@qlik/common/extra/sort-order/sort-order';
 import distplotUtils from './distributionplot-utils';

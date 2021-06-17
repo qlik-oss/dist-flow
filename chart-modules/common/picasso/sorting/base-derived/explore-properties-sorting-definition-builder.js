@@ -1,4 +1,4 @@
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 
 const explorePropertiesSortingDefinitionBuilder = {
   buildDefinition,

@@ -35,7 +35,7 @@
     "sense": "nebula sense --partial"
   },
   "dependencies": {
-    "@qlik/chart-modules": "0.11.0",
+    "qlik-chart-modules": "0.13.4",
     "extend": "3.0.2",
     "hammerjs": "^2.0.8",
     "jquery": "3.6.0",

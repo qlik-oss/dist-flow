@@ -1,4 +1,4 @@
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import SETTINGS from './distributionplot-sorting-settings';
 
 //

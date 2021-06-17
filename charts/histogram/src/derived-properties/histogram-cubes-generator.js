@@ -1,4 +1,4 @@
-import { setValue } from '@qlik/chart-modules';
+import { setValue } from 'qlik-chart-modules';
 import HyperCubeDefGenerator from '@qlik/common/picasso/hypercube-def-generator/hypercube-def-generator';
 import ExpressionGenerator from '@qlik/common/picasso/expression-generator/expression-generator';
 // import translator from '../../../../js/lib/translator';

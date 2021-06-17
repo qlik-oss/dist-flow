@@ -1,4 +1,4 @@
-import { getValue, setValue } from '@qlik/chart-modules';
+import { getValue, setValue } from 'qlik-chart-modules';
 import attributeExpsUtil from '../extra/attribute-expression-util';
 import LogicHelper from '../extra/property-logic-helper';
 import NumberFormatUtil from '../extra/number-format-util';

@@ -1,4 +1,4 @@
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import sortOrderBuilder from '@qlik/common/extra/sort-order/sort-order';
 import settingsRetriever from './sorting/boxplot-sorting-settings-retriever';
 import elementsRetriever from './sorting/boxplot-sorting-elements-retriever';

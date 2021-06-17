@@ -1,5 +1,5 @@
 import extend from 'extend';
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import generateId from '@qlik/common/extra/generate-id';
 import attExpUtil from '@qlik/common/extra/attribute-expression-util';
 import NumberFormatUtil from '@qlik/common/extra/number-format-util';

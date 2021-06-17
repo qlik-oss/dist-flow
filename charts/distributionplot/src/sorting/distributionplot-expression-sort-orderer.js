@@ -1,4 +1,4 @@
-import { getValue, setValue } from '@qlik/chart-modules';
+import { getValue, setValue } from 'qlik-chart-modules';
 import CONSTANTS from '../distributionplot-constants';
 
 const SORT_BY_EXPRESSION_REF = `${CONSTANTS.SORT_CRITERIA}.sortByExpression`;

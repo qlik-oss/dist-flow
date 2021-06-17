@@ -1,5 +1,5 @@
 import extend from 'extend';
-import { colorService as createColorService } from '@qlik/chart-modules';
+import { colorService as createColorService } from 'qlik-chart-modules';
 
 const hasBase = (i) => i.baseColor || (i.coloring && i.coloring.baseColor);
 

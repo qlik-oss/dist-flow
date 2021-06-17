@@ -1,4 +1,4 @@
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import CONSTANTS from './distributionplot-constants';
 
 function hasMultipleDimensions(container) {

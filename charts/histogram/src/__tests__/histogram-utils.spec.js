@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import chai from 'chai';
-import * as util from '@qlik/chart-modules';
+import * as util from 'qlik-chart-modules';
 import BINNING_DEFAULTS from '../binning-defaults';
 import histogramUtils from '../histogram-utils';
 

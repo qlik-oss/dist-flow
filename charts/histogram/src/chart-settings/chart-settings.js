@@ -1,4 +1,4 @@
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import ChartBuilder from '@qlik/common/picasso/chart-builder/chart-builder';
 import DependentInteractions from '@qlik/common/picasso/selections/dependent-interactions';
 import DimensionAxis from './dimension-axis';

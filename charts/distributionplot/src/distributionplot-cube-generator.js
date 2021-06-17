@@ -1,5 +1,5 @@
 import extend from 'extend';
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import AdvancedColorer from '@qlik/common/picasso/advanced-colorer';
 import HyperCubeDefGenerator from '@qlik/common/picasso/hypercube-def-generator/hypercube-def-generator';
 import attExpUtil from '@qlik/common/extra/attribute-expression-util';

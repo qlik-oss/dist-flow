@@ -35,7 +35,7 @@
     "sense": "nebula sense --partial"
   },
   "dependencies": {
-    "@qlik/chart-modules": "0.11.0",
+    "qlik-chart-modules": "0.13.4",
     "@qlik/object-conversion": "0.3.0",
     "@qlik/encoder": "0.2.0",
     "extend": "3.0.2",

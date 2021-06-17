@@ -1,6 +1,6 @@
 import chai from 'chai';
 import sinon from 'sinon';
-import { setValue } from '@qlik/chart-modules';
+import { setValue } from 'qlik-chart-modules';
 import histogramUtils from '../../histogram-utils';
 import DimensionScale from '../dimension-scale';
 

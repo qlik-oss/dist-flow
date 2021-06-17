@@ -1,4 +1,4 @@
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import ChartView from '@qlik/common/picasso/chart-view';
 import SelectionHandler from '@qlik/common/picasso/selections/selections-handler';
 import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';

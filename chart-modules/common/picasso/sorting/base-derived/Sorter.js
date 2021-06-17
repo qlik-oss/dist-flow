@@ -1,4 +1,4 @@
-import { setValue } from '@qlik/chart-modules';
+import { setValue } from 'qlik-chart-modules';
 
 function Sorter(getSettingsFn, getElementsFn) {
   this.getSettings = getSettingsFn;

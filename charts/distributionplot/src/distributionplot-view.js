@@ -1,5 +1,5 @@
 import extend from 'extend';
-import { getValue } from '@qlik/chart-modules';
+import { getValue } from 'qlik-chart-modules';
 import ChartView from '@qlik/common/picasso/chart-view';
 import ChartBuilder from '@qlik/common/picasso/chart-builder/chart-builder';
 import DerivedProperties from '@qlik/common/picasso/derived-properties/derived-properties';
