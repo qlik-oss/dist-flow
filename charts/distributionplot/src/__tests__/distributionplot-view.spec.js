@@ -1,4 +1,3 @@
-
 import chai from 'chai';
 import sinon from 'sinon';
 import $ from 'jquery';

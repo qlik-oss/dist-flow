@@ -58,18 +58,19 @@ export default {
         setColorByPropertyDef(markerSettings, LogicHelper.getColorByDefinition('dimension', !!attrDim, attrDim || dim));
       }
     } else if (!auto && mode === 'byMeasure' && dimensions.length) {
-      item = getValue(markerSettings, 'byMeasureDef');
+      throw new Error('not suported in any 444-chart');
+      // item = getValue(markerSettings, 'byMeasureDef');
 
-      if (item) {
-        setAltLabel(markerSettings, item.label);
-      }
+      // if (item) {
+      //   setAltLabel(markerSettings, item.label);
+      // }
 
-      if ((!item || !item.key) && measures.length) {
-        const mea = measures[0];
-        dim = dimensions[dimensions.length - 1];
-        attrDim = attributeExpsUtil.getById(dim.qAttributeExpressions, attributeExpsUtil.IDMAP.COLOR_BY_ALTERNATIVE);
-        setColorByPropertyDef(markerSettings, LogicHelper.getColorByDefinition('measure', !!attrDim, attrDim || mea));
-      }
+      // if ((!item || !item.key) && measures.length) {
+      //   const mea = measures[0];
+      //   dim = dimensions[dimensions.length - 1];
+      //   attrDim = attributeExpsUtil.getById(dim.qAttributeExpressions, attributeExpsUtil.IDMAP.COLOR_BY_ALTERNATIVE);
+      //   setColorByPropertyDef(markerSettings, LogicHelper.getColorByDefinition('measure', !!attrDim, attrDim || mea));
+      // }
     } else if (mode === 'byMultiple' && measures.length < 2) {
       setValue(markerSettings, 'mode', 'primary');
     }

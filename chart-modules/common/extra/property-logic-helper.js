@@ -1,4 +1,4 @@
-function getColorByDefinition(columnType, isAttribute, target, colorByActiveMeasure) {
+function getColorByDefinition(columnType, isAttribute, target) {
   const ret = {};
   let qDef;
   let hasLabelExpression;
