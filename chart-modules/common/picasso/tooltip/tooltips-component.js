@@ -46,7 +46,6 @@ export default function tooltip({ key = 'tooltip', rtl, fontFamily, filter, cont
     },
     settings: {
       appendTo: () => document.querySelector(TOOLTIP_CONTAINER_SELECTOR),
-      // isEqual: () => false,
       content,
       filter,
       extract: (context) => context.node,

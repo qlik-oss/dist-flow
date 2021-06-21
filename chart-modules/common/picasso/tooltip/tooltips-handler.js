@@ -4,9 +4,9 @@ import TooltipAction from './tooltip-actions';
 import formatting from '../formatting';
 import { createFilter, createContent } from './tooltip-content';
 import createTooltip from './tooltips-component';
+import defaultTooltipRenderer from './tooltip-renderer';
 
-// TODO: useDeviceType
-const Support = { treatAsDesktop: () => true };
+// TODO: useDeviceType?
 
 const DEFAULT_OPTIONS = {
   tooltipKey: 'tooltip',
@@ -22,6 +22,8 @@ const DEFAULT_OPTIONS = {
     };
   },
   direction: 'ltr',
+  renderer: defaultTooltipRenderer,
+  deviceType: 'desktop',
 };
 
 /**
@@ -29,11 +31,10 @@ const DEFAULT_OPTIONS = {
  *
  * @param {Object} model The backend model for the chart
  * @param {Object} chartInstance Picasso chart instance
- * @param {Object} tooltipApi Object tooltipApi
  * @returns {Object} The selections handler instance
  */
 function Tooltips(chartInstance, tooltipApi, $element, chartType) {
-  if (!chartInstance /* || !tooltipApi */) {
+  if (!chartInstance) {
     throw Error('Tooltips-handler: Missing input');
   }
 
@@ -84,26 +85,25 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
       measureRows: context.measureRows,
       labelData: context.labelData,
       filterShapes: context.filterShapes,
-      dataPath: options.dataPath,
+      dataPath: opts.dataPath,
+      renderer: opts.renderer,
       chartInstance,
     };
 
-    // const dataset = chartInstance.dataset(dataPath);
-
     const component = createTooltip({
-      key: options.tooltipKey,
+      key: opts.tooltipKey,
       rtl: context.direction === 'rtl',
-      fontFamily: options.chartView.theme.getStyle(chartType, 'tooltip', 'fontFamily'),
+      fontFamily: opts.chartView.theme.getStyle(chartType, 'tooltip', 'fontFamily'),
       filter: createFilter(context.filterShapes),
-      content: createContent(tooltipInfo, options.dataPath),
+      content: createContent(tooltipInfo, opts.dataPath),
     });
 
-    const settings = options.chartBuilder.getSettings();
+    const settings = opts.chartBuilder.getSettings();
     settings.components.push(component);
 
     return {
       trigger: {
-        on: Support.treatAsDesktop() ? 'over' : 'tap',
+        on: context.treatAsDesktop ? 'over' : 'tap',
         action: 'set',
         contexts: opts.contexts,
         data: opts.data,
@@ -149,7 +149,7 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
       context.action.closeTooltip();
     };
 
-    context.brush.on(Support.treatAsDesktop() ? 'update' : 'set-values', context.listeners.update);
+    context.brush.on(context.treatAsDesktop ? 'update' : 'set-values', context.listeners.update);
     context.brush.on('end', context.listeners.end);
     // Intecept the set-values call to avoid a toggle in the second dimension.
     context.brush.intercept('set-values', context.action.toggleInterceptor);
@@ -162,7 +162,7 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
   }
 
   function deRegContext(context) {
-    context.brush.removeListener(Support.treatAsDesktop() ? 'update' : 'set-values', context.listeners.update);
+    context.brush.removeListener(context.treatAsDesktop ? 'update' : 'set-values', context.listeners.update);
     context.brush.removeListener('end', context.listeners.end);
     context.brush.removeInterceptor('set-values', context.action.toggleInterceptor);
   }
@@ -191,7 +191,7 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
 
     register();
 
-    if (Support.treatAsDesktop() && $element) {
+    if ($element) {
       $element.on('mouseleave', mouseLeave);
     }
   };
@@ -203,7 +203,7 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
     on = false;
     deregister();
 
-    if (Support.treatAsDesktop() && $element) {
+    if ($element) {
       $element.off('mouseleave', mouseLeave);
     }
     closeTooltip();
@@ -243,5 +243,6 @@ function createContext(options, chartInstance) {
     measureRows: options.measureRows,
     labelData: options.labelData,
     filterShapes: options.filterShapes,
+    treatAsDesktop: options.deviceType !== 'touch',
   };
 }

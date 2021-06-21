@@ -1,6 +1,3 @@
-// import encoder from '@qlik/encoder';
-// import translator from '../../../../js/lib/translator';
-
 const MAX_VISIBLE_ITEMS = 5;
 const OTHERS_ELEMNO = -3;
 const NULL_ELEMNO = -2;
@@ -24,7 +21,12 @@ export const createFilter = (filterShapes) => (shapes) =>
 
 export const createContent = (tooltipInfo) => ({ h, data, style }) => {
   const content = extractContent(tooltipInfo, data);
-  return render(content, h, style, tooltipInfo.chartView.translator);
+  const renderSettings = {
+    h,
+    style,
+    translator: tooltipInfo.chartView.translator,
+  };
+  return tooltipInfo.renderer(renderSettings, content);
 };
 
 function extractContent(tooltipInfo, uniqueShapes) {
@@ -67,11 +69,9 @@ function extractContent(tooltipInfo, uniqueShapes) {
         })
         .filter((row) => !!row);
 
-      if (tooltipInfo.chartView) {
-        const colorByData = getColorByDimData(tooltipInfo, shape);
-        if (colorByData) {
-          localContent.rows.unshift(colorByData);
-        }
+      const colorByData = getColorByDimData(tooltipInfo, shape);
+      if (colorByData) {
+        localContent.rows.unshift(colorByData);
       }
       content.push(localContent);
     }
@@ -124,97 +124,4 @@ function getColorByDimData(tooltipInfo, shape) {
   const value =
     othersIndex !== -1 ? tooltipInfo.chartView.translator.get('properties.dimensionLimits.others') : colorData.label;
   return { color, label, value };
-}
-
-// function rowContent(inputRow, { h, style }) {
-//   return inputRow.map((cell) => {
-//     const attributes = {
-//       style: { ...(style.cell || {}), ...(cell.style || {}) },
-//       class: cell.class,
-//     };
-//     if (cell.colspan) {
-//       attributes.colspan = cell.colspan;
-//     }
-//     return h('td', attributes, cell.content);
-//   });
-// }
-
-/* <div qva-direction x-dir-text="{{item.title}}" x-dir-setting="{{options.direction}}" class='qv-tp-title' ng-if="item.title !== undefined">
-  <strong>{{item.title}}</strong>
-</div>
-<div qva-direction x-dir-text="{{item.description}}" x-dir-setting="{{options.direction}}" class='qv-tp-description' ng-if="item.description !== undefined">
-  <span class='qv-tp-description-row'>{{item.description}}</span>
-</div>
-<div qva-direction x-dir-text="{{item.header}}" x-dir-setting="{{options.direction}}" class='qv-tp-header' ng-if="item.header !== undefined">
-  <strong>{{item.header}}</strong>
-</div>
-<table>
-  <tr ng-repeat="row in item.rows" class="qv-tp-row">
-    <td class='qv-tp-item' ng-if="row.hasOwnProperty('label')">
-      <span qva-direction x-dir-text="{{row.label}}" class="qv-tp-rowPart" ng-class="{'qv-tp-single' : (content.length + item.rows.length) <= 3}">{{row.label}}</span>
-      <span>:&nbsp;</span>
-    </td>
-    <td ng-if="!row.template" class='qv-tp-value'>
-      <div class="qv-tp-rowPart" dir="ltr">{{row.value}}</div>
-    </td>
-    <td ng-if="row.template" class='qv-tp-template qv-tp-value' ng-bind-html="row.template" ng-attr-colspan="{{row.hasOwnProperty('label') && 1 || 2 }}">
-    </td>
-  </tr>
-</table>
-<div class="qv-chart-tooltip-excess" ng-if="numberInExcess > 0" q-translation="Object.ChartTooltip.NMore,{{numberInExcess}}">More</div>
-*/
-
-/*
-<tr>
-  <td colspan=\"2\" style=\"max-width: 180px; word-break: break-word; overflow-wrap: break-word; hyphens: auto; font-weight: bold; text-align: left; direction: ltr;\">e</td>
-  <td style=\"max-width: 180px; word-break: break-word; overflow-wrap: break-word; hyphens: auto;\"></td>
-</tr>
-<tr>
-  <td style=\"max-width: 180px; word-break: break-word; overflow-wrap: break-word; hyphens: auto; text-align: left; direction: ltr;\">Avg(Expression3):</td>
-  <td style=\"max-width: 180px; word-break: break-word; overflow-wrap: break-word; hyphens: auto; text-align: right; direction: ltr; vertical-align: middle;\">0,37</td>
-</tr>"
-*/
-
-// TODO: direction: ltr/rtl
-function render(content, h, style, translator) {
-  const result = [];
-  content.forEach((item) => {
-    if (item.header) {
-      const attributes = {
-        style: { ...style.cell, fontWeight: 'bold' },
-        colspan: 2,
-      };
-      const cell = h('td', attributes, item.header);
-      const row = h('tr', {}, [cell]);
-      result.push(row);
-    }
-    item.rows.forEach((row) => {
-      const labelCell = h('td', { style: style.cell }, [row.label, ':']);
-      let valueContent = row.value;
-      if (row.color) {
-        const symbol = h('div', {
-          style: {
-            display: 'inline-block',
-            width: 10,
-            height: 10,
-            'background-color': row.color,
-            margin: '0 8px',
-          },
-        });
-        valueContent = [symbol, row.value];
-      }
-      const valueCell = h('td', { style: { ...style.cell, textAlign: 'right' } }, valueContent);
-      result.push(h('tr', {}, [labelCell, valueCell]));
-    });
-  });
-  if (content.numberInExcess) {
-    const attributes = {
-      style: style.cell,
-      colspan: 2,
-    };
-    const cell = h('td', attributes, translator.get('Object.ChartTooltip.NMore', content.numberInExcess));
-    const row = h('tr', {}, [cell]);
-    result.push(row);
-  }
-  return result;
 }

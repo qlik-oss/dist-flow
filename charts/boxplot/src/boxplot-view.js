@@ -22,6 +22,7 @@ import Color from '@qlik/common/extra/color-cache';
 
 import DataScroller from './boxplot-data-scroller';
 import CubeGenerator from './boxplot-cubes-generator';
+import tooltipRenderer from './boxplot-box-tooltip-renderer';
 // import boxplotTooltipTemplate from './boxplot-tooltip/boxplot-tooltip-picture.ng.html';
 // import './boxplot-tooltip/boxplot-tooltip-picture-directive';
 
@@ -32,8 +33,6 @@ const OUTLIERS_PATH = `${dataPath}/outliers/qHyperCube`;
 const HYPERCUBE_PATH = 'boxplotDef';
 const MAX_GLYPH_COUNT = 20;
 const MAX_OUTLIERS = 3000;
-
-const tooltipTemplateUrl = 'boxplot-tooltip-picture.ng.html';
 
 /**
  * Checks whether a dimensions is locked or not
@@ -697,7 +696,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
         chartBuilder,
         chartView: this,
         tooltipKey: 'box-tooltip',
-        template: tooltipTemplateUrl,
+        renderer: tooltipRenderer,
         dataPath: BOX_PATH,
         data: [''],
         contexts: ['boxTip'],

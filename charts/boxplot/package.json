@@ -29,7 +29,7 @@
   },
   "main": "dist/sn-boxplot.js",
   "scripts": {
-    "build": "nebula build",
+    "build": "nebula build --config ../../nebula.config.js",
     "lint": "eslint src",
     "start": "nebula serve --type boxplot --config ../../nebula.config.js",
     "sense": "nebula sense --partial"

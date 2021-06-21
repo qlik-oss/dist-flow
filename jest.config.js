@@ -22,7 +22,6 @@ module.exports = {
 
   testPathIgnorePatterns: [
     'chart-modules/common/picasso/disclaimer/__tests__/disclaimer.spec.js',
-    'chart-modules/common/picasso/tooltip/__tests__/tooltips-handler.spec.js',
     'charts/histogram/src/__tests__/histogram-export.spec.js',
     'charts/histogram/src/__tests__/histogram-numeric-values-handler.spec.js',
   ],
