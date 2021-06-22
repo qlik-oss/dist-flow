@@ -33,7 +33,6 @@ function useView(env, picasso) {
 
   const [instance, setInstance] = useState();
   useEffect(() => {
-    const $scope = null;
     const $element = $(element);
     const options = null;
     const backendApi = new BackednAPi(model);
@@ -46,7 +45,6 @@ function useView(env, picasso) {
       picasso,
       translator,
       theme,
-      $scope,
       $element,
       options,
       backendApi,

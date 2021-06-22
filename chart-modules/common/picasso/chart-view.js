@@ -53,8 +53,8 @@ const ChartView = BaseView.extend({
     tooltips: false,
   },
 
-  init(picasso, $scope, $element, options, backendApi, selectionsApi) {
-    this._super($scope, $element, extend({}, this.defaultOptions, options), backendApi);
+  init(picasso, $element, options, backendApi, selectionsApi) {
+    this._super($element, extend({}, this.defaultOptions, options), backendApi);
 
     this._selectionsApi = selectionsApi;
     this._on = false;
@@ -227,14 +227,6 @@ const ChartView = BaseView.extend({
     return {
       data: layout,
     };
-  },
-
-  suppressOnPaint(layout) {
-    if (this.$scope.object._forcePaint) {
-      this.$scope.object._forcePaint = false;
-      return false;
-    }
-    return layout.qSelectionInfo && layout.qSelectionInfo.qInSelections;
   },
 });
 

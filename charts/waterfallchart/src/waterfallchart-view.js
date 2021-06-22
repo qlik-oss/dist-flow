@@ -17,8 +17,8 @@ const BAR_WIDTH_RATIO = 0.7;
 // Implementation details
 //
 
-function init(picasso, translator, theme, $scope, $element, options, backendApi, selectionsApi, tooltipApi) {
-  this._super(picasso, $scope, $element, options, backendApi, selectionsApi, tooltipApi);
+function init(picasso, translator, theme, $element, options, backendApi, selectionsApi, tooltipApi) {
+  this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
   this.translator = translator;
   this.theme = theme;
   if (this.hasOption('tooltips')) {

@@ -1,8 +1,7 @@
 import View from './view';
 
 const BaseView = View.extend({
-  init($scope, $element, options, backendApi) {
-    this.$scope = $scope;
+  init($element, options, backendApi) {
     this.$element = $element;
     this.options = options;
     this.backendApi = backendApi;

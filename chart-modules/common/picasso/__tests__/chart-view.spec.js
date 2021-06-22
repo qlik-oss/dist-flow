@@ -5,7 +5,6 @@ import picassoSetup from '../picasso-setup';
 describe('chart-view', () => {
   let picasso;
   let $container;
-  let scope;
   let options;
   let backendApi;
   let selectionsApi;
@@ -17,8 +16,6 @@ describe('chart-view', () => {
 
   beforeEach(() => {
     $container = $('<div style="width: 600px; height: 400px;"><div class="picasso-chart"></div></div>');
-
-    scope = null;
 
     backendApi = {
       getData: jest.fn().mockReturnValue({ then() {} }),
@@ -42,7 +39,7 @@ describe('chart-view', () => {
       watchDeactivated() {},
     };
     picasso = picassoSetup();
-    myChart = new MyChart(picasso, scope, $container, options, backendApi, selectionsApi);
+    myChart = new MyChart(picasso, $container, options, backendApi, selectionsApi);
 
     layout = {
       qHyperCube: {
@@ -104,7 +101,7 @@ describe('chart-view', () => {
 
   test('createChartSettings function', () => {
     const CustomChart = ChartView.extend({});
-    const customChart = new CustomChart(picasso, scope, $container, options, backendApi, selectionsApi);
+    const customChart = new CustomChart(picasso, $container, options, backendApi, selectionsApi);
     expect(customChart.createChartSettings).toThrow(Error);
   });
 

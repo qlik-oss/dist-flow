@@ -48,7 +48,6 @@ export default function supernova(env) {
       const [instance, setInstance] = useState();
 
       useEffect(() => {
-        const $scope = null;
         const $element = $(element);
         const options = null;
         const backendApi = new BackednAPi(model);
@@ -60,7 +59,6 @@ export default function supernova(env) {
           picasso,
           translator,
           theme,
-          $scope,
           $element,
           options,
           backendApi,

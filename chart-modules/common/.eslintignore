@@ -3,6 +3,5 @@ coverage/
 node_modules/
 
 # should be temporary
-tooltips-handler.spec.js
 disclaimer.spec.js
 disclaimer-component.js

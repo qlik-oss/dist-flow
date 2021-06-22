@@ -14,20 +14,8 @@ const chartID = 'object.histogram';
 // Implementation details
 //
 
-function init(
-  lasso,
-  flags,
-  picasso,
-  translator,
-  theme,
-  $scope,
-  $element,
-  options,
-  backendApi,
-  selectionsApi,
-  tooltipApi
-) {
-  this._super(picasso, $scope, $element, options, backendApi, selectionsApi, tooltipApi);
+function init(lasso, flags, picasso, translator, theme, $element, options, backendApi, selectionsApi, tooltipApi) {
+  this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
   this.flags = flags;
   this.translator = translator;
   this.theme = theme;

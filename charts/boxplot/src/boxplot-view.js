@@ -201,21 +201,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     tooltips: true,
   },
 
-  init(
-    lasso,
-    flags,
-    layout,
-    picasso,
-    translator,
-    theme,
-    $scope,
-    $element,
-    options,
-    backendApi,
-    selectionsApi,
-    tooltipApi
-  ) {
-    this._super(picasso, $scope, $element, options, backendApi, selectionsApi, tooltipApi);
+  init(lasso, flags, layout, picasso, translator, theme, $element, options, backendApi, selectionsApi, tooltipApi) {
+    this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
     this.flags = flags;
     this.translator = translator;
     this.theme = theme;

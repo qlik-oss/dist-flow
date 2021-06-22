@@ -164,8 +164,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     tooltips: true,
   },
 
-  init(lasso, flags, picasso, translator, theme, $scope, $element, options, backendApi, selectionsApi, tooltipApi) {
-    this._super(picasso, $scope, $element, options, backendApi, selectionsApi);
+  init(lasso, flags, picasso, translator, theme, $element, options, backendApi, selectionsApi, tooltipApi) {
+    this._super(picasso, $element, options, backendApi, selectionsApi);
     this.flags = flags;
     this.translator = translator;
     this.theme = theme;

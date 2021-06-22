@@ -107,7 +107,6 @@ describe('Histogram', () => {
       picasso,
       translator,
       theme,
-      undefined,
       $element,
       options,
       backendApi,
