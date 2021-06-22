@@ -73,12 +73,6 @@ describe('chart-view', () => {
     expect(myChart.layout).toEqual(layout);
   });
 
-  test.skip('hasOption function', () => {
-    expect(myChart.hasOption('myOptionTrue')).toEqual(true);
-    expect(myChart.hasOption('myOptionFalse')).toEqual(false); // TODO I would expect this to return true - should rename hasOption function
-    expect(myChart.hasOption('myOptionNotThere')).toEqual(false);
-  });
-
   test('createChartSettings function', () => {
     const CustomChart = ChartView.extend({});
     const customChart = new CustomChart(picasso, $container, options, backendApi, selectionsApi);

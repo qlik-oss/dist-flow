@@ -24,19 +24,14 @@ function init(lasso, flags, picasso, translator, theme, $element, options, backe
 
   this._derivedProperties = new DerivedProperties();
 
-  if (this.hasOption('selections')) {
-    this._selectionHandler = SelectionHandler.create({
-      model: backendApi.model,
-      chartInstance: this.chartInstance,
-      selectionsApi,
-      selectPaths: ['/qUndoExclude/box/qHyperCubeDef'],
-      lasso,
-    });
-  }
-
-  if (this.hasOption('tooltips')) {
-    this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
-  }
+  this._selectionHandler = SelectionHandler.create({
+    model: backendApi.model,
+    chartInstance: this.chartInstance,
+    selectionsApi,
+    selectPaths: ['/qUndoExclude/box/qHyperCubeDef'],
+    lasso,
+  });
+  this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
 
   this.setDataPaths(['qUndoExclude/box/qHyperCube']);
 }
@@ -47,44 +42,6 @@ function updateConstraints(constraints) {
 
   this._tooltipHandler[tooltip ? 'on' : 'off']();
   this._selectionHandler[selection ? 'on' : 'off']();
-}
-function on() {
-  if (this._on) {
-    return;
-  }
-
-  if (this.hasOption('tooltips')) {
-    this._tooltipHandler.on();
-  }
-
-  if (this.hasOption('selections')) {
-    this._selectionHandler.on();
-  }
-
-  // Prevents the html body from moving when panning in ipad
-  this.$element.on(`touchstart${namespace}`, (event) => {
-    event.preventDefault();
-  });
-
-  this._on = true;
-}
-
-function off() {
-  if (!this._on) {
-    return;
-  }
-
-  if (this.hasOption('tooltips')) {
-    this._tooltipHandler.off();
-  }
-
-  if (this.hasOption('selections')) {
-    this._selectionHandler.off();
-  }
-
-  this.$element.off(namespace);
-
-  this._on = false;
 }
 
 function setSnapshotData(snapshotLayout) {
@@ -220,15 +177,8 @@ function isLassoDisabled() {
 
 const HistogramView = ChartView.extend('Histogram', {
   namespace,
-  defaultOptions: {
-    navigation: false,
-    selections: true,
-    tooltips: true,
-  },
   init,
   updateConstraints,
-  on,
-  off,
   createChartSettings: function createChartSettings(layout) {
     return ChartSettings.createChartSettings(this, layout);
   },

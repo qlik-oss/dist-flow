@@ -195,11 +195,6 @@ function getColorFromExpValue(obj, theme) {
 
 const BoxPlot = ChartView.extend('BoxPlot', {
   namespace: '.boxplot',
-  defaultOptions: {
-    navigation: true,
-    selections: true,
-    tooltips: true,
-  },
 
   init(lasso, flags, layout, picasso, translator, theme, $element, options, backendApi, selectionsApi, tooltipApi) {
     this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
@@ -223,9 +218,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       isLassoDisabled: this.isLassoDisabled.bind(this),
       lasso,
     });
-    if (this.hasOption('tooltips')) {
-      this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
-    }
+    this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
     this._scrollHandler = new ScrollHandler(
       this.chartInstance,
       $element,
@@ -250,9 +243,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     if (b !== undefined) {
       this._disableScrolling = !!b;
     }
-    this._scrollHandler.setDisabled(
-      !this.hasOption('navigation') || !getHasSecondDimension(this.layout) || this._disableScrolling
-    );
+    this._scrollHandler.setDisabled(!getHasSecondDimension(this.layout) || this._disableScrolling);
   },
 
   updateConstraints(constraints) {
@@ -264,32 +255,6 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     this._tooltipHandler[tooltip ? 'on' : 'off']();
     this._selectionHandler[selection ? 'on' : 'off']();
   },
-  on() {
-    this._super();
-
-    if (this.hasOption('navigation')) {
-      this._scrollHandler.on();
-    }
-    if (this.hasOption('tooltips')) {
-      this._tooltipHandler.on();
-    }
-    if (this.hasOption('selections')) {
-      this._selectionHandler.on();
-    }
-  },
-  off() {
-    this._super();
-
-    if (this.hasOption('navigation')) {
-      this._scrollHandler.off();
-    }
-    if (this.hasOption('tooltips')) {
-      this._tooltipHandler.off();
-    }
-    if (this.hasOption('selections')) {
-      this._selectionHandler.off();
-    }
-  },
   _getBoxMarkerSettings(layout, selectionSettings, tooltipSettings) {
     const boxFillColor = layout.boxplotDef.color.auto
       ? this.theme.getStyle(chartID, 'box.box', 'fill')
@@ -300,7 +265,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     const brushTrigger = shouldSelectInInnerDim(layout) ? [] : getSelectionSettingsArray(selectionSettings.trigger);
     const brushConsume = getSelectionSettingsArray(selectionSettings.consume);
 
-    if (this.hasOption('tooltips')) {
+    if (this._tooltipHandler.isOn()) {
       brushTrigger.push(tooltipSettings.box.trigger);
       brushConsume.push.apply(brushConsume, tooltipSettings.box.consume);
     }
@@ -486,7 +451,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
 
     const brushTrigger = getSelectionSettingsArray(selectionSettings.trigger);
     const brushConsume = getSelectionSettingsArray(selectionSettings.consume);
-    if (this.hasOption('tooltips')) {
+    if (this._tooltipHandler.isOn()) {
       brushTrigger.push(tooltipSettings.point.trigger);
       brushConsume.push.apply(brushConsume, tooltipSettings.point.consume);
     }
@@ -631,7 +596,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     let boxSelectionSettings = {};
     let pointSelectionSettings = {};
 
-    if (this.hasOption('selections')) {
+    if (this._selectionHandler.isOn()) {
       const outerSelectionSettings = this._selectionHandler.setUp({
         contexts: ['select'],
         data: ['elemNo'],
@@ -660,7 +625,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       };
     }
     const tooltipSettings = { point: {}, box: {} };
-    if (this.hasOption('tooltips')) {
+    if (this._tooltipHandler.isOn()) {
       tooltipSettings.point = this._tooltipHandler.setUp({
         chartBuilder,
         chartView: this,
@@ -733,8 +698,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     const lockedOuterDim = getLockedDim(layout);
     const rangeSelStatus = setRangeSelStatus(lockedOuterDim, layout);
     const handlers = {
-      scrollHandler: this.hasOption('navigation') && this._scrollHandler,
-      selectionHandler: this.hasOption('selections') && this._selectionHandler,
+      scrollHandler: this._scrollHandler.isOn() && this._scrollHandler,
+      selectionHandler: this._selectionHandler.isOn() && this._selectionHandler,
     };
     const keys = {
       componentKey: shouldSelectInInnerDim(layout) && hasPointMarker(layout) ? 'point-marker' : 'box-marker',
@@ -754,7 +719,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       isRtl,
       includeDimensionAxis: hasSecondDimension,
       orientation: layout.orientation,
-      selectionsEnabled: this.hasOption('selections'),
+      selectionsEnabled: this._selectionHandler.isOn(),
 
       // measure scale
       measureSource: ['qMeasureInfo/0', 'qMeasureInfo/1', 'qMeasureInfo/2', 'qMeasureInfo/3', 'qMeasureInfo/4'],
@@ -775,10 +740,10 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       gridlines: layout.gridlines,
 
       // scroll
-      hasNavigation: this.hasOption('navigation'),
+      hasNavigation: this._scrollHandler.isOn(),
       isNavigationEnabledFn: () => this._scrollHandler.isOn(),
       scrollSettings:
-        this.hasOption('navigation') && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
+        this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 
       // Lasso
       enableLasso: true,
@@ -877,9 +842,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       return Promise.resolve();
     }
 
-    if (this.hasOption('tooltips')) {
-      this._tooltipHandler.closeTooltip();
-    }
+    this._tooltipHandler.closeTooltip();
 
     const haveBoxData = undoExclude.box && undoExclude.box.qHyperCube.qDataPages.length;
     const haveOutliersData =
@@ -929,7 +892,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
   getDisclaimerAttributes(layout) {
     const showDisclaimer = this.flags.isEnabled('SHOW_DISCLAIMER') ? !(layout.showDisclaimer === false) : true;
     const scrollSettings =
-      this.hasOption('navigation') && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
+      this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
     let explicitLimitedData;
     if (
       showDisclaimer &&

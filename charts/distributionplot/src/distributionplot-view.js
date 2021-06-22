@@ -158,11 +158,6 @@ function isSingleSelect(layout, index) {
 
 const DistributionPlot = ChartView.extend('DistributionPlot', {
   namespace: '.distributionPlot',
-  defaultOptions: {
-    navigation: true,
-    selections: true,
-    tooltips: true,
-  },
 
   init(lasso, flags, picasso, translator, theme, $element, options, backendApi, selectionsApi, tooltipApi) {
     this._super(picasso, $element, options, backendApi, selectionsApi);
@@ -175,19 +170,15 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
     this._derivedProperties = new DerivedProperties();
 
-    if (this.hasOption('selections')) {
-      this._selectionHandler = SelectionHandler.create({
-        model: backendApi.model,
-        chartInstance: this.chartInstance,
-        selectionsApi,
-        isLassoDisabled: this.isLassoDisabled.bind(this),
-        selectPaths: ['/qUndoExclude/qHyperCubeDef'],
-        lasso,
-      });
-    }
-    if (this.hasOption('tooltips')) {
-      this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, CONSTANTS.CHART_ID);
-    }
+    this._selectionHandler = SelectionHandler.create({
+      model: backendApi.model,
+      chartInstance: this.chartInstance,
+      selectionsApi,
+      isLassoDisabled: this.isLassoDisabled.bind(this),
+      selectPaths: ['/qUndoExclude/qHyperCubeDef'],
+      lasso,
+    });
+    this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, CONSTANTS.CHART_ID);
     this._scrollHandler = new ScrollHandler(
       this.chartInstance,
       $element,
@@ -227,9 +218,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       this._disableScrolling = !!b;
     }
     this._scrollHandler.setDisabled(
-      !this.hasOption('navigation') ||
-        !hypercubeUtil.hasSecondDimension(this.layout, DATA_PATH) ||
-        this._disableScrolling
+      !hypercubeUtil.hasSecondDimension(this.layout, DATA_PATH) || this._disableScrolling
     );
   },
 
@@ -241,31 +230,6 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     this._scrollHandler[navigation ? 'on' : 'off']();
     this._tooltipHandler[tooltip ? 'on' : 'off']();
     this._selectionHandler[selection ? 'on' : 'off']();
-  },
-  on() {
-    this._super();
-    if (this.hasOption('tooltips')) {
-      this._tooltipHandler.on();
-    }
-    if (this.hasOption('selections')) {
-      this._selectionHandler.on();
-    }
-    if (this.hasOption('navigation')) {
-      this._scrollHandler.on();
-    }
-  },
-
-  off() {
-    this._super();
-    if (this.hasOption('tooltips')) {
-      this._tooltipHandler.off();
-    }
-    if (this.hasOption('selections')) {
-      this._selectionHandler.off();
-    }
-    if (this.hasOption('navigation')) {
-      this._scrollHandler.off();
-    }
   },
 
   _getPointScale() {
@@ -414,7 +378,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
     const brushTrigger = getSelectionSettingsArray(selectionSettings.trigger);
     const brushConsume = getSelectionSettingsArray(selectionSettings.consume);
-    if (this.hasOption('tooltips')) {
+    if (this._tooltipHandler.isOn()) {
       brushTrigger.push(tooltipSettings.point.trigger);
       brushConsume.push.apply(brushConsume, tooltipSettings.point.consume);
     }
@@ -563,7 +527,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     let boxSelectionSettings = {};
     let pointSelectionSettings = {};
     let legendSelectionSettings = {};
-    if (this.hasOption('selections')) {
+    if (this._selectionHandler.isOn()) {
       const allowSelectBoxes = !showPoints && hypercubeUtil.hasSecondDimension(layout, DATA_PATH);
 
       this._selectionHandler.setUpStart();
@@ -629,7 +593,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     }
     const tooltipSettings = { point: {}, box: {} };
     const self = this;
-    if (this.hasOption('tooltips')) {
+    if (this._tooltipHandler.isOn()) {
       tooltipSettings.point = this._tooltipHandler.setUp({
         chartBuilder,
         data: hypercubeUtil.hasSecondDimension(layout, DATA_PATH) ? ['innerElemNo', 'elemNo'] : ['innerElemNo'],
@@ -650,8 +614,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     const isOuterDimSingleSelect = isSingleSelect(layout, 1);
     const rangeSelStatus = retrieveRangeSelStatus(lockedDims, isInnerDimSingleSelect, isOuterDimSingleSelect);
     const handlers = {
-      scrollHandler: this.hasOption('navigation') && this._scrollHandler,
-      selectionHandler: this.hasOption('selections') && this._selectionHandler,
+      scrollHandler: this._scrollHandler.isOn() && this._scrollHandler,
+      selectionHandler: this._selectionHandler.isOn() && this._selectionHandler,
     };
     const keys = {
       componentKey: showPoints ? 'point-marker' : 'box-marker',
@@ -672,7 +636,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       isRtl,
       includeDimensionAxis: hypercubeUtil.hasSecondDimension(layout, DATA_PATH),
       orientation: layout.orientation,
-      selectionsEnabled: this.hasOption('selections'),
+      selectionsEnabled: this._selectionHandler.isOn(),
 
       // measure scale
       measureSource: ['qMeasureInfo/0'],
@@ -693,11 +657,10 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       gridlines: layout.gridlines,
 
       // scroll
-      hasNavigation: this.hasOption('navigation'),
-
+      hasNavigation: this._scrollHandler.isOn(),
       isNavigationEnabledFn: () => this._scrollHandler.isOn(),
       scrollSettings:
-        this.hasOption('navigation') && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
+        this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 
       // Lasso
       enableLasso: true,
@@ -900,7 +863,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   getDisclaimerAttributes(layout) {
     const showDisclaimer = this.flags.isEnabled('SHOW_DISCLAIMER') ? !(layout.showDisclaimer === false) : true;
     const scrollSettings =
-      this.hasOption('navigation') && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
+      this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
     let explicitLimitedData;
     if (showDisclaimer && !hypercubeUtil.hasSecondDimension(layout, DATA_PATH) && layout.qHyperCube.qSize.qcy > 10000) {
       explicitLimitedData = true;

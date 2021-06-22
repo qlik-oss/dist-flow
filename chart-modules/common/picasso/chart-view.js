@@ -47,15 +47,9 @@ function getData(backendApi, hyperCube, rect) {
 }
 
 const ChartView = Class.extend({
-  defaultOptions: {
-    navigation: false,
-    selections: false,
-    tooltips: false,
-  },
-
   init(picasso, $element, options, backendApi, selectionsApi) {
     this.$element = $element;
-    this.options = extend({}, this.defaultOptions, options);
+    this.options = options;
     this.backendApi = backendApi;
 
     this._selectionsApi = selectionsApi;
@@ -89,24 +83,6 @@ const ChartView = Class.extend({
 
   setDataPaths(dataPaths) {
     this._dataPaths = dataPaths;
-  },
-
-  hasOption(key) {
-    return !!this.options[key];
-  },
-
-  on() {
-    if (this._on) {
-      return;
-    }
-
-    this._on = true;
-  },
-  off() {
-    if (!this._on) {
-      return;
-    }
-    this._on = false;
   },
 
   getData(backendApi, hyperCube, rect) {
@@ -189,7 +165,6 @@ const ChartView = Class.extend({
       settings,
       partialData: isPartialData,
     });
-    // this.chartInstance.interactions[this.options.interactionState === InteractionStates.STATIC ? 'off' : 'on']();
     // this.picassoElement.setAttribute('data-state', States.DATA.UPDATED); // For integration test
   },
 

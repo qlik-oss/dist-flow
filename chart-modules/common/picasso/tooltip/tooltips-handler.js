@@ -172,6 +172,7 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
 
   fn.closeTooltip = closeTooltip;
 
+  fn.isOn = () => on;
   fn.on = function () {
     if (on) {
       return;

@@ -38,10 +38,10 @@ describe('Histogram picasso component - box-marker', () => {
     };
 
     chartView = {
-      hasOption() {
-        return true;
-      },
       theme,
+      _tooltipHandler: {
+        isOn: () => true,
+      },
     };
 
     basicSelectionSettings = {

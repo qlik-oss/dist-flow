@@ -47,19 +47,7 @@ export default function supernova(env) {
 
       useEffect(() => {
         const $element = $(element);
-        const backendApi = null;
-        const selectionsApi = null;
-        const tooltipApi = null;
-        const view = new ChartView(
-          picasso,
-          translator,
-          theme,
-          $element,
-          options,
-          backendApi,
-          selectionsApi,
-          tooltipApi
-        );
+        const view = new ChartView(picasso, translator, theme, $element, options);
 
         setInstance(view);
 

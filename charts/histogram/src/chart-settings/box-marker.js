@@ -23,7 +23,7 @@ function createBoxMarkerSettings(
     measureSelectionSettings.consume,
   ];
 
-  if (chartView.hasOption('tooltips')) {
+  if (chartView._tooltipHandler.isOn()) {
     brushTrigger.push(tooltipSettings.box.trigger);
     brushConsume.push.apply(brushConsume, tooltipSettings.box.consume);
   }

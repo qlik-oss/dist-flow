@@ -17,13 +17,14 @@ const BAR_WIDTH_RATIO = 0.7;
 // Implementation details
 //
 
-function init(picasso, translator, theme, $element, options, backendApi, selectionsApi, tooltipApi) {
+function init(picasso, translator, theme, $element, options) {
+  const backendApi = null;
+  const selectionsApi = null;
+  const tooltipApi = null;
   this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
   this.translator = translator;
   this.theme = theme;
-  if (this.hasOption('tooltips')) {
-    this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
-  }
+  this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
   this._scrollHandler = new ScrollHandler(
     this.chartInstance,
     $element,
@@ -53,7 +54,7 @@ function getViewState() {
 }
 
 function updateScrollHandlerState(b) {
-  this._scrollHandler.setDisabled(!this.hasOption('navigation') || !!b);
+  this._scrollHandler.setDisabled(!!b);
 }
 
 function updateConstraints(constraints) {
@@ -62,25 +63,6 @@ function updateConstraints(constraints) {
 
   this._scrollHandler[navigation ? 'on' : 'off']();
   this._tooltipHandler[tooltip ? 'on' : 'off']();
-}
-function on() {
-  this._super();
-  if (this.hasOption('tooltips')) {
-    this._tooltipHandler.on();
-  }
-  if (this.hasOption('navigation')) {
-    this._scrollHandler.on();
-  }
-}
-
-function off() {
-  this._super();
-  if (this.hasOption('tooltips')) {
-    this._tooltipHandler.off();
-  }
-  if (this.hasOption('navigation')) {
-    this._scrollHandler.off();
-  }
 }
 
 function getMaxGlyphCountForDimAxis(layout) {
@@ -322,7 +304,7 @@ function createChartSettings(layout) {
   });
 
   const handlers = {
-    scrollHandler: this.hasOption('navigation') && this._scrollHandler,
+    scrollHandler: this._scrollHandler.isOn() && this._scrollHandler,
     selectionHandler: null,
   };
 
@@ -369,10 +351,10 @@ function createChartSettings(layout) {
     },
 
     // scroll
-    hasNavigation: this.hasOption('navigation'),
+    hasNavigation: this._scrollHandler.isOn(),
     isNavigationEnabledFn: () => this._scrollHandler.isOn(),
     scrollSettings:
-      this.hasOption('navigation') && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
+      this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 
     // ref-lines
     refLines: layout.refLine && layout.refLine.refLines,
@@ -452,9 +434,7 @@ function paint() {
   if (!isSnapshot && !this.options.viewState) {
     updateScrollHandlerState.call(this, false);
   }
-  if (this.hasOption('tooltips') && this._tooltipHandler) {
-    this._tooltipHandler.closeTooltip();
-  }
+  this._tooltipHandler.closeTooltip();
 
   const pageNumberOfRows = this.layout.generated.qHyperCube.qDataPages[0].qMatrix.length;
   const datasetNumberOfRows = this.layout.generatedMatrix.length;
@@ -469,15 +449,8 @@ function paint() {
 const waterfallChartView = ChartView.extend('WaterfallChart', {
   namespace: '.waterfallchart',
   chartID,
-  defaultOptions: {
-    navigation: false,
-    selections: false,
-    tooltips: true,
-  },
   init,
   updateConstraints,
-  on,
-  off,
   createChartSettings,
   updateData,
   resize,

@@ -70,7 +70,7 @@ function createChartSettings(chartView, layout) {
   let basicSelectionSettings = {};
   let dimensionSelectionSettings = {};
   let measureSelectionSettings = {};
-  if (chartView.hasOption('selections')) {
+  if (chartView._selectionHandler.isOn()) {
     chartView._selectionHandler.setUpStart();
 
     basicSelectionSettings = chartView._selectionHandler.setUpBrush({
@@ -96,7 +96,7 @@ function createChartSettings(chartView, layout) {
   }
 
   const tooltipSettings = { box: {} };
-  if (chartView.hasOption('tooltips')) {
+  if (chartView._tooltipHandler.isOn()) {
     tooltipSettings.box = chartView._tooltipHandler.setUp({
       chartBuilder,
       chartView,
@@ -135,7 +135,7 @@ function createChartSettings(chartView, layout) {
     isRtl,
     includeDimensionAxis: true,
     orientation: 'vertical',
-    selectionsEnabled: chartView.hasOption('selections'),
+    selectionsEnabled: chartView._selectionHandler.isOn(),
 
     // measure scale
     measureSource: 'qMeasureInfo/0',
@@ -192,7 +192,7 @@ function createChartSettings(chartView, layout) {
     gridlines: layout.gridlines,
 
     // scroll
-    hasNavigation: chartView.hasOption('navigation'),
+    hasNavigation: this._scrollHandler.isOn(),
     isNavigationEnabledFn: () => chartView._scrollHandler.isOn(),
 
     // ref-lines
