@@ -12,9 +12,6 @@ Sorter.prototype.applyCustomSorting = applyCustomSorting;
 
 export default Sorter;
 
-//
-//	Implementation details
-//
 function applyAutoSorting(dimension) {
   const sortCriterias = dimension.qDef.qSortCriterias;
 
@@ -83,9 +80,6 @@ function applyCustomSorting(dimension, chartSorting) {
   }
 }
 
-//
-// Privates
-//
 function getDefaultElement(elements) {
   const matchingElements = elements.filter((element) => element.isDefault);
 

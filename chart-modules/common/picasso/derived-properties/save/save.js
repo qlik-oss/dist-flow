@@ -2,7 +2,6 @@ import SoftPropertyHandler from '../../../extra/soft-property-handler';
 import hardPropertiesChecker from '../../../extra/hard-properties-checker';
 
 export default {
-  // eslint-disable-next-line no-use-before-define
   saveDerivedProperties,
 };
 

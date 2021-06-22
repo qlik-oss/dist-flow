@@ -1,7 +1,5 @@
-// import Touche from 'touchejs';
 import extend from 'extend';
 import Actions from './selection-actions';
-// import eventUtils from '../../utils/event-utils';
 
 // TODO: fix
 const eventUtils = {
@@ -120,7 +118,6 @@ function Selections(options) {
   // TODO - Do not override clear like this, add watch functionality to it
   const selectionsApiClearFn = selectionsApi.clear.bind(selectionsApi);
   selectionsApi.clear = function () {
-    // eslint-disable-line no-param-reassign
     selectionContexts.forEach((context) => {
       context.brush.clear();
       // Clear dependent components
@@ -182,7 +179,6 @@ function Selections(options) {
     const context = createContext(opts, chartInstance);
     // Do this here instead of in register to be able to catch the consumer
     context.listeners.toggle = function (items) {
-      // eslint-disable-line no-param-reassign
       if (!on) {
         return [];
       }
@@ -243,7 +239,6 @@ function Selections(options) {
   function register() {
     selectionContexts.forEach((context) => {
       context.listeners.update = function (added, removed) {
-        // eslint-disable-line no-param-reassign
         // On tap end, picaso will run rendering in the same frame, and if this is a heavy job then long tap end will happen before tap end finish. This can trigger the radial context menu.
         // So we prevent long tap end here.
         Touche.preventGestures();
@@ -266,7 +261,7 @@ function Selections(options) {
   fn.pauseEngineCalls = function (id) {
     selectionContexts.forEach((context) => {
       if (context.id === id) {
-        context.sleep = true; // eslint-disable-line no-param-reassign
+        context.sleep = true;
       }
     });
   };
@@ -274,7 +269,7 @@ function Selections(options) {
   fn.resumeEngineCalls = function (id, run) {
     selectionContexts.forEach((context) => {
       if (context.id === id) {
-        context.sleep = false; // eslint-disable-line no-param-reassign
+        context.sleep = false;
         if (run) {
           context.listeners.update([], []);
         }
@@ -356,11 +351,9 @@ export default {
   },
 };
 
-// Internal Utils
-
 function createContext(options, chartInstance) {
   return {
-    brush: chartInstance.brush(options.contexts[0]), // TODO - Need multi context support?
+    brush: chartInstance.brush(options.contexts[0]),
     listeners: {},
     dependentComponents: [],
     id: options.contexts[0],

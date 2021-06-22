@@ -48,7 +48,6 @@ describe('tooltip-handler for picasso', () => {
     handler = TooltipHandler.create(PicassoMock.chartInstance, tooltipApi);
     restoreFunc = TooltipActions.create;
     TooltipActions.create = function (chartInstance, componentKey, data, dataPath, context, template, duration) {
-      // eslint-disable-line no-param-reassign
       actionInstance = restoreFunc(chartInstance, componentKey, data, dataPath, context, template, duration);
       return actionInstance;
     };
@@ -58,7 +57,7 @@ describe('tooltip-handler for picasso', () => {
     PicassoMock.restore();
     mock.restore();
     sandbox.restore();
-    TooltipActions.create = restoreFunc; // eslint-disable-line no-param-reassign
+    TooltipActions.create = restoreFunc;
   });
 
   it('should add listeners if already on', () => {

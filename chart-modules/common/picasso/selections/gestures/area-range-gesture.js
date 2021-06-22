@@ -38,13 +38,11 @@ function callAreaRangeGesture(state, gesturesFns, gesturesParams, axis) {
         const targets =
           gesturesParams.active.gesture === 'arearange' ? [axis, gesturesParams.keys.componentKey] : [axis];
         const hitComp = onComponentChecker.isOnComponentForRange(e, targets, this);
-        // var hitComp = !!e && !!this.chart.componentsFromPoint( { x: e.center.x, y: e.center.y }).filter( function ( c ) { return targets.indexOf( c.settings.key ) !== -1 })[0];
 
         state.minoring = gesturesFns.isSelectionEnabled() && !!e && !!hitComp;
         return state.minoring;
       },
     },
-    // requireFailure: 'lasso range',
     requireFailure: `lasso ${activeRangeBrush}`,
     recognizeWith: gesturesParams.handlers.scrollHandler ? 'drag' : null,
     events: {

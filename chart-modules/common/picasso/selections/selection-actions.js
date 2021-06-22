@@ -1,6 +1,5 @@
 import PicassoQ from 'picasso-plugin-q/dist/picasso-q';
 import selectionUtils from './selection-utils';
-// import eventUtils from '../../utils/event-utils';
 
 // TODO: fix
 const eventUtils = {
@@ -18,7 +17,7 @@ function SelectionActions(chartInstance, selectionsApi, paths) {
   }
 
   function toggleValues(items, brush, startOnEmptySelection) {
-    const filterResult = selectionUtils.brushInterceptors.filterValues(chartInstance, items); // eslint-disable-line no-param-reassign
+    const filterResult = selectionUtils.brushInterceptors.filterValues(chartInstance, items);
     const itms = filterResult.items;
     if (filterResult.itemsAreLocked) {
       eventUtils.showLockedFeedback(filterResult.lockedFields);

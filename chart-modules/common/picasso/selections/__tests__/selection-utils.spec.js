@@ -100,8 +100,6 @@ describe('selection-utils', () => {
     });
 
     it('should toggle value if only one field value exist', () => {
-      // TODO: should only allow toggle on, not off to match behaviour in other charts
-
       let items = [{ key: 'qHyperCube/field1', value: 1 }];
 
       items = selectionUtils.brushInterceptors.filterValues(chartInstance, items).items;

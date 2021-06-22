@@ -23,7 +23,6 @@ describe('chart builder', () => {
     expect(ChartBuilder.createComponent('y-axis-title', null, { theme }).type).to.equal('text');
     expect(ChartBuilder.createComponent('event-area').type).to.equal('event-area');
     expect(ChartBuilder.createComponent('grid-line', null, { theme }).type).to.equal('grid-line');
-    // expect(ChartBuilder.createComponent('interaction').type).to.equal('interaction');
   });
 
   it('builds components', () => {

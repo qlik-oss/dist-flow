@@ -1,5 +1,4 @@
 import extend from 'extend';
-// import state from '../../../client/utils/state';
 import Hash from './hash/hash';
 import HashBuilder from './hash/hash-builder';
 import Save from './save/save';
@@ -9,18 +8,11 @@ function DerivedProperties() {
   this._generationInProgress = false;
 }
 
-// eslint-disable-next-line no-use-before-define
 DerivedProperties.prototype.isDerivedUpToDate = isDerivedUpToDate;
-// eslint-disable-next-line no-use-before-define
 DerivedProperties.prototype.updateDerivedProperties = updateDerivedProperties;
-// eslint-disable-next-line no-use-before-define
 DerivedProperties.prototype.addDefaultHyperCubeHash = addDefaultHyperCubeHash;
 
 export default DerivedProperties;
-
-/**
- * Implementation details
- */
 
 function isDerivedUpToDate(settings) {
   InputValidator.validate(settings);
@@ -61,7 +53,6 @@ function updateDerivedProperties(settings) {
   Hash.updateHash(properties, settings.hashData);
 
   return settings.generateDerivedProperties(layout, properties).then(() =>
-    // Save.saveDerivedProperties(model, layout, properties, prevProperties, state).then(() => {
     Save.saveDerivedProperties(model, layout, properties, prevProperties, null).then(() => {
       self._generationInProgress = false;
 

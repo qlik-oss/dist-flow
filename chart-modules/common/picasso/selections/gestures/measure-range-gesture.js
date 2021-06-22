@@ -34,7 +34,6 @@ function callMeasureRangeGesture(state, gesturesFns, gesturesParams, measureAxis
         return state.measureSelecting && !!gesturesParams.keys.measureRangeBrushKey;
       },
     },
-    // requireFailure: 'lasso range',
     requireFailure: `lasso ${activeRangeBrush}`,
     recognizeWith: gesturesParams.handlers.scrollHandler ? 'drag' : null,
     events: {

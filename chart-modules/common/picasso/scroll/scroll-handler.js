@@ -1,5 +1,3 @@
-import LegendUtils from '../legend/legend-utils';
-
 const namespace = '.scrollHandler';
 
 ScrollHandler.prototype.getScrollApi = getScrollApi;
@@ -214,9 +212,10 @@ function getMouseWheelData(orgEvent) {
 
 function onMouseWheel(e) {
   const event = getMouseWheelData(e.originalEvent);
-  if (LegendUtils.onMouseWheel(event, this._chartInstance, this._legendKey) || this._disabled || !this.getScrollApi()) {
-    return;
-  }
+  // TODO: check scroll in legend
+  // if (LegendUtils.onMouseWheel(event, this._chartInstance, this._legendKey) || this._disabled || !this.getScrollApi()) {
+  //   return;
+  // }
   e.preventDefault();
   if (!event.delta) {
     return;

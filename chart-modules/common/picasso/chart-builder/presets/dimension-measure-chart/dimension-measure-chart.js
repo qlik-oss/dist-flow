@@ -107,10 +107,6 @@ function DimensionMeasureChart(chartBuilder, opts) {
 
 export default DimensionMeasureChart;
 
-//
-// Privates
-//
-
 function addInteractionComponent(chartBuilder, interactionActions) {
   return chartBuilder.addInteraction({}, { gestures: interactionActions });
 }

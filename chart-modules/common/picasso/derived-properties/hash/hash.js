@@ -17,8 +17,8 @@ function generateHash(hashData) {
 
 function updateHash(properties, hashData) {
   if (!properties.qUndoExclude) {
-    properties.qUndoExclude = {}; // eslint-disable-line no-param-reassign
+    properties.qUndoExclude = {};
   }
 
-  properties.qUndoExclude.hashCode = hash.generateHash(hashData); // eslint-disable-line no-param-reassign
+  properties.qUndoExclude.hashCode = hash.generateHash(hashData);
 }

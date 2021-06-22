@@ -6,9 +6,6 @@ const explorePropertiesSortingDefinitionBuilder = {
 
 export default explorePropertiesSortingDefinitionBuilder;
 
-//
-// Implementation
-//
 function buildDefinition(baseHyperCubeDefPath, chartSortingPath, sortedDimensionPath, getSettingsFn, getElementIdsFn) {
   const dimensionSortCriteriaPath = `${sortedDimensionPath}.qDef.qSortCriterias.0.`;
 

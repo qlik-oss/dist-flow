@@ -1,5 +1,4 @@
 import extend from 'extend';
-// import Support from '../../../general/utils/support';
 import TooltipAction from './tooltip-actions';
 import formatting from '../formatting';
 import { createFilter, createContent } from './tooltip-content';
@@ -40,14 +39,6 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
 
   let tooltipContexts = {};
   let on = false;
-
-  // Override the default action in object.js (which does nothing). Other charts do the same in default-controller.js
-  if (tooltipApi) {
-    tooltipApi.cancel = function () {
-      // eslint-disable-line no-param-reassign
-      closeTooltip();
-    };
-  }
 
   // Not need for a function, so turned it into an object
   const fn = {};
@@ -129,7 +120,6 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
 
   function registerContext(context) {
     context.listeners.update = function (added, removed) {
-      // eslint-disable-line no-param-reassign
       const tooltipInfo = {
         data: context.data,
         headerResolver: context.headerResolver,
@@ -145,7 +135,6 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
       context.action.update(added, removed, tooltipInfo);
     };
     context.listeners.end = function () {
-      // eslint-disable-line no-param-reassign
       context.action.closeTooltip();
     };
 
@@ -209,9 +198,6 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
     closeTooltip();
   };
 
-  /* fn.destroy = function () {
-    } */
-
   return fn;
 }
 
@@ -220,8 +206,6 @@ export default {
     return Tooltips(chartInstance, tooltipApi, $element, chartType);
   },
 };
-
-// Internal Utils
 
 function createContext(options, chartInstance) {
   return {

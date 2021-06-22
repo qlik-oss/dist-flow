@@ -3,8 +3,8 @@ export default function init(Picasso) {
   Picasso.component('event-area', {
     mounted(element) {
       element.classList.add('event-area');
-      element.style.pointerEvents = 'auto'; // eslint-disable-line no-param-reassign
-      element.style.zIndex = 1; // eslint-disable-line no-param-reassign
+      element.style.pointerEvents = 'auto';
+      element.style.zIndex = 1;
     },
     render() {
       const nodes = [];

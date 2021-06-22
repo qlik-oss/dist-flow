@@ -3,12 +3,13 @@ import PicassoQ from 'picasso-plugin-q';
 import PicassoHammer from 'picasso-plugin-hammer';
 import Hammer from 'hammerjs';
 import eventArea from './plugins/event-area';
-// import DebugFlags from '../../core/utils/debug-flags';
 
 export default function setup() {
   const picasso = picassojs();
   // default to use canvas renderer
   picasso.renderer.prio(['canvas']);
+
+  // TODO: investigate picasso warnings
   // if (DebugFlags.DEVELOPER) {
   // picasso.logger.level(picassojs.logger.LOG_LEVEL.WARN);
   // }

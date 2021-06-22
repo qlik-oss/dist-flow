@@ -13,7 +13,7 @@ function mapArrayToObject(array, idProperty) {
   }
 
   const returnObject = {};
-  idProperty = idProperty || 'id'; // fall back on 'id'
+  idProperty = idProperty || 'id';
 
   array.forEach((item, index) => {
     const id = item[idProperty];

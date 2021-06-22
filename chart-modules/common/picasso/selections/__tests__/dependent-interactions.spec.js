@@ -100,7 +100,6 @@ describe('Dependent Interactions', () => {
     beforeEach(() => {
       interactions = DependentInteractions.create(handlers, 'vertical', false, keys, rangeSelStatus);
       gestures = interactions.gestures;
-      // clearTap = gestures[0];
       lasso = gestures[2];
       rangeDim = gestures[3];
       rangeMea = gestures[4];

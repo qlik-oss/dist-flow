@@ -18,7 +18,6 @@ function axis(settings, options) {
   const defaultSettings = {
     key: 'axis',
     type: 'axis',
-    // scale: "x",
     dock: axisDockUtil.getAxisDock(direction, dock, isRtl),
     brush: { trigger: [], consume: [] },
     settings: {
@@ -39,8 +38,7 @@ function axis(settings, options) {
         tiltAngle: isRtl ? -40 : 40,
         maxEdgeBleed: 75,
         maxSize: 150,
-        mode: 'auto', // , // TODO - assign from propery, same as other charts
-        // maxGlyphCount: 20 // TODO - sort out magic number + Picasso issue with numerical axis?
+        mode: 'auto',
       },
       ticks: {
         stroke: axisLineStroke,

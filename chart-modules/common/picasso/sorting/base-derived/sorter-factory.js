@@ -6,9 +6,6 @@ const sorterFactory = {
 
 export default sorterFactory;
 
-//
-//	Implementation details
-//
 function create(getSettingsFn, elementsRetriever) {
   return new Sorter(getSettingsFn, elementsRetriever);
 }

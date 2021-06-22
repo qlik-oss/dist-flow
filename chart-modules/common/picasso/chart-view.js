@@ -3,9 +3,6 @@ import { getValue, debouncer } from 'qlik-chart-modules';
 
 import BaseView from '../extra/base-view';
 import ChartBuilder from './chart-builder/chart-builder';
-// import Disclaimer from './disclaimer/disclaimer';
-// import InteractionStates from '../utils/interaction-states';
-// import States from '../utils/states';
 
 function getData(backendApi, hyperCube, rect) {
   let page = {
@@ -45,7 +42,7 @@ function getData(backendApi, hyperCube, rect) {
   }
 
   return backendApi.getData([page], null, hyperCube).then((pages) => {
-    hyperCube[dataPagesPath] = pages; // eslint-disable-line no-param-reassign
+    hyperCube[dataPagesPath] = pages;
   });
 }
 
@@ -71,7 +68,6 @@ const ChartView = BaseView.extend({
 
     // Set properties that should be available in subclasses
 
-    // this.picassoElement = $element.find('.picasso-chart')[0];
     this.picassoElement = $element[0];
     // Paint a visually empty Picasso chart containing an event-area component
     this.chartInstance = picasso.chart({
@@ -155,12 +151,11 @@ const ChartView = BaseView.extend({
   addSnapshotChartSettings(settings, layout) {
     if (!this.options.freeResize && layout.snapshotData) {
       settings.dockLayout.logicalSize = {
-        // eslint-disable-line no-param-reassign
         width: layout.snapshotData.content.size.w,
         height: layout.snapshotData.content.size.h,
       };
       if (this.options.maximizeSnapshot) {
-        settings.dockLayout.logicalSize.preserveAspectRatio = true; // eslint-disable-line no-param-reassign
+        settings.dockLayout.logicalSize.preserveAspectRatio = true;
       }
     }
   },

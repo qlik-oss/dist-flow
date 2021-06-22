@@ -27,7 +27,6 @@ function callLassoGesture(state, gesturesFns, gesturesParams) {
       },
       event: 'lasso',
     },
-    // recognizeWith: 'range drag',
     recognizeWith: gesturesParams.handlers.scrollHandler ? 'drag' : null,
     events: {
       lassostart(e) {
@@ -38,16 +37,16 @@ function callLassoGesture(state, gesturesFns, gesturesParams) {
         gesturesFns.switchTo('lasso', this.chart, e);
         state.lassoing = true;
         gesturesParams.handlers.selectionHandler.pauseEngineCalls(gesturesParams.keys.lassoBrushKey);
-        e.clientX = e.pointers[0].clientX; // eslint-disable-line no-param-reassign
-        e.clientY = e.pointers[0].clientY; // eslint-disable-line no-param-reassign
+        e.clientX = e.pointers[0].clientX;
+        e.clientY = e.pointers[0].clientY;
         gesturesFns.doEmit(this.chart, 'lasso', 'lassoStart', e);
       },
       lassomove(e) {
         if (!state.lassoing) {
           return;
         }
-        e.clientX = e.pointers[0].clientX; // eslint-disable-line no-param-reassign
-        e.clientY = e.pointers[0].clientY; // eslint-disable-line no-param-reassign
+        e.clientX = e.pointers[0].clientX;
+        e.clientY = e.pointers[0].clientY;
         gesturesFns.doEmit(this.chart, 'lasso', 'lassoMove', e);
       },
       lassoend(e) {
@@ -55,14 +54,14 @@ function callLassoGesture(state, gesturesFns, gesturesParams) {
           return;
         }
 
-        e.clientX = e.pointers[0].clientX; // eslint-disable-line no-param-reassign
-        e.clientY = e.pointers[0].clientY; // eslint-disable-line no-param-reassign
+        e.clientX = e.pointers[0].clientX;
+        e.clientY = e.pointers[0].clientY;
         gesturesFns.doEmit(this.chart, 'lasso', 'lassoEnd', e);
         gesturesParams.handlers.selectionHandler.resumeEngineCalls(gesturesParams.keys.lassoBrushKey, true);
-        state.lassoing = false; // eslint-disable-line no-param-reassign
+        state.lassoing = false;
       },
       lassocancel(e) {
-        state.lassoing = false; // eslint-disable-line no-param-reassign
+        state.lassoing = false;
         gesturesFns.doEmit(this.chart, 'lasso', 'lassoCancel', e);
         gesturesParams.handlers.selectionHandler.resumeEngineCalls(gesturesParams.keys.lassoBrushKey, false);
       },

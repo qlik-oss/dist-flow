@@ -8,7 +8,7 @@ describe('chart builder - ref-line util', () => {
   let theme;
   beforeEach(() => {
     theme = {
-      getStyle: jest.fn(),
+      getStyle: jest.fn((...args) => args.join('.')),
       getColorPickerColor: jest.fn().mockReturnValue('theme color'),
     };
   });
@@ -74,10 +74,8 @@ describe('chart builder - ref-line util', () => {
           vAlign: 0.2,
           align: 0.8,
           fill: 'theme color',
-          // fontFamily: 'QlikView Sans, sans-serif',
-          // fontSize: '12px',
-          fontFamily: undefined,
-          fontSize: undefined,
+          fontFamily: '.referenceLine.label.name.fontFamily',
+          fontSize: '.referenceLine.label.name.fontSize',
           maxWidthPx: 135,
         },
       });

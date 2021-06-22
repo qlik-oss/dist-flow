@@ -8,8 +8,19 @@ describe('chart builder - labels component', () => {
   let theme;
 
   beforeEach(() => {
+    const themeValues = {
+      fontFamily: 'QlikView Sans, sans-serif',
+      fontSize: '13px',
+      color: '#333333',
+    };
     theme = {
-      getStyle: jest.fn(),
+      getStyle: jest.fn((chart, path, attr) => {
+        const r = themeValues[attr];
+        if (!r) {
+          console.log('missing', attr);
+        }
+        return r;
+      }),
     };
 
     expectedSettings = {
@@ -61,10 +72,10 @@ describe('chart builder - labels component', () => {
     expect(labelSettings.key).to.equal('labels');
     expect(labelSettings.settings.sources[0].component).to.equal('box-marker');
     expect(labelSettings.settings.sources[0].strategy.settings.direction).to.equal('up');
-    // expect(labelSettings.settings.sources[0].strategy.settings.fontFamily).to.equal('QlikView Sans, sans-serif');
-    // expect(labelSettings.settings.sources[0].strategy.settings.fontSize).to.equal(13);
+    expect(labelSettings.settings.sources[0].strategy.settings.fontFamily).to.equal('QlikView Sans, sans-serif');
+    expect(labelSettings.settings.sources[0].strategy.settings.fontSize).to.equal(13);
     expect(labelSettings.settings.sources[0].strategy.settings.labels[0].placements.length).to.equal(2);
-    // expect(labelSettings.settings.sources[0].strategy.settings.labels[0].placements[0].fill).to.equal('#333333');
+    expect(labelSettings.settings.sources[0].strategy.settings.labels[0].placements[0].fill).to.equal('#333333');
   });
 
   it('should apply the color change from insideColorSettings', () => {

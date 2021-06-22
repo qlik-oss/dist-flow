@@ -2,7 +2,6 @@ import { getValue, setValue } from 'qlik-chart-modules';
 import attributeExpsUtil from '../extra/attribute-expression-util';
 import LogicHelper from '../extra/property-logic-helper';
 import NumberFormatUtil from '../extra/number-format-util';
-// import { isEnabled } from '../../../services/feature-flags';
 
 // Hardcoded hack. Should be fixed when we have a better solution.
 // This solves the problem with supporting base colors for old objects.
@@ -59,18 +58,6 @@ export default {
       }
     } else if (!auto && mode === 'byMeasure' && dimensions.length) {
       throw new Error('not suported in any 444-chart');
-      // item = getValue(markerSettings, 'byMeasureDef');
-
-      // if (item) {
-      //   setAltLabel(markerSettings, item.label);
-      // }
-
-      // if ((!item || !item.key) && measures.length) {
-      //   const mea = measures[0];
-      //   dim = dimensions[dimensions.length - 1];
-      //   attrDim = attributeExpsUtil.getById(dim.qAttributeExpressions, attributeExpsUtil.IDMAP.COLOR_BY_ALTERNATIVE);
-      //   setColorByPropertyDef(markerSettings, LogicHelper.getColorByDefinition('measure', !!attrDim, attrDim || mea));
-      // }
     } else if (mode === 'byMultiple' && measures.length < 2) {
       setValue(markerSettings, 'mode', 'primary');
     }

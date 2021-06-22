@@ -1,6 +1,5 @@
 import chai from 'chai';
 import sinon from 'sinon';
-// import util from '../../../../../../../js/lib/util';
 import ChartBuilder from '../../../chart-builder';
 import dimensionMeasureChart from '../dimension-measure-chart';
 

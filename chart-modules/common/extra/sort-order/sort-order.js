@@ -84,7 +84,7 @@ function expression(ref, isReverseSortFn) {
     type: 'number',
     component: 'expression',
     expressionType: 'ValueExpr',
-    ref: 'qExpression', // TODO not configurable
+    ref: 'qExpression',
     translation: 'Common.Expression',
     defaultValue: '',
     show(itemData) {

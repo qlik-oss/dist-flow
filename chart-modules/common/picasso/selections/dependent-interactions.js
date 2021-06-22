@@ -12,7 +12,7 @@ import navBtnGesture from './gestures/navigational-button-gesture';
 function DependentInteractions(handlers, orientation, isRtl, keys, rangeSelStatus) {
   const ret = {};
 
-  orientation = orientation || 'vertical'; // eslint-disable-line no-param-reassign
+  orientation = orientation || 'vertical';
 
   const lassoBrushKey = keys.lassoBrushKey || 'select';
   const dimRangeBrushKey = keys.dimRangeBrushKey || null;
@@ -22,8 +22,6 @@ function DependentInteractions(handlers, orientation, isRtl, keys, rangeSelStatu
 
   const hasSelections = !!handlers.selectionHandler;
 
-  //	var rangeing = false;
-  //	var rangeActive = false;
   const state = {
     dragging: false,
     lassoing: false,
@@ -102,7 +100,6 @@ function DependentInteractions(handlers, orientation, isRtl, keys, rangeSelStatu
   const gesturesFns = {
     isSelectionEnabled: () => handlers.selectionHandler && handlers.selectionHandler.isOn(),
     isNavigationEnabled: () => handlers.scrollHandler && handlers.scrollHandler.isOn(),
-    // isEnabledFn,
     doEmit,
     switchTo,
     getBrushConfig,

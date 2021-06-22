@@ -19,7 +19,6 @@ describe('chart-view', () => {
     $container = $('<div style="width: 600px; height: 400px;"><div class="picasso-chart"></div></div>');
 
     scope = null;
-    // qvangular.getService('$compile')($container)(scope);
 
     backendApi = {
       getData: jest.fn().mockReturnValue({ then() {} }),

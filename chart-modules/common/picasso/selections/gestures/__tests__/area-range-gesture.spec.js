@@ -71,7 +71,7 @@ describe('Area range gesture', () => {
         brush(context) {
           return {
             clear() {
-              context = ''; // eslint-disable-line no-param-reassign
+              context = '';
               return context;
             },
           };

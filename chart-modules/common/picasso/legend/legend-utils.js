@@ -1,6 +1,3 @@
-// import Touche from 'touchejs';
-// import translator from '../../../../js/lib/translator';
-
 // TODO: fix
 const Touche = {
   preventGestures: () => {},
@@ -103,7 +100,7 @@ function categoricalDimensionLegendSettings(options) {
     prioOrder: LEGEND_PRIO_ORDER,
     renderer: 'svg',
     mounted(el) {
-      el.children[0].style.pointerEvents = 'none'; // eslint-disable-line no-param-reassign
+      el.children[0].style.pointerEvents = 'none';
     },
     scale: {
       type: 'categorical-color',
@@ -193,7 +190,6 @@ function sequentialLegendSettings(options) {
     prioOrder: LEGEND_PRIO_ORDER,
     settings: {
       fill: {
-        // source: colorSettings.source,
         type: 'color',
         range,
         domain,
@@ -201,7 +197,6 @@ function sequentialLegendSettings(options) {
         max,
       },
       major: {
-        // source: colorSettings.source,
         type: 'linear',
         min,
         max,
