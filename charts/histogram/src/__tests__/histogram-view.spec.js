@@ -14,7 +14,6 @@ describe('Histogram', () => {
   let options;
   let backendApi;
   let selectionsApi;
-  let tooltipApi;
   let properties;
   let lasso;
   let flags;
@@ -90,18 +89,13 @@ describe('Histogram', () => {
       watchActivated() {},
     };
 
-    tooltipApi = {
-      cancel() {},
-      destroy() {},
-    };
-
     lasso = null;
     flags = null;
     picasso = picassoSetup();
     translator = null;
     theme = null;
 
-    histogram = new Histogram(
+    histogram = new Histogram({
       lasso,
       flags,
       picasso,
@@ -111,8 +105,7 @@ describe('Histogram', () => {
       options,
       backendApi,
       selectionsApi,
-      tooltipApi
-    );
+    });
   });
 
   afterEach(() => {

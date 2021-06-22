@@ -66,27 +66,12 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
       registerContext(context);
     }
 
-    const tooltipInfo = {
-      data: context.data,
-      headerResolver: context.headerResolver,
-      rowResolver: context.rowResolver,
-      direction: context.direction,
-      chartView: context.chartView,
-      attrDimPath: context.attrDimPath,
-      measureRows: context.measureRows,
-      labelData: context.labelData,
-      filterShapes: context.filterShapes,
-      dataPath: opts.dataPath,
-      renderer: opts.renderer,
-      chartInstance,
-    };
-
     const component = createTooltip({
       key: opts.tooltipKey,
       rtl: context.direction === 'rtl',
-      fontFamily: opts.chartView.theme.getStyle(chartType, 'tooltip', 'fontFamily'),
+      fontFamily: context.theme.getStyle(chartType, 'tooltip', 'fontFamily'),
       filter: createFilter(context.filterShapes),
-      content: createContent(tooltipInfo, opts.dataPath),
+      content: createContent(context, opts.dataPath),
     });
 
     const settings = opts.chartBuilder.getSettings();
@@ -120,19 +105,7 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
 
   function registerContext(context) {
     context.listeners.update = function (added, removed) {
-      const tooltipInfo = {
-        data: context.data,
-        headerResolver: context.headerResolver,
-        rowResolver: context.rowResolver,
-        direction: context.direction,
-        chartView: context.chartView,
-        attrDimPath: context.attrDimPath,
-        measureRows: context.measureRows,
-        labelData: context.labelData,
-        filterShapes: context.filterShapes,
-      };
-
-      context.action.update(added, removed, tooltipInfo);
+      context.action.update(added, removed, context);
     };
     context.listeners.end = function () {
       context.action.closeTooltip();
@@ -218,16 +191,22 @@ function createContext(options, chartInstance) {
       options.contexts[0],
       options.tooltipKey
     ),
+    chartInstance,
+    dataPath: options.dataPath,
+    renderer: options.renderer,
     data: options.data,
     headerResolver: options.headerResolver,
     rowResolver: options.rowResolver,
     listeners: {},
     direction: options.direction,
-    chartView: options.chartView,
+    colorService: options.colorService,
     attrDimPath: options.attrDimPath,
     measureRows: options.measureRows,
     labelData: options.labelData,
     filterShapes: options.filterShapes,
+
+    theme: options.theme,
+    translator: options.translator,
     treatAsDesktop: options.deviceType !== 'touch',
   };
 }

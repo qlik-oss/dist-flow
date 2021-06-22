@@ -14,11 +14,12 @@ const chartID = 'object.histogram';
 // Implementation details
 //
 
-function init(lasso, flags, picasso, translator, theme, $element, options, backendApi, selectionsApi, tooltipApi) {
+function init({ deviceType, lasso, picasso, translator, theme, $element, options, backendApi, selectionsApi }) {
+  const tooltipApi = null;
   this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
-  this.flags = flags;
   this.translator = translator;
   this.theme = theme;
+  this.deviceType = deviceType;
 
   this.picassoElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
 

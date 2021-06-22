@@ -1,8 +1,10 @@
 import {
   useConstraints,
+  useDeviceType,
   useEffect,
   useElement,
   useModel,
+  useOptions,
   usePromise,
   useSelections,
   useState,
@@ -23,6 +25,7 @@ import ext from './ext';
 import BackednAPi from './backend-api';
 
 function useView(env, picasso) {
+  const deviceType = useDeviceType();
   const element = useElement();
   const selections = useSelections();
   const layout = useStaleLayout();
@@ -30,27 +33,27 @@ function useView(env, picasso) {
   const translator = useTranslator();
   const theme = useTheme();
   const lasso = useLasso();
+  const options = useOptions();
 
   const [instance, setInstance] = useState();
   useEffect(() => {
-    const $element = $(element);
-    const options = null;
     const backendApi = new BackednAPi(model);
-    const selectionsApi = selections;
-    const tooltipApi = null;
-    const view = new ChartView(
-      lasso,
-      env.flags,
-      layout,
-      picasso,
-      translator,
-      theme,
-      $element,
-      options,
+
+    const view = new ChartView({
+      $element: $(element),
       backendApi,
-      selectionsApi,
-      tooltipApi
-    );
+      deviceType,
+      flags: env.flags,
+      lasso,
+      layout,
+      selectionsApi: selections,
+      options,
+      picasso,
+      theme,
+      translator,
+
+      
+    });
 
     setInstance(view);
 
@@ -86,7 +89,8 @@ function useUpdate(instance) {
     // TODO: confim selection if triggered from engine (another websocket to the same session (browser tab))
 
     await instance.updateData(layout);
-    await instance.paint();
+    const $element = null;
+    await instance.paint($element, layout);
   }, [layout, instance, theme.name()]);
   if (error) {
     throw error;

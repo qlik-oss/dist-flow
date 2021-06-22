@@ -99,7 +99,9 @@ function createChartSettings(chartView, layout) {
   if (chartView._tooltipHandler.isOn()) {
     tooltipSettings.box = chartView._tooltipHandler.setUp({
       chartBuilder,
-      chartView,
+      theme: chartView.theme,
+      translator: chartView.translator,
+      deviceType: chartView.deviceType,
       data: [''],
       contexts: ['boxTip'],
       componentKey: 'box-marker',

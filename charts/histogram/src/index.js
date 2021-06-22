@@ -1,8 +1,10 @@
 import {
   useConstraints,
+  useDeviceType,
   useEffect,
   useElement,
   useModel,
+  useOptions,
   usePromise,
   useSelections,
   useState,
@@ -32,35 +34,34 @@ export default function supernova(env) {
     },
     ext: ext(env),
     component() {
+      const constraints = useConstraints();
+      const deviceType = useDeviceType();
       const element = useElement();
+      const lasso = useLasso();
+      const model = useModel();
+      const options = useOptions();
       const selections = useSelections();
       const layout = useStaleLayout();
-      const model = useModel();
-      const constraints = useConstraints();
-      const translator = useTranslator();
       const theme = useTheme();
-      const lasso = useLasso();
+      const translator = useTranslator();
 
       const [instance, setInstance] = useState();
 
       useEffect(() => {
         const $element = $(element);
-        const options = null;
         const backendApi = new BackednAPi(model);
         const selectionsApi = selections;
-        const tooltipApi = null;
-        const view = new ChartView(
-          lasso,
-          env.flags,
-          picasso,
-          translator,
-          theme,
+        const view = new ChartView({
           $element,
-          options,
           backendApi,
+          deviceType,
+          lasso,
+          options,
+          picasso,
           selectionsApi,
-          tooltipApi
-        );
+          theme,
+          translator,
+        });
 
         setInstance(view);
 

@@ -159,12 +159,14 @@ function isSingleSelect(layout, index) {
 const DistributionPlot = ChartView.extend('DistributionPlot', {
   namespace: '.distributionPlot',
 
-  init(lasso, flags, picasso, translator, theme, $element, options, backendApi, selectionsApi, tooltipApi) {
+  init({ deviceType, lasso, flags, picasso, translator, theme, $element, options, backendApi, selectionsApi }) {
+    const tooltipApi = null;
     this._super(picasso, $element, options, backendApi, selectionsApi);
     this.flags = flags;
     this.translator = translator;
     this.theme = theme;
     this.picasso = picasso;
+    this.deviceType = deviceType;
 
     this.picassoElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
 
@@ -592,7 +594,6 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       };
     }
     const tooltipSettings = { point: {}, box: {} };
-    const self = this;
     if (this._tooltipHandler.isOn()) {
       tooltipSettings.point = this._tooltipHandler.setUp({
         chartBuilder,
@@ -600,7 +601,9 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         contexts: ['pointTip'],
         componentKey: 'point-marker',
         direction: this.options.direction,
-        chartView: self,
+        theme: this.theme,
+        translator: this.translator,
+        deviceType: this.deviceType,
         attrDimPath: `/${HYPERCUBE_PATH}/qDimensionInfo/${
           hypercubeUtil.hasSecondDimension(layout, DATA_PATH) ? 1 : 0
         }/qAttrDimInfo/0`,

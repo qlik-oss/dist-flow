@@ -19,14 +19,14 @@ function filterDuplicateShapes(shapes) {
 export const createFilter = (filterShapes) => (shapes) =>
   filterShapes ? filterShapes(shapes) : filterDuplicateShapes(shapes);
 
-export const createContent = (tooltipInfo) => ({ h, data, style }) => {
-  const content = extractContent(tooltipInfo, data);
+export const createContent = (context) => ({ h, data, style }) => {
+  const content = extractContent(context, data);
   const renderSettings = {
     h,
     style,
-    translator: tooltipInfo.chartView.translator,
+    translator: context.translator,
   };
-  return tooltipInfo.renderer(renderSettings, content);
+  return context.renderer(renderSettings, content);
 };
 
 function extractContent(tooltipInfo, uniqueShapes) {
@@ -104,7 +104,7 @@ function getOthersIndex(values) {
  */
 function getColorByDimData(tooltipInfo, shape) {
   const colorData = shape.data.color;
-  const colorSettings = tooltipInfo.chartView.colorService?.getSettings?.();
+  const colorSettings = tooltipInfo.colorService?.getSettings?.();
 
   if (!colorSettings || colorSettings.type === 'color' || !colorData || !colorSettings.fieldType) {
     return undefined;
@@ -119,9 +119,9 @@ function getColorByDimData(tooltipInfo, shape) {
   });
   const othersIndex = getOthersIndex(ids);
 
+  const { translator } = tooltipInfo.nebulaContext;
   const label = colorSettings.label;
   const color = shape.attrs?.fill;
-  const value =
-    othersIndex !== -1 ? tooltipInfo.chartView.translator.get('properties.dimensionLimits.others') : colorData.label;
+  const value = othersIndex !== -1 ? translator.get('properties.dimensionLimits.others') : colorData.label;
   return { color, label, value };
 }

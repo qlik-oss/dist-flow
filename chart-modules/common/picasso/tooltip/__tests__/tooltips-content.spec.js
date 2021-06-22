@@ -14,10 +14,10 @@ function nullShape() {
 describe('tooltip-contnet', () => {
   const h = null;
   const style = null;
-  let tooltipInfo;
+  let context;
 
   beforeEach(() => {
-    tooltipInfo = {
+    context = {
       headerResolver: (values) => values,
       rowResolver: (field, measureContent) => ({ value: measureContent, label: 'label' }),
       labelData: ['inner'],
@@ -29,15 +29,13 @@ describe('tooltip-contnet', () => {
         }),
       },
       renderer: (settings, x) => x,
-      chartView: {
-        translator: null,
-      },
+      translator: null,
     };
   });
 
   test('should not show for null values', () => {
     const data = [nullShape()];
-    const content = createContent(tooltipInfo)({ h, data, style });
+    const content = createContent(context)({ h, data, style });
     expect(content).toBeUndefined();
   });
 
@@ -46,7 +44,7 @@ describe('tooltip-contnet', () => {
     for (let i = 0; i < 30; i++) {
       data.push(createShape(i));
     }
-    const content = createContent(tooltipInfo)({ h, data, style });
+    const content = createContent(context)({ h, data, style });
     expect(content.numberInExcess).toEqual(25);
   });
-})
+});

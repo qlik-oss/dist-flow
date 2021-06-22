@@ -2,9 +2,11 @@ import {
   useApp,
   useAppLayout,
   useConstraints,
+  useDeviceType,
   useEffect,
   useElement,
   useModel,
+  useOptions,
   usePromise,
   useSelections,
   useState,
@@ -44,18 +46,19 @@ export default function supernova(env) {
       const lasso = useLasso();
       const app = useApp();
       const appLayout = useAppLayout();
+      const options = useOptions();
+      const deviceType = useDeviceType();
 
       const [instance, setInstance] = useState();
 
       useEffect(() => {
         const $element = $(element);
-        const options = null;
         const backendApi = new BackednAPi(model);
         const selectionsApi = selections;
-        const tooltipApi = null;
-        const view = new ChartView(
+        const view = new ChartView({
+          deviceType,
           lasso,
-          env.flags,
+          flags: env.flags,
           picasso,
           translator,
           theme,
@@ -63,8 +66,7 @@ export default function supernova(env) {
           options,
           backendApi,
           selectionsApi,
-          tooltipApi
-        );
+        });
         view.app = app;
         setInstance(view);
 

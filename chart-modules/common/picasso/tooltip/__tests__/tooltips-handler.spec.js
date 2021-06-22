@@ -12,11 +12,11 @@ describe('tooltip-handler for picasso', () => {
   let openMock;
 
   let tooltipBrush;
-  const tooltipApi = { cancel() {} };
+  let translator;
+  let theme;
   let actionInstance;
   let restoreFunc;
   let chartBuilder;
-  let chartView;
 
   beforeEach(() => {
     sandbox = sinon.createSandbox();
@@ -38,14 +38,13 @@ describe('tooltip-handler for picasso', () => {
       },
       getSettings: () => chartBuilder.settings,
     };
-    chartView = {
-      translator: (x) => x,
-      theme: {
-        getStyle: () => 'mumbojumbo-font',
-      },
+
+    translator = (x) => x;
+    theme = {
+      getStyle: () => 'mumbojumbo-font',
     };
 
-    handler = TooltipHandler.create(PicassoMock.chartInstance, tooltipApi);
+    handler = TooltipHandler.create(PicassoMock.chartInstance);
     restoreFunc = TooltipActions.create;
     TooltipActions.create = function (chartInstance, componentKey, data, dataPath, context, template, duration) {
       actionInstance = restoreFunc(chartInstance, componentKey, data, dataPath, context, template, duration);
@@ -62,7 +61,7 @@ describe('tooltip-handler for picasso', () => {
 
   it('should add listeners if already on', () => {
     handler.on();
-    handler.setUp({ chartBuilder, chartView, componentKey: 'layer' });
+    handler.setUp({ chartBuilder, theme, translator, componentKey: 'layer' });
     expect(tooltipBrush.callbacks.update).to.be.ok;
     expect(tooltipBrush.callbacks.end).to.be.ok;
   });
@@ -94,8 +93,8 @@ describe('tooltip-handler for picasso', () => {
     const onSpy = sinon.spy(tooltipBrush, 'on');
     const offSpy = sinon.spy(tooltipBrush, 'removeListener');
     handler.on();
-    handler.setUp({ chartBuilder, chartView, componentKey: 'layer' });
-    handler.setUp({ chartBuilder, chartView, componentKey: 'layer' });
+    handler.setUp({ chartBuilder, theme, translator, componentKey: 'layer' });
+    handler.setUp({ chartBuilder, theme, translator, componentKey: 'layer' });
     expect(onSpy.callCount).to.equal(4);
     expect(offSpy.callCount).to.equal(2);
   });
@@ -104,7 +103,8 @@ describe('tooltip-handler for picasso', () => {
     beforeEach(() => {
       handler.setUp({
         chartBuilder,
-        chartView,
+        theme,
+        translator,
         dataPath: 'qHyperCube',
         data: ['self'],
         componentKey: 'pointLayer',
@@ -194,15 +194,28 @@ describe('tooltip-handler for picasso', () => {
       expect(tooltipBrush.callbacks.update).to.not.be.ok;
       expect(tooltipBrush.callbacks.end).to.not.be.ok;
     });
-    it.skip('should add/remove touch listeners correctly', () => {
-      handler.off();
-      handler.on();
-      handler.on(); // Double here to check that it won't crash
-      expect(tooltipBrush.callbacks['set-values']).to.be.ok;
-      expect(tooltipBrush.callbacks.end).to.be.ok;
-      handler.off();
-      expect(tooltipBrush.callbacks['set-values']).to.not.be.ok;
-      expect(tooltipBrush.callbacks.end).to.not.be.ok;
+  });
+
+  it('when deviceType is touch use set-values', () => {
+    handler.setUp({
+      chartBuilder,
+      theme,
+      translator,
+      deviceType: 'touch',
+      dataPath: 'qHyperCube',
+      data: ['self'],
+      componentKey: 'pointLayer',
+      contexts: ['tooltip'],
+      headerResolver() /* b, index */ {
+        // First brush is dimension value, get the value
+        return 'HEADER';
+      },
+      direction: 'ltr',
+      measureRows: ['x'],
+      labelData: ['inner', 'outer'],
     });
+    handler.on();
+    expect(tooltipBrush.callbacks['set-values']).to.be.ok;
+    expect(tooltipBrush.callbacks.end).to.be.ok;
   });
 });

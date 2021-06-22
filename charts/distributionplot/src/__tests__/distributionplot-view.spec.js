@@ -13,7 +13,6 @@ describe('Distributionplot', () => {
   let options;
   let backendApi;
   let selectionsApi;
-  let tooltipApi;
   let lasso;
   let flags;
   let picasso;
@@ -63,7 +62,6 @@ describe('Distributionplot', () => {
       watchDeactivated() {},
       watchActivated() {},
     };
-    tooltipApi = {};
     lasso = null;
     flags = null;
     picasso = picassoSetup();
@@ -82,7 +80,7 @@ describe('Distributionplot', () => {
     options.viewState = { scroll: 70 };
     backendApi.model.layout.qUndoExclude.qHyperCube.qStackedDataPages[0].qData[0].qSubNodes.length = 27;
     backendApi.model.layout.qUndoExclude.qHyperCube.qStackedDataPages[0].qData[0].qDown = 73;
-    distributionplot = new DistributionPlot(
+    distributionplot = new DistributionPlot({
       lasso,
       flags,
       picasso,
@@ -92,8 +90,7 @@ describe('Distributionplot', () => {
       options,
       backendApi,
       selectionsApi,
-      tooltipApi
-    );
+    });
     distributionplot.layout = backendApi.model.layout;
     sandbox.stub(distributionplot, 'getSlicedData').returns(Promise.resolve());
     sandbox.stub(distributionplot._scrollHandler, 'getScrollViewSizeInItem').returns(30);
@@ -105,7 +102,7 @@ describe('Distributionplot', () => {
 
   it('should not render distribution plot when no data', () => {
     backendApi.model.layout.qUndoExclude.qHyperCube.qStackedDataPages = [{ qData: [] }];
-    distributionplot = new DistributionPlot(
+    distributionplot = new DistributionPlot({
       lasso,
       flags,
       picasso,
@@ -115,8 +112,7 @@ describe('Distributionplot', () => {
       options,
       backendApi,
       selectionsApi,
-      tooltipApi
-    );
+    });
     const result = distributionplot.createChartSettings(backendApi.model.layout);
     expect(result.components).to.eql([]);
   });

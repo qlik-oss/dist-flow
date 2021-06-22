@@ -1,5 +1,6 @@
 import {
   useConstraints,
+  useDeviceType,
   useEffect,
   useElement,
   useOptions,
@@ -36,6 +37,7 @@ export default function supernova(env) {
     },
     ext: ext(env),
     component() {
+      const deviceType = useDeviceType();
       const element = useElement();
       const layout = useStaleLayout();
       const constraints = useConstraints();
@@ -47,7 +49,7 @@ export default function supernova(env) {
 
       useEffect(() => {
         const $element = $(element);
-        const view = new ChartView(picasso, translator, theme, $element, options);
+        const view = new ChartView({ picasso, deviceType, translator, theme, $element, options });
 
         setInstance(view);
 
@@ -61,7 +63,6 @@ export default function supernova(env) {
           return;
         }
         instance.options = options;
-        // update theme
         instance.theme = theme;
         instance.updateConstraints(constraints);
 

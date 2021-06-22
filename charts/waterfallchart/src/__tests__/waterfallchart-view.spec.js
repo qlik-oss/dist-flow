@@ -59,7 +59,7 @@ describe('Waterfallchart-view', () => {
     options.navigation = true;
     options.viewState = { scroll: 5 };
     layout.generatedMatrix.length = 15;
-    waterfallchart = new WaterfallChartView(picasso, translator, theme, $element, options);
+    waterfallchart = new WaterfallChartView({ picasso, translator, theme, $element, options });
     waterfallchart.layout = layout;
     sandbox.stub(waterfallchart._scrollHandler, 'getScrollViewSizeInItem').returns(10);
     await waterfallchart.updateData(layout);
@@ -73,7 +73,7 @@ describe('Waterfallchart-view', () => {
     layout.generatedMatrix.length = 15;
     layout.generated.qHyperCube.qDataPages[0].qArea = { qTop: 3, qHeight: 12 };
     layout.snapshotData = true;
-    waterfallchart = new WaterfallChartView(picasso, translator, theme, $element, options);
+    waterfallchart = new WaterfallChartView({ picasso, translator, theme, $element, options });
     waterfallchart.layout = layout;
     await waterfallchart.updateData(layout);
 

@@ -1,5 +1,3 @@
-/* eslint no-param-reassign: ["error", { "props": true }] */
-
 import extend from 'extend';
 import { getValue } from 'qlik-chart-modules';
 
@@ -18,13 +16,9 @@ import chartStyleUtils from '@qlik/common/extra/chart-style-utils';
 import ObjectUtils from '@qlik/common/extra/object-utils';
 import Color from '@qlik/common/extra/color-cache';
 
-// import qvangular from '../../../assets/qvangular/qvangular';
-
 import DataScroller from './boxplot-data-scroller';
 import CubeGenerator from './boxplot-cubes-generator';
 import tooltipRenderer from './boxplot-box-tooltip-renderer';
-// import boxplotTooltipTemplate from './boxplot-tooltip/boxplot-tooltip-picture.ng.html';
-// import './boxplot-tooltip/boxplot-tooltip-picture-directive';
 
 const chartID = 'object.boxPlot';
 const dataPath = 'qUndoExclude';
@@ -196,9 +190,11 @@ function getColorFromExpValue(obj, theme) {
 const BoxPlot = ChartView.extend('BoxPlot', {
   namespace: '.boxplot',
 
-  init(lasso, flags, layout, picasso, translator, theme, $element, options, backendApi, selectionsApi, tooltipApi) {
+  init({ $element, backendApi, deviceType, flags, lasso, layout, selectionsApi, options, picasso, theme, translator }) {
+    const tooltipApi = null;
     this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
     this.flags = flags;
+    this.deviceType = deviceType;
     this.translator = translator;
     this.theme = theme;
 
@@ -589,7 +585,6 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     const chartBuilder = ChartBuilder.create({
       chartID,
       theme: this.theme,
-      // layoutMode: this.getLayoutMode(layout),
     });
 
     let dimAxisSelectionSettings = {};
@@ -628,7 +623,9 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     if (this._tooltipHandler.isOn()) {
       tooltipSettings.point = this._tooltipHandler.setUp({
         chartBuilder,
-        chartView: this,
+        theme: this.theme,
+        translator: this.translator,
+        deviceType: this.deviceType,
         tooltipKey: 'point-tooltip',
         dataPath: OUTLIERS_PATH,
         data: hasSecondDimension ? ['inner', dimensionDirection] : ['inner'],
@@ -646,7 +643,9 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       });
       tooltipSettings.box = this._tooltipHandler.setUp({
         chartBuilder,
-        chartView: this,
+        theme: this.theme,
+        translator: this.translator,
+        deviceType: this.deviceType,
         tooltipKey: 'box-tooltip',
         renderer: tooltipRenderer,
         dataPath: BOX_PATH,

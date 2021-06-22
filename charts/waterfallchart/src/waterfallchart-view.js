@@ -17,11 +17,12 @@ const BAR_WIDTH_RATIO = 0.7;
 // Implementation details
 //
 
-function init(picasso, translator, theme, $element, options) {
+function init({ picasso, deviceType, translator, theme, $element, options }) {
   const backendApi = null;
   const selectionsApi = null;
   const tooltipApi = null;
   this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
+  this.deviceType = deviceType;
   this.translator = translator;
   this.theme = theme;
   this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
@@ -282,7 +283,9 @@ function createChartSettings(layout) {
   const tooltipSettings = {};
   tooltipSettings.box = this._tooltipHandler.setUp({
     chartBuilder,
-    chartView: this,
+    theme: this.theme,
+    translator: this.translator,
+    deviceType: this.deviceType,
     data: [''],
     contexts: ['boxTip'],
     componentKey: 'box-marker',
