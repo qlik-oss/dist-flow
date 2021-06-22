@@ -202,14 +202,14 @@ function updateData(layout) {
   });
 }
 
-function paint($element) {
+function paint() {
   const undoExclude = this.layout.qUndoExclude;
   if (!undoExclude) {
     return Promise.resolve(false);
   }
   const haveBoxData = undoExclude.box && undoExclude.box.qHyperCube.qDataPages.length;
   if (haveBoxData) {
-    return this._super($element);
+    return this._super();
   }
   return Promise.resolve(false);
 }

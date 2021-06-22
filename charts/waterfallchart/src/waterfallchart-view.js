@@ -442,12 +442,12 @@ function updateOnScrollViewChanged(chart) {
   chart._scrollHandler.onResize();
 }
 
-function resize($element, layout) {
+function resize() {
   updateOnScrollViewChanged(this);
-  this._super($element, layout);
+  this._super();
 }
 
-function paint($element) {
+function paint() {
   const isSnapshot = !!this.layout.snapshotData;
   if (!isSnapshot && !this.options.viewState) {
     updateScrollHandlerState.call(this, false);
@@ -461,9 +461,9 @@ function paint($element) {
   if (!isSnapshot && this._scrollHandler.isDataSizeChanged(pageNumberOfRows, datasetNumberOfRows)) {
     const _super = this._super;
     const self = this;
-    return this._scrollHandler.getViewData().finally(() => _super.call(self, $element));
+    return this._scrollHandler.getViewData().finally(() => _super.call(self));
   }
-  return this._super($element);
+  return this._super();
 }
 
 const waterfallChartView = ChartView.extend('WaterfallChart', {

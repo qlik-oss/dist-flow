@@ -10,9 +10,6 @@ describe('chart-view', () => {
   let selectionsApi;
   let myChart;
   let layout;
-  let $element;
-  let $width;
-  let $height;
 
   beforeEach(() => {
     $container = $('<div style="width: 600px; height: 400px;"><div class="picasso-chart"></div></div>');
@@ -47,17 +44,6 @@ describe('chart-view', () => {
         qMeasureInfo: [],
       },
     };
-
-    $width = 100;
-    $height = 200;
-    $element = {
-      width() {
-        return $width;
-      },
-      height() {
-        return $height;
-      },
-    };
   });
 
   test('initializes a chart', () => {
@@ -66,13 +52,13 @@ describe('chart-view', () => {
 
   test('paints a chart', async () => {
     myChart.layout = layout;
-    await myChart.paint($element);
+    await myChart.paint();
     expect(myChart.createChartSettings).toHaveBeenCalledWith(myChart.layout);
   });
 
   test('resizes a chart', () => {
     myChart.layout = layout;
-    myChart.resize($element, layout);
+    myChart.resize();
     expect(myChart.createChartSettings).toHaveBeenCalledWith(myChart.layout);
   });
 
@@ -85,12 +71,6 @@ describe('chart-view', () => {
     expect(myChart.layout).not.toBe(layout);
     expect(myChart.layout.permissions).toEqual(layout.permissions);
     expect(myChart.layout).toEqual(layout);
-  });
-
-  test.skip('sets freeResize', () => {
-    expect(myChart.options.freeResize).to.be.undefined; // TODO I would expect this to be false
-    myChart.setFreeResize(true);
-    expect(myChart.options.freeResize).toEqual(true);
   });
 
   test.skip('hasOption function', () => {
@@ -153,7 +133,7 @@ describe('chart-view', () => {
 
   test.skip('destroys a chart', () => {
     myChart.layout = layout;
-    myChart.paint(null);
+    myChart.paint();
     myChart.destroy();
     // expect(chartElement.innerHTML).toEqual("");
   });

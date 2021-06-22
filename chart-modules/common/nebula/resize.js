@@ -1,7 +1,6 @@
-import { useOptions, usePromise, useRect, useStaleLayout } from '@nebula.js/stardust';
+import { useOptions, usePromise, useRect } from '@nebula.js/stardust';
 
 export default function useResize(chartInstance) {
-  const layout = useStaleLayout();
   const rect = useRect();
   const options = useOptions();
 
@@ -10,8 +9,7 @@ export default function useResize(chartInstance) {
       return;
     }
     chartInstance.options = options;
-    const $element = null;
-    await chartInstance.resize($element, layout);
+    await chartInstance.resize();
   }, [rect.width, rect.height]);
 
   if (error) {

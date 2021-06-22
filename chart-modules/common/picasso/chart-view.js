@@ -1,7 +1,7 @@
 import extend from 'extend';
 import { getValue, debouncer } from 'qlik-chart-modules';
 
-import BaseView from '../extra/base-view';
+import Class from '../extra/class';
 import ChartBuilder from './chart-builder/chart-builder';
 
 function getData(backendApi, hyperCube, rect) {
@@ -46,7 +46,7 @@ function getData(backendApi, hyperCube, rect) {
   });
 }
 
-const ChartView = BaseView.extend({
+const ChartView = Class.extend({
   defaultOptions: {
     navigation: false,
     selections: false,
@@ -54,7 +54,9 @@ const ChartView = BaseView.extend({
   },
 
   init(picasso, $element, options, backendApi, selectionsApi) {
-    this._super($element, extend({}, this.defaultOptions, options), backendApi);
+    this.$element = $element;
+    this.options = extend({}, this.defaultOptions, options);
+    this.backendApi = backendApi;
 
     this._selectionsApi = selectionsApi;
     this._on = false;
@@ -107,10 +109,6 @@ const ChartView = BaseView.extend({
     this._on = false;
   },
 
-  setFreeResize(freeResize) {
-    this._super(freeResize);
-  },
-
   getData(backendApi, hyperCube, rect) {
     return getData(backendApi, hyperCube, rect);
   },
@@ -119,7 +117,7 @@ const ChartView = BaseView.extend({
     return true;
   },
 
-  paint($element /* , layout */) {
+  paint() {
     // Use this.layout
     if (this.hasValidData()) {
       this.updateDisclaimer(this.layout);
@@ -132,16 +130,16 @@ const ChartView = BaseView.extend({
       this.updateChart(this.layout, chartSettings);
       this._painted = true;
     }
-    return this._super($element, this.layout);
+    return Promise.resolve();
   },
 
-  resize($element /* , layout */) {
+  resize() {
     // Use this.layout
     if (!this.layout) {
       // There are cases where resize is run before updateData, therefore layout is undefined
       return undefined;
     }
-    return this.paint($element, this.layout);
+    return this.paint();
   },
 
   createChartSettings() {
@@ -203,9 +201,13 @@ const ChartView = BaseView.extend({
   },
 
   destroy() {
-    this._super();
+    this._destroyed = true;
     this.off();
     this.chartInstance.destroy();
+  },
+
+  getViewState() {
+    return {};
   },
 
   isLassoDisabled() {

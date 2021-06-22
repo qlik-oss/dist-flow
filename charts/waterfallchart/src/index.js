@@ -78,8 +78,7 @@ export default function supernova(env) {
         instance.updateConstraints(constraints);
 
         await instance.updateData(layout);
-        const $element = null;
-        await instance.paint($element, layout);
+        await instance.paint();
       }, [layout, instance, theme.name()]);
 
       useResize(instance);

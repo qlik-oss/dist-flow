@@ -847,14 +847,14 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     return settings;
   },
 
-  resize($element, layout) {
+  resize() {
     if (!this.layout) {
       return;
     }
     updateOnScrollViewChanged.call(this);
-    this._super($element, layout);
+    this._super();
   },
-  paint($element) {
+  paint() {
     const isSnapshot = !!this.layout.snapshotData;
     if (!isSnapshot && !this.options.viewState) {
       this.updateScrollHandlerState(false);
@@ -897,9 +897,9 @@ const BoxPlot = ChartView.extend('BoxPlot', {
         )
       ) {
         const _super = this._super;
-        retProm = this._scrollHandler.getViewData().finally(() => _super.call(self, $element /* , layout */));
+        retProm = this._scrollHandler.getViewData().finally(() => _super.call(self));
       } else {
-        retProm = this._super($element /* , layout */);
+        retProm = this._super();
       }
 
       return retProm;

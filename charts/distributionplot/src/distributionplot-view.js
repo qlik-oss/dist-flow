@@ -820,12 +820,12 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     chartBuilder.settings.components.push(...components);
   },
 
-  resize($element, layout) {
+  resize() {
     if (!this.layout) {
       return;
     }
     updateOnScrollViewChanged.call(this);
-    this._super($element, layout);
+    this._super();
   },
 
   hasValidData() {
@@ -838,7 +838,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     );
   },
 
-  paint($element) {
+  paint() {
     const isSnapshot = !!this.layout.snapshotData;
     if (!isSnapshot && !this.options.viewState) {
       this.updateScrollHandlerState(false);
@@ -870,9 +870,9 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     ) {
       return this._scrollHandler
         .getViewData()
-        .finally(() => self._updateColorMapData(layout).then(() => _super.call(self, $element /* , layout */)));
+        .finally(() => self._updateColorMapData(layout).then(() => _super.call(self)));
     }
-    return this._updateColorMapData(layout).then(() => _super.call(self, $element /* , layout */));
+    return this._updateColorMapData(layout).then(() => _super.call(self));
   },
 
   async setSnapshotData(snapshotLayout) {

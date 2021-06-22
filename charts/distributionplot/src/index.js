@@ -93,8 +93,7 @@ export default function supernova(env) {
         // TODO: confim selection if triggered from engine (another websocket to the same session (browser tab))
 
         await instance.updateData(layout);
-        const $element = null;
-        await instance.paint($element, layout);
+        await instance.paint();
       }, [layout, instance, theme.name(), appLayout]);
       if (error) {
         throw error;
