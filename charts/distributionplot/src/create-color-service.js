@@ -26,7 +26,8 @@ function switchActiveDimIndex(byDimDef) {
   }
 }
 
-export default function create({ app, layout, localeInfo, model, picasso, theme, translator }) {
+export default function create({ app, layout, localeInfo, model, picasso, environment }) {
+  const { theme, translator } = environment;
   const colorSettings = extend(true, {}, layout.color.point);
   switchActiveDimIndex(colorSettings.byDimDef); // compensate for that the distribution plot dimension are in an different order
   return createColorService({

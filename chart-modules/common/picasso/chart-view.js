@@ -47,9 +47,9 @@ function getData(backendApi, hyperCube, rect) {
 }
 
 const ChartView = Class.extend({
-  init(picasso, $element, options, backendApi, selectionsApi) {
+  init(picasso, $element, environment, backendApi, selectionsApi) {
     this.$element = $element;
-    this.options = options;
+    this.environment = environment;
     this.backendApi = backendApi;
 
     this._selectionsApi = selectionsApi;
@@ -79,6 +79,14 @@ const ChartView = Class.extend({
         ],
       },
     });
+  },
+
+  updateEnvironment(environment) {
+    this.environment = environment;
+  },
+
+  isRtl() {
+    return this.environment.options?.direction === 'rtl';
   },
 
   setDataPaths(dataPaths) {
@@ -123,12 +131,13 @@ const ChartView = Class.extend({
   },
 
   addSnapshotChartSettings(settings, layout) {
-    if (!this.options.freeResize && layout.snapshotData) {
+    const { freeResize, maximizeSnapshot } = this.environment.options;
+    if (!freeResize && layout.snapshotData) {
       settings.dockLayout.logicalSize = {
         width: layout.snapshotData.content.size.w,
         height: layout.snapshotData.content.size.h,
       };
-      if (this.options.maximizeSnapshot) {
+      if (maximizeSnapshot) {
         settings.dockLayout.logicalSize.preserveAspectRatio = true;
       }
     }

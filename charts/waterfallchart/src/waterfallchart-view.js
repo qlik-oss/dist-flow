@@ -17,14 +17,11 @@ const BAR_WIDTH_RATIO = 0.7;
 // Implementation details
 //
 
-function init({ picasso, deviceType, translator, theme, $element, options }) {
+function init({ picasso, environment, $element }) {
   const backendApi = null;
   const selectionsApi = null;
   const tooltipApi = null;
-  this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
-  this.deviceType = deviceType;
-  this.translator = translator;
-  this.theme = theme;
+  this._super(picasso, $element, environment, backendApi, selectionsApi, tooltipApi);
   this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
   this._scrollHandler = new ScrollHandler(
     this.chartInstance,
@@ -244,7 +241,8 @@ function getBridgeSettings(isRtl, theme) {
   };
 }
 
-function getLegendSettings(translator, layout, theme) {
+function getLegendSettings(environment, layout) {
+  const { theme, translator } = environment;
   const positveColor = waterfallUtils.getColorForPositiveValue(layout, theme);
   const negativeColor = waterfallUtils.getColorForNegativeValue(layout, theme);
   const subtotalColor = waterfallUtils.getColorForSubtotal(layout, theme);
@@ -270,11 +268,12 @@ function getLegendSettings(translator, layout, theme) {
 
 function createChartSettings(layout) {
   // Create components
-  const isRtl = this.options && this.options.direction === 'rtl';
+  const isRtl = this.isRtl();
+  const { theme } = this.environment;
   const chartBuilder = ChartBuilder.create({
     chartID,
-    theme: this.theme,
-    // layoutMode: this.getLayoutMode(layout),
+    theme,
+    isRtl,
   });
   const width = this.picassoElement.clientWidth;
   const height = this.picassoElement.clientHeight;
@@ -283,13 +282,10 @@ function createChartSettings(layout) {
   const tooltipSettings = {};
   tooltipSettings.box = this._tooltipHandler.setUp({
     chartBuilder,
-    theme: this.theme,
-    translator: this.translator,
-    deviceType: this.deviceType,
+    environment: this.environment,
     data: [''],
     contexts: ['boxTip'],
     componentKey: 'box-marker',
-    direction: this.options.direction,
     headerResolver() {
       return undefined; // Waterfall does not have dimension
     },
@@ -366,10 +362,10 @@ function createChartSettings(layout) {
   });
 
   chartBuilder.addComponent('box-marker', getBarSettings(tooltipSettings, layout));
-  chartBuilder.addComponent('point-marker', getBridgeSettings(isRtl, this.theme));
+  chartBuilder.addComponent('point-marker', getBridgeSettings(isRtl, theme));
 
   if (!layout.legend || layout.legend.show) {
-    chartBuilder.addComponent('categorical-legend', getLegendSettings(this.translator, layout, this.theme), {
+    chartBuilder.addComponent('categorical-legend', getLegendSettings(this.environment, layout), {
       dock: layout.legend ? layout.legend.dock : 'auto',
       isRtl,
       chartWidth: width,
@@ -378,7 +374,7 @@ function createChartSettings(layout) {
   }
 
   if (layout.dataPoint.showLabels) {
-    chartBuilder.addComponent('labels', getBarLabelSettings(this.theme));
+    chartBuilder.addComponent('labels', getBarLabelSettings(theme));
   }
 
   // Add snapshot settings
@@ -389,6 +385,7 @@ function createChartSettings(layout) {
 }
 
 function updateData(layout) {
+  const { theme, options } = this.environment;
   const self = this;
 
   return this._super(layout).then(() => {
@@ -404,14 +401,15 @@ function updateData(layout) {
       const area = self.layout.generated.qHyperCube.qDataPages[0].qArea; // To fix SUI-4307
       top = area.qTop;
       height = area.qHeight;
-      CubeGenerator.generateHyperCube(self.layout, self.theme);
+      CubeGenerator.generateHyperCube(self.layout, theme);
     } else {
-      CubeGenerator.generateHyperCube(self.layout, self.theme);
+      CubeGenerator.generateHyperCube(self.layout, theme);
       updateScrollHandlerState.call(self, true); // No need to run it in snapshot mode
-      if (self.options.viewState) {
+      const { viewState } = options;
+      if (viewState) {
         self._scrollHandler.updateViewState(self.layout.generatedMatrix.length);
-        self._scrollHandler.setScrollState(self.options.viewState.scroll);
-        top = self.options.viewState.scroll;
+        self._scrollHandler.setScrollState(viewState.scroll);
+        top = viewState.scroll;
       } else {
         self._scrollHandler.resetScroll();
         top = 0;
@@ -434,7 +432,7 @@ function resize() {
 
 function paint() {
   const isSnapshot = !!this.layout.snapshotData;
-  if (!isSnapshot && !this.options.viewState) {
+  if (!isSnapshot && !this.environment.options.viewState) {
     updateScrollHandlerState.call(this, false);
   }
   this._tooltipHandler.closeTooltip();

@@ -10,19 +10,15 @@ let sandbox;
 describe('Distributionplot', () => {
   let distributionplot;
   let $element;
-  let options;
   let backendApi;
   let selectionsApi;
   let lasso;
   let flags;
   let picasso;
-  let translator;
-  let theme;
+  let environment;
 
   beforeEach(() => {
     $element = $("<div><div style='width: 100px; height: 100px' class='picasso-chart'></div></div>");
-    // document.body.appendChild($element[0]);
-    options = {};
     backendApi = {
       setPath: sinon.stub(),
       setCacheOptions: sinon.stub(),
@@ -65,9 +61,14 @@ describe('Distributionplot', () => {
     lasso = null;
     flags = null;
     picasso = picassoSetup();
-    translator = null;
-    theme = null;
     sandbox = sinon.createSandbox();
+
+    environment = {
+      deviceType: null,
+      options: {},
+      theme: null,
+      translator: null,
+    };
   });
 
   afterEach(() => {
@@ -76,18 +77,16 @@ describe('Distributionplot', () => {
   });
 
   it('should work when export sheet to pdf', async () => {
-    options.navigation = true;
-    options.viewState = { scroll: 70 };
+    environment.options.navigation = true;
+    environment.options.viewState = { scroll: 70 };
     backendApi.model.layout.qUndoExclude.qHyperCube.qStackedDataPages[0].qData[0].qSubNodes.length = 27;
     backendApi.model.layout.qUndoExclude.qHyperCube.qStackedDataPages[0].qData[0].qDown = 73;
     distributionplot = new DistributionPlot({
       lasso,
       flags,
       picasso,
-      translator,
-      theme,
+      environment,
       $element,
-      options,
       backendApi,
       selectionsApi,
     });
@@ -97,7 +96,7 @@ describe('Distributionplot', () => {
     sandbox.stub(distributionplot, 'updateScrollHandlerState');
     sandbox.stub(distributionplot, '_updateColorData');
     await distributionplot.updateData(backendApi.model.layout);
-    expect(distributionplot.getSlicedData).have.been.calledWith(options.viewState.scroll, 30);
+    expect(distributionplot.getSlicedData).have.been.calledWith(environment.options.viewState.scroll, 30);
   });
 
   it('should not render distribution plot when no data', () => {
@@ -106,10 +105,8 @@ describe('Distributionplot', () => {
       lasso,
       flags,
       picasso,
-      translator,
-      theme,
+      environment,
       $element,
-      options,
       backendApi,
       selectionsApi,
     });

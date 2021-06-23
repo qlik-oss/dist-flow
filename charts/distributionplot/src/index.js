@@ -2,22 +2,19 @@ import {
   useApp,
   useAppLayout,
   useConstraints,
-  useDeviceType,
   useEffect,
   useElement,
   useModel,
-  useOptions,
   usePromise,
   useSelections,
   useState,
   useStaleLayout,
-  useTheme,
-  useTranslator,
 } from '@nebula.js/stardust';
 import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
 import useLasso from '@qlik/common/nebula/use-lasso';
 import useResize from '@qlik/common/nebula/resize';
+import useEnvironment from '@qlik/common/nebula/use-environment';
 import setupSnapshot from '@qlik/common/nebula/snapshot';
 
 import properties from './object-properties';
@@ -37,17 +34,14 @@ export default function supernova(env) {
     ext: ext(env),
     component() {
       const element = useElement();
+      const environment = useEnvironment();
       const selections = useSelections();
       const layout = useStaleLayout();
       const model = useModel();
       const constraints = useConstraints();
-      const translator = useTranslator();
-      const theme = useTheme();
       const lasso = useLasso();
       const app = useApp();
       const appLayout = useAppLayout();
-      const options = useOptions();
-      const deviceType = useDeviceType();
 
       const [instance, setInstance] = useState();
 
@@ -56,14 +50,11 @@ export default function supernova(env) {
         const backendApi = new BackednAPi(model);
         const selectionsApi = selections;
         const view = new ChartView({
-          deviceType,
+          environment,
           lasso,
           flags: env.flags,
           picasso,
-          translator,
-          theme,
           $element,
-          options,
           backendApi,
           selectionsApi,
         });
@@ -79,8 +70,8 @@ export default function supernova(env) {
         if (!instance) {
           return;
         }
-        instance.theme = theme;
         instance.appLayout = appLayout;
+        instance.updateEnvironment(environment);
         instance.updateConstraints(constraints);
 
         const isSnapshot = !!layout.snapshotData;
@@ -96,7 +87,7 @@ export default function supernova(env) {
 
         await instance.updateData(layout);
         await instance.paint();
-      }, [layout, instance, theme.name(), appLayout]);
+      }, [layout, instance, environment, appLayout]);
       if (error) {
         throw error;
       }

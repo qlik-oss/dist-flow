@@ -30,7 +30,6 @@ function callDimensionRangeGesture(state, gesturesFns, gesturesParams, dimAxis) 
         return state.majoring && !!gesturesParams.keys.dimRangeBrushKey;
       },
     },
-    // requireFailure: 'lasso range',
     requireFailure: `lasso ${activeRangeBrush}`,
     recognizeWith: gesturesParams.handlers.scrollHandler ? 'drag' : null,
     events: {

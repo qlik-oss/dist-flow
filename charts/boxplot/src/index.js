@@ -1,21 +1,18 @@
 import {
   useConstraints,
-  useDeviceType,
   useEffect,
   useElement,
   useModel,
-  useOptions,
   usePromise,
   useSelections,
   useState,
   useStaleLayout,
-  useTheme,
-  useTranslator,
 } from '@nebula.js/stardust';
 import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
 import useLasso from '@qlik/common/nebula/use-lasso';
 import useResize from '@qlik/common/nebula/resize';
+import useEnvironment from '@qlik/common/nebula/use-environment';
 import setupSnapshot from '@qlik/common/nebula/snapshot';
 
 import properties from './object-properties';
@@ -24,16 +21,12 @@ import ChartView from './boxplot-view';
 import ext from './ext';
 import BackednAPi from './backend-api';
 
-function useView(env, picasso) {
-  const deviceType = useDeviceType();
+function useView(env, picasso, environment) {
   const element = useElement();
   const selections = useSelections();
   const layout = useStaleLayout();
   const model = useModel();
-  const translator = useTranslator();
-  const theme = useTheme();
   const lasso = useLasso();
-  const options = useOptions();
 
   const [instance, setInstance] = useState();
   useEffect(() => {
@@ -42,17 +35,12 @@ function useView(env, picasso) {
     const view = new ChartView({
       $element: $(element),
       backendApi,
-      deviceType,
+      environment,
       flags: env.flags,
       lasso,
       layout,
       selectionsApi: selections,
-      options,
       picasso,
-      theme,
-      translator,
-
-      
     });
 
     setInstance(view);
@@ -64,17 +52,16 @@ function useView(env, picasso) {
   return instance;
 }
 
-function useUpdate(instance) {
+function useUpdate(instance, environment) {
   const layout = useStaleLayout();
   const model = useModel();
   const constraints = useConstraints();
-  const theme = useTheme();
 
   const [, error] = usePromise(async () => {
     if (!instance) {
       return;
     }
-    instance.theme = theme;
+    instance.updateEnvironment(environment);
     instance.updateConstraints(constraints);
 
     const isSnapshot = !!layout.snapshotData;
@@ -91,7 +78,7 @@ function useUpdate(instance) {
     await instance.updateData(layout);
     const $element = null;
     await instance.paint($element, layout);
-  }, [layout, instance, theme.name()]);
+  }, [layout, instance, environment]);
   if (error) {
     throw error;
   }
@@ -107,8 +94,9 @@ export default function supernova(env) {
     },
     ext: ext(env),
     component() {
-      const instance = useView(env, picasso);
-      useUpdate(instance);
+      const environment = useEnvironment();
+      const instance = useView(env, picasso, environment);
+      useUpdate(instance, environment);
       useResize(instance);
       setupSnapshot(instance);
     },

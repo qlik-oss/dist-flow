@@ -41,7 +41,6 @@ function create(Constructor, args) {
 
 function increaseStack() {
   stackSize++;
-  // console.log( stackSize );
 }
 
 function retriveColor() {

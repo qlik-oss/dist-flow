@@ -1,15 +1,11 @@
 import { setValue } from 'qlik-chart-modules';
 import HyperCubeDefGenerator from '@qlik/common/picasso/hypercube-def-generator/hypercube-def-generator';
 import ExpressionGenerator from '@qlik/common/picasso/expression-generator/expression-generator';
-// import translator from '../../../../js/lib/translator';
 import histogramMappings from './histogram-mappings';
 import histogramUtils from '../histogram-utils';
 
-/**
- * Implementation details
- */
-
-async function generateHyperCubes(layout, properties, app, translator) {
+async function generateHyperCubes(layout, properties, app, environment) {
+  const { translator } = environment;
   const mappingValues = histogramMappings.getMappingValues(layout);
   const mappings = histogramMappings.getMappings(mappingValues);
 

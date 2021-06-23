@@ -22,7 +22,6 @@ const DEFAULT_OPTIONS = {
   },
   direction: 'ltr',
   renderer: defaultTooltipRenderer,
-  deviceType: 'desktop',
 };
 
 /**
@@ -191,22 +190,22 @@ function createContext(options, chartInstance) {
       options.contexts[0],
       options.tooltipKey
     ),
+    listeners: {},
     chartInstance,
     dataPath: options.dataPath,
     renderer: options.renderer,
     data: options.data,
     headerResolver: options.headerResolver,
     rowResolver: options.rowResolver,
-    listeners: {},
-    direction: options.direction,
     colorService: options.colorService,
     attrDimPath: options.attrDimPath,
     measureRows: options.measureRows,
     labelData: options.labelData,
     filterShapes: options.filterShapes,
 
-    theme: options.theme,
-    translator: options.translator,
-    treatAsDesktop: options.deviceType !== 'touch',
+    direction: options.environment.options.direction,
+    theme: options.environment.theme,
+    translator: options.environment.translator,
+    treatAsDesktop: options.environment.deviceType !== 'touch',
   };
 }

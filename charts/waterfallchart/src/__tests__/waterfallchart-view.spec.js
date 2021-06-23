@@ -11,15 +11,18 @@ let sandbox;
 describe('Waterfallchart-view', () => {
   let waterfallchart;
   let $element;
-  let options;
+  let environment;
   let layout;
   let picasso;
-  let translator;
-  let theme;
 
   beforeEach(() => {
     $element = $("<div><div style='width: 100px; height: 100px' class='picasso-chart'></div></div>");
-    options = {};
+    environment = {
+      deviceType: null,
+      options: {},
+      theme: null,
+      translator: null,
+    };
     layout = {
       generated: {
         qHyperCube: {
@@ -56,24 +59,28 @@ describe('Waterfallchart-view', () => {
   });
 
   it('should work when export sheet to pdf', async () => {
-    options.navigation = true;
-    options.viewState = { scroll: 5 };
+    environment.options.navigation = true;
+    environment.options.viewState = { scroll: 5 };
     layout.generatedMatrix.length = 15;
-    waterfallchart = new WaterfallChartView({ picasso, translator, theme, $element, options });
+    waterfallchart = new WaterfallChartView({ picasso, environment, $element });
     waterfallchart.layout = layout;
     sandbox.stub(waterfallchart._scrollHandler, 'getScrollViewSizeInItem').returns(10);
     await waterfallchart.updateData(layout);
 
     expect(CubeGenerator.generateHyperCube).have.been.calledOnce;
-    expect(CubeGenerator.generateSlicedHyperCube).have.been.calledWith(sinon.match.any, options.viewState.scroll, 10);
+    expect(CubeGenerator.generateSlicedHyperCube).have.been.calledWith(
+      sinon.match.any,
+      environment.options.viewState.scroll,
+      10
+    );
   });
 
   it('should work in snapshot mode', async () => {
-    options.navigation = true;
+    environment.options.navigation = true;
     layout.generatedMatrix.length = 15;
     layout.generated.qHyperCube.qDataPages[0].qArea = { qTop: 3, qHeight: 12 };
     layout.snapshotData = true;
-    waterfallchart = new WaterfallChartView({ picasso, translator, theme, $element, options });
+    waterfallchart = new WaterfallChartView({ picasso, environment, $element });
     waterfallchart.layout = layout;
     await waterfallchart.updateData(layout);
 

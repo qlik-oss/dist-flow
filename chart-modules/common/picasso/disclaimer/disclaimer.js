@@ -72,7 +72,7 @@ Disclaimer.prototype.toggleBottomDisclaimerVisibility = function (element, toggl
 Disclaimer.prototype.display = function (element) {
   let elem;
 
-  if (this.vizAttributes && this.dataAttributes && this.options) {
+  if (this.vizAttributes && this.dataAttributes && this.environment.options) {
     this.vizAttributes.supportedDisclaimers = Disclaimer._applyDefaultSupport(
       this.vizAttributes.supportedDisclaimers,
       DisclaimersConfig.DISCLAIMERS
@@ -85,7 +85,7 @@ Disclaimer.prototype.display = function (element) {
       .last()
       .showComponent(DisclaimerComponent, {
         dataAttributes: $.extend(true, {}, this.dataAttributes),
-        direction: this.options.direction,
+        direction: this.environment.options.direction,
         supportedDisclaimers: $.extend(true, {}, this.vizAttributes.supportedDisclaimers),
         onRender() {
           // Last disclaimer element is removed with a delay for smooth scrolling

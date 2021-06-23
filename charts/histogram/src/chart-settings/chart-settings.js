@@ -56,15 +56,16 @@ function isSingleSelect(layout) {
 }
 
 function createChartSettings(chartView, layout) {
-  const isRtl = chartView.options && chartView.options.direction === 'rtl';
+  const isRtl = chartView.isRtl();
   const orgDimInfo = getValue(layout, 'qHyperCube.qDimensionInfo.0', {});
   const dimTitle = orgDimInfo.qFallbackTitle || '';
+  const { theme, translator } = chartView.environment;
 
   // Create components
   const chartBuilder = ChartBuilder.create({
     chartID,
-    theme: chartView.theme,
-    // layoutMode: chartView.getLayoutMode(layout),
+    theme,
+    isRtl,
   });
 
   let basicSelectionSettings = {};
@@ -99,13 +100,10 @@ function createChartSettings(chartView, layout) {
   if (chartView._tooltipHandler.isOn()) {
     tooltipSettings.box = chartView._tooltipHandler.setUp({
       chartBuilder,
-      theme: chartView.theme,
-      translator: chartView.translator,
-      deviceType: chartView.deviceType,
+      environment: chartView.environment,
       data: [''],
       contexts: ['boxTip'],
       componentKey: 'box-marker',
-      direction: chartView.options.direction,
       measureRows: ['measure'], // Should be a mapped path under extract, mandatory to display tooltip
       labelData: ['bin'], // Should be a mapped path under extract, mandatory to display tooltip
     });
@@ -183,7 +181,7 @@ function createChartSettings(chartView, layout) {
 
     // measure axis and title
     measureAxisProperties: layout.measureAxis, // used by both
-    measureTitleText: layout.measureAxis.label || chartView.translator.get('Visualization.Histogram.MeasureAxisLabel'),
+    measureTitleText: layout.measureAxis.label || translator.get('Visualization.Histogram.MeasureAxisLabel'),
 
     // dimension axis and title
     dimensionAxisProperties: layout.dimensionAxis, // used by both
@@ -194,7 +192,7 @@ function createChartSettings(chartView, layout) {
     gridlines: layout.gridlines,
 
     // scroll
-    hasNavigation: this._scrollHandler.isOn(),
+    hasNavigation: this._navigationEnabled,
     isNavigationEnabledFn: () => chartView._scrollHandler.isOn(),
 
     // ref-lines
@@ -215,7 +213,7 @@ function createChartSettings(chartView, layout) {
   chartBuilder.addComponent('box-marker', boxMarkerSettings);
 
   if (layout.dataPoint && layout.dataPoint.showLabels) {
-    const binLabelSettings = Label.createSettings(layout, chartView.theme);
+    const binLabelSettings = Label.createSettings(layout, theme);
     chartBuilder.addComponent('labels', binLabelSettings);
   }
 

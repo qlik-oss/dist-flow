@@ -13,7 +13,8 @@ function createBoxMarkerSettings(
   measureSelectionSettings,
   tooltipSettings
 ) {
-  const boxFillColor = chartView.theme.getColorPickerColor(layout.color.bar.paletteColor);
+  const { theme } = chartView.environment;
+  const boxFillColor = theme.getColorPickerColor(layout.color.bar.paletteColor);
   const binSize = histogramUtils.getDerivedBinSize(layout);
 
   const brushTrigger = [];

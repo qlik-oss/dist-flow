@@ -12,8 +12,7 @@ describe('tooltip-handler for picasso', () => {
   let openMock;
 
   let tooltipBrush;
-  let translator;
-  let theme;
+  let environment;
   let actionInstance;
   let restoreFunc;
   let chartBuilder;
@@ -39,9 +38,14 @@ describe('tooltip-handler for picasso', () => {
       getSettings: () => chartBuilder.settings,
     };
 
-    translator = (x) => x;
-    theme = {
-      getStyle: () => 'mumbojumbo-font',
+    environment = {
+      options: {
+        direction: 'ltr',
+      },
+      translator: (x) => x,
+      theme: {
+        getStyle: () => 'mumbojumbo-font',
+      },
     };
 
     handler = TooltipHandler.create(PicassoMock.chartInstance);
@@ -61,7 +65,7 @@ describe('tooltip-handler for picasso', () => {
 
   it('should add listeners if already on', () => {
     handler.on();
-    handler.setUp({ chartBuilder, theme, translator, componentKey: 'layer' });
+    handler.setUp({ chartBuilder, environment, componentKey: 'layer' });
     expect(tooltipBrush.callbacks.update).to.be.ok;
     expect(tooltipBrush.callbacks.end).to.be.ok;
   });
@@ -93,8 +97,8 @@ describe('tooltip-handler for picasso', () => {
     const onSpy = sinon.spy(tooltipBrush, 'on');
     const offSpy = sinon.spy(tooltipBrush, 'removeListener');
     handler.on();
-    handler.setUp({ chartBuilder, theme, translator, componentKey: 'layer' });
-    handler.setUp({ chartBuilder, theme, translator, componentKey: 'layer' });
+    handler.setUp({ chartBuilder, environment, componentKey: 'layer' });
+    handler.setUp({ chartBuilder, environment, componentKey: 'layer' });
     expect(onSpy.callCount).to.equal(4);
     expect(offSpy.callCount).to.equal(2);
   });
@@ -103,8 +107,7 @@ describe('tooltip-handler for picasso', () => {
     beforeEach(() => {
       handler.setUp({
         chartBuilder,
-        theme,
-        translator,
+        environment,
         dataPath: 'qHyperCube',
         data: ['self'],
         componentKey: 'pointLayer',
@@ -113,7 +116,6 @@ describe('tooltip-handler for picasso', () => {
           // First brush is dimension value, get the value
           return 'HEADER';
         },
-        direction: 'ltr',
         measureRows: ['x'],
         labelData: ['inner', 'outer'],
       });
@@ -197,11 +199,10 @@ describe('tooltip-handler for picasso', () => {
   });
 
   it('when deviceType is touch use set-values', () => {
+    environment.deviceType = 'touch';
     handler.setUp({
       chartBuilder,
-      theme,
-      translator,
-      deviceType: 'touch',
+      environment,
       dataPath: 'qHyperCube',
       data: ['self'],
       componentKey: 'pointLayer',
@@ -210,7 +211,6 @@ describe('tooltip-handler for picasso', () => {
         // First brush is dimension value, get the value
         return 'HEADER';
       },
-      direction: 'ltr',
       measureRows: ['x'],
       labelData: ['inner', 'outer'],
     });

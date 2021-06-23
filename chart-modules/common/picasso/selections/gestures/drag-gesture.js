@@ -28,7 +28,6 @@ function callDragGesture(state, gesturesFns, gesturesParams, hasSelections, isRt
       },
     },
     requireFailure: hasSelections ? `lasso ${gesturesFns.getBrushConfig()}` : '',
-    // requireFailure: 'lasso range majorrange',
     events: {
       dragstart(e) {
         dragPoint = { x: e.deltaX, y: e.deltaY };

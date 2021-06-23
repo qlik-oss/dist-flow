@@ -14,13 +14,7 @@ describe('chart builder - labels component', () => {
       color: '#333333',
     };
     theme = {
-      getStyle: jest.fn((chart, path, attr) => {
-        const r = themeValues[attr];
-        if (!r) {
-          console.log('missing', attr);
-        }
-        return r;
-      }),
+      getStyle: jest.fn((chart, path, attr) => themeValues[attr]),
     };
 
     expectedSettings = {

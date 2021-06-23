@@ -38,7 +38,9 @@ describe('Histogram picasso component - box-marker', () => {
     };
 
     chartView = {
-      theme,
+      environment: {
+        theme,
+      },
       _tooltipHandler: {
         isOn: () => true,
       },
@@ -120,7 +122,7 @@ describe('Histogram picasso component - box-marker', () => {
   });
 
   it('should have a dark grey stroke color when the fill color is light', () => {
-    const themeMock = sinon.mock(chartView.theme);
+    const themeMock = sinon.mock(chartView.environment.theme);
     const fillColor = '#ffffff';
 
     themeMock.expects('getColorPickerColor').once().withArgs(layout.color.bar.paletteColor).returns(fillColor);

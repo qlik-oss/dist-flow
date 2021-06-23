@@ -12,14 +12,6 @@ module.exports = {
 
   setupFilesAfterEnv: ['<rootDir>/jest/setup.js'],
 
-  // moduleNameMapper: {
-  //   // File extensions
-  //   '\\.(txt|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-  //     '<rootDir>/jest/__mocks__/file-mock.js',
-  //   '\\.(css|less)$': '<rootDir>/jest/__mocks__/empty-module.js',
-  //   '\\.svg': '<rootDir>/jest/__mocks__/svg-mock.jsx',
-  // },
-
   testPathIgnorePatterns: [
     'chart-modules/common/picasso/disclaimer/__tests__/disclaimer.spec.js',
     'charts/histogram/src/__tests__/histogram-export.spec.js',

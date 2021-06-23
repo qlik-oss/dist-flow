@@ -159,14 +159,11 @@ function isSingleSelect(layout, index) {
 const DistributionPlot = ChartView.extend('DistributionPlot', {
   namespace: '.distributionPlot',
 
-  init({ deviceType, lasso, flags, picasso, translator, theme, $element, options, backendApi, selectionsApi }) {
+  init({ lasso, environment, flags, picasso, $element, backendApi, selectionsApi }) {
     const tooltipApi = null;
-    this._super(picasso, $element, options, backendApi, selectionsApi);
+    this._super(picasso, $element, environment, backendApi, selectionsApi);
     this.flags = flags;
-    this.translator = translator;
-    this.theme = theme;
     this.picasso = picasso;
-    this.deviceType = deviceType;
 
     this.picassoElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
 
@@ -284,9 +281,11 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   _getBoxMarkerSettings(layout, selectionSettings) {
+    const { theme } = this.environment;
+
     const boxFillColor = layout.color.point.auto
-      ? this.theme.getStyle(CONSTANTS.CHART_ID, 'box', 'fill')
-      : this.theme.getColorPickerColor(layout.color.box.paletteColor);
+      ? theme.getStyle(CONSTANTS.CHART_ID, 'box', 'fill')
+      : theme.getColorPickerColor(layout.color.box.paletteColor);
     const brushTrigger = getSelectionSettingsArray(selectionSettings.trigger);
     const brushConsume = getSelectionSettingsArray(selectionSettings.consume);
 
@@ -309,7 +308,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         chart: this,
         box: {
           fill: boxFillColor,
-          stroke: this.theme.getStyle(CONSTANTS.CHART_ID, 'box', 'stroke'),
+          stroke: theme.getStyle(CONSTANTS.CHART_ID, 'box', 'stroke'),
           strokeWidth: 0,
           width: CONSTANTS.POINT_BANDWIDTH_BASE_RATIO,
           maxWidthPx: CONSTANTS.MAX_POINT_BASE_SIZE_PX,
@@ -502,7 +501,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   createChartSettings(layout) {
-    const isRtl = this.options.direction === 'rtl';
+    const isRtl = this.isRtl();
     const hasVisibleComponentsProps = layout.presentation && layout.presentation.visibleComponents;
     const showPoints = hasVisibleComponentsProps && layout.presentation.visibleComponents.indexOf('point') !== -1;
     const showBox = hasVisibleComponentsProps && layout.presentation.visibleComponents.indexOf('box') !== -1;
@@ -516,8 +515,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
     const chartBuilder = ChartBuilder.create({
       chartID: CONSTANTS.CHART_ID,
-      theme: this.theme,
-      // layoutMode: this.getLayoutMode(layout),
+      theme: this.environment.theme,
       isRtl,
     });
 
@@ -600,10 +598,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         data: hypercubeUtil.hasSecondDimension(layout, DATA_PATH) ? ['innerElemNo', 'elemNo'] : ['innerElemNo'],
         contexts: ['pointTip'],
         componentKey: 'point-marker',
-        direction: this.options.direction,
-        theme: this.theme,
-        translator: this.translator,
-        deviceType: this.deviceType,
+        environment: this.environment,
         attrDimPath: `/${HYPERCUBE_PATH}/qDimensionInfo/${
           hypercubeUtil.hasSecondDimension(layout, DATA_PATH) ? 1 : 0
         }/qAttrDimInfo/0`,
@@ -806,7 +801,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
   paint() {
     const isSnapshot = !!this.layout.snapshotData;
-    if (!isSnapshot && !this.options.viewState) {
+    if (!isSnapshot && !this.environment.options.viewState) {
       this.updateScrollHandlerState(false);
     }
 
@@ -891,8 +886,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       localeInfo: this.localeInfo,
       model: this.backendApi.model,
       picasso: this.picasso,
-      theme: this.theme,
-      translator: this.translator,
+      environment: this.environment,
     });
     await this.colorService.initialize();
     const colorField = this.colorService.getSettings().field;
@@ -920,6 +914,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   updateDerivedProperties(properties, layout) {
+    const { translator } = this.environment;
     const self = this;
     const model = self.backendApi.model;
 
@@ -932,7 +927,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
           model,
           hashData,
           generateDerivedProperties(layout, properties) {
-            return distributionPlotCubeGenerator.generateHyperCube(layout, properties, self.app, self.translator);
+            return distributionPlotCubeGenerator.generateHyperCube(layout, properties, self.app, translator);
           },
         };
 
@@ -959,9 +954,10 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         return self._updateColorMapData(layout);
       }
       self.updateScrollHandlerState(true); // No need to run it in snapshot mode
-      if (self.options.viewState) {
+      const { viewState } = self.environment.options;
+      if (viewState) {
         self._scrollHandler.updateViewState(getDataSize(layout));
-        self._scrollHandler.setScrollState(self.options.viewState.scroll);
+        self._scrollHandler.setScrollState(viewState.scroll);
       } else {
         self._scrollHandler.resetScroll();
         resetCategoricalLegendScroll.call(self);

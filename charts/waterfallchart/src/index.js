@@ -1,18 +1,8 @@
-import {
-  useConstraints,
-  useDeviceType,
-  useEffect,
-  useElement,
-  useOptions,
-  usePromise,
-  useState,
-  useStaleLayout,
-  useTheme,
-  useTranslator,
-} from '@nebula.js/stardust';
+import { useConstraints, useEffect, useElement, usePromise, useState, useStaleLayout } from '@nebula.js/stardust';
 import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
 import useResize from '@qlik/common/nebula/resize';
+import useEnvironment from '@qlik/common/nebula/use-environment';
 import setupSnapshot from '@qlik/common/nebula/snapshot';
 
 import properties from './object-properties';
@@ -37,19 +27,16 @@ export default function supernova(env) {
     },
     ext: ext(env),
     component() {
-      const deviceType = useDeviceType();
       const element = useElement();
+      const environment = useEnvironment();
       const layout = useStaleLayout();
       const constraints = useConstraints();
-      const options = useOptions();
-      const translator = useTranslator();
-      const theme = useTheme();
 
       const [instance, setInstance] = useState();
 
       useEffect(() => {
         const $element = $(element);
-        const view = new ChartView({ picasso, deviceType, translator, theme, $element, options });
+        const view = new ChartView({ picasso, environment, $element });
 
         setInstance(view);
 
@@ -62,13 +49,12 @@ export default function supernova(env) {
         if (!instance) {
           return;
         }
-        instance.options = options;
-        instance.theme = theme;
+        instance.updateEnvironment(environment);
         instance.updateConstraints(constraints);
 
         await instance.updateData(layout);
         await instance.paint();
-      }, [layout, instance, theme.name()]);
+      }, [layout, instance, environment]);
 
       useResize(instance);
       setupSnapshot(instance);

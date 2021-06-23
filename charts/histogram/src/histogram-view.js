@@ -14,12 +14,9 @@ const chartID = 'object.histogram';
 // Implementation details
 //
 
-function init({ deviceType, lasso, picasso, translator, theme, $element, options, backendApi, selectionsApi }) {
+function init({ environment, lasso, picasso, $element, backendApi, selectionsApi }) {
   const tooltipApi = null;
-  this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
-  this.translator = translator;
-  this.theme = theme;
-  this.deviceType = deviceType;
+  this._super(picasso, $element, environment, backendApi, selectionsApi, tooltipApi);
 
   this.picassoElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
 
@@ -38,9 +35,11 @@ function init({ deviceType, lasso, picasso, translator, theme, $element, options
 }
 
 function updateConstraints(constraints) {
+  const navigation = !constraints.active;
   const tooltip = !constraints.passive;
   const selection = !constraints.select && !constraints.active;
 
+  this._navigationEnabled = navigation;
   this._tooltipHandler[tooltip ? 'on' : 'off']();
   this._selectionHandler[selection ? 'on' : 'off']();
 }
@@ -139,7 +138,7 @@ function updateData(layout) {
             model,
             hashData,
             generateDerivedProperties(layout, properties) {
-              return cubesGenerator.generateHyperCubes(layout, properties, model.app, self.translator);
+              return cubesGenerator.generateHyperCubes(layout, properties, model.app, self.environment);
             },
           };
 

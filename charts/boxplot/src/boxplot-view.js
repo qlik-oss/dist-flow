@@ -190,13 +190,10 @@ function getColorFromExpValue(obj, theme) {
 const BoxPlot = ChartView.extend('BoxPlot', {
   namespace: '.boxplot',
 
-  init({ $element, backendApi, deviceType, flags, lasso, layout, selectionsApi, options, picasso, theme, translator }) {
+  init({ $element, backendApi, environment, flags, lasso, layout, selectionsApi, picasso }) {
     const tooltipApi = null;
-    this._super(picasso, $element, options, backendApi, selectionsApi, tooltipApi);
+    this._super(picasso, $element, environment, backendApi, selectionsApi, tooltipApi);
     this.flags = flags;
-    this.deviceType = deviceType;
-    this.translator = translator;
-    this.theme = theme;
 
     this._derivedProperties = new DerivedProperties();
 
@@ -252,9 +249,10 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     this._selectionHandler[selection ? 'on' : 'off']();
   },
   _getBoxMarkerSettings(layout, selectionSettings, tooltipSettings) {
+    const { theme } = this.environment;
     const boxFillColor = layout.boxplotDef.color.auto
-      ? this.theme.getStyle(chartID, 'box.box', 'fill')
-      : this.theme.getColorPickerColor(layout.boxplotDef.color.box.paletteColor);
+      ? theme.getStyle(chartID, 'box.box', 'fill')
+      : theme.getColorPickerColor(layout.boxplotDef.color.box.paletteColor);
     const contrastMedianLine = chartStyleUtils.getContrastingGrey(boxFillColor).toHex();
 
     // Do not use selection trigger when selecting in inner dimension
@@ -271,14 +269,14 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       settings: {
         whisker: {
           width: 0.5,
-          stroke: this.theme.getStyle(chartID, 'box.whisker', 'stroke'),
+          stroke: theme.getStyle(chartID, 'box.whisker', 'stroke'),
           show: layout.boxplotDef.presentation.whiskers.show,
         },
         box: {
           width: 0.5,
           maxWidthPx: 30,
           fill: boxFillColor,
-          stroke: this.theme.getStyle(chartID, 'box.box', 'stroke'),
+          stroke: theme.getStyle(chartID, 'box.box', 'stroke'),
           strokeWidth: 1,
         },
         median: {
@@ -290,7 +288,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
         },
         line: {
           strokeWidth: 1,
-          stroke: this.theme.getStyle(chartID, 'box.line', 'stroke'),
+          stroke: theme.getStyle(chartID, 'box.line', 'stroke'),
         },
         orientation: layout.orientation,
       },
@@ -368,7 +366,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     if (!layout.boxplotDef.color.auto && layout.boxplotDef.color.mode === 'byExpression') {
       if (layout.qUndoExclude.box.qHyperCube.qMeasureInfo[0].qAttrExprInfo.length === 0) {
         // For backward compatibility
-        boxMarkerSettings.settings.box.fill = Color.retriveColor(this.theme.getDataColorSpecials().nil).toRGBA();
+        boxMarkerSettings.settings.box.fill = Color.retriveColor(theme.getDataColorSpecials().nil).toRGBA();
       } else {
         const attrExprs = ObjectUtils.mapArrayToObject(
           layout.qUndoExclude.box.qHyperCube.qMeasureInfo[0].qAttrExprInfo,
@@ -390,7 +388,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
               if (typeof v.qNum === 'number') {
                 return Color.retriveColor(v.qNum, 'argb').toRGBA();
               }
-              return Color.retriveColor(this.theme.getDataColorSpecials().nil).toRGBA();
+              return Color.retriveColor(theme.getDataColorSpecials().nil).toRGBA();
             },
           };
           boxMarkerSettings.settings.box.fill = { ref: 'color' };
@@ -404,6 +402,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     this._colorCache = {};
   },
   _updateColorCache(layout) {
+    const { theme } = this.environment;
     const colorCache = this._colorCache;
     const qMatrix = layout.qUndoExclude.box.qHyperCube.qDataPages[0].qMatrix;
     const attrExprs = ObjectUtils.mapArrayToObject(
@@ -414,7 +413,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     qMatrix.forEach((row) => {
       colorCache[row[0].qElemNumber] = getColorFromExpValue(
         row[1].qAttrExps.qValues[attrExprs.colorByExpression.index],
-        this.theme
+        theme
       );
     });
   },
@@ -440,9 +439,10 @@ const BoxPlot = ChartView.extend('BoxPlot', {
   },
 
   _getPointMarkerSettings(layout, selectionSettings, tooltipSettings) {
+    const { theme } = this.environment;
     const pointFillColor = layout.boxplotDef.color.auto
-      ? this.theme.getDataColorSpecials().primary
-      : this.theme.getColorPickerColor(layout.boxplotDef.color.point.paletteColor);
+      ? theme.getDataColorSpecials().primary
+      : theme.getColorPickerColor(layout.boxplotDef.color.point.paletteColor);
     const pointStrokeColor = chartStyleUtils.getContrastingTransparent(pointFillColor);
 
     const brushTrigger = getSelectionSettingsArray(selectionSettings.trigger);
@@ -517,7 +517,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     if (!layout.boxplotDef.color.auto && layout.boxplotDef.color.mode === 'byExpression') {
       if (layout.qUndoExclude.box.qHyperCube.qMeasureInfo[0].qAttrExprInfo.length === 0) {
         // For backward compatibility
-        pointMarkerSettings.settings.fill = Color.retriveColor(this.theme.getDataColorSpecials().nil).toRGBA();
+        pointMarkerSettings.settings.fill = Color.retriveColor(theme.getDataColorSpecials().nil).toRGBA();
       } else {
         // Until picasso fully suport using box color for outlier color
         const qMatrix = layout.qUndoExclude.box.qHyperCube.qDataPages[0].qMatrix;
@@ -535,7 +535,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
           );
           pointMarkerSettings.settings.fill = getColorFromExpValue(
             qMatrix[0][0].qAttrExps.qValues[attrExprs.colorByExpression.index],
-            this.theme
+            theme
           );
         }
       }
@@ -573,7 +573,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     };
   },
   createChartSettings(layout) {
-    const isRtl = this.options && this.options.direction === 'rtl';
+    const isRtl = this.isRtl();
     const isHorizontal = getIsHorizontal(layout.orientation);
     const hasSecondDimension = getHasSecondDimension(layout);
     const dimInfo = layout[HYPERCUBE_PATH].qHyperCube.qDimensionInfo;
@@ -584,7 +584,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     // Create components
     const chartBuilder = ChartBuilder.create({
       chartID,
-      theme: this.theme,
+      theme: this.environment.theme,
+      isRtl,
     });
 
     let dimAxisSelectionSettings = {};
@@ -623,9 +624,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     if (this._tooltipHandler.isOn()) {
       tooltipSettings.point = this._tooltipHandler.setUp({
         chartBuilder,
-        theme: this.theme,
-        translator: this.translator,
-        deviceType: this.deviceType,
+        environment: this.environment,
         tooltipKey: 'point-tooltip',
         dataPath: OUTLIERS_PATH,
         data: hasSecondDimension ? ['inner', dimensionDirection] : ['inner'],
@@ -637,15 +636,12 @@ const BoxPlot = ChartView.extend('BoxPlot', {
             label: layout.boxplotDef.qHyperCube.qMeasureInfo[0].qFallbackTitle,
           };
         },
-        direction: this.options.direction,
         measureRows: ['measure'],
         labelData: hasSecondDimension ? ['tooltip', 'outer'] : ['tooltip'],
       });
       tooltipSettings.box = this._tooltipHandler.setUp({
         chartBuilder,
-        theme: this.theme,
-        translator: this.translator,
-        deviceType: this.deviceType,
+        environment: this.environment,
         tooltipKey: 'box-tooltip',
         renderer: tooltipRenderer,
         dataPath: BOX_PATH,
@@ -676,7 +672,6 @@ const BoxPlot = ChartView.extend('BoxPlot', {
             label: tooltipLabel,
           };
         },
-        direction: this.options.direction,
         measureRows: ['minMeasure', 'startMeasure', 'medMeasure', 'endMeasure', 'maxMeasure'], // Should be a mapped path under extract, mandatory to display tooltip
         labelData: ['tooltip'], // Should be a mapped path under extract, mandatory to display tooltip,
         filterShapes(shapes) {
@@ -820,7 +815,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
   },
   paint() {
     const isSnapshot = !!this.layout.snapshotData;
-    if (!isSnapshot && !this.options.viewState) {
+    if (!isSnapshot && !this.environment.options.viewState) {
       this.updateScrollHandlerState(false);
     }
 
@@ -930,6 +925,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
   },
 
   updateDerivedProperties(properties, layout) {
+    const { translator } = this.environment;
     const self = this;
     const model = self.backendApi.model;
 
@@ -943,7 +939,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
             model,
             hashData,
             generateDerivedProperties(layout, properties) {
-              return generateDerivedProperties(layout, properties, model.app, self.translator);
+              return generateDerivedProperties(layout, properties, model.app, translator);
             },
           };
 
@@ -971,9 +967,10 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       // Derived properties are up to date, go ahead and update data
 
       self.updateScrollHandlerState(true);
-      if (self.options.viewState) {
+      const { viewState } = self.environment.options;
+      if (viewState) {
         self._scrollHandler.updateViewState(getDataSize(layout));
-        self._scrollHandler.setScrollState(self.options.viewState.scroll);
+        self._scrollHandler.setScrollState(viewState.scroll);
       } else {
         self._scrollHandler.resetScroll();
       }
@@ -1003,7 +1000,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       self.backendApi.updateCache(undoExclude.box);
 
       if (getHasSecondDimension(layout)) {
-        const start = self.options.viewState ? self.options.viewState.scroll : self._scrollHandler.getScrollState();
+        const start = viewState ? viewState.scroll : self._scrollHandler.getScrollState();
         return self.getSlicedData(start, self._scrollHandler.getScrollViewSizeInItem());
       }
       const dfds = [self.getData(self.backendApi, undoExclude.box.qHyperCube, { height: 1 })];
