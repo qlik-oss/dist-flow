@@ -2909,18 +2909,6 @@
   dependencies:
     "@octokit/openapi-types" "^7.2.3"
 
-"@qlik/encoder@0.2.0":
-  version "0.2.0"
-  resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/encoder/-/@qlik/encoder-0.2.0.tgz#08407b2f8129f9e624afa191a0777e15b1297e85"
-  integrity sha1-CEB7L4Ep+eYkr6GRoHd+FbEpfoU=
-
-"@qlik/object-conversion@0.3.0":
-  version "0.3.0"
-  resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/object-conversion/-/@qlik/object-conversion-0.3.0.tgz#cfc87bca1308eb921606bce2395b1abf334c3790"
-  integrity sha1-z8h7yhMI65IWBrziOVsavzNMN5A=
-  dependencies:
-    qlik-modifiers "0.5.1"
-
 "@qlik/sense-themes-default@1.13.0":
   version "1.13.0"
   resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/sense-themes-default/-/@qlik/sense-themes-default-1.13.0.tgz#7a336cf037365a32cc81c8bbbcb62ea7309672f6"
@@ -11893,6 +11881,13 @@ qlik-modifiers@0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/qlik-modifiers/-/qlik-modifiers-0.5.1.tgz#df81fe57e24fc88f7271e91bc23ab960144667a4"
   integrity sha512-jQXt3oH7UwO5mhwUf0fHiUMRNutb1Fsq2jjN4NQ5Q0ZvBzhjrJPGcIpMMIcU4tmrYabkXS/GaVMA3Oa38jzpsw==
+
+qlik-object-conversion@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/qlik-object-conversion/-/qlik-object-conversion-0.6.0.tgz#9aa57a734fa4ba42e0e1d8c23176ef8788cea7c3"
+  integrity sha512-GuOwhNPDdYRxu/3sPeMEb5soGRvduFj92yoFwfwJhC4Wm2WiwDLZkrkOk93TCsF0XxDSgduzgTe+yXQTz2/H/Q==
+  dependencies:
+    qlik-modifiers "0.5.1"
 
 qs@6.7.0:
   version "6.7.0"

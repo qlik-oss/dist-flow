@@ -1,5 +1,5 @@
 import extend from 'extend';
-import conversion from '@qlik/object-conversion';
+import conversion from 'qlik-object-conversion';
 import pp from './waterfallchart-properties';
 import dataDefinition from './waterfallchart-data-definition';
 
