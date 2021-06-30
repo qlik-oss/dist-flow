@@ -155,13 +155,13 @@ const ChartView = Class.extend({
   },
 
   updateChart(layout, settings, isPartialData) {
-    const self = this;
+    const localeInfo = this.environment.appLayout?.qLocaleInfo ?? {};
     this._updateDisclaimerDebounce(this.layout);
     const data = this._dataPaths.map((path) => ({
       type: 'q',
       key: path,
       config: {
-        localeInfo: self.backendApi ? self.backendApi.localeInfo : {},
+        localeInfo,
       },
       data: getValue(layout, path.replace(/\//g, '.')),
     }));

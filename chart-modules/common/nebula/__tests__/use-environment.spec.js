@@ -38,6 +38,10 @@ describe('use-environment', () => {
     expect(result.current).toHaveProperty('translator');
   });
 
+  test('environment should contain appLayout', () => {
+    expect(result.current).toHaveProperty('appLayout');
+  });
+
   test('should not change on rerender if no dependency has changed', async () => {
     await rerender();
     expect(result.all[0]).toBe(result.all[1]);
@@ -69,6 +73,12 @@ describe('use-environment', () => {
 
   test('should change if options.freeResize changes', async () => {
     context.options.freeResize = true;
+    await rerender(context);
+    expect(result.all[0]).not.toBe(result.all[1]);
+  });
+
+  test('should change if appLayout changes', async () => {
+    context.appLayout = 'new Layout';
     await rerender(context);
     expect(result.all[0]).not.toBe(result.all[1]);
   });
