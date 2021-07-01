@@ -20,9 +20,7 @@
   ],
   "files": [
     "api-specifications",
-    "dist",
-    "sn-distplot.js",
-    "sn-distplot.qext"
+    "dist"
   ],
   "qext": {
     "name": "Distributionplot",

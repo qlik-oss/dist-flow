@@ -8,6 +8,7 @@
     "bump": "./scripts/version.sh",
     "lint": "lerna run lint",
     "specs": "node scripts/generate-specs.js && pretty-quick --pattern 'charts/*/api-specifications/*'",
+    "sense": "lerna run --stream sense",
     "sense:watch": "lerna run  --stream --no-sort --concurrency 99 sense:watch",
     "test": "npm run test:unit",
     "test:unit": "jest",

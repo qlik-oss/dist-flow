@@ -19,9 +19,7 @@
   ],
   "files": [
     "api-specifications",
-    "dist",
-    "sn-boxplot.js",
-    "sn-boxplot.qext"
+    "dist"
   ],
   "qext": {
     "name": "Boxplot",

@@ -19,9 +19,7 @@
   ],
   "files": [
     "api-specifications",
-    "dist",
-    "sn-histogram.js",
-    "sn-histogram.qext"
+    "dist"
   ],
   "qext": {
     "name": "Histogram",

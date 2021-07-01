@@ -19,9 +19,7 @@
   ],
   "files": [
     "api-specifications",
-    "dist",
-    "sn-waterfall.js",
-    "sn-waterfall.qext"
+    "dist"
   ],
   "qext": {
     "name": "Waterfall",
