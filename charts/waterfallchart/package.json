@@ -46,6 +46,6 @@
     "@qlik/common": "0.0.1"
   },
   "peerDependencies": {
-    "@nebula.js/stardust": "^1.x"
+    "@nebula.js/stardust": ">=1.4.0"
   }
 }
