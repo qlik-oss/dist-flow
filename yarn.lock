@@ -2909,10 +2909,10 @@
   dependencies:
     "@octokit/openapi-types" "^7.2.3"
 
-"@qlik/sense-themes-default@1.13.0":
+"@qlik-trial/sense-themes-default@1.13.0":
   version "1.13.0"
-  resolved "https://qliktech.jfrog.io/qliktech/api/npm/npm-local/@qlik/sense-themes-default/-/@qlik/sense-themes-default-1.13.0.tgz#7a336cf037365a32cc81c8bbbcb62ea7309672f6"
-  integrity sha1-ejNs8Dc2WjLMgci7vLYupzCWcvY=
+  resolved "https://npm.pkg.github.com/download/@qlik-trial/sense-themes-default/1.13.0/6be645447eedc5eb120b39f451f2c4c3e2d85a8fd316ed32f410c8470bbcd8f7#2bb8394aad073d4505d3e9c0138151e861f48cfa"
+  integrity sha512-FDBjniYtx54B92dWhmqYo9JRtBwF3ANJ8DQ+9GD3drQllP8f0vOLGxGzsArPjuY0gYKKipiUrddFNRG6frlFIg==
 
 "@rollup/plugin-commonjs@18.0.0":
   version "18.0.0"

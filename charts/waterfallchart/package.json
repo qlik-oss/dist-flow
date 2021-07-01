@@ -32,7 +32,8 @@
     "build": "nebula build",
     "lint": "eslint src",
     "start": "nebula serve --type waterfallchart --config ../../nebula.config.js",
-    "sense": "nebula sense --partial"
+    "sense": "nebula sense --partial",
+    "sense:watch": "node ../../scripts/sense-watch"
   },
   "dependencies": {
     "qlik-chart-modules": "0.13.4",
