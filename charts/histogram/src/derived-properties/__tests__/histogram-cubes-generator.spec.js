@@ -7,6 +7,7 @@ describe('Generate hyper cube for histogram', () => {
   let properties;
   let layout;
   let app;
+  let generateHyperCubes;
 
   beforeEach(() => {
     properties = {
@@ -45,15 +46,21 @@ describe('Generate hyper cube for histogram', () => {
       getDimension() {},
       getMeasure() {},
     };
+
+    const environment = {
+      translator: null,
+    };
+
+    generateHyperCubes = () => cubesGenerator.generateHyperCubes(layout, properties, app, environment);
   });
 
   it('should generate a hypercube at the correct location in the properties', async () => {
-    await cubesGenerator.generateHyperCubes(layout, properties, app);
+    await generateHyperCubes();
     expect(properties.qUndoExclude.box.qHyperCubeDef).to.be.an('object');
   });
 
   it('should generate a dimension and measure based on the provided field name', async () => {
-    await cubesGenerator.generateHyperCubes(layout, properties, app);
+    await generateHyperCubes();
 
     const cube = properties.qUndoExclude.box.qHyperCubeDef;
     const dimensions = cube.qDimensions;
@@ -67,7 +74,7 @@ describe('Generate hyper cube for histogram', () => {
   });
 
   it('should sort the dimension numerically ascending', async () => {
-    await cubesGenerator.generateHyperCubes(layout, properties, app);
+    await generateHyperCubes();
 
     const sortCriterias = properties.qUndoExclude.box.qHyperCubeDef.qDimensions[0].qDef.qSortCriterias;
 
@@ -77,7 +84,7 @@ describe('Generate hyper cube for histogram', () => {
   });
 
   it('should store the qFieldLabel on the derived properties', async () => {
-    await cubesGenerator.generateHyperCubes(layout, properties, app);
+    await generateHyperCubes();
 
     expect(properties.qUndoExclude.box.qHyperCubeDef.qDimensions[0].qDef.qFieldLabels[0]).to.equal(
       layout.qHyperCube.qDimensionInfo[0].qFallbackTitle
@@ -85,13 +92,13 @@ describe('Generate hyper cube for histogram', () => {
   });
 
   it('should store the measureAxis.label on the derived properties', async () => {
-    await cubesGenerator.generateHyperCubes(layout, properties, app);
+    await generateHyperCubes();
 
     expect(properties.qUndoExclude.box.qHyperCubeDef.qMeasures[0].qDef.qLabel).to.equal(layout.measureAxis.label);
   });
 
   it('should store the binSize on the derived properties', async () => {
-    await cubesGenerator.generateHyperCubes(layout, properties, app);
+    await generateHyperCubes();
 
     expect(properties.qUndoExclude.bins.binSize).to.equal(layout.bins.binSize);
   });
@@ -99,7 +106,7 @@ describe('Generate hyper cube for histogram', () => {
   it('should generate the Sturges formula expression in auto mode', async () => {
     layout.bins.auto = true;
 
-    await cubesGenerator.generateHyperCubes(layout, properties, app);
+    await generateHyperCubes();
 
     expect(properties.qUndoExclude.bins.binCount).to.deep.equal({
       qValueExpression: {
@@ -117,7 +124,7 @@ describe('Generate hyper cube for histogram', () => {
     };
     properties.bins.binCount = undefined;
 
-    await cubesGenerator.generateHyperCubes(layout, properties, app);
+    await generateHyperCubes();
 
     expect(properties.qUndoExclude.bins.binCount).to.deep.equal(layout.qUndoExclude.bins.binCount);
   });
@@ -126,7 +133,7 @@ describe('Generate hyper cube for histogram', () => {
     layout.bins.binMode = 'maxCount';
     properties.bins.binCount = '=Count([City])';
 
-    await cubesGenerator.generateHyperCubes(layout, properties, app);
+    await generateHyperCubes();
 
     expect(properties.qUndoExclude.bins.binCount).to.equal(properties.bins.binCount);
   });
