@@ -1,3 +1,5 @@
+/** @jsx h */
+
 const NR_COLUMNS = 5;
 const BOX_COLOR = '#FFF';
 
@@ -40,32 +42,32 @@ function createBoxCell(settings, index) {
   const { h } = settings;
   let divs;
   if (index === 0) {
-    const whisker = h('div', { style: whiskerStyle }, []);
-    const line = h('div', { style: { ...lineStyle, top: '50%', height: 'calc(50% + 2px)' } }, []);
-    const filler = h('div', { style: fillerStyle }, []);
+    const whisker = <div style={whiskerStyle} />;
+    const line = <div style={{ ...lineStyle, top: '50%', height: 'calc(50% + 2px)' }} />;
+    const filler = <div style={fillerStyle} />;
     divs = [whisker, line, filler];
   } else if (index === 1) {
-    const line = h('div', { style: { ...lineStyle, top: '-2px' } }, []);
-    const box = h('div', { style: { ...boxSyle, top: 'calc(50% - 2px)', height: 'calc(50% + 4px)' } }, []);
+    const line = <div style={{ ...lineStyle, top: '-2px' }} />;
+    const box = <div style={{ ...boxSyle, top: 'calc(50% - 2px)', height: 'calc(50% + 4px)' }} />;
     divs = [line, box];
   } else if (index === 2) {
-    const median = h('div', { style: medianStyle }, []);
-    const box1 = h('div', { style: { ...boxSyle, top: '-2px', height: 'calc(50%)' } }, []);
-    const box2 = h('div', { style: { ...boxSyle, top: '50%', height: 'calc(50% + 2px)' } }, []);
+    const median = <div style={medianStyle} />;
+    const box1 = <div style={{ ...boxSyle, top: '-2px', height: 'calc(50%)' }} />;
+    const box2 = <div style={{ ...boxSyle, top: '50%', height: 'calc(50% + 2px)' }} />;
     divs = [box1, median, box2];
   } else if (index === 3) {
-    const box = h('div', { style: { ...boxSyle, top: '-2px', height: 'calc(50% + 2px)' } }, []);
-    const line = h('div', { style: { ...lineStyle, top: '50%', height: 'calc(50% + 2px)' } }, []);
+    const box = <div style={{ ...boxSyle, top: '-2px', height: 'calc(50% + 2px)' }} />;
+    const line = <div style={{ ...lineStyle, top: '50%', height: 'calc(50% + 2px)' }} />;
     divs = [box, line];
   } else if (index === 4) {
-    const whisker = h('div', { style: whiskerStyle }, []);
-    const line = h('div', { style: { ...lineStyle, top: '-2px' } }, []);
-    const filler = h('div', { style: fillerStyle }, []);
+    const whisker = <div style={whiskerStyle} />;
+    const line = <div style={{ ...lineStyle, top: '-2px' }} />;
+    const filler = <div style={fillerStyle} />;
     divs = [whisker, line, filler];
   } else {
     throw new Error('error');
   }
-  return h('td', { style: { width: '13px', position: 'relative' } }, divs);
+  return <td style={{ width: '13px', position: 'relative' }}>{divs}</td>;
 }
 function createAlignCell(settings) {
   const { h } = settings;
@@ -77,8 +79,8 @@ function createAlignCell(settings) {
     left: '-4px',
     top: 'calc(50% - 2px)',
   };
-  const div = h('div', { style }, []);
-  return h('td', { style: { width: '15px', position: 'relative' } }, div);
+  const div = <div style={style} />;
+  return <td style={{ width: '15px', position: 'relative' }}>{div}</td>;
 }
 function createCircleCell(settings) {
   const { h } = settings;
@@ -90,30 +92,31 @@ function createCircleCell(settings) {
     position: 'absolute',
     top: 'calc(50% - 3px)',
   };
-  const div = h('div', { style }, []);
-  return h('td', { style: { width: '4px', position: 'relative' } }, div);
+  const div = <div style={style} />;
+  return <td style={{ width: '4px', position: 'relative' }}>{div}</td>;
 }
 
 function renderHeader(settings, header) {
   const { h, style } = settings;
-  const attributes = {
-    style: { ...style.cell, fontWeight: 'bold' },
-    colspan: NR_COLUMNS,
-  };
-  const cell = h('td', attributes, header);
-  const row = h('tr', {}, [cell]);
+  const row = (
+    <tr>
+      <td style={{ ...style.cell, fontWeight: 'bold' }} colSpan={NR_COLUMNS}>
+        {header}
+      </td>
+    </tr>
+  );
   return row;
 }
 
 function renderLabelCell(settings, label) {
   const { h, style } = settings;
-  const labelCell = h('td', { style: style.cell }, [label, ':']);
+  const labelCell = <td style={style.cell}>:{label}</td>;
   return labelCell;
 }
 
 function renderValueCell(settings, value) {
   const { h, style } = settings;
-  const valueCell = h('td', { style: { ...style.cell, textAlign: 'right' } }, value);
+  const valueCell = <td style={{ ...style.cell, textAlign: 'right' }}>${value}</td>;
   return valueCell;
 }
 
@@ -124,7 +127,7 @@ function renderMeasureRow(settings, row, index) {
   const circleCell = createCircleCell(settings);
   const labelCell = renderLabelCell(settings, row.label);
   const valueCell = renderValueCell(settings, row.value);
-  return h('tr', {}, [boxCell, alignCell, circleCell, labelCell, valueCell]);
+  return <tr>{[boxCell, alignCell, circleCell, labelCell, valueCell]}</tr>;
 }
 
 function renderBox(settings, box) {
@@ -140,12 +143,13 @@ function renderBox(settings, box) {
 
 function renderMoreIndicator(settings, content) {
   const { h, style, translator } = settings;
-  const attributes = {
-    style: style.cell,
-    colspan: NR_COLUMNS,
-  };
-  const cell = h('td', attributes, translator.get('Object.ChartTooltip.NMore', content.numberInExcess));
-  const row = h('tr', {}, [cell]);
+  const row = (
+    <tr>
+      <td style={style.cell} colSpan={NR_COLUMNS}>
+        {translator.get('Object.ChartTooltip.NMore', content.numberInExcess)}
+      </td>
+    </tr>
+  );
   return row;
 }
 
