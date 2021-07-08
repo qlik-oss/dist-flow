@@ -205,7 +205,7 @@ function Selections(options) {
         });
 
         if (selectionsApi.canClear()) {
-          selectionsApi.clear();
+          selectionsApiClearFn();
         }
       }
     };
