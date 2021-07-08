@@ -230,6 +230,11 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     this._tooltipHandler[tooltip ? 'on' : 'off']();
     this._selectionHandler[selection ? 'on' : 'off']();
   },
+  off() {
+    this._scrollHandler.off();
+    this._tooltipHandler.off();
+    this._selectionHandler.off();
+  },
 
   _getPointScale() {
     return sliderEnabled(this.layout) ? this.layout.dataPoint.bubbleScales / this._maxBubbleScale : 1;

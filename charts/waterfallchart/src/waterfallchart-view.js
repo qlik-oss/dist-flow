@@ -62,6 +62,10 @@ function updateConstraints(constraints) {
   this._scrollHandler[navigation ? 'on' : 'off']();
   this._tooltipHandler[tooltip ? 'on' : 'off']();
 }
+function off() {
+  this._scrollHandler.off();
+  this._tooltipHandler.off();
+}
 
 function getMaxGlyphCountForDimAxis(layout) {
   let glyphCount = -Number.MAX_VALUE;
@@ -452,6 +456,7 @@ const waterfallChartView = ChartView.extend('WaterfallChart', {
   chartID,
   init,
   updateConstraints,
+  off,
   createChartSettings,
   updateData,
   resize,

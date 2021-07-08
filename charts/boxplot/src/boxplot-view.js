@@ -248,6 +248,11 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     this._tooltipHandler[tooltip ? 'on' : 'off']();
     this._selectionHandler[selection ? 'on' : 'off']();
   },
+  off() {
+    this._scrollHandler.off();
+    this._tooltipHandler.off();
+    this._selectionHandler.off();
+  },
   _getBoxMarkerSettings(layout, selectionSettings, tooltipSettings) {
     const { theme } = this.environment;
     const boxFillColor = layout.boxplotDef.color.auto

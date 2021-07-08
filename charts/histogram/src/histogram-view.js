@@ -43,6 +43,10 @@ function updateConstraints(constraints) {
   this._tooltipHandler[tooltip ? 'on' : 'off']();
   this._selectionHandler[selection ? 'on' : 'off']();
 }
+function off() {
+  this._tooltipHandler.off();
+  this._selectionHandler.off();
+}
 
 function setSnapshotData(snapshotLayout) {
   this._super(snapshotLayout);
@@ -179,6 +183,7 @@ const HistogramView = ChartView.extend('Histogram', {
   namespace,
   init,
   updateConstraints,
+  off,
   createChartSettings: function createChartSettings(layout) {
     return ChartSettings.createChartSettings(this, layout);
   },
