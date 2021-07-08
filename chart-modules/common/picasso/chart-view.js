@@ -1,5 +1,5 @@
 import extend from 'extend';
-import { getValue, debouncer } from 'qlik-chart-modules';
+import { getValue } from 'qlik-chart-modules';
 
 import Class from '../extra/class';
 import ChartBuilder from './chart-builder/chart-builder';

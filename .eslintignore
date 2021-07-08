@@ -1,4 +1,5 @@
 dist/
 coverage/
 node_modules/
-qext
+
+charts/distributionplot/src/distributionplot.js

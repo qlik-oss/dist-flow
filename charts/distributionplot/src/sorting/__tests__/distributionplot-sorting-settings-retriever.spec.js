@@ -1,4 +1,3 @@
-// 
 import chai from 'chai';
 import distributionplotSortingSettingsRetriever from '../distributionplot-sorting-settings-retriever';
 import SETTINGS from '../distributionplot-sorting-settings';

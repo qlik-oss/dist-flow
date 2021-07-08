@@ -1,5 +1,6 @@
 import pp from './distributionplot-properties';
 import softDefinition from './distributionplot-explore-properties';
+import propsLogic from './distributionplot-properties-logic';
 
 export default function ext(env) {
   if (!env.anything?.sense) {
@@ -20,6 +21,9 @@ export default function ext(env) {
     options: {
       usingDerivedProperties: true,
       colorByPath: 'color.point',
+    },
+    onSoftPropertyChange(prevProperties, nextProperties) {
+      propsLogic.onGlobalChangeColors(nextProperties);
     },
     // TODO: import, export, ...
   };

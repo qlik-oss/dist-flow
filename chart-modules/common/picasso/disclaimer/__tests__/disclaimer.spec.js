@@ -1,6 +1,5 @@
 import chai from 'chai';
 import sinon from 'sinon';
-import $ from 'jquery';
 import AttributesUtil from '../disclaimer-attributes-util';
 import Disclaimer from '../disclaimer';
 
