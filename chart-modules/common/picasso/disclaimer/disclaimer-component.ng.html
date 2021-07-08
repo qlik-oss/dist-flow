@@ -1,9 +1,0 @@
-<span class="qv-viz-center-disclaimer" ng-if="centerDisclaimer.show" title="{{ centerDisclaimer.message }}" dir="ltr">{{ centerDisclaimer.message }}</span>
-<div class="qv-viz-disclaimer"
-	 ng-if="!centerDisclaimer.show && outerDisclaimer.show"
-	 style="font-size: 1em;"
-	 qva-direction x-dir-setting="{{direction}}" x-dir-text="{{languageString}}">
-	<span class="ltr-star">*</span>
-	<span class="title" title="{{ outerDisclaimer.message }}">{{ outerDisclaimer.message }}</span>
-	<span class="rtl-star">*</span>
-</div>

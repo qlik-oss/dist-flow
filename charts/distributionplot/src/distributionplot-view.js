@@ -860,12 +860,13 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
   getDisclaimerAttributes(layout) {
     const showDisclaimer = this.flags.isEnabled('SHOW_DISCLAIMER') ? !(layout.showDisclaimer === false) : true;
+    const limitedData =
+      (!hypercubeUtil.hasSecondDimension(layout, DATA_PATH) && layout.qHyperCube.qSize.qcy > 10000) ||
+      (hypercubeUtil.hasSecondDimension(layout, DATA_PATH) && layout.qHyperCube.qSize.qcy > 3000);
+    const explicitLimitedData = showDisclaimer && limitedData;
     const scrollSettings =
       this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
-    let explicitLimitedData;
-    if (showDisclaimer && !hypercubeUtil.hasSecondDimension(layout, DATA_PATH) && layout.qHyperCube.qSize.qcy > 10000) {
-      explicitLimitedData = true;
-    }
+
     return {
       data: layout && layout.qUndoExclude,
       supportedDisclaimers: {

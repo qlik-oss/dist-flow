@@ -3,6 +3,7 @@ import PicassoQ from 'picasso-plugin-q';
 import PicassoHammer from 'picasso-plugin-hammer';
 import Hammer from 'hammerjs';
 import eventArea from './plugins/event-area';
+import disclaimer from './disclaimer/disclaimer-component.jsx';
 
 export default function setup() {
   const picasso = picassojs();
@@ -17,5 +18,6 @@ export default function setup() {
   picasso.use(PicassoQ);
   picasso.use(PicassoHammer(Hammer));
   picasso.use(eventArea);
+  picasso.component('disclaimer', disclaimer);
   return picasso;
 }

@@ -12,6 +12,7 @@ export default class BackednAPi {
 
   // eslint-disable-next-line no-unused-vars
   getData(pages, path, hyperCube) {
-    return this.model.getHyperCubeStackData(this.path, pages);
+    const qMaxNbrCells = 3000;
+    return this.model.getHyperCubeStackData(this.path, pages, qMaxNbrCells);
   }
 }

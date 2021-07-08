@@ -1,7 +1,6 @@
 import chai from 'chai';
 import sinon from 'sinon';
 import $ from 'jquery';
-import qvangular from '../../../../qvangular/qvangular';
 import AttributesUtil from '../disclaimer-attributes-util';
 import Disclaimer from '../disclaimer';
 
@@ -23,15 +22,15 @@ describe('Disclaimer for picasso charts', () => {
     },
   ];
 
-  function createChartElement(attributes) {
-    const $testScope = qvangular.$rootScope.$new(true);
-    const parent = $(qvangular.getService('$compile')('<div></div>')($testScope));
-    parent.append("<div class='chart'></div>");
-    const element = parent.children('.chart');
-    disclaimer.set(attributes);
-    disclaimer.display(element);
-    return parent;
-  }
+  // function createChartElement(attributes) {
+  //   const $testScope = qvangular.$rootScope.$new(true);
+  //   const parent = $(qvangular.getService('$compile')('<div></div>')($testScope));
+  //   parent.append("<div class='chart'></div>");
+  //   const element = parent.children('.chart');
+  //   disclaimer.set(attributes);
+  //   disclaimer.display(element);
+  //   return parent;
+  // }
 
   beforeEach(() => {
     disclaimer = new Disclaimer({});
@@ -61,20 +60,14 @@ describe('Disclaimer for picasso charts', () => {
     applyAttributesStub.restore();
   });
 
-  it('should throw an error if calling display before set', () => {
-    expect(() => {
-      disclaimer.display(null);
-    }).to.throw(Disclaimer.ERRORS.DISPLAY);
-  });
-
   it('should display a centered disclaimer', () => {
     const dataAttributes = {
       NoDataExist: true,
     };
     applyAttributesStub = sinon.stub(AttributesUtil, 'applyAttributes').returns(dataAttributes);
-    const parent = createChartElement(attributes);
-    const disclaimerElement = parent.find('.qv-viz-center-disclaimer');
-    expect(disclaimerElement.length).to.equal(1);
+    disclaimer.set(attributes);
+    const component = disclaimer.getComponentSettings();
+    expect(component?.layout?.dock).to.equal('center');
     applyAttributesStub.restore();
   });
 
@@ -86,27 +79,9 @@ describe('Disclaimer for picasso charts', () => {
       NegativeOrZeroValues: true,
     };
     applyAttributesStub = sinon.stub(AttributesUtil, 'applyAttributes').returns(dataAttributes);
-    const parent = createChartElement(attributes);
-    const disclaimerElement = parent.find('.qv-viz-disclaimer');
-    expect(disclaimerElement.length).to.equal(1);
+    disclaimer.set(attributes);
+    const component = disclaimer.getComponentSettings();
+    expect(component?.layout?.dock).to.equal('bottom');
     applyAttributesStub.restore();
-  });
-
-  it('should show bottom disclaimer and set a star in chart title', () => {
-    const element = $('<div></div>');
-    disclaimer.dataAttributes = {};
-    disclaimer.vizAttributes = attributes;
-    disclaimer.toggleBottomDisclaimerVisibility(element, true);
-    expect(element.hasClass('qv-viz-with-disclaimer')).to.be.true;
-    expect(disclaimer.options.showDisclaimerStar).to.be.true;
-  });
-
-  it('should not show bottom disclaimer or set a star in chart title', () => {
-    const element = $('<div></div>');
-    disclaimer.dataAttributes = {};
-    disclaimer.vizAttributes = attributes;
-    disclaimer.toggleBottomDisclaimerVisibility(element, false);
-    expect(element.hasClass('qv-viz-with-disclaimer')).to.be.false;
-    expect(disclaimer.options.showDisclaimerStar).to.be.false;
   });
 });

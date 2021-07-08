@@ -3,6 +3,7 @@ import { getValue, debouncer } from 'qlik-chart-modules';
 
 import Class from '../extra/class';
 import ChartBuilder from './chart-builder/chart-builder';
+import Disclaimer from './disclaimer/disclaimer';
 
 function getData(backendApi, hyperCube, rect) {
   let page = {
@@ -54,10 +55,7 @@ const ChartView = Class.extend({
 
     this._selectionsApi = selectionsApi;
     this._on = false;
-    // TODO: new Disclaimer
-    // this._disclaimer = new Disclaimer(options);
-    this._disclaimer = { set: () => {}, display: () => {} };
-    this._updateDisclaimerDebounce = debouncer(this.updateDisclaimer.bind(this), 250);
+    this._disclaimer = new Disclaimer(environment);
     this._dataPaths = ['qHyperCube'];
 
     const self = this;
@@ -104,9 +102,16 @@ const ChartView = Class.extend({
   paint() {
     // Use this.layout
     if (this.hasValidData()) {
-      this.updateDisclaimer(this.layout);
+      this._disclaimer.set(this.getDisclaimerAttributes(this.layout));
+      const disclaimerComponent = this._disclaimer.getComponentSettings();
+      const isSuppressingDisc = disclaimerComponent?.layout?.dock === 'center';
 
       const chartSettings = this.createChartSettings(this.layout);
+      if (isSuppressingDisc) {
+        chartSettings.components = [disclaimerComponent];
+      } else if (disclaimerComponent) {
+        chartSettings.components.push(disclaimerComponent);
+      }
       ChartBuilder.validateComponentKeys(chartSettings.components).forEach((errorMsg) => {
         console.error(errorMsg);
       });
@@ -156,7 +161,6 @@ const ChartView = Class.extend({
 
   updateChart(layout, settings, isPartialData) {
     const localeInfo = this.environment.appLayout?.qLocaleInfo ?? {};
-    this._updateDisclaimerDebounce(this.layout);
     const data = this._dataPaths.map((path) => ({
       type: 'q',
       key: path,
@@ -175,13 +179,6 @@ const ChartView = Class.extend({
       partialData: isPartialData,
     });
     // this.picassoElement.setAttribute('data-state', States.DATA.UPDATED); // For integration test
-  },
-
-  updateDisclaimer(layout) {
-    if (layout) {
-      this._disclaimer.set(this.getDisclaimerAttributes(layout));
-      this._disclaimer.display(this.picassoElement);
-    }
   },
 
   destroy() {

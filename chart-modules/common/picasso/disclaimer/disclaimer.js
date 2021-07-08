@@ -4,10 +4,9 @@
  * @exports objects.picasso/disclaimer/disclaimer
  */
 
-import $ from 'jquery';
+import extend from 'extend';
 import DisclaimersConfig from './disclaimers-config';
 import AttributesUtil from './disclaimer-attributes-util';
-import DisclaimerComponent from './disclaimer-component';
 import DisclaimerComponentHelper from './disclaimer-component-helper';
 
 Disclaimer.ERRORS = {
@@ -20,8 +19,8 @@ Disclaimer.ERRORS = {
  * @param {Object} options - A reference to chart options
  * @constructor
  */
-function Disclaimer(options) {
-  this.options = options;
+function Disclaimer(environment) {
+  this.environment = environment;
   this.clear();
 }
 
@@ -38,64 +37,39 @@ Disclaimer._applyDefaultSupport = function (supportedDisclaimers, disclaimersCon
   return supported;
 };
 
-/**
- * Returns true if bottom disclaimer should be visible
- * @returns {boolean}
- */
-Disclaimer.prototype.getBottomDisclaimerVisibility = function () {
+Disclaimer.prototype.getComponentSettings = function () {
+  const { translator } = this.environment;
+  const supportedDisclaimers = extend(true, {}, this.vizAttributes.supportedDisclaimers);
   const helper = new DisclaimerComponentHelper(
     DisclaimersConfig.DISCLAIMERS,
     this.dataAttributes,
-    this.vizAttributes.supportedDisclaimers
+    supportedDisclaimers
   );
-  return (
-    helper.isAnyValidDisclaimer(DisclaimersConfig.ALIGNMENT.BOTTOM) &&
-    !helper.isAnyValidDisclaimer(DisclaimersConfig.ALIGNMENT.CENTER)
-  );
-};
 
-/**
- * Toggles the visibility of bottom disclaimer and star in chart title
- * @param element {Object} chart element
- * @param toggle {Boolean}
- */
-Disclaimer.prototype.toggleBottomDisclaimerVisibility = function (element, toggle) {
-  const addBottomSpace = !!(toggle || (this.vizAttributes.options && this.vizAttributes.options.paddingBottom));
-  this.options.showDisclaimerStar = toggle;
-  element.toggleClass('qv-viz-with-disclaimer', addBottomSpace);
-};
-
-/**
- * Display valid disclaimers for a charts
- * @param {Object} element - chart element
- */
-Disclaimer.prototype.display = function (element) {
-  let elem;
-
-  if (this.vizAttributes && this.dataAttributes && this.environment.options) {
-    this.vizAttributes.supportedDisclaimers = Disclaimer._applyDefaultSupport(
-      this.vizAttributes.supportedDisclaimers,
-      DisclaimersConfig.DISCLAIMERS
-    );
-    elem = $(element);
-    elem.siblings('.disclaimer').addClass('to-remove');
-    elem.parent().append("<div class='disclaimer'></div>");
-    elem
-      .siblings('.disclaimer')
-      .last()
-      .showComponent(DisclaimerComponent, {
-        dataAttributes: $.extend(true, {}, this.dataAttributes),
-        direction: this.environment.options.direction,
-        supportedDisclaimers: $.extend(true, {}, this.vizAttributes.supportedDisclaimers),
-        onRender() {
-          // Last disclaimer element is removed with a delay for smooth scrolling
-          elem.siblings('.disclaimer.to-remove').remove();
-        },
-      });
-    this.toggleBottomDisclaimerVisibility(elem, this.getBottomDisclaimerVisibility());
+  let message;
+  let dock;
+  if (helper.isAnyValidDisclaimer(DisclaimersConfig.ALIGNMENT.CENTER)) {
+    message = helper.getMessage(DisclaimersConfig.ALIGNMENT.CENTER, translator);
+    dock = 'center';
+  } else if (helper.isAnyValidDisclaimer(DisclaimersConfig.ALIGNMENT.BOTTOM)) {
+    message = helper.getMessage(DisclaimersConfig.ALIGNMENT.BOTTOM, translator);
+    dock = 'bottom';
   } else {
-    throw new Error(Disclaimer.ERRORS.DISPLAY);
+    return undefined;
   }
+
+  return {
+    key: 'disclaimer',
+    type: 'disclaimer',
+    layout: {
+      displayOrder: 1000,
+      dock,
+    },
+    settings: {
+      label: message,
+      rtl: this.environment?.options?.direction === 'rtl',
+    },
+  };
 };
 
 /**

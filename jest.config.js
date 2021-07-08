@@ -13,7 +13,6 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/jest/setup.js'],
 
   testPathIgnorePatterns: [
-    'chart-modules/common/picasso/disclaimer/__tests__/disclaimer.spec.js',
     'charts/histogram/src/__tests__/histogram-export.spec.js',
     'charts/histogram/src/__tests__/histogram-numeric-values-handler.spec.js',
   ],
