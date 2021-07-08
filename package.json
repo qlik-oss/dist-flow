@@ -19,6 +19,8 @@
   "license": "ISC",
   "devDependencies": {
     "@after-work.js/aw": "6.0.14",
+    "@babel/preset-env": "7.14.7",
+    "@babel/preset-react": "7.14.5",
     "@nebula.js/cli": "1.4.0",
     "@nebula.js/cli-build": "1.5.0",
     "@nebula.js/cli-sense": "1.5.0",

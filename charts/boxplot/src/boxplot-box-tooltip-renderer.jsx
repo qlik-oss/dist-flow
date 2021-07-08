@@ -110,13 +110,13 @@ function renderHeader(settings, header) {
 
 function renderLabelCell(settings, label) {
   const { h, style } = settings;
-  const labelCell = <td style={style.cell}>:{label}</td>;
+  const labelCell = <td style={style.cell}>{[label, ':']}</td>;
   return labelCell;
 }
 
 function renderValueCell(settings, value) {
   const { h, style } = settings;
-  const valueCell = <td style={{ ...style.cell, textAlign: 'right' }}>${value}</td>;
+  const valueCell = <td style={{ ...style.cell, textAlign: 'right' }}>{value}</td>;
   return valueCell;
 }
 

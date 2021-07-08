@@ -30,24 +30,22 @@ describe('boxplot box tooltip renderer', () => {
       "[
          {
             \\"tag\\": \\"tr\\",
-            \\"attr\\": {},
-            \\"children\\": [
-               {
-                  \\"tag\\": \\"td\\",
-                  \\"attr\\": {
-                     \\"style\\": {
-                        \\"cellstyle\\": true,
-                        \\"fontWeight\\": \\"bold\\"
-                     },
-                     \\"colspan\\": 5
+            \\"attr\\": null,
+            \\"children\\": {
+               \\"tag\\": \\"td\\",
+               \\"attr\\": {
+                  \\"style\\": {
+                     \\"cellstyle\\": true,
+                     \\"fontWeight\\": \\"bold\\"
                   },
-                  \\"children\\": \\"BoxHeader\\"
-               }
-            ]
+                  \\"colSpan\\": 5
+               },
+               \\"children\\": \\"BoxHeader\\"
+            }
          },
          {
             \\"tag\\": \\"tr\\",
-            \\"attr\\": {},
+            \\"attr\\": null,
             \\"children\\": [
                {
                   \\"tag\\": \\"td\\",
@@ -68,8 +66,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"left\\": \\"calc(50% - 2.5px)\\",
                               \\"top\\": \\"calc(50% - 2px)\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      },
                      {
                         \\"tag\\": \\"div\\",
@@ -82,8 +79,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"height\\": \\"calc(50% + 2px)\\",
                               \\"top\\": \\"50%\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      },
                      {
                         \\"tag\\": \\"div\\",
@@ -95,8 +91,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"left\\": \\"calc(50% + 3.5px)\\",
                               \\"top\\": \\"calc(50% - 2px)\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      }
                   ]
                },
@@ -119,8 +114,7 @@ describe('boxplot box tooltip renderer', () => {
                            \\"left\\": \\"-4px\\",
                            \\"top\\": \\"calc(50% - 2px)\\"
                         }
-                     },
-                     \\"children\\": []
+                     }
                   }
                },
                {
@@ -142,8 +136,7 @@ describe('boxplot box tooltip renderer', () => {
                            \\"position\\": \\"absolute\\",
                            \\"top\\": \\"calc(50% - 3px)\\"
                         }
-                     },
-                     \\"children\\": []
+                     }
                   }
                },
                {
@@ -172,7 +165,7 @@ describe('boxplot box tooltip renderer', () => {
          },
          {
             \\"tag\\": \\"tr\\",
-            \\"attr\\": {},
+            \\"attr\\": null,
             \\"children\\": [
                {
                   \\"tag\\": \\"td\\",
@@ -194,8 +187,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"height\\": \\"50%\\",
                               \\"top\\": \\"-2px\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      },
                      {
                         \\"tag\\": \\"div\\",
@@ -208,8 +200,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"top\\": \\"calc(50% - 2px)\\",
                               \\"height\\": \\"calc(50% + 4px)\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      }
                   ]
                },
@@ -232,8 +223,7 @@ describe('boxplot box tooltip renderer', () => {
                            \\"left\\": \\"-4px\\",
                            \\"top\\": \\"calc(50% - 2px)\\"
                         }
-                     },
-                     \\"children\\": []
+                     }
                   }
                },
                {
@@ -255,8 +245,7 @@ describe('boxplot box tooltip renderer', () => {
                            \\"position\\": \\"absolute\\",
                            \\"top\\": \\"calc(50% - 3px)\\"
                         }
-                     },
-                     \\"children\\": []
+                     }
                   }
                },
                {
@@ -285,7 +274,7 @@ describe('boxplot box tooltip renderer', () => {
          },
          {
             \\"tag\\": \\"tr\\",
-            \\"attr\\": {},
+            \\"attr\\": null,
             \\"children\\": [
                {
                   \\"tag\\": \\"td\\",
@@ -307,8 +296,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"top\\": \\"-2px\\",
                               \\"height\\": \\"calc(50%)\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      },
                      {
                         \\"tag\\": \\"div\\",
@@ -320,8 +308,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"top\\": \\"calc(50% - 2px)\\",
                               \\"height\\": \\"2px\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      },
                      {
                         \\"tag\\": \\"div\\",
@@ -334,8 +321,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"top\\": \\"50%\\",
                               \\"height\\": \\"calc(50% + 2px)\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      }
                   ]
                },
@@ -358,8 +344,7 @@ describe('boxplot box tooltip renderer', () => {
                            \\"left\\": \\"-4px\\",
                            \\"top\\": \\"calc(50% - 2px)\\"
                         }
-                     },
-                     \\"children\\": []
+                     }
                   }
                },
                {
@@ -381,8 +366,7 @@ describe('boxplot box tooltip renderer', () => {
                            \\"position\\": \\"absolute\\",
                            \\"top\\": \\"calc(50% - 3px)\\"
                         }
-                     },
-                     \\"children\\": []
+                     }
                   }
                },
                {
@@ -411,7 +395,7 @@ describe('boxplot box tooltip renderer', () => {
          },
          {
             \\"tag\\": \\"tr\\",
-            \\"attr\\": {},
+            \\"attr\\": null,
             \\"children\\": [
                {
                   \\"tag\\": \\"td\\",
@@ -433,8 +417,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"top\\": \\"-2px\\",
                               \\"height\\": \\"calc(50% + 2px)\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      },
                      {
                         \\"tag\\": \\"div\\",
@@ -447,8 +430,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"height\\": \\"calc(50% + 2px)\\",
                               \\"top\\": \\"50%\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      }
                   ]
                },
@@ -471,8 +453,7 @@ describe('boxplot box tooltip renderer', () => {
                            \\"left\\": \\"-4px\\",
                            \\"top\\": \\"calc(50% - 2px)\\"
                         }
-                     },
-                     \\"children\\": []
+                     }
                   }
                },
                {
@@ -494,8 +475,7 @@ describe('boxplot box tooltip renderer', () => {
                            \\"position\\": \\"absolute\\",
                            \\"top\\": \\"calc(50% - 3px)\\"
                         }
-                     },
-                     \\"children\\": []
+                     }
                   }
                },
                {
@@ -524,7 +504,7 @@ describe('boxplot box tooltip renderer', () => {
          },
          {
             \\"tag\\": \\"tr\\",
-            \\"attr\\": {},
+            \\"attr\\": null,
             \\"children\\": [
                {
                   \\"tag\\": \\"td\\",
@@ -545,8 +525,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"left\\": \\"calc(50% - 2.5px)\\",
                               \\"top\\": \\"calc(50% - 2px)\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      },
                      {
                         \\"tag\\": \\"div\\",
@@ -559,8 +538,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"height\\": \\"50%\\",
                               \\"top\\": \\"-2px\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      },
                      {
                         \\"tag\\": \\"div\\",
@@ -572,8 +550,7 @@ describe('boxplot box tooltip renderer', () => {
                               \\"left\\": \\"calc(50% + 3.5px)\\",
                               \\"top\\": \\"calc(50% - 2px)\\"
                            }
-                        },
-                        \\"children\\": []
+                        }
                      }
                   ]
                },
@@ -596,8 +573,7 @@ describe('boxplot box tooltip renderer', () => {
                            \\"left\\": \\"-4px\\",
                            \\"top\\": \\"calc(50% - 2px)\\"
                         }
-                     },
-                     \\"children\\": []
+                     }
                   }
                },
                {
@@ -619,8 +595,7 @@ describe('boxplot box tooltip renderer', () => {
                            \\"position\\": \\"absolute\\",
                            \\"top\\": \\"calc(50% - 3px)\\"
                         }
-                     },
-                     \\"children\\": []
+                     }
                   }
                },
                {
