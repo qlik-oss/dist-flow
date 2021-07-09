@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved, prefer-rest-params */
 import distributionPlotColorBy from './distributionplot-color-by';
 import CONSTANTS from './distributionplot-constants';
 import CachedStackedApi from '../../../assets/objects/backend-api/cached-stacked-api';

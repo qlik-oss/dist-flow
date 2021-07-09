@@ -1,7 +1,4 @@
-/**
- *
- */
-
+/* eslint-disable import/no-unresolved */
 import StackedApi from '../../../assets/objects/backend-api/stacked-api';
 
 const BoxPlotApi = StackedApi.extend('BoxPlotApi', {

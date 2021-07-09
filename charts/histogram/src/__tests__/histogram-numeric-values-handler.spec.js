@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import chai from 'chai';
 import sinon from 'sinon';
 import histogramNumericValuesHandler from '../histogram-numeric-values-handler';

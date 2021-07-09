@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import sinon from 'sinon';
 import { expect } from 'chai';
 import histogramExport from '../histogram-export';

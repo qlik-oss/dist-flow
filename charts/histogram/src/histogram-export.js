@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import exportDialog from '../../../assets/client/services/export-dialog/export-dialog';
 
 /**

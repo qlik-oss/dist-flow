@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import translator from '../../../js/lib/translator';
 import HistogramView from './histogram-view';
 import histogramPropertiesDefinition from './histogram-properties';

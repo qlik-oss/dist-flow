@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import StringNormalization from '../../../utils/string-normalization';
 import arrayUtil from '../../../assets/general/utils/array-util';
 import support from '../../../assets/general/utils/support';

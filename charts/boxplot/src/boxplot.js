@@ -1,4 +1,4 @@
-/* eslint no-param-reassign: ["error", { "props": true }] */
+/* eslint-disable import/no-unresolved, prefer-rest-params */
 import HyperCubePropertyHandler from '../../../assets/objects/utils/data-properties/hypercube-handler';
 import propertyMapper from '../../../assets/client/utils/property-mapper';
 import objectConversion from '../../../assets/objects/conversion/object-conversion';
