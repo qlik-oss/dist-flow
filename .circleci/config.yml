@@ -1,0 +1,99 @@
+version: 2.1
+
+executors:
+  docker-node:
+    docker:
+      - image: qlik/node-build
+    working_directory: ~/444-charts
+
+commands:
+  use_workspace:
+    steps:
+      - attach_workspace:
+          at: ~/444-charts
+
+jobs:
+  install:
+    executor: docker-node
+    steps:
+      - checkout
+      - restore_cache:
+          key: v2-yarn-deps-{{ checksum "yarn.lock" }}
+      - run:
+          name: Setup access to Artifactory
+          command: |
+            set -eo pipefail
+            # Setup .npmrc to access artifactory for @qlik packages
+            echo $QLIK_NPM_DEV_ENCODED | base64 -d >> ~/.npmrc
+            # Amend auth token for access to public npm registry for @nebula.js packages
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+      - run: yarn install --frozen-lockfile
+      - save_cache:
+          key: v2-yarn-deps-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+
+      - store_artifacts:
+          path: package.json
+
+      - persist_to_workspace:
+          root: ~/444-charts
+          paths:
+            - .
+
+  build:
+    executor: docker-node
+    steps:
+      - use_workspace
+      - run:
+          name: Build packages
+          command: |
+            set +e
+            NODE_ENV=production yarn run build --concurrency 2
+      - persist_to_workspace:
+          root: ~/444-charts
+          paths:
+            - charts/*/dist
+            - charts/*/sn-*-ext
+
+  lint:
+    executor: docker-node
+    steps:
+      - use_workspace
+      - run: npm run lint
+
+  test-unit:
+    executor: docker-node
+    steps:
+      - use_workspace
+      - run:
+          # Uses version stored in test/cc-bin to remove risk on foreign injection
+          name: Run unit tests and publish to codeclimate
+          command: |
+            ./test/cc-bin/cc-test-reporter before-build
+            jest --ci --runInBand --reporters=default --reporters=jest-junit --coverage
+            ./test/cc-bin/cc-test-reporter after-build --coverage-input-type lcov --exit-code $?
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./reports/junit/
+      - store_test_results:
+          path: ./reports/junit/
+      - store_artifacts:
+          path: ./reports/junit
+      - store_artifacts:
+          path: coverage
+
+workflows:
+  build-all:
+    jobs:
+      - install:
+          context: deploy-secrets
+      - build:
+          context: deploy-secrets
+          requires:
+            - install
+      - lint:
+          requires:
+            - install
+      - test-unit:
+          requires:
+            - install
