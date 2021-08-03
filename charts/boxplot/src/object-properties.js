@@ -8,8 +8,7 @@ const properties = {
    * @type {string}
    * @default
    */
-  // TODO: setup version
-  // version: process.env.PACKAGE_VERSION,
+  version: process.env.PACKAGE_VERSION,
 
   /**
    * Settings specific to the boxplot
