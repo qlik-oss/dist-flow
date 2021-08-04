@@ -54,7 +54,6 @@ jobs:
           root: ~/444-charts
           paths:
             - charts/*/dist
-            - charts/*/sn-*-ext
 
   lint:
     executor: docker-node
@@ -81,6 +80,20 @@ jobs:
           path: ./reports/junit
       - store_artifacts:
           path: coverage
+  
+  publish-dev:
+    executor: docker-node
+    steps:
+      - use_workspace
+      - run:
+          name: Build extensions
+          command: |
+            set +e
+            NODE_ENV=production yarn run sense --concurrency 2
+      - run: mkdir SenseExtensions
+      - run: ./scripts/zip-extensions.sh
+      - store_artifacts:
+          path: ./SenseExtensions
 
 workflows:
   build-all:
@@ -97,3 +110,6 @@ workflows:
       - test-unit:
           requires:
             - install
+      - publish-dev:
+          requires:
+            - build
