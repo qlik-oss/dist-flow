@@ -38,7 +38,7 @@ const SHIFT = 16;
  * @returns {Object} The selections handler instance
  */
 function Selections(options) {
-  if (!options || !options.model || !options.chartInstance || !options.selectionsApi) {
+  if (!options || !options.chartInstance || !options.selectionsApi) {
     throw Error('Selections-handler: Missing input');
   }
   const chartInstance = options.chartInstance;
@@ -345,9 +345,27 @@ function Selections(options) {
   return fn;
 }
 
+class NoSelections {
+  // eslint-disable-next-line class-methods-use-this
+  isOn() {
+    return false;
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  on() {
+    console.warn('Can not turn on selections on this object');
+  }
+
+  // eslint-disable-next-line class-methods-use-this
+  off() {}
+}
+
 export default {
-  create(model) {
-    return Selections(model);
+  create(options) {
+    if (!options.selectionsApi) {
+      return new NoSelections();
+    }
+    return Selections(options);
   },
 };
 

@@ -20,7 +20,7 @@ function DependentInteractions(handlers, orientation, isRtl, keys, rangeSelStatu
   const areaBrushKey = keys.areaBrushKey || null;
   const legendBrushKey = keys.legendBrushKey || null;
 
-  const hasSelections = !!handlers.selectionHandler;
+  const hasSelections = !!handlers.selectionHandler && handlers.selectionHandler.isOn();
 
   const state = {
     dragging: false,

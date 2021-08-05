@@ -776,7 +776,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     };
     let { components } = this.colorService.getLegend(config);
     components = components.filter((c) => !!c);
-    if (components.length > 0) {
+    if (components.length > 0 && this._selectionHandler.isOn()) {
       components[0].brush = {
         consume: legendSelectionSettings.consume.map((c) => extend(true, c, { style: { active: null } })),
         trigger: legendSelectionSettings.trigger,
