@@ -1,7 +1,6 @@
 const path = require('path');
 const defaultTheme = require('@qlik-trial/sense-themes-default/dist/sense/theme.json');
 
-// eslint-disable-next-line import/no-dynamic-require
 const targetPkg = require(path.resolve(process.cwd(), 'package.json'));
 
 const replacementStrings = {

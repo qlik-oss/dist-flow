@@ -19,7 +19,6 @@ function getExtensionsFolder(extName) {
 
 async function run() {
   const cwd = process.cwd();
-  // eslint-disable-next-line import/no-dynamic-require, global-require
   const supernovaPkg = require(path.resolve(cwd, 'package.json'));
   const extName = supernovaPkg.name.split('/').reverse()[0];
   const extensionsFolder = getExtensionsFolder(extName);

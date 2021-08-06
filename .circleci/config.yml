@@ -5,6 +5,11 @@ executors:
     docker:
       - image: qlik/node-build
     working_directory: ~/444-charts
+  browser-node:
+    # Available images https://hub.docker.com/r/circleci/node/tags/
+    docker:
+      - image: circleci/node:14.17.4-browsers
+    working_directory: ~/444-charts
 
 commands:
   use_workspace:
@@ -81,6 +86,16 @@ jobs:
       - store_artifacts:
           path: coverage
   
+  test-rendering:
+    executor: browser-node
+    steps:
+      - use_workspace
+      - run: MOCHA_FILE=test-results/rendering/test.xml npm run test:rendering:ci
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: ./test/rendering/__artifacts__
+  
   publish-dev:
     executor: docker-node
     steps:
@@ -111,5 +126,8 @@ workflows:
           requires:
             - install
       - publish-dev:
+          requires:
+            - build
+      - test-rendering:
           requires:
             - build
