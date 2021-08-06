@@ -1,3 +1,4 @@
 dist/
+sn-*-ext/
 coverage/
 node_modules/
