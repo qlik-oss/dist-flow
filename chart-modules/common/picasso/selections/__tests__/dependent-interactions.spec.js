@@ -26,6 +26,9 @@ describe('Dependent Interactions', () => {
   });
 
   const selectionHandler = {
+    isOn() {
+      return true;
+    },
     pauseEngineCalls() {},
     resumeEngineCalls() {},
     addComponent() {},
