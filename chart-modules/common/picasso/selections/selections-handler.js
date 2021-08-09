@@ -5,9 +5,6 @@ import Actions from './selection-actions';
 const eventUtils = {
   showLockedFeedback: () => {},
 };
-const Touche = {
-  preventGestures: () => {},
-};
 
 const DEFAULT_OPTIONS = {
   data: ['elemNo'],
@@ -241,7 +238,6 @@ function Selections(options) {
       context.listeners.update = function (added, removed) {
         // On tap end, picaso will run rendering in the same frame, and if this is a heavy job then long tap end will happen before tap end finish. This can trigger the radial context menu.
         // So we prevent long tap end here.
-        Touche.preventGestures();
         if (!context.sleep) {
           actions.update(added, removed, context.brush);
         }

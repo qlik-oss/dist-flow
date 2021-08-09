@@ -1,8 +1,3 @@
-// TODO: fix
-const Touche = {
-  preventGestures: () => {},
-};
-
 const NULL_ELEMNO = -2;
 const OTHERS_ELEMNO = -3;
 const LEGEND_DISPLAY_OREDER = 200;
@@ -346,7 +341,6 @@ function getCategoricalLegendPanGesture(legendKey) {
             intervalId = setInterval(() => {
               legend.emit(attr);
             }, 100);
-            Touche.preventGestures();
           }
         },
         pressup() {
