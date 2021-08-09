@@ -26,6 +26,7 @@ async function run() {
   const watcher = await build({
     watch: true,
     core: false,
+    config: path.join(__dirname, '../nebula.config.js'),
   });
 
   const buildExt = () =>
