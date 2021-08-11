@@ -32,6 +32,7 @@ async function run() {
   const buildExt = () =>
     sense({
       partial: true,
+      sourcemap: true,
       output: extensionsFolder,
     });
 
