@@ -1,8 +1,5 @@
 import extend from 'extend';
-
-// TODO: cacheCube
-// import CacheCube from '../../../assets/objects/backend-api/cache-cube';
-const CacheCube = null;
+import CacheCube from '@qlik/common/extra/backend-api/cache-cube';
 
 /**
  * Implementation details

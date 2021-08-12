@@ -188,9 +188,6 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       'legend'
     );
 
-    this.backendApi.setPath(`/${DATA_PATH}/${HYPERCUBE_DEF_PATH}`);
-    this.backendApi.setCacheOptions({ maxStackedValues: CONSTANTS.MAX_STACKED_VALUES });
-
     this._maxBubbleScale = CONSTANTS.BUBBLE_SCALES_MAX;
 
     this._jitterTool = new Jitter();

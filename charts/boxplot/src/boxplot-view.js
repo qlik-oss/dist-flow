@@ -991,17 +991,9 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       if (includeOutliers) {
         propPaths.push('/qUndoExclude/outliers/qHyperCubeDef');
         dataPaths.push(OUTLIERS_PATH);
-        // TODO: updateOutliersCache
-        // self._dataScroller.updateOutliersCache(layout);
-        self._dataScroller._outliersCacheCube = {
-          getData(pages) {
-            return self.backendApi.model.getHyperCubeStackData('/qUndoExclude/outliers/qHyperCubeDef', pages);
-          },
-          setOptions: () => {},
-        };
+        self._dataScroller.updateOutliersCache(layout);
       }
       self.setDataPaths(dataPaths);
-      self.backendApi.setPaths(propPaths);
       self.backendApi.updateCache(undoExclude.box);
 
       if (getHasSecondDimension(layout)) {

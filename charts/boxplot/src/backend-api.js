@@ -1,23 +1,31 @@
+import CacheCube from '@qlik/common/extra/backend-api/cache-cube';
+
 export default class BackednAPi {
   constructor(model) {
     this.model = model;
+    this.path = '/qUndoExclude/box/qHyperCubeDef';
+    this.cacheCube = new CacheCube(model, 'qDataPages', this.path);
+    this.cacheCube.setMethodName('getHyperCubeData');
+  }
+
+  updateCache(layout) {
+    if (layout && layout.qHyperCube && layout.qHyperCube.qMode === 'S') {
+      this.cacheCube.set(layout.qHyperCube.qDataPages);
+      this.cacheCube.setCubeSize(layout.qHyperCube.qSize);
+    } else {
+      this.cacheCube.clear();
+    }
   }
 
   setPath(path) {
     this.path = path;
   }
 
-  // eslint-disable-next-line class-methods-use-this, no-unused-vars
-  setPaths(paths) {}
+  setCacheOptions(opts) {
+    this.cacheCube.setOptions(opts);
+  }
 
-  // eslint-disable-next-line class-methods-use-this, no-unused-vars
-  setCacheOptions({ maxStackedValues }) {}
-
-  // eslint-disable-next-line class-methods-use-this, no-unused-vars
-  updateCache(args) {}
-
-  // eslint-disable-next-line no-unused-vars
-  getData(pages, path, hyperCube) {
-    return this.model.getHyperCubeData(this.path, pages);
+  getData(pages) {
+    return this.cacheCube.getData(pages);
   }
 }
