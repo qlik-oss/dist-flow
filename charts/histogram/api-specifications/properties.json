@@ -1,0 +1,13 @@
+{
+  "scriptappy": "1.0.0",
+  "info": {
+    "name": "@nebula.js/sn-histogram:properties",
+    "description": "Histogram generic object definition",
+    "version": "0.23.3",
+    "license": "MIT",
+    "stability": "experimental",
+    "x-qlik-visibility": "private"
+  },
+  "entries": {},
+  "definitions": {}
+}

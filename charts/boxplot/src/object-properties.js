@@ -1,4 +1,29 @@
 /**
+ * Color information structure. Holds the actual color and index in palette.
+ * @typedef {object} paletteColor
+ * @property {string} color - Color as hex string (mandatory if index: -1)
+ * @property {number} index - Index in palette
+ */
+
+/**
+ * Styling settings for reference line
+ * @typedef {object} refLineStyle
+ * @property {number} [lineThickness=2] Set the thickness for this reference line.
+ * @property {string} [lineType=''] Set the dash type for this reference line.
+ */
+
+/**
+ * @typedef {object} refLine
+ * @property {boolean|ValueExpression} show=true Set to true to display this reference line.
+ * @property {string} label Reference line label.
+ * @property {boolean} [showLabel=true] Set to true to show the label of this reference line.
+ * @property {boolean} [showValue=true] Set to true to show the value of this reference line.
+ * @property {paletteColor} paletteColor
+ * @property {refLineStyle} [style] - Styling settings for reference line
+ * @property {boolean} [coloredBackground=false] Set to true to fill the label and/or value of this reference line with this color
+ */
+
+/**
  * @namespace properties
  * @entry
  */
@@ -155,13 +180,14 @@ const properties = {
       firstWhisker: {
         /**
          * Label for the boxplot element
-         * @type {Qlik.Engine.StringExpressionContainer}
+         * @type {(string|StringExpression)=}
          * @default
          */
         name: '',
-        /**
+        // documenting this causes an error in the api-spec generation
+        /*
          * Expression for the boxplot element
-         * @type {Qlik.Engine.ValueExpressionContainer}
+         * @type {?ValueExpression}
          */
         expression: null,
       },
@@ -354,7 +380,7 @@ const properties = {
     elementId: 'firstWhisker',
     /**
      * Expression for the sorting. Requires sortByExpression to be -1 or 1.
-     * @type {undefined|ValueExpression}
+     * @type {ValueExpression}
      */
     expression: undefined,
     /**
