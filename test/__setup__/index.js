@@ -220,10 +220,6 @@ function snapshot(snapshotData) {
           rangeSelectHyperCubeValues: () => Promise.resolve(true),
           beginSelections: () => Promise.resolve(true),
           resetMadeSelections: () => Promise.resolve(true),
-          Invalidated: {
-            bind() {},
-            unbind() {},
-          },
         })
       );
     },

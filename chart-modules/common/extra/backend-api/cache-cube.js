@@ -74,13 +74,13 @@ const Cache = Class.extend(
         this.clear();
       };
 
-      this.model.Invalidated.bind(this._modelBinding);
+      this.model.on('changed', this._modelBinding);
     },
     destroy() {
       this.cube.destroy();
       this.throttle.destroy();
-      if (this.model && this.model.Invalidated) {
-        this.model.Invalidated.unbind(this._modelBinding);
+      if (this.model && this.model.removeListener) {
+        this.model.removeListener('changed', this._modelBinding);
       }
       this._modelBinding = null;
       delete this.model;
