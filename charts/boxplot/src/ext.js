@@ -10,7 +10,7 @@ export default function ext(env) {
 
   return {
     definition: pp(env),
-    softDefinition,
+    softDefinition: softDefinition.get(HYPERCUBE_PATH),
     support: {
       cssScaling: false,
       snapshot: true,
