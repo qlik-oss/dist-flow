@@ -202,7 +202,7 @@
                   "entries": {
                     "show": {
                       "description": "Show whiskers.",
-                      "defaultValue": false,
+                      "defaultValue": true,
                       "type": "boolean"
                     }
                   }
