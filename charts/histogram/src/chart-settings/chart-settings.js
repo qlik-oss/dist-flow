@@ -136,6 +136,7 @@ function createChartSettings(chartView, layout) {
     includeDimensionAxis: true,
     orientation: 'vertical',
     selectionsEnabled: chartView._selectionHandler.isOn(),
+    theme,
 
     // measure scale
     measureSource: 'qMeasureInfo/0',

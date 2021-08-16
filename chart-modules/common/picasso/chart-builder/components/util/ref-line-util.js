@@ -29,7 +29,7 @@ function lineSettings(settings, options) {
  * @param {*} options Chart builder options + paletteColor option
  */
 function lineLabelSettings(settings, options) {
-  const chartID = options && options.chartID; // Should we validate if the parameter exists?
+  const chartID = (options && options.chartID) || ''; // Should we validate if the parameter exists?
   let labelColor = options.theme.getStyle(chartID, 'referenceLine.label.name', 'color');
   const labelFontSize = options.theme.getStyle(chartID, 'referenceLine.label.name', 'fontSize');
   const labelFontFamily = options.theme.getStyle(chartID, 'referenceLine.label.name', 'fontFamily');

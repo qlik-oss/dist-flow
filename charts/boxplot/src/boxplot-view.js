@@ -579,6 +579,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
   },
   createChartSettings(layout) {
     const isRtl = this.isRtl();
+    const { theme } = this.environment;
     const isHorizontal = getIsHorizontal(layout.orientation);
     const hasSecondDimension = getHasSecondDimension(layout);
     const dimInfo = layout[HYPERCUBE_PATH].qHyperCube.qDimensionInfo;
@@ -589,7 +590,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     // Create components
     const chartBuilder = ChartBuilder.create({
       chartID,
-      theme: this.environment.theme,
+      theme,
       isRtl,
     });
 
@@ -719,6 +720,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       includeDimensionAxis: hasSecondDimension,
       orientation: layout.orientation,
       selectionsEnabled: this._selectionHandler.isOn(),
+      theme,
 
       // measure scale
       measureSource: ['qMeasureInfo/0', 'qMeasureInfo/1', 'qMeasureInfo/2', 'qMeasureInfo/3', 'qMeasureInfo/4'],
