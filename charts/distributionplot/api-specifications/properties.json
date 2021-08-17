@@ -8,6 +8,554 @@
     "stability": "experimental",
     "x-qlik-visibility": "private"
   },
-  "entries": {},
-  "definitions": {}
+  "entries": {
+    "properties": {
+      "kind": "namespace",
+      "entries": {
+        "color": {
+          "description": "Color settings.\nMost color options for visualizations are set in the color object in the options. You activate custom coloring by setting `\"auto\": false` which turns off auto-coloring.\nIf `\"auto\": true`, no other properties need to be defined in the color object.\nNote: Some of the color properties are depending on which theme is currently being used.",
+          "kind": "object",
+          "entries": {
+            "box": {
+              "kind": "object",
+              "entries": {
+                "paletteColor": {
+                  "description": "The paletteColor object is used to define the box color when you color by single color `(\"mode\": \"primary\")`.",
+                  "defaultValue": "{ index: -1, color: '#e6e6e6' }",
+                  "type": "#/definitions/paletteColor"
+                }
+              }
+            },
+            "expressionLabel": {
+              "description": "Label to be defined on tool tips when using a coloring expression.\nOnly used if `'expressionIsColor': false`.",
+              "defaultValue": "",
+              "type": "string"
+            },
+            "point": {
+              "kind": "object",
+              "entries": {
+                "auto": {
+                  "description": "Set to use automatic coloring.\nWhen `\"auto\": true`, color settings are based on the visualization used and the number of dimensions\nand measures, that is, the settings are not fixed, but are dependent on the data input.",
+                  "defaultValue": true,
+                  "type": "boolean"
+                },
+                "expressionIsColor": {
+                  "description": "Should be true",
+                  "defaultValue": true,
+                  "kind": "literal",
+                  "value": "true"
+                },
+                "mode": {
+                  "description": "Sets the coloring mode for the visualization when auto-coloring has been switched off (`\"auto\": false`). Can be one of:\n* `primary`: a single color (by default blue) is used for all items in the chart. In visualizations that do not benefit from multiple colors (bar charts with one dimension and scatter plots), single color is the default setting.\n* `byExpression`: coloring is based on an expression, which in most cases is a color code. Details are set in the `\"expressionIsColor\"`, `\"expressionLabel`\" and `\"colorExpression\"` properties.\n* `byMultiple`: can be used when more than one measure is used. By default, 12 colors are used for the dimensions. The colors are reused when there are more than 12 dimension values.",
+                  "defaultValue": "primary",
+                  "kind": "union",
+                  "items": [
+                    {
+                      "kind": "literal",
+                      "value": "'primary'"
+                    },
+                    {
+                      "kind": "literal",
+                      "value": "'byExpression'"
+                    },
+                    {
+                      "kind": "literal",
+                      "value": "'byMultiple'"
+                    }
+                  ],
+                  "type": "string"
+                },
+                "useBaseColors": {
+                  "description": "Use colors encoded in master items.\nOnly applicable when `\"mode\": \"primary\"` has been defined.",
+                  "defaultValue": "off",
+                  "kind": "union",
+                  "items": [
+                    {
+                      "kind": "literal",
+                      "value": "'off'"
+                    },
+                    {
+                      "kind": "literal",
+                      "value": "'dimension'"
+                    },
+                    {
+                      "kind": "literal",
+                      "value": "'measure'"
+                    }
+                  ],
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "dimensionAxis": {
+          "description": "Dimension axis settings.",
+          "kind": "object",
+          "entries": {
+            "dock": {
+              "description": "Axis docking position",
+              "defaultValue": "near",
+              "kind": "union",
+              "items": [
+                {
+                  "kind": "literal",
+                  "value": "'near'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'far'"
+                }
+              ],
+              "type": "string"
+            },
+            "label": {
+              "description": "Label orientation",
+              "defaultValue": "auto",
+              "kind": "literal",
+              "value": "'auto'"
+            },
+            "show": {
+              "description": "Labels and title",
+              "defaultValue": "all",
+              "kind": "union",
+              "items": [
+                {
+                  "kind": "literal",
+                  "value": "'all'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'labels'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'title'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'none'"
+                }
+              ],
+              "type": "string"
+            }
+          }
+        },
+        "footnote": {
+          "description": "Visualization footnote.",
+          "optional": true,
+          "defaultValue": "",
+          "kind": "union",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "StringExpression"
+            }
+          ],
+          "type": "any"
+        },
+        "gridLine": {
+          "description": "Grid lines settings.",
+          "kind": "object",
+          "entries": {
+            "auto": {
+              "description": "Automatic grid line spacing.",
+              "defaultValue": true,
+              "type": "boolean"
+            },
+            "spacing": {
+              "description": "Grid line spacing. Used only when auto is set to false.",
+              "defaultValue": 2,
+              "kind": "union",
+              "items": [
+                {
+                  "kind": "literal",
+                  "value": 0
+                },
+                {
+                  "kind": "literal",
+                  "value": 1
+                },
+                {
+                  "kind": "literal",
+                  "value": 2
+                },
+                {
+                  "kind": "literal",
+                  "value": 3
+                }
+              ],
+              "type": "number"
+            }
+          }
+        },
+        "measureAxis": {
+          "description": "Measure axis settings.",
+          "kind": "object",
+          "entries": {
+            "autoMinMax": {
+              "description": "Automatic max/min",
+              "defaultValue": true,
+              "type": "boolean"
+            },
+            "dock": {
+              "description": "Axis docking position",
+              "defaultValue": "near",
+              "kind": "union",
+              "items": [
+                {
+                  "kind": "literal",
+                  "value": "'near'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'far'"
+                }
+              ],
+              "type": "string"
+            },
+            "max": {
+              "description": "Axis max value. `\"autoMinMax\"` must be set to false and `\"minMax\"`\nmust be set to `\"max\"` or `\"minMax\"` to use this property",
+              "defaultValue": 10,
+              "kind": "union",
+              "items": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "ValueExpression"
+                }
+              ],
+              "type": "any"
+            },
+            "min": {
+              "description": "Axis min value. `\"autoMinMax\"` must be set to false and `\"minMax\"`\nmust be set to `\"min\"` or `\"minMax\"` to use this property",
+              "defaultValue": 0,
+              "kind": "union",
+              "items": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "ValueExpression"
+                }
+              ],
+              "type": "any"
+            },
+            "minMax": {
+              "description": "Set custom max/min",
+              "defaultValue": "min",
+              "kind": "union",
+              "items": [
+                {
+                  "kind": "literal",
+                  "value": "'min'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'max'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'minMax'"
+                }
+              ],
+              "type": "string"
+            },
+            "show": {
+              "description": "Labels and title",
+              "defaultValue": "all",
+              "kind": "union",
+              "items": [
+                {
+                  "kind": "literal",
+                  "value": "'all'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'labels'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'title'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'none'"
+                }
+              ],
+              "type": "string"
+            },
+            "spacing": {
+              "description": "Axis scale",
+              "defaultValue": 1,
+              "type": "number"
+            }
+          }
+        },
+        "orientation": {
+          "description": "Orientation setting.\nIf vertical, the dimension axis can only be docked on bottom or top and measure axis on left or right.",
+          "defaultValue": "horizontal",
+          "kind": "union",
+          "items": [
+            {
+              "kind": "literal",
+              "value": "'vertical'"
+            },
+            {
+              "kind": "literal",
+              "value": "'horizontal'"
+            }
+          ],
+          "type": "string"
+        },
+        "presentation": {
+          "description": "Presentation settings for the distributionplot",
+          "kind": "object",
+          "entries": {
+            "visibleComponents": {
+              "description": "Visible components of the distributionplot",
+              "defaultValue": "points_box",
+              "kind": "union",
+              "items": [
+                {
+                  "kind": "literal",
+                  "value": "'points_box'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'points'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'box'"
+                }
+              ],
+              "type": "string"
+            }
+          }
+        },
+        "qHyperCubeDef": {
+          "description": "Extends `HyperCubeDef`, see Engine API: `HyperCubeDef`.",
+          "extends": [
+            {
+              "type": "HyperCubeDef"
+            }
+          ],
+          "kind": "object",
+          "entries": {}
+        },
+        "refLine": {
+          "description": "Reference lines settings",
+          "kind": "object",
+          "entries": {
+            "refLines": {
+              "description": "Array of measure based reference line definitions",
+              "kind": "array",
+              "items": {
+                "type": "#/definitions/refLine"
+              }
+            }
+          }
+        },
+        "showTitles": {
+          "description": "Show title for the visualization.",
+          "optional": true,
+          "defaultValue": true,
+          "type": "boolean"
+        },
+        "sorting": {
+          "description": "Wrapper for sorting properties which will be set on the outer dimension.",
+          "kind": "object",
+          "entries": {
+            "autoSort": {
+              "description": "Sort automatically",
+              "defaultValue": true,
+              "type": "boolean"
+            },
+            "elementId": {
+              "description": "Sorting preset",
+              "defaultValue": "distplot-exp-min",
+              "kind": "union",
+              "items": [
+                {
+                  "kind": "literal",
+                  "value": "'distplot-exp-min'"
+                },
+                {
+                  "kind": "literal",
+                  "value": "'distplot-exp-max'"
+                }
+              ],
+              "type": "string"
+            },
+            "expression": {
+              "description": "Expression for the sorting. Requires sortByExpression to be -1 or 1.",
+              "type": "ValueExpression"
+            },
+            "sortCriteria": {
+              "kind": "object",
+              "entries": {
+                "sortByAscii": {
+                  "description": "Sort by alphabetic",
+                  "defaultValue": 0,
+                  "type": "number"
+                },
+                "sortByExpression": {
+                  "description": "Sort by expression",
+                  "defaultValue": 0,
+                  "type": "number"
+                },
+                "sortByNumeric": {
+                  "description": "Sort by numeric",
+                  "defaultValue": 0,
+                  "type": "number"
+                }
+              }
+            }
+          }
+        },
+        "subtitle": {
+          "description": "Visualization subtitle.",
+          "optional": true,
+          "defaultValue": "",
+          "kind": "union",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "StringExpression"
+            }
+          ],
+          "type": "any"
+        },
+        "title": {
+          "description": "Visualization title.",
+          "optional": true,
+          "defaultValue": "",
+          "kind": "union",
+          "items": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "StringExpression"
+            }
+          ],
+          "type": "any"
+        },
+        "version": {
+          "description": "Current version of this generic object definition.",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "paletteColor": {
+      "description": "Color information structure. Holds the actual color and index in palette.",
+      "kind": "object",
+      "entries": {
+        "color": {
+          "description": "Color as hex string (mandatory if index: -1)",
+          "type": "string"
+        },
+        "index": {
+          "description": "Index in palette",
+          "type": "number"
+        }
+      }
+    },
+    "properties.dataPoint.bubbleScales": {
+      "description": "Size parameter for points (20 - 100), step is 5.",
+      "defaultValue": 100,
+      "type": "number"
+    },
+    "properties.dataPoint.displacement": {
+      "description": "Property for controlling displacement of data points",
+      "defaultValue": "none",
+      "kind": "union",
+      "items": [
+        {
+          "kind": "literal",
+          "value": "'none'"
+        },
+        {
+          "kind": "literal",
+          "value": "'jitter'"
+        }
+      ],
+      "type": "string"
+    },
+    "refLine": {
+      "kind": "object",
+      "entries": {
+        "show": {
+          "description": "Set to true to display this reference line.",
+          "defaultValue": true,
+          "kind": "union",
+          "items": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "ValueExpression"
+            }
+          ],
+          "type": "any"
+        },
+        "label": {
+          "description": "Reference line label.",
+          "type": "string"
+        },
+        "showLabel": {
+          "description": "Set to true to show the label of this reference line.",
+          "optional": true,
+          "defaultValue": true,
+          "type": "boolean"
+        },
+        "showValue": {
+          "description": "Set to true to show the value of this reference line.",
+          "optional": true,
+          "defaultValue": true,
+          "type": "boolean"
+        },
+        "paletteColor": {
+          "type": "#/definitions/paletteColor"
+        },
+        "style": {
+          "description": "Styling settings for reference line",
+          "optional": true,
+          "type": "#/definitions/refLineStyle"
+        },
+        "coloredBackground": {
+          "description": "Set to true to fill the label and/or value of this reference line with this color",
+          "optional": true,
+          "defaultValue": false,
+          "type": "boolean"
+        }
+      }
+    },
+    "refLineStyle": {
+      "description": "Styling settings for reference line",
+      "kind": "object",
+      "entries": {
+        "lineThickness": {
+          "description": "Set the thickness for this reference line.",
+          "optional": true,
+          "defaultValue": 2,
+          "type": "number"
+        },
+        "lineType": {
+          "description": "Set the dash type for this reference line.",
+          "optional": true,
+          "defaultValue": "''",
+          "type": "string"
+        }
+      }
+    }
+  }
 }
