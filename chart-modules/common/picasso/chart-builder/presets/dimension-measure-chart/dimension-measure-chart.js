@@ -323,6 +323,7 @@ function addRefLineComponent(chartBuilder, options, measureDirection, measureAxi
     const lineOptions = extend(true, {}, options, {
       paletteColor: refLine.paletteColor,
       style: refLine.style,
+      chartID: chartBuilder.options.chartID,
     });
 
     // Add a line for each visible ref line
