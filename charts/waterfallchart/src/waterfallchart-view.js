@@ -324,6 +324,7 @@ function createChartSettings(layout) {
     // common
     isRtl,
     orientation: 'vertical',
+    theme,
 
     // grid lines
     gridlines: layout.gridlines,

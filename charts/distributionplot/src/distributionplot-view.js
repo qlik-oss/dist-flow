@@ -504,6 +504,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
   createChartSettings(layout) {
     const isRtl = this.isRtl();
+    const { theme } = this.environment;
     const hasVisibleComponentsProps = layout.presentation && layout.presentation.visibleComponents;
     const showPoints = hasVisibleComponentsProps && layout.presentation.visibleComponents.indexOf('point') !== -1;
     const showBox = hasVisibleComponentsProps && layout.presentation.visibleComponents.indexOf('box') !== -1;
@@ -517,7 +518,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
     const chartBuilder = ChartBuilder.create({
       chartID: CONSTANTS.CHART_ID,
-      theme: this.environment.theme,
+      theme,
       isRtl,
     });
 
@@ -637,6 +638,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       includeDimensionAxis: hypercubeUtil.hasSecondDimension(layout, DATA_PATH),
       orientation: layout.orientation,
       selectionsEnabled: this._selectionHandler.isOn(),
+      theme,
 
       // measure scale
       measureSource: ['qMeasureInfo/0'],
