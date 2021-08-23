@@ -1,4 +1,26 @@
 /**
+ * Settings for subtotal
+ * @typedef {object} subtotalProperties
+ * @property {boolean} enable=false Option to add a subtotal after a measure.
+ * @property {string} label='Subtotal' Label of the subtotal added after a measure.
+ */
+
+/**
+ * Extends `NxInlineMeasureDef`, see Engine API: `NxInlineMeasureDef`.
+ * @typedef {object} InlineMeasureDef
+ * @extends NxInlineMeasureDef
+ * @property {subtotalProperties} subtotal subtotal settings.
+ * @property {'NORMAL'|'INVERSE'|'SUBTOTAL'} valueType='NORMAL' Measure operation.
+ */
+
+/**
+ * Extends `NxMeasure`, see Engine API: `NxMeasure`.
+ * @typedef {object} MeasureProperties
+ * @extends NxMeasure
+ * @property {InlineMeasureDef} qDef
+ */
+
+/**
  * Field attributes structure.
  * @typedef {object} FieldAttributes
  * @property {string} dec - Defines the decimal separator.
@@ -53,41 +75,8 @@ const properties = {
    */
   qHyperCubeDef: {
     qDimensions: [],
-    /**
-     * Extends `NxMeasure`, see Engine API: `NxMeasure`.
-     * @type {object}
-     * @extends {NxMeasure}
-     */
-    qMeasures: [
-      {
-        /**
-         * Extends `NxInlineMeasureDef`, see Engine API: `NxInlineMeasureDef`.
-         * @extends {NxInlineMeasureDef}
-         */
-        qDef: {
-          subtotal: {
-            /**
-             * Option to add a subtotal after a measure
-             * @type {boolean}
-             * @default
-             */
-            enable: false,
-            /**
-             * Label of the subtotal added after a measure
-             * @type {string}
-             * @default
-             */
-            label: 'Subtotal',
-          },
-          /**
-           * Measure operation
-           * @type {'NORMAL'|'INVERSE'|'SUBTOTAL'}
-           * @default
-           */
-          valueType: 'NORMAL',
-        },
-      },
-    ],
+    /** @type {MeasureProperties[]} */
+    qMeasures: [],
     qMode: 'S',
     qInitialDataFetch: [{ qWidth: 200, qHeight: 10 }],
     qSuppressMissing: true,

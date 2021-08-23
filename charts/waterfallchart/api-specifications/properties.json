@@ -305,14 +305,10 @@
           "kind": "object",
           "entries": {
             "qMeasures": {
-              "description": "Extends `NxMeasure`, see Engine API: `NxMeasure`.",
-              "extends": [
-                {
-                  "type": "NxMeasure"
-                }
-              ],
-              "kind": "object",
-              "entries": {}
+              "kind": "array",
+              "items": {
+                "type": "#/definitions/MeasureProperties"
+              }
             }
           }
         },
@@ -403,6 +399,55 @@
         }
       }
     },
+    "InlineMeasureDef": {
+      "description": "Extends `NxInlineMeasureDef`, see Engine API: `NxInlineMeasureDef`.",
+      "extends": [
+        {
+          "type": "NxInlineMeasureDef"
+        }
+      ],
+      "kind": "object",
+      "entries": {
+        "subtotal": {
+          "description": "subtotal settings.",
+          "type": "#/definitions/subtotalProperties"
+        },
+        "valueType": {
+          "description": "Measure operation.",
+          "defaultValue": "'NORMAL'",
+          "kind": "union",
+          "items": [
+            {
+              "kind": "literal",
+              "value": "'NORMAL'"
+            },
+            {
+              "kind": "literal",
+              "value": "'INVERSE'"
+            },
+            {
+              "kind": "literal",
+              "value": "'SUBTOTAL'"
+            }
+          ],
+          "type": "string"
+        }
+      }
+    },
+    "MeasureProperties": {
+      "description": "Extends `NxMeasure`, see Engine API: `NxMeasure`.",
+      "extends": [
+        {
+          "type": "NxMeasure"
+        }
+      ],
+      "kind": "object",
+      "entries": {
+        "qDef": {
+          "type": "#/definitions/InlineMeasureDef"
+        }
+      }
+    },
     "paletteColor": {
       "description": "Color information structure. Holds the actual color and index in palette.",
       "kind": "object",
@@ -431,47 +476,6 @@
       "description": "see Engine API: `FieldAttributes`.",
       "optional": true,
       "type": "#/definitions/FieldAttributes"
-    },
-    "qDef": {
-      "description": "Extends `NxInlineMeasureDef`, see Engine API: `NxInlineMeasureDef`.",
-      "extends": [
-        {
-          "type": "NxInlineMeasureDef"
-        }
-      ],
-      "kind": "object",
-      "entries": {
-        "valueType": {
-          "description": "Measure operation",
-          "defaultValue": "NORMAL",
-          "kind": "union",
-          "items": [
-            {
-              "kind": "literal",
-              "value": "'NORMAL'"
-            },
-            {
-              "kind": "literal",
-              "value": "'INVERSE'"
-            },
-            {
-              "kind": "literal",
-              "value": "'SUBTOTAL'"
-            }
-          ],
-          "type": "string"
-        }
-      }
-    },
-    "qDef.subtotal.enable": {
-      "description": "Option to add a subtotal after a measure",
-      "defaultValue": false,
-      "type": "boolean"
-    },
-    "qDef.subtotal.label": {
-      "description": "Label of the subtotal added after a measure",
-      "defaultValue": "Subtotal",
-      "type": "string"
     },
     "refLine": {
       "kind": "object",
@@ -536,6 +540,22 @@
           "description": "Set the dash type for this reference line.",
           "optional": true,
           "defaultValue": "''",
+          "type": "string"
+        }
+      }
+    },
+    "subtotalProperties": {
+      "description": "Settings for subtotal",
+      "kind": "object",
+      "entries": {
+        "enable": {
+          "description": "Option to add a subtotal after a measure.",
+          "defaultValue": false,
+          "type": "boolean"
+        },
+        "label": {
+          "description": "Label of the subtotal added after a measure.",
+          "defaultValue": "'Subtotal'",
           "type": "string"
         }
       }

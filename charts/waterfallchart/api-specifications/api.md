@@ -3,7 +3,7 @@
 * [properties](#properties) : <code>object</code>
     * [.version](#properties.version) : <code>string</code>
     * [.qHyperCubeDef](#properties.qHyperCubeDef) ⇐ <code>HyperCubeDef</code>
-        * [.qMeasures](#properties.qHyperCubeDef.qMeasures) : <code>object</code>
+        * [.qMeasures](#properties.qHyperCubeDef.qMeasures) : [<code>Array.&lt;MeasureProperties&gt;</code>](#MeasureProperties)
     * [.color](#properties.color) : <code>object</code>
         * [.auto](#properties.color.auto) : <code>boolean</code>
         * [.positiveValueColor](#properties.color.positiveValueColor) : <code>object</code>
@@ -52,11 +52,8 @@ Extends `HyperCubeDef`, see Engine API: `HyperCubeDef`.
 **Extends**: <code>HyperCubeDef</code>  
 <a name="properties.qHyperCubeDef.qMeasures"></a>
 
-#### qHyperCubeDef.qMeasures : <code>object</code>
-Extends `NxMeasure`, see Engine API: `NxMeasure`.
-
+#### qHyperCubeDef.qMeasures : [<code>Array.&lt;MeasureProperties&gt;</code>](#MeasureProperties)
 **Kind**: static property of [<code>qHyperCubeDef</code>](#properties.qHyperCubeDef)  
-**Extends**: <code>NxMeasure</code>  
 <a name="properties.color"></a>
 
 ### properties.color : <code>object</code>
@@ -307,6 +304,46 @@ Visualization footnote.
 **Default**: <code>&quot;&quot;</code>  
 
 # Definitions
+<a name="subtotalProperties"></a>
+
+## subtotalProperties : <code>object</code>
+Settings for subtotal
+
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| enable | <code>boolean</code> | <code>false</code> | Option to add a subtotal after a measure. |
+| label | <code>string</code> | <code>&quot;&#x27;Subtotal&#x27;&quot;</code> | Label of the subtotal added after a measure. |
+
+<a name="InlineMeasureDef"></a>
+
+## InlineMeasureDef : <code>object</code>
+Extends `NxInlineMeasureDef`, see Engine API: `NxInlineMeasureDef`.
+
+**Kind**: global typedef  
+**Extends**: <code>NxInlineMeasureDef</code>  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| subtotal | [<code>subtotalProperties</code>](#subtotalProperties) |  | subtotal settings. |
+| valueType | <code>&#x27;NORMAL&#x27;</code> \| <code>&#x27;INVERSE&#x27;</code> \| <code>&#x27;SUBTOTAL&#x27;</code> | <code>&#x27;NORMAL&#x27;</code> | Measure operation. |
+
+<a name="MeasureProperties"></a>
+
+## MeasureProperties : <code>object</code>
+Extends `NxMeasure`, see Engine API: `NxMeasure`.
+
+**Kind**: global typedef  
+**Extends**: <code>NxMeasure</code>  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| qDef | [<code>InlineMeasureDef</code>](#InlineMeasureDef) | 
+
 <a name="FieldAttributes"></a>
 
 ## FieldAttributes : <code>object</code>
