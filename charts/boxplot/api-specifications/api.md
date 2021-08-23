@@ -333,7 +333,7 @@ Settings for the boxplot whiskers
 Show whiskers.
 
 **Kind**: static property of [<code>whiskers</code>](#properties.boxplotDef.presentation.whiskers)  
-**Default**: <code>false</code>  
+**Default**: <code>true</code>  
 <a name="properties.boxplotDef.sorting"></a>
 
 #### boxplotDef.sorting : <code>object</code>
