@@ -112,9 +112,7 @@ function Selections(options) {
     return options.isLassoDisabled && options.isLassoDisabled();
   }
 
-  // TODO - Do not override clear like this, add watch functionality to it
-  const selectionsApiClearFn = selectionsApi.clear.bind(selectionsApi);
-  selectionsApi.clear = function () {
+  selectionsApi.on('cleared', () => {
     selectionContexts.forEach((context) => {
       context.brush.clear();
       // Clear dependent components
@@ -125,8 +123,7 @@ function Selections(options) {
         }
       });
     });
-    selectionsApiClearFn();
-  };
+  });
 
   // Setup a selection context
   /*
@@ -201,9 +198,10 @@ function Selections(options) {
           }
         });
 
-        if (selectionsApi.canClear()) {
-          selectionsApiClearFn();
-        }
+        // something may still be needed but can not call selectionsApi.clear() that would cause a infinite loop
+        // if (!selectionsApi.canClear || selectionsApi.canClear()) {
+        //   selectionsApi.clear();
+        // }
       }
     };
 

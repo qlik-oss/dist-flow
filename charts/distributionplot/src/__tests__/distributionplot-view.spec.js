@@ -52,6 +52,7 @@ describe('Distributionplot', () => {
       },
     };
     selectionsApi = {
+      on() {},
       clear: {
         bind() {},
       },

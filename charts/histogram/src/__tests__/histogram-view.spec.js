@@ -82,6 +82,7 @@ describe('Histogram', () => {
       updateCache() {},
     };
     selectionsApi = {
+      on() {},
       clear: {
         bind() {},
       },
