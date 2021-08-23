@@ -27,7 +27,7 @@
   },
   "main": "dist/sn-waterfall.js",
   "scripts": {
-    "build": "nebula build",
+    "build": "nebula build --config ../../nebula.config.js",
     "lint": "eslint src",
     "start": "nebula serve --type waterfallchart --config ../../nebula.config.js",
     "sense": "nebula sense --partial",

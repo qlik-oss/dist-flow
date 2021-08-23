@@ -238,7 +238,7 @@ const properties = {
          * @type {boolean}
          * @default
          */
-        show: false,
+        show: true,
       },
     },
     /**
