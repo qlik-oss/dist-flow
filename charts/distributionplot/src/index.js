@@ -11,6 +11,7 @@ import {
   useStaleLayout,
 } from '@nebula.js/stardust';
 import $ from 'jquery';
+import locale from '@qlik/common/locale';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
 import useLasso from '@qlik/common/nebula/use-lasso';
 import useResize from '@qlik/common/nebula/resize';
@@ -24,6 +25,7 @@ import ChartView from './distributionplot-view';
 import BackednAPi from './backend-api';
 
 export default function supernova(env) {
+  locale(env.translator);
   const picasso = picassoSetup();
 
   return {
