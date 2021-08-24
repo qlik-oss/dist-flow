@@ -1,5 +1,6 @@
 import { useConstraints, useEffect, useElement, usePromise, useState, useStaleLayout } from '@nebula.js/stardust';
 import $ from 'jquery';
+import locale from '@qlik/common/locale';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
 import useResize from '@qlik/common/nebula/resize';
 import useEnvironment from '@qlik/common/nebula/use-environment';
@@ -18,6 +19,7 @@ function usePromiseNoError(...args) {
 }
 
 export default function supernova(env) {
+  locale(env.translator);
   const picasso = picassoSetup();
 
   return {

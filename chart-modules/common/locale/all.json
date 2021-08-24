@@ -1,0 +1,142 @@
+{
+  "Visualization.Histogram.MeasureAxisLabel": {
+    "id": "Visualization.Histogram.MeasureAxisLabel",
+    "locale": {
+      "en-US": "Frequency",
+      "zh-TW": "頻率",
+      "zh-CN": "频率",
+      "tr-TR": "Sıklık",
+      "sv-SE": "Frekvens",
+      "it-IT": "Frequenza",
+      "es-ES": "Frecuencia",
+      "de-DE": "Häufigkeit",
+      "pl-PL": "Częstotliwość",
+      "nl-NL": "Frequentie",
+      "ko-KR": "빈도",
+      "pt-BR": "Frequência",
+      "fr-FR": "Fréquence",
+      "ja-JP": "レコード数",
+      "ru-RU": "Частота"
+    }
+  },
+  "waterfall.legend.positiveValue.label": {
+    "id": "waterfall.legend.positiveValue.label",
+    "locale": {
+      "en-US": "Positive",
+      "zh-TW": "正值",
+      "zh-CN": "正",
+      "tr-TR": "Pozitif",
+      "sv-SE": "Positiv",
+      "it-IT": "Positivi",
+      "es-ES": "Positivo",
+      "de-DE": "Positiv",
+      "pl-PL": "Dodatnie",
+      "nl-NL": "Positief",
+      "ko-KR": "양수",
+      "pt-BR": "Positivo",
+      "fr-FR": "Positive",
+      "ja-JP": "正",
+      "ru-RU": "Положительное"
+    }
+  },
+  "waterfall.legend.negativeValue.label": {
+    "id": "waterfall.legend.negativeValue.label",
+    "locale": {
+      "en-US": "Negative",
+      "zh-TW": "負值",
+      "zh-CN": "负",
+      "tr-TR": "Negatif",
+      "sv-SE": "Negativ",
+      "it-IT": "Negativi",
+      "es-ES": "Negativo",
+      "de-DE": "Negativ",
+      "pl-PL": "Ujemne",
+      "nl-NL": "Negatief",
+      "ko-KR": "음수",
+      "pt-BR": "Negativo",
+      "fr-FR": "Négative",
+      "ja-JP": "負",
+      "ru-RU": "Отрицательное"
+    }
+  },
+  "waterfall.legend.subtotal.label": {
+    "id": "waterfall.legend.subtotal.label",
+    "locale": {
+      "en-US": "Subtotal",
+      "zh-TW": "小計",
+      "zh-CN": "小计",
+      "tr-TR": "Ara Toplam",
+      "sv-SE": "Deltotal",
+      "it-IT": "Subtotale",
+      "es-ES": "Subtotal",
+      "de-DE": "Teilsumme",
+      "pl-PL": "Suma częściowa",
+      "nl-NL": "Subtotaal",
+      "ko-KR": "소계",
+      "pt-BR": "Subtotal",
+      "fr-FR": "Sous-total",
+      "ja-JP": "小計",
+      "ru-RU": "Подытог"
+    }
+  },
+  "Object_Disclaimer_LimitedData": {
+    "id": "Object.Disclaimer.LimitedData",
+    "locale": {
+      "en-US": "Currently showing a limited data set.",
+      "zh-TW": "目前顯示的是有限的資料集。",
+      "zh-CN": "当前正显示有限的数据集。",
+      "tr-TR": "Şu anda sınırlı bir veri kümesi gösteriliyor.",
+      "sv-SE": "Just nu visas en begränsad uppsättning data.",
+      "it-IT": "Attualmente viene visualizzata una serie di dati limitata.",
+      "es-ES": "Mostrando actualmente un conjunto limitado de datos.",
+      "de-DE": "Zurzeit wird nur ein beschränkter Datensatz angezeigt.",
+      "pl-PL": "Aktualnie przedstawiany jest ograniczony zestaw danych.",
+      "nl-NL": "Momenteel wordt een beperkte gegevensverzameling getoond.",
+      "ko-KR": "현재 제한된 데이터 집합을 표시하고 있습니다.",
+      "pt-BR": "Mostrando um conjunto de dados limitado.",
+      "fr-FR": "Affichage d'un ensemble de données limité pour l'instant.",
+      "ja-JP": "現在、限定的なデータ セットを表示しています。",
+      "ru-RU": "В настоящее время отображается ограниченный набор данных."
+    }
+  },
+  "Object_Disclaimer_OnlyNanData": {
+    "id": "Object.Disclaimer.OnlyNanData",
+    "locale": {
+      "en-US": "The chart is not displayed because it contains only undefined values.",
+      "zh-TW": "系統不會顯示圖表，因為該圖表僅包含未定義的值。",
+      "zh-CN": "未显示图表，因为它仅包含未定义的值。",
+      "tr-TR": "Yalnızca tanımsız değerleri içermesi nedeniyle grafik görüntülenmiyor.",
+      "sv-SE": "Diagrammet visas inte eftersom det enbart innehåller odefinierade värden.",
+      "it-IT": "Il grafico non è visualizzato poiché contiene solo valori non definiti.",
+      "es-ES": "El gráfico no se muestra porque solo contiene valores indefinidos.",
+      "de-DE": "Das Diagramm wird nicht angezeigt, da es nur nicht definierte Werte enthält.",
+      "pl-PL": "Wykres nie jest wyświetlany, ponieważ zawiera wartości niezdefiniowane.",
+      "nl-NL": "De grafiek wordt niet weergegeven omdat deze alleen ongedefinieerde waarden bevat.",
+      "ko-KR": "정의되지 않은 값만 포함되어 있으므로 차트가 표시되지 않습니다.",
+      "pt-BR": "O gráfico não foi exibido, porque contém apenas valores não definidos.",
+      "fr-FR": "Le graphique n'est pas affiché, car il contient uniquement des valeurs non définies.",
+      "ja-JP": "未定義の値しか含まれていないため、チャートは表示されていません。",
+      "ru-RU": "Диаграмма не отображается, поскольку она содержит только неопределенные значения."
+    }
+  },
+  "Object_Disclaimer_OnlyNegativeOrZeroValues": {
+    "id": "Object.Disclaimer.OnlyNegativeOrZeroValues",
+    "locale": {
+      "en-US": "The chart is not displayed because it contains only negative or zero values.",
+      "zh-TW": "系統不會顯示圖表，因為該圖表僅包含負值或零值。",
+      "zh-CN": "未显示图表，因为它仅包含负值或零值。",
+      "tr-TR": "Yalnızca negatif veya sıfır değerlerini içermesi nedeniyle grafik görüntülenmiyor.",
+      "sv-SE": "Diagrammet visas inte eftersom det enbart innehåller negativa eller nollvärden",
+      "it-IT": "Il grafico non viene visualizzato poiché contiene solo valori negativi o uguali a zero.",
+      "es-ES": "El gráfico no se muestra porque sólo contiene valores negativos o valores cero.",
+      "de-DE": "Das Diagramm wird nicht angezeigt, da es nur negative oder 0-Werte enthält.",
+      "pl-PL": "Wykres nie jest wyświetlany, ponieważ zawiera wartości ujemne lub zerowe.",
+      "nl-NL": "De grafiek wordt niet weergegeven omdat het alleen negatieve waarden of nulwaarden bevat.",
+      "ko-KR": "음수 또는 zero 값만 포함되어 있으므로 차트가 표시되지 않습니다.",
+      "pt-BR": "O gráfico não foi exibido, porque contém apenas valores negativos ou zero.",
+      "fr-FR": "Le graphique n'est pas affiché, car il contient uniquement des valeurs négatives ou égales à zéro.",
+      "ja-JP": "チャートは負の値またはゼロ値しか含まれていないため、表示されていません。",
+      "ru-RU": "Диаграмма не отображается, поскольку она содержит только отрицательные или нулевые значения."
+    }
+  }
+}

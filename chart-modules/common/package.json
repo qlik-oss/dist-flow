@@ -17,6 +17,7 @@
     "jquery": "3.6.0",
     "picasso-plugin-hammer": ">=0.35.1",
     "picasso-plugin-q": ">=0.35.1",
-    "picasso.js": ">=0.35.1"
+    "picasso.js": ">=0.35.1",
+    "@qlik/444-charts-locale": "0.0.1"
   }
 }

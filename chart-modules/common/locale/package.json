@@ -1,0 +1,13 @@
+{
+  "name": "@qlik/444-charts-locale",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint src"
+  }
+}
