@@ -326,6 +326,34 @@ export default function propertyDefinition(env) {
       const hasSecondDimension = getValue(args.layout, `${CONSTANTS.HYPERCUBE_PATH}.qDimensionInfo.length`) > 1;
       return hasSecondDimension;
     },
+    items: {
+      othersGroup: {
+        items: {
+          label: {
+            options: flags.isEnabled('SENSECLIENT_LAYERED_LABELS')
+              ? [
+                  {
+                    value: 'auto',
+                    translation: 'Common.Auto',
+                  },
+                  {
+                    value: 'horizontal',
+                    translation: 'Common.Horizontal',
+                  },
+                  {
+                    value: 'tilted',
+                    translation: 'properties.labels.tilted',
+                  },
+                  {
+                    value: 'layered',
+                    translation: 'properties.labels.layered',
+                  },
+                ]
+              : undefined,
+          },
+        },
+      },
+    },
   };
 
   function updateAltLabel(data, byDefRef) {

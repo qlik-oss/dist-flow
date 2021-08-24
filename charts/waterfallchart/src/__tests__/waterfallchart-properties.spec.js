@@ -10,7 +10,10 @@ describe('waterfallchart-properties', () => {
     const translator = {
       get: () => {},
     };
-    const env = { translator };
+    const flags = {
+      isEnabled: () => true,
+    };
+    const env = { translator, flags };
     waterfallChartProperties = waterfallChartPropertiesFn(env);
   });
 

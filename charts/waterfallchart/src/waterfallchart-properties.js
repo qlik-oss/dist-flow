@@ -8,7 +8,7 @@ function colorIsNotAuto(data) {
 }
 
 export default function propertyDefinition(env) {
-  const { translator } = env;
+  const { flags, translator } = env;
   const data = {
     uses: 'data',
     addTranslation: 'Properties.AddData',
@@ -304,6 +304,28 @@ export default function propertyDefinition(env) {
               null,
               null,
             ],
+          },
+          label: {
+            options: flags.isEnabled('SENSECLIENT_LAYERED_LABELS')
+              ? [
+                  {
+                    value: 'auto',
+                    translation: 'Common.Auto',
+                  },
+                  {
+                    value: 'horizontal',
+                    translation: 'Common.Horizontal',
+                  },
+                  {
+                    value: 'tilted',
+                    translation: 'properties.labels.tilted',
+                  },
+                  {
+                    value: 'layered',
+                    translation: 'properties.labels.layered',
+                  },
+                ]
+              : undefined,
           },
         },
       },
