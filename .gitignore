@@ -13,6 +13,7 @@ coverage/
 build/
 
 dist/
+**/core/esm/
 charts/boxplot/sn-boxplot-ext/
 charts/distributionplot/sn-distributionplot-ext/
 charts/histogram/sn-histogram-ext/

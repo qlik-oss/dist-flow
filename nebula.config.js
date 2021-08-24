@@ -7,9 +7,15 @@ const replacementStrings = {
   'process.env.PACKAGE_VERSION': JSON.stringify(targetPkg.version),
 };
 
+const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
+const sourcemap = mode !== 'production';
+
 module.exports = {
   build: {
+    core: 'core',
+    mode,
     replacementStrings,
+    sourcemap,
   },
   serve: {
     themes: [{ id: 'sense', theme: defaultTheme }],

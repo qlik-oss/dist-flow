@@ -3394,6 +3394,11 @@
     import-cwd "3.0.0"
     yargs "17.0.1"
 
+"@nebula.js/stardust@>=1.4.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-1.7.0.tgz#475d8e3bd4e55cb074aeb7e374e5569a309ad105"
+  integrity sha512-d+KE2IKoLud27BZQ4eTJtFbPRLq2JqQmz8uZaQ/BYWA9CxmntlTxiDDcaJlzBgk3YFUxUpvz2yvBHWP/YmPpyg==
+
 "@nebula.js/stardust@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-1.4.0.tgz#0b891d906ca71adb6d88946e67a16af99b0e91cb"
