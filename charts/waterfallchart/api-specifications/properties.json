@@ -21,19 +21,19 @@
               "defaultValue": true,
               "type": "boolean"
             },
-            "negativeValueColor": {
+            "negativeValue": {
               "description": "Negative value color.",
               "defaultValue": "{ index: -1, color: '#cc6677' },",
               "kind": "object",
               "entries": {}
             },
-            "positiveValueColor": {
+            "positiveValue": {
               "description": "Positive value color.",
               "defaultValue": "{ index: 6, color: null }",
               "kind": "object",
               "entries": {}
             },
-            "subtotalColor": {
+            "subtotal": {
               "description": "Subtotal value color.",
               "defaultValue": "{ index: -1, color: '#c3c3c3' }",
               "kind": "object",
