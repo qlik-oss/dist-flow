@@ -5,12 +5,7 @@
       "qType": "waterfallchart"
     },
     "qMeta": {
-      "privileges": [
-        "read",
-        "update",
-        "delete",
-        "exportdata"
-      ]
+      "privileges": ["read", "update", "delete", "exportdata"]
     },
     "qSelectionInfo": {},
     "qHyperCube": {
@@ -104,11 +99,7 @@
           }
         }
       ],
-      "qEffectiveInterColumnSortOrder": [
-        0,
-        1,
-        2
-      ],
+      "qEffectiveInterColumnSortOrder": [0, 1, 2],
       "qGrandTotalRow": [
         {
           "qText": "1,1283",
@@ -192,7 +183,7 @@
       "showLabels": true
     },
     "color": {
-      "auto": true,
+      "auto": false,
       "positiveValue": {
         "paletteColor": {
           "index": 6,
