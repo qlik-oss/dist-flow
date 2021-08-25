@@ -8,7 +8,7 @@ const OPTS = {
   artifactsPath: 'test/rendering/__artifacts__',
 };
 
-describe('Rendering test - Bar chart', () => {
+describe('Rendering test', () => {
   let browser;
   let page;
 

@@ -186,7 +186,7 @@
       "auto": false,
       "positiveValue": {
         "paletteColor": {
-          "index": 8,
+          "index": -1,
           "color": "#4477aa"
         }
       },
