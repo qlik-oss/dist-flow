@@ -102,7 +102,7 @@ const properties = {
      * @type {object}
      * @default { index: 6, color: null }
      */
-    positiveValueColor: {
+    positiveValue: {
       index: 6,
       color: null,
     },
@@ -111,7 +111,7 @@ const properties = {
      * @type {object}
      * @default { index: -1, color: '#cc6677' },
      */
-    negativeValueColor: {
+    negativeValue: {
       index: -1,
       color: '#cc6677',
     },
@@ -120,7 +120,7 @@ const properties = {
      * @type {object}
      * @default { index: -1, color: '#c3c3c3' }
      */
-    subtotalColor: {
+    subtotal: {
       index: -1,
       color: '#c3c3c3',
     },

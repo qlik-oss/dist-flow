@@ -6,9 +6,9 @@
         * [.qMeasures](#properties.qHyperCubeDef.qMeasures) : [<code>Array.&lt;MeasureProperties&gt;</code>](#MeasureProperties)
     * [.color](#properties.color) : <code>object</code>
         * [.auto](#properties.color.auto) : <code>boolean</code>
-        * [.positiveValueColor](#properties.color.positiveValueColor) : <code>object</code>
-        * [.negativeValueColor](#properties.color.negativeValueColor) : <code>object</code>
-        * [.subtotalColor](#properties.color.subtotalColor) : <code>object</code>
+        * [.positiveValue](#properties.color.positiveValue) : <code>object</code>
+        * [.negativeValue](#properties.color.negativeValue) : <code>object</code>
+        * [.subtotal](#properties.color.subtotal) : <code>object</code>
     * [.dataPoint](#properties.dataPoint) : <code>object</code>
         * [.showLabels](#properties.dataPoint.showLabels) : <code>boolean</code>
     * [.dimensionAxis](#properties.dimensionAxis) : <code>object</code>
@@ -66,9 +66,9 @@ Note: Some of the color properties are depending on which theme is currently bei
 
 * [.color](#properties.color) : <code>object</code>
     * [.auto](#properties.color.auto) : <code>boolean</code>
-    * [.positiveValueColor](#properties.color.positiveValueColor) : <code>object</code>
-    * [.negativeValueColor](#properties.color.negativeValueColor) : <code>object</code>
-    * [.subtotalColor](#properties.color.subtotalColor) : <code>object</code>
+    * [.positiveValue](#properties.color.positiveValue) : <code>object</code>
+    * [.negativeValue](#properties.color.negativeValue) : <code>object</code>
+    * [.subtotal](#properties.color.subtotal) : <code>object</code>
 
 <a name="properties.color.auto"></a>
 
@@ -79,23 +79,23 @@ and measures, that is, the settings are not fixed, but are dependent on the data
 
 **Kind**: static property of [<code>color</code>](#properties.color)  
 **Default**: <code>true</code>  
-<a name="properties.color.positiveValueColor"></a>
+<a name="properties.color.positiveValue"></a>
 
-#### color.positiveValueColor : <code>object</code>
+#### color.positiveValue : <code>object</code>
 Positive value color.
 
 **Kind**: static property of [<code>color</code>](#properties.color)  
 **Default**: <code>{ index: 6, color: null }</code>  
-<a name="properties.color.negativeValueColor"></a>
+<a name="properties.color.negativeValue"></a>
 
-#### color.negativeValueColor : <code>object</code>
+#### color.negativeValue : <code>object</code>
 Negative value color.
 
 **Kind**: static property of [<code>color</code>](#properties.color)  
 **Default**: <code>{ index: -1, color: &#x27;#cc6677&#x27; },</code>  
-<a name="properties.color.subtotalColor"></a>
+<a name="properties.color.subtotal"></a>
 
-#### color.subtotalColor : <code>object</code>
+#### color.subtotal : <code>object</code>
 Subtotal value color.
 
 **Kind**: static property of [<code>color</code>](#properties.color)  
