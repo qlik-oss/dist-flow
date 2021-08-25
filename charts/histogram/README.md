@@ -18,7 +18,7 @@ import histogram from '@nebula.js/sn-histogram';
 const embeddable = embed(app, {
   types: [
     {
-      // register combo chart
+      // register histogram chart
       name: 'histogram',
       load: () => Promise.resolve(histogram),
     },
