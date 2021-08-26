@@ -15,9 +15,9 @@
         * [.dock](#properties.dimensionAxis.dock) : <code>&#x27;near&#x27;</code> \| <code>&#x27;far&#x27;</code>
         * [.label](#properties.dimensionAxis.label) : <code>&#x27;auto&#x27;</code> \| <code>&#x27;horizontal&#x27;</code> \| <code>&#x27;tilted&#x27;</code>
         * [.show](#properties.dimensionAxis.show) : <code>&#x27;labels&#x27;</code> \| <code>&#x27;none&#x27;</code>
-    * [.gridLines](#properties.gridLines) : <code>object</code>
-        * [.auto](#properties.gridLines.auto) : <code>boolean</code>
-        * [.spacing](#properties.gridLines.spacing) : <code>0</code> \| <code>2</code> \| <code>3</code>
+    * [.gridlines](#properties.gridlines) : <code>object</code>
+        * [.auto](#properties.gridlines.auto) : <code>boolean</code>
+        * [.spacing](#properties.gridlines.spacing) : <code>0</code> \| <code>2</code> \| <code>3</code>
     * [.legend](#properties.legend) : <code>object</code>
         * [.dock](#properties.legend.dock) : <code>&#x27;auto&#x27;</code> \| <code>&#x27;right&#x27;</code> \| <code>&#x27;left&#x27;</code> \| <code>&#x27;bottom&#x27;</code> \| <code>&#x27;top&#x27;</code>
         * [.show](#properties.legend.show) : <code>boolean</code>
@@ -145,30 +145,30 @@ Labels and title
 
 **Kind**: static property of [<code>dimensionAxis</code>](#properties.dimensionAxis)  
 **Default**: <code>labels</code>  
-<a name="properties.gridLines"></a>
+<a name="properties.gridlines"></a>
 
-### properties.gridLines : <code>object</code>
+### properties.gridlines : <code>object</code>
 Grid lines settings.
 
 **Kind**: static property of [<code>properties</code>](#properties)  
 
-* [.gridLines](#properties.gridLines) : <code>object</code>
-    * [.auto](#properties.gridLines.auto) : <code>boolean</code>
-    * [.spacing](#properties.gridLines.spacing) : <code>0</code> \| <code>2</code> \| <code>3</code>
+* [.gridlines](#properties.gridlines) : <code>object</code>
+    * [.auto](#properties.gridlines.auto) : <code>boolean</code>
+    * [.spacing](#properties.gridlines.spacing) : <code>0</code> \| <code>2</code> \| <code>3</code>
 
-<a name="properties.gridLines.auto"></a>
+<a name="properties.gridlines.auto"></a>
 
-#### gridLines.auto : <code>boolean</code>
+#### gridlines.auto : <code>boolean</code>
 Automatic grid line spacing.
 
-**Kind**: static property of [<code>gridLines</code>](#properties.gridLines)  
+**Kind**: static property of [<code>gridlines</code>](#properties.gridlines)  
 **Default**: <code>true</code>  
-<a name="properties.gridLines.spacing"></a>
+<a name="properties.gridlines.spacing"></a>
 
-#### gridLines.spacing : <code>0</code> \| <code>2</code> \| <code>3</code>
+#### gridlines.spacing : <code>0</code> \| <code>2</code> \| <code>3</code>
 Grid line spacing. Used only when auto is set to false.
 
-**Kind**: static property of [<code>gridLines</code>](#properties.gridLines)  
+**Kind**: static property of [<code>gridlines</code>](#properties.gridlines)  
 **Default**: <code>2</code>  
 <a name="properties.legend"></a>
 

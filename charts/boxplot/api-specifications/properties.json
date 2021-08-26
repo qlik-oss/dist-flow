@@ -313,7 +313,7 @@
           ],
           "type": "any"
         },
-        "gridLines": {
+        "gridlines": {
           "description": "Grid lines settings.",
           "kind": "object",
           "entries": {
