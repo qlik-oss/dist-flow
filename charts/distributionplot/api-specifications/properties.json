@@ -156,7 +156,7 @@
           ],
           "type": "any"
         },
-        "gridLine": {
+        "gridLines": {
           "description": "Grid lines settings.",
           "kind": "object",
           "entries": {
@@ -173,10 +173,6 @@
                 {
                   "kind": "literal",
                   "value": 0
-                },
-                {
-                  "kind": "literal",
-                  "value": 1
                 },
                 {
                   "kind": "literal",

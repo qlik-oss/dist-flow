@@ -23,7 +23,7 @@
             },
             "negativeValue": {
               "description": "Negative value color.",
-              "defaultValue": "{ index: -1, color: '#cc6677' },",
+              "defaultValue": "{ index: -1, color: '#cc6677' }",
               "kind": "object",
               "entries": {}
             },
@@ -125,7 +125,7 @@
           ],
           "type": "any"
         },
-        "gridLine": {
+        "gridLines": {
           "description": "Grid lines settings.",
           "kind": "object",
           "entries": {
@@ -142,10 +142,6 @@
                 {
                   "kind": "literal",
                   "value": 0
-                },
-                {
-                  "kind": "literal",
-                  "value": 1
                 },
                 {
                   "kind": "literal",
