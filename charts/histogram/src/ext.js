@@ -31,7 +31,7 @@ export default function ext(env) {
     },
     importProperties: null, // Prevent conversion to and from this object
     exportProperties: null,
-
+    requireNumericDimension: true,
     exportTableProperties(propertyTree) {
       // the hypercube that will be used for "building" the table is under `qUndoExclude.box.qHyperCubeDef`
       const hyperCubePath = 'qUndoExclude.box';
@@ -39,7 +39,6 @@ export default function ext(env) {
     },
     // getDropFieldOptions: histogramNumericValuesHandler.getDropFieldOptions,
     // getDropDimensionOptions: histogramNumericValuesHandler.getDropDimensionOptions,
-    // addDimensionPopoverComponent: histogramNumericValuesHandler.addDimensionPopoverComponent,
     // getExportRawDataOptions: histogramExport.getExportRawDataOptions,
     // getCreatePropertyHandler(app) {
     //   const mappedDefinition = this.mappedDefinition;
