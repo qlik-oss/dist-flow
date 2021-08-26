@@ -44,9 +44,9 @@
         * [.minMax](#properties.measureAxis.minMax) : <code>&#x27;min&#x27;</code> \| <code>&#x27;max&#x27;</code> \| <code>&#x27;minMax&#x27;</code>
         * [.show](#properties.measureAxis.show) : <code>&#x27;all&#x27;</code> \| <code>&#x27;labels&#x27;</code> \| <code>&#x27;title&#x27;</code> \| <code>&#x27;none&#x27;</code>
         * [.spacing](#properties.measureAxis.spacing) : <code>number</code>
-    * [.gridLine](#properties.gridLine) : <code>object</code>
-        * [.auto](#properties.gridLine.auto) : <code>boolean</code>
-        * [.spacing](#properties.gridLine.spacing) : <code>0</code> \| <code>1</code> \| <code>2</code> \| <code>3</code>
+    * [.gridlines](#properties.gridlines) : <code>object</code>
+        * [.auto](#properties.gridlines.auto) : <code>boolean</code>
+        * [.spacing](#properties.gridlines.spacing) : <code>0</code> \| <code>2</code> \| <code>3</code>
     * [.orientation](#properties.orientation) : <code>&#x27;vertical&#x27;</code> \| <code>&#x27;horizontal&#x27;</code>
     * [.refLine](#properties.refLine) : <code>object</code>
         * [.refLines](#properties.refLine.refLines) : [<code>Array.&lt;refLine&gt;</code>](#refLine)
@@ -445,30 +445,30 @@ Axis scale
 
 **Kind**: static property of [<code>measureAxis</code>](#properties.measureAxis)  
 **Default**: <code>1</code>  
-<a name="properties.gridLine"></a>
+<a name="properties.gridlines"></a>
 
-### properties.gridLine : <code>object</code>
+### properties.gridlines : <code>object</code>
 Grid lines settings.
 
 **Kind**: static property of [<code>properties</code>](#properties)  
 
-* [.gridLine](#properties.gridLine) : <code>object</code>
-    * [.auto](#properties.gridLine.auto) : <code>boolean</code>
-    * [.spacing](#properties.gridLine.spacing) : <code>0</code> \| <code>1</code> \| <code>2</code> \| <code>3</code>
+* [.gridlines](#properties.gridlines) : <code>object</code>
+    * [.auto](#properties.gridlines.auto) : <code>boolean</code>
+    * [.spacing](#properties.gridlines.spacing) : <code>0</code> \| <code>2</code> \| <code>3</code>
 
-<a name="properties.gridLine.auto"></a>
+<a name="properties.gridlines.auto"></a>
 
-#### gridLine.auto : <code>boolean</code>
+#### gridlines.auto : <code>boolean</code>
 Automatic grid line spacing.
 
-**Kind**: static property of [<code>gridLine</code>](#properties.gridLine)  
+**Kind**: static property of [<code>gridlines</code>](#properties.gridlines)  
 **Default**: <code>true</code>  
-<a name="properties.gridLine.spacing"></a>
+<a name="properties.gridlines.spacing"></a>
 
-#### gridLine.spacing : <code>0</code> \| <code>1</code> \| <code>2</code> \| <code>3</code>
+#### gridlines.spacing : <code>0</code> \| <code>2</code> \| <code>3</code>
 Grid line spacing. Used only when auto is set to false.
 
-**Kind**: static property of [<code>gridLine</code>](#properties.gridLine)  
+**Kind**: static property of [<code>gridlines</code>](#properties.gridlines)  
 **Default**: <code>2</code>  
 <a name="properties.orientation"></a>
 

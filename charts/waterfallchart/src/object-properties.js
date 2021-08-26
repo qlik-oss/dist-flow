@@ -109,7 +109,7 @@ const properties = {
     /**
      * Negative value color.
      * @type {object}
-     * @default { index: -1, color: '#cc6677' },
+     * @default { index: -1, color: '#cc6677' }
      */
     negativeValue: {
       index: -1,
@@ -164,7 +164,7 @@ const properties = {
    * Grid lines settings.
    * @type {object}
    */
-  gridLine: {
+  gridlines: {
     /**
      * Automatic grid line spacing.
      * @type {boolean}
@@ -173,7 +173,7 @@ const properties = {
     auto: true,
     /**
      * Grid line spacing. Used only when auto is set to false.
-     * @type {0|1|2|3}
+     * @type {0|2|3}
      * @default
      */
     spacing: 2,

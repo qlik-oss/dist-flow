@@ -206,7 +206,7 @@ const properties = {
    * Grid lines settings.
    * @type {object}
    */
-  gridLine: {
+  gridlines: {
     /**
      * Automatic grid line spacing.
      * @type {boolean}
@@ -215,7 +215,7 @@ const properties = {
     auto: true,
     /**
      * Grid line spacing. Used only when auto is set to false.
-     * @type {0|1|2|3}
+     * @type {0|2|3}
      * @default
      */
     spacing: 2,
