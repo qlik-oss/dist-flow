@@ -139,6 +139,12 @@
       "ru-RU": "Диаграмма не отображается, поскольку она содержит только отрицательные или нулевые значения."
     }
   },
+  "Object_Disclaimer_RequireNumericDimension": {
+    "id": "Object.Disclaimer.RequireNumericDimension",
+    "locale": {
+      "en-US": "This visualization requires a numeric diemnsion."
+    }
+  },
   "properties.boxplot.calculationMode.tukey.elements.boxEnd": {
     "id": "properties.boxplot.calculationMode.tukey.elements.boxEnd",
     "locale": {

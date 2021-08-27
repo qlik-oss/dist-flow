@@ -72,11 +72,13 @@ function getDisclaimerAttributes(layout) {
       LimitedData: true,
       OnlyNanData: true,
       OnlyNegativeOrZeroValues: !onlyNanData,
+      RequireNumericDimension: true,
     },
     options: {
       bottom: true,
       supportNegative: false,
       explicitOnlyNanData: onlyNanData,
+      requireNumericDimension: true,
     },
   };
 }

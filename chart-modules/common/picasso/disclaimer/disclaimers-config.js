@@ -25,6 +25,11 @@ const DISCLAIMERS = [
     default: true,
   },
   {
+    label: 'RequireNumericDimension',
+    alignment: ALIGNMENT.CENTER,
+    default: false,
+  },
+  {
     label: 'OnlyNanData',
     alignment: ALIGNMENT.CENTER,
     default: true,
