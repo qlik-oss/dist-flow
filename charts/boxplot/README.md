@@ -36,7 +36,7 @@ embeddable.render({
 
 ### Percentile-based
 
-This preset is defined with the box start and end points representing the first and third quartiles, and the center line representing the median, but the whisker length is adjusted by setting a percentile based whisker position. The example is using 5th/95th percentile.
+This preset is defined with the box start and end points representing the first and third quartiles, and the center line representing the median, but the whisker length is adjusted by setting a percentile based whisker position. The example is using 5th/95th percentile. Setting `mode` in `calculations` to `fractiles` and `fractiles` in `parameters` to `0.05`.
 
 <!--![image info](./assets/sn-boxplot-chart-fractiles.png)-->
 
@@ -77,76 +77,13 @@ embeddable.render({
         autoSort: true,
       },
     },
-    qUndoExclude: {
-      box: {
-        qHyperCubeDef: {
-          qMeasures: [
-            {
-              qDef: {
-                qDef: 'Fractile( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] ) ,0.05 )',
-                boxElement: 'firstWhisker',
-                qAttributeExpressions: [
-                  {
-                    qExpression: "='5th percentile'",
-                  },
-                ],
-              },
-            },
-            {
-              qDef: {
-                qDef: 'Fractile( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] ) ,0.25 )',
-                boxElement: 'boxStart',
-                qAttributeExpressions: [
-                  {
-                    qExpression: "='First quartile'",
-                  },
-                ],
-              },
-            },
-            {
-              qDef: {
-                qDef: 'Median( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  )',
-                boxElement: 'boxMiddle',
-                qAttributeExpressions: [
-                  {
-                    qExpression: "='Median'",
-                  },
-                ],
-              },
-            },
-            {
-              qDef: {
-                qDef: 'Fractile( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] ) ,0.75 )',
-                boxElement: 'boxEnd',
-                qAttributeExpressions: [
-                  {
-                    qExpression: "='Third quartile'",
-                  },
-                ],
-              },
-            },
-            {
-              qDef: {
-                qDef: 'Fractile( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] ) ,0.95 )',
-                boxElement: 'lastWhisker',
-                qAttributeExpressions: [
-                  {
-                    qExpression: "='95th percentile'",
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
-    },
   },
 });
 ```
 
 ### Standard deviation
 
-This preset is based on standard deviations, with the center line representing the average value, and the box start and end points representing one standard deviation variance. You can set the whisker length to a multiple of standard deviations. The example is using two standard deviations.
+This preset is based on standard deviations, with the center line representing the average value, and the box start and end points representing one standard deviation variance. You can set the whisker length to a multiple of standard deviations. The example is using two standard deviations. Setting `mode` in `calculations` to `stdDev` and `stdDev` in `parameters` to `3`.
 
 <!--![image info](./assets/sn-boxplot-chart-stdDev.png)-->
 
@@ -185,73 +122,6 @@ embeddable.render({
       qHyperCubeDef: {},
       sorting: {
         autoSort: true,
-      },
-    },
-    qUndoExclude: {
-      box: {
-        qHyperCubeDef: {
-          qMeasures: [
-            {
-              qDef: {
-                qDef:
-                  'Rangemax(Avg( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ) - 3 *(Stdev( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ) ), Min( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ))',
-                boxElement: 'firstWhisker',
-                qAttributeExpressions: [
-                  {
-                    qExpression: "='Box middle - 3 standard deviations'",
-                  },
-                ],
-              },
-            },
-            {
-              qDef: {
-                qDef:
-                  'Rangemax(Avg( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ) - Stdev( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ) , Min( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ))',
-                boxElement: 'boxStart',
-                qAttributeExpressions: [
-                  {
-                    qExpression: "='Box middle - 1 standard deviation'",
-                  },
-                ],
-              },
-            },
-            {
-              qDef: {
-                qDef: 'Avg( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  )',
-                boxElement: 'boxMiddle',
-                qAttributeExpressions: [
-                  {
-                    qExpression: "='Average'",
-                  },
-                ],
-              },
-            },
-            {
-              qDef: {
-                qDef:
-                  'Rangemin(Avg( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ) + Stdev( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ) , Max( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ))',
-                boxElement: 'boxEnd',
-                qAttributeExpressions: [
-                  {
-                    qExpression: "='Box middle + 1 standard deviation'",
-                  },
-                ],
-              },
-            },
-            {
-              qDef: {
-                qDef:
-                  'Rangemin(Avg( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ) + 3 *(Stdev( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ) ), Max( total <[Product Group]> Aggr( Avg(Sales), [Product Group], [Region] )  ))',
-                boxElement: 'lastWhisker',
-                qAttributeExpressions: [
-                  {
-                    qExpression: "='Box middle + 3 standard deviations'",
-                  },
-                ],
-              },
-            },
-          ],
-        },
       },
     },
   },
