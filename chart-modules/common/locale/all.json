@@ -138,5 +138,11 @@
       "ja-JP": "チャートは負の値またはゼロ値しか含まれていないため、表示されていません。",
       "ru-RU": "Диаграмма не отображается, поскольку она содержит только отрицательные или нулевые значения."
     }
+  },
+  "Object_Disclaimer_RequireNumericDimension": {
+    "id": "Object.Disclaimer.RequireNumericDimension",
+    "locale": {
+      "en-US": "This visualization requires a numeric diemnsion."
+    }
   }
 }
