@@ -138,5 +138,425 @@
       "ja-JP": "チャートは負の値またはゼロ値しか含まれていないため、表示されていません。",
       "ru-RU": "Диаграмма не отображается, поскольку она содержит только отрицательные или нулевые значения."
     }
+  },
+  "properties.boxplot.calculationMode.tukey.elements.boxEnd": {
+    "id": "properties.boxplot.calculationMode.tukey.elements.boxEnd",
+    "locale": {
+      "en-US": "Third quartile",
+      "zh-TW": "第三四分位數",
+      "zh-CN": "第 3 个四分位",
+      "tr-TR": "Üçüncü çeyrek",
+      "sv-SE": "Tredje kvartilen",
+      "it-IT": "Terzo quartile",
+      "es-ES": "Tercer cuartil",
+      "de-DE": "Drittes Quartil",
+      "pl-PL": "Trzeci kwartyl",
+      "nl-NL": "Derde kwartiel",
+      "ko-KR": "3번째 사분위수",
+      "pt-BR": "Terceiro quartil",
+      "fr-FR": "Troisième quartile",
+      "ja-JP": "第 3 四分位数",
+      "ru-RU": "Третий квартиль"
+    }
+  },
+  "properties.boxplot.calculationMode.tukey.elements.boxMiddle": {
+    "id": "properties.boxplot.calculationMode.tukey.elements.boxMiddle",
+    "locale": {
+      "en-US": "Median",
+      "zh-TW": "中位數",
+      "zh-CN": "中间值",
+      "tr-TR": "Medyan",
+      "sv-SE": "Median",
+      "it-IT": "Mediana",
+      "es-ES": "Mediana",
+      "de-DE": "Drittes Quartil",
+      "pl-PL": "Mediana",
+      "nl-NL": "Mediaan",
+      "ko-KR": "중앙값",
+      "pt-BR": "Mediano",
+      "fr-FR": "Médiane",
+      "ja-JP": "中央値",
+      "ru-RU": "Медианное"
+    }
+  },
+  "properties.boxplot.calculationMode.tukey.elements.boxStart": {
+    "id": "properties.boxplot.calculationMode.tukey.elements.boxStart",
+    "locale": {
+      "en-US": "First quartile",
+      "zh-TW": "第一四分位數",
+      "zh-CN": "第 1 个四分位",
+      "tr-TR": "İlk çeyrek",
+      "sv-SE": "Första kvartilen",
+      "it-IT": "Primo quartile",
+      "es-ES": "Primer cuartil",
+      "de-DE": "Erstes Quartil",
+      "pl-PL": "Pierwszy kwartyl",
+      "nl-NL": "Eerste kwartiel",
+      "ko-KR": "1번째 사분위수",
+      "pt-BR": "Primeiro quartil",
+      "fr-FR": "Premier quartile",
+      "ja-JP": "第 1 四分位数",
+      "ru-RU": "Первый квартиль"
+    }
+  },
+  "properties.boxplot.calculationMode.tukey.elements.firstWhisker": {
+    "id": "properties.boxplot.calculationMode.tukey.elements.firstWhisker",
+    "locale": {
+      "en-US": "Box start - {0} IQR",
+      "zh-TW": "方塊開始 - {0} IQR",
+      "zh-CN": "框开始 - {0} IQR",
+      "tr-TR": "Kutu başlangıcı - {0} IQR",
+      "sv-SE": "Rutans start - {0} IQR",
+      "it-IT": "Inizio scatola - {0} IQR",
+      "es-ES": "Inicio de caja - {0} IQR",
+      "de-DE": "Box-Beginn - {0} IQR",
+      "pl-PL": "Początek wykresu pudełkowego - {0} IQR",
+      "nl-NL": "Begin box - {0} IQR",
+      "ko-KR": "상자 시작 - {0} IQR",
+      "pt-BR": "Início da caixa - {0} IQR",
+      "fr-FR": "Début de la boîte - {0} IQR",
+      "ja-JP": "ボックス開始 - {0} IQR",
+      "ru-RU": "Начало поля - {0} IQR"
+    }
+  },
+  "properties.boxplot.calculationMode.tukey.elements.lastWhisker": {
+    "id": "properties.boxplot.calculationMode.tukey.elements.lastWhisker",
+    "locale": {
+      "en-US": "Box end + {0} IQR",
+      "zh-TW": "方塊結束 + {0} IQR",
+      "zh-CN": "框结束 + {0} IQR",
+      "tr-TR": "Kutu bitişi + {0} IQR",
+      "sv-SE": "Rutans slut + {0} IQR",
+      "it-IT": "Fine scatola + {0} IQR",
+      "es-ES": "Fin de caja + {0} IQR",
+      "de-DE": "Box-Ende + {0} IQR",
+      "pl-PL": "Koniec wykresu pudełkowego - {0} IQR",
+      "nl-NL": "Einde box + {0} IQR",
+      "ko-KR": "상자 끝 + {0} IQR",
+      "pt-BR": "Fim da caixa + {0} IQR",
+      "fr-FR": "Fin de la boîte + {0} IQR",
+      "ja-JP": "ボックス終了 + {0} IQR",
+      "ru-RU": "Конец поля + {0} IQR"
+    }
+  },
+  "properties.boxplot.calculationMode.stdDev.elements.boxEnd": {
+    "id": "properties.boxplot.calculationMode.stdDev.elements.boxEnd",
+    "locale": {
+      "en-US": "Box middle + 1 standard deviation",
+      "zh-TW": "方塊中間 + 1 個標準差",
+      "zh-CN": "框中部 + 1 个标准偏差",
+      "tr-TR": "Kutu ortası + 1 standart sapma",
+      "sv-SE": "Rutans mitt + 1 standardavvikelse",
+      "it-IT": "Centro scatola + 1 deviazione standard",
+      "es-ES": "Mitad de la caja + 1 desviación estándar",
+      "de-DE": "Box-Mitte +1 Standardabweichung",
+      "pl-PL": "Środek wykresu pudełkowego + 1 odch. stand",
+      "nl-NL": "Midden box + 1 standaardafwijking",
+      "ko-KR": "상자 중간 + 1개 표준 편차",
+      "pt-BR": "Meio da caixa + 1 desvio padrão",
+      "fr-FR": "Milieu de la boîte + 1 écart type",
+      "ja-JP": "ボックス中間 + 1 標準偏差",
+      "ru-RU": "Середина поля + 1 стандартное отклонение"
+    }
+  },
+  "properties.boxplot.calculationMode.stdDev.elements.boxMiddle": {
+    "id": "properties.boxplot.calculationMode.stdDev.elements.boxMiddle",
+    "locale": {
+      "en-US": "Average",
+      "zh-TW": "平均值",
+      "zh-CN": "平均值",
+      "tr-TR": "Ortalama",
+      "sv-SE": "Medel",
+      "it-IT": "Media",
+      "es-ES": "Media",
+      "de-DE": "Durchschnitt",
+      "pl-PL": "Średnia",
+      "nl-NL": "Gemiddelde",
+      "ko-KR": "평균",
+      "pt-BR": "Média",
+      "fr-FR": "Moyenne",
+      "ja-JP": "平均値",
+      "ru-RU": "Среднее"
+    }
+  },
+  "properties.boxplot.calculationMode.stdDev.elements.boxStart": {
+    "id": "properties.boxplot.calculationMode.stdDev.elements.boxStart",
+    "locale": {
+      "en-US": "Box middle - 1 standard deviation",
+      "zh-TW": "方塊中間 - 1 個標準差",
+      "zh-CN": "框中部 - 1 个标准偏差",
+      "tr-TR": "Kutu ortası - 1 standart sapma",
+      "sv-SE": "Rutans mitt - 1 standardavvikelse",
+      "it-IT": "Centro scatola - 1 deviazione standard",
+      "es-ES": "Mitad de la caja - {1} desviación estándar",
+      "de-DE": "Box-Mitte -1 Standardabweichung",
+      "pl-PL": "Środek wykresu pudełkowego - 1 odch. stand",
+      "nl-NL": "Midden box - 1 standaardafwijking",
+      "ko-KR": "상자 중간 - 1개 표준 편차",
+      "pt-BR": "Середина поля - 1 стандартное отклонение",
+      "fr-FR": "Milieu de la boîte - 1 écart type",
+      "ja-JP": "ボックス中間 - 1 標準偏差",
+      "ru-RU": "Первый квартиль"
+    }
+  },
+  "properties.boxplot.calculationMode.stdDev.elements.firstWhisker": {
+    "id": "properties.boxplot.calculationMode.stdDev.elements.firstWhisker",
+    "locale": {
+      "en-US": "Box middle - {0} standard deviations",
+      "zh-TW": "方塊中間 - {0} 個標準差",
+      "zh-CN": "框中部 - {0} 个标准偏差",
+      "tr-TR": "Kutu ortası - {0} standart sapma",
+      "sv-SE": "Rutans mitt - {0} standardavvikelser",
+      "it-IT": "Centro scatola - {0} deviazioni standard",
+      "es-ES": "Mitad de la caja - {0} desviaciones estándar",
+      "de-DE": "Box-Mitte -{0} Standardabweichung",
+      "pl-PL": "Środek wykresu pudełkowego - {0} odch. stand",
+      "nl-NL": "Midden box - {0} standaardafwijkingen",
+      "ko-KR": "상자 중간 - {0}개 표준 편차",
+      "pt-BR": "Meio da caixa - {0} desvios padrão",
+      "fr-FR": "Milieu de la boîte - {0} écarts types",
+      "ja-JP": "ボックス中間 - {0} 標準偏差",
+      "ru-RU": "Середина поля - {0} стандартное(ых) отклонение(й)"
+    }
+  },
+  "properties.boxplot.calculationMode.stdDev.elements.lastWhisker": {
+    "id": "properties.boxplot.calculationMode.stdDev.elements.lastWhisker",
+    "locale": {
+      "en-US": "Box middle + {0} standard deviations",
+      "zh-TW": "方塊中間 + {0} 個標準差",
+      "zh-CN": "框中部 + {0} 个标准偏差",
+      "tr-TR": "Kutu ortası + {0} standart sapma",
+      "sv-SE": "Rutans mitt + {0} standardavvikelser",
+      "it-IT": "Centro scatola + {0} deviazioni standard",
+      "es-ES": "Mitad de la caja + {0} desviaciones estándar",
+      "de-DE": "Box-Mitte +{0} Standardabweichung",
+      "pl-PL": "Środek wykresu pudełkowego + {0} odch. stand",
+      "nl-NL": "Midden box + {0} standaardafwijkingen",
+      "ko-KR": "상자 중간 + {0}개 표준 편차",
+      "pt-BR": "Meio da caixa + {0} desvios padrão",
+      "fr-FR": "Milieu de la boîte + {0} écarts types",
+      "ja-JP": "ボックス中間 + {0} 標準偏差",
+      "ru-RU": "Середина поля + {0} стандартное(ых) отклонение(й)"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.boxEnd": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.boxEnd",
+    "locale": {
+      "en-US": "Third quartile",
+      "zh-TW": "第三四分位數",
+      "zh-CN": "第 3 个四分位",
+      "tr-TR": "Üçüncü çeyrek",
+      "sv-SE": "Tredje kvartilen",
+      "it-IT": "Terzo quartile<",
+      "es-ES": "Tercer cuartil",
+      "de-DE": "Drittes Quartil",
+      "pl-PL": "Trzeci kwartyl",
+      "nl-NL": "Derde kwartiel",
+      "ko-KR": "3번째 사분위수",
+      "pt-BR": "Terceiro quartil",
+      "fr-FR": "Troisième quartile",
+      "ja-JP": "第 3 四分位数",
+      "ru-RU": "Третий квартиль"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.boxMiddle": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.boxMiddle",
+    "locale": {
+      "en-US": "Median",
+      "zh-TW": "中位數",
+      "zh-CN": "中间值",
+      "tr-TR": "Medyan",
+      "sv-SE": "Median",
+      "it-IT": "Mediana",
+      "es-ES": "Mediana",
+      "de-DE": "Median",
+      "pl-PL": "Mediana",
+      "nl-NL": "Mediaan",
+      "ko-KR": "중앙값",
+      "pt-BR": "Mediano",
+      "fr-FR": "Médiane",
+      "ja-JP": "中央値",
+      "ru-RU": "Медианное"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.boxStart": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.boxStart",
+    "locale": {
+      "en-US": "First quartile",
+      "zh-TW": "第一四分位數",
+      "zh-CN": "第 1 个四分位",
+      "tr-TR": "İlk çeyrek",
+      "sv-SE": "Första kvartilen",
+      "it-IT": "Primo quartile",
+      "es-ES": "Primer cuartil",
+      "de-DE": "Erstes Quartil",
+      "pl-PL": "Pierwszy kwartyl",
+      "nl-NL": "Eerste kwartiel",
+      "ko-KR": "1번째 사분위수",
+      "pt-BR": "Primeiro quartil",
+      "fr-FR": "Premier quartile",
+      "ja-JP": "第 1 四分位数",
+      "ru-RU": "Первый квартиль"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.firstWhisker.fifth": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.firstWhisker.fifth",
+    "locale": {
+      "en-US": "5th percentile",
+      "zh-TW": "第 5 個百分位數",
+      "zh-CN": "第 5 个百分位",
+      "tr-TR": "5. yüzdebirlik",
+      "sv-SE": "5:e percentilen",
+      "it-IT": "5° percentile",
+      "es-ES": "5º percentil",
+      "de-DE": "5. Perzentil",
+      "pl-PL": "5. percentyl",
+      "nl-NL": "5e percentiel",
+      "ko-KR": "5번째 백분위수",
+      "pt-BR": "5º percentil",
+      "fr-FR": "5e centile",
+      "ja-JP": "5 番目のパーセンタイル",
+      "ru-RU": "5-й процентиль"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.firstWhisker.first": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.firstWhisker.first",
+    "locale": {
+      "en-US": "1st percentile",
+      "zh-TW": "第 1 個百分位數",
+      "zh-CN": "第 1 个百分位",
+      "tr-TR": "1. yüzdebirlik",
+      "sv-SE": "1:e percentilen",
+      "it-IT": "1° percentile",
+      "es-ES": "1er percentil",
+      "de-DE": "1. Perzentil",
+      "pl-PL": "1. percentyl",
+      "nl-NL": "1e percentiel",
+      "ko-KR": "1번째 백분위수",
+      "pt-BR": "1º percentil",
+      "fr-FR": "1er centile",
+      "ja-JP": "1 番目のパーセンタイル",
+      "ru-RU": "1-й процентиль"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.firstWhisker.min": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.firstWhisker.min",
+    "locale": {
+      "en-US": "Minimum",
+      "zh-TW": "最小",
+      "zh-CN": "最小值",
+      "tr-TR": "En az",
+      "sv-SE": "Min",
+      "it-IT": "Minimo",
+      "es-ES": "Mínimo",
+      "de-DE": "Minimum",
+      "pl-PL": "Minimum",
+      "nl-NL": "Minimum",
+      "ko-KR": "최소",
+      "pt-BR": "Mínimo",
+      "fr-FR": "Minimale",
+      "ja-JP": "最小値",
+      "ru-RU": "Минимум"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.firstWhisker.tenth": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.firstWhisker.tenth",
+    "locale": {
+      "en-US": "10th percentile",
+      "zh-TW": "第 10 個百分位數",
+      "zh-CN": "第 10 个百分位",
+      "tr-TR": "10. yüzdebirlik",
+      "sv-SE": "10:e percentilen",
+      "it-IT": "10° percentile",
+      "es-ES": "10º percentil",
+      "de-DE": "10. Perzentil",
+      "pl-PL": "10. percentyl",
+      "nl-NL": "10e percentiel",
+      "ko-KR": "10번째 백분위수",
+      "pt-BR": "10º percentil",
+      "fr-FR": "10e centile",
+      "ja-JP": "10 番目のパーセンタイル",
+      "ru-RU": "10-й процентиль"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.lastWhisker.max": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.lastWhisker.max",
+    "locale": {
+      "en-US": "Maximum",
+      "zh-TW": "最大",
+      "zh-CN": "最大值",
+      "tr-TR": "En fazla",
+      "sv-SE": "Max",
+      "it-IT": "Massimo",
+      "es-ES": "Máximo",
+      "de-DE": "Maximum",
+      "pl-PL": "Maksimum",
+      "nl-NL": "Maximum",
+      "ko-KR": "최대",
+      "pt-BR": "Máximo",
+      "fr-FR": "Maximale",
+      "ja-JP": "最大値",
+      "ru-RU": "Максимум"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.lastWhisker.ninetieth": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.lastWhisker.ninetieth",
+    "locale": {
+      "en-US": "90th percentile",
+      "zh-TW": "第 90 個百分位數",
+      "zh-CN": "第 90 个百分位",
+      "tr-TR": "90. yüzdebirlik",
+      "sv-SE": "90:e percentilen",
+      "it-IT": "90° percentile",
+      "es-ES": "90º percentil",
+      "de-DE": "90. Perzentil",
+      "pl-PL": "90. percentyl",
+      "nl-NL": "90e percentiel",
+      "ko-KR": "90번째 백분위수",
+      "pt-BR": "90º percentil",
+      "fr-FR": "90e centile",
+      "ja-JP": "90 番目の百分位数",
+      "ru-RU": "90-й процентиль"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.lastWhisker.ninetyfifth": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.lastWhisker.ninetyfifth",
+    "locale": {
+      "en-US": "95th percentile",
+      "zh-TW": "第 95 個百分位數",
+      "zh-CN": "第 95 个百分位",
+      "tr-TR": "95. yüzdebirlik",
+      "sv-SE": "95:e percentilen",
+      "it-IT": "95° percentile",
+      "es-ES": "95º percentil",
+      "de-DE": "95. Perzentil",
+      "pl-PL": "95. percentyl",
+      "nl-NL": "95e percentiel",
+      "ko-KR": "95번째 백분위수",
+      "pt-BR": "95º percentil",
+      "fr-FR": "95e centile",
+      "ja-JP": "95 番目の百分位数",
+      "ru-RU": "95-й процентиль"
+    }
+  },
+  "properties.boxplot.calculationMode.fractiles.elements.lastWhisker.ninetynineth": {
+    "id": "properties.boxplot.calculationMode.fractiles.elements.lastWhisker.ninetynineth",
+    "locale": {
+      "en-US": "99th percentile",
+      "zh-TW": "第 99 個百分位數",
+      "zh-CN": "第 99 个百分位",
+      "tr-TR": "99. yüzdebirlik",
+      "sv-SE": "99:e percentilen",
+      "it-IT": "99° percentile",
+      "es-ES": "99º percentil",
+      "de-DE": "99. Perzentil",
+      "pl-PL": "99. percentyl",
+      "nl-NL": "99e percentiel",
+      "ko-KR": "99번째 백분위수",
+      "pt-BR": "99º percentil",
+      "fr-FR": "99e centile",
+      "ja-JP": "99 番目の百分位数",
+      "ru-RU": "99-й процентиль"
+    }
   }
 }
