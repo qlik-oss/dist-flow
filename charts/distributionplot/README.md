@@ -4,7 +4,7 @@ The distribution plot is suitable for comparing range and distribution for group
 
 ## Installing
 
-If you use npm: `npm install @nebula.js/sn-distributionplot`. You can also load through the script tag directly from [https://unpkg.com](https://unpkg.com/@nebula.js/sn-boxplot).
+If you use npm: `npm install @nebula.js/sn-distributionplot`. You can also load through the script tag directly from [https://unpkg.com](https://unpkg.com/@nebula.js/sn-distributionplot).
 
 ## Usage
 
