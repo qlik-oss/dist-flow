@@ -1,5 +1,4 @@
 const path = require('path');
-const defaultTheme = require('@qlik-trial/sense-themes-default/dist/sense/theme.json');
 
 const targetPkg = require(path.resolve(process.cwd(), 'package.json'));
 
@@ -16,8 +15,5 @@ module.exports = {
     mode,
     replacementStrings,
     sourcemap,
-  },
-  serve: {
-    themes: [{ id: 'sense', theme: defaultTheme }],
   },
 };
