@@ -4,18 +4,18 @@ executors:
   docker-node:
     docker:
       - image: qlik/node-build
-    working_directory: ~/444-charts
+    working_directory: ~/dist-flow-charts
   browser-node:
     # Available images https://hub.docker.com/r/circleci/node/tags/
     docker:
       - image: circleci/node:14.17.4-browsers
-    working_directory: ~/444-charts
+    working_directory: ~/dist-flow-charts
 
 commands:
   use_workspace:
     steps:
       - attach_workspace:
-          at: ~/444-charts
+          at: ~/dist-flow-charts
 
 jobs:
   install:
@@ -24,14 +24,6 @@ jobs:
       - checkout
       - restore_cache:
           key: v2-yarn-deps-{{ checksum "yarn.lock" }}
-      - run:
-          name: Setup access to Artifactory
-          command: |
-            set -eo pipefail
-            # Setup .npmrc to access artifactory for @qlik packages
-            echo $QLIK_NPM_DEV_ENCODED | base64 -d >> ~/.npmrc
-            # Amend auth token for access to public npm registry for @nebula.js packages
-            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run: yarn install --frozen-lockfile
       - save_cache:
           key: v2-yarn-deps-{{ checksum "yarn.lock" }}
@@ -42,7 +34,7 @@ jobs:
           path: package.json
 
       - persist_to_workspace:
-          root: ~/444-charts
+          root: ~/dist-flow-charts
           paths:
             - .
 
@@ -56,7 +48,7 @@ jobs:
             set +e
             NODE_ENV=production yarn run build --concurrency 2
       - persist_to_workspace:
-          root: ~/444-charts
+          root: ~/dist-flow-charts
           paths:
             - charts/*/dist
 
@@ -113,10 +105,8 @@ jobs:
 workflows:
   build-all:
     jobs:
-      - install:
-          context: deploy-secrets
+      - install
       - build:
-          context: deploy-secrets
           requires:
             - install
       - lint:

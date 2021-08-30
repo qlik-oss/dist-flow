@@ -1,5 +1,5 @@
 import qixSchema from 'enigma.js/schemas/12.34.11.json';
-import theme from '@qlik-trial/sense-themes-default/dist/sense/theme.json';
+import theme from './theme.json';
 
 function parseUrl() {
   const options = {};

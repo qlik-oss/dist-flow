@@ -3554,11 +3554,6 @@
   dependencies:
     "@octokit/openapi-types" "^7.2.3"
 
-"@qlik-trial/sense-themes-default@1.13.0":
-  version "1.13.0"
-  resolved "https://npm.pkg.github.com/download/@qlik-trial/sense-themes-default/1.13.0/6be645447eedc5eb120b39f451f2c4c3e2d85a8fd316ed32f410c8470bbcd8f7#2bb8394aad073d4505d3e9c0138151e861f48cfa"
-  integrity sha512-FDBjniYtx54B92dWhmqYo9JRtBwF3ANJ8DQ+9GD3drQllP8f0vOLGxGzsArPjuY0gYKKipiUrddFNRG6frlFIg==
-
 "@rollup/plugin-commonjs@19.0.0":
   version "19.0.0"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-19.0.0.tgz#8c3e71f9a66908e60d70cc1be205834ef3e45f71"
