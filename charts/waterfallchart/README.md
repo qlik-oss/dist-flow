@@ -2,6 +2,10 @@
 
 The waterfall chart is suitable for illustrating how an initial value is affected by intermediate positive and negative values. The starting and the final values are represented by whole bars, and intermediate values by floating bars. You can also show subtotals in the chart.
 
+## Requirements
+
+Requires `@nebula.js/stardust` version `1.4.0` or later.
+
 ## Installing
 
 If you use npm: `npm install @nebula.js/sn-waterfall`. You can also load through the script tag directly from [https://unpkg.com](https://unpkg.com/@nebula.js/sn-waterfall).

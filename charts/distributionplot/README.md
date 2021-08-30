@@ -2,6 +2,10 @@
 
 The distribution plot is suitable for comparing range and distribution for groups of numerical data. Data is plotted as value points along an axis.
 
+## Requirements
+
+Requires `@nebula.js/stardust` version `1.4.0` or later.
+
 ## Installing
 
 If you use npm: `npm install @nebula.js/sn-distributionplot`. You can also load through the script tag directly from [https://unpkg.com](https://unpkg.com/@nebula.js/sn-distributionplot).

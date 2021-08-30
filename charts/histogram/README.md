@@ -2,6 +2,10 @@
 
 The histogram is suitable for visualizing distribution of numerical data over a continuous interval, or a certain time period. The data is divided into bins, and each bar in a histogram represents the tabulated frequency at each bin.
 
+## Requirements
+
+Requires `@nebula.js/stardust` version `1.4.0` or later.
+
 ## Installing
 
 If you use npm: `npm install @nebula.js/sn-histogram`. You can also load through the script tag directly from [https://unpkg.com](https://unpkg.com/@nebula.js/sn-histogram).

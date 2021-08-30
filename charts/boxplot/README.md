@@ -2,6 +2,10 @@
 
 The box plot is suitable for comparing range and distribution for groups of numerical data, illustrated by a box with whiskers, and a center line in the middle. The whiskers represent high and low reference values for excluding outlier values.
 
+## Requirements
+
+Requires `@nebula.js/stardust` version `1.4.0` or later.
+
 ## Installing
 
 If you use npm: `npm install @nebula.js/sn-boxplot`. You can also load through the script tag directly from [https://unpkg.com](https://unpkg.com/@nebula.js/sn-boxplot).
