@@ -678,7 +678,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
             label: tooltipLabel,
           };
         },
-        measureRows: ['minMeasure', 'startMeasure', 'medMeasure', 'endMeasure', 'maxMeasure'], // Should be a mapped path under extract, mandatory to display tooltip
+        measureRows: ['maxMeasure', 'endMeasure', 'medMeasure', 'startMeasure', 'minMeasure'], // Should be a mapped path under extract, mandatory to display tooltip
         labelData: ['tooltip'], // Should be a mapped path under extract, mandatory to display tooltip,
         filterShapes(shapes) {
           const boxContainer = [];
