@@ -12,8 +12,6 @@ module.exports = {
 
   setupFilesAfterEnv: ['<rootDir>/jest/setup.js'],
 
-  testPathIgnorePatterns: ['charts/histogram/src/__tests__/histogram-export.spec.js'],
-
   // collectCoverageFrom: [
   //   'web/**/*.{js,jsx}',
   //   '!web/**/*.spec.{js,jsx}',
