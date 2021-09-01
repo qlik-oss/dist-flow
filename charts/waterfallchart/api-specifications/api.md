@@ -85,21 +85,36 @@ and measures, that is, the settings are not fixed, but are dependent on the data
 Positive value color.
 
 **Kind**: static property of [<code>color</code>](#properties.color)  
-**Default**: <code>{ index: 6, color: null }</code>  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| paletteColor | [<code>paletteColor</code>](#paletteColor) | <code>{</code> | index: 6, color: null } The paletteColor object is used to define the positive value color |
+
 <a name="properties.color.negativeValue"></a>
 
 #### color.negativeValue : <code>object</code>
 Negative value color.
 
 **Kind**: static property of [<code>color</code>](#properties.color)  
-**Default**: <code>{ index: -1, color: &#x27;#cc6677&#x27; }</code>  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| paletteColor | [<code>paletteColor</code>](#paletteColor) | <code>{</code> | index: -1, color: '#cc6677' } The paletteColor object is used to define the negative value color |
+
 <a name="properties.color.subtotal"></a>
 
 #### color.subtotal : <code>object</code>
 Subtotal value color.
 
 **Kind**: static property of [<code>color</code>](#properties.color)  
-**Default**: <code>{ index: -1, color: &#x27;#c3c3c3&#x27; }</code>  
+**Properties**
+
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| paletteColor | [<code>paletteColor</code>](#paletteColor) | <code>{</code> | index: -1, color: '#c3c3c3' } The paletteColor object is used to define the subtotal value color |
+
 <a name="properties.dataPoint"></a>
 
 ### properties.dataPoint : <code>object</code>

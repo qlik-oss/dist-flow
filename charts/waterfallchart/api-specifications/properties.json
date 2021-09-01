@@ -23,21 +23,36 @@
             },
             "negativeValue": {
               "description": "Negative value color.",
-              "defaultValue": "{ index: -1, color: '#cc6677' }",
               "kind": "object",
-              "entries": {}
+              "entries": {
+                "paletteColor": {
+                  "description": "index: -1, color: '#cc6677' } The paletteColor object is used to define the negative value color",
+                  "defaultValue": "{",
+                  "type": "#/definitions/paletteColor"
+                }
+              }
             },
             "positiveValue": {
               "description": "Positive value color.",
-              "defaultValue": "{ index: 6, color: null }",
               "kind": "object",
-              "entries": {}
+              "entries": {
+                "paletteColor": {
+                  "description": "index: 6, color: null } The paletteColor object is used to define the positive value color",
+                  "defaultValue": "{",
+                  "type": "#/definitions/paletteColor"
+                }
+              }
             },
             "subtotal": {
               "description": "Subtotal value color.",
-              "defaultValue": "{ index: -1, color: '#c3c3c3' }",
               "kind": "object",
-              "entries": {}
+              "entries": {
+                "paletteColor": {
+                  "description": "index: -1, color: '#c3c3c3' } The paletteColor object is used to define the subtotal value color",
+                  "defaultValue": "{",
+                  "type": "#/definitions/paletteColor"
+                }
+              }
             }
           }
         },
@@ -270,7 +285,7 @@
             },
             "show": {
               "description": "Labels and title",
-              "defaultValue": "all",
+              "defaultValue": "labels",
               "kind": "union",
               "items": [
                 {

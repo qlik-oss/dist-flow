@@ -100,29 +100,35 @@ const properties = {
     /**
      * Positive value color.
      * @type {object}
-     * @default { index: 6, color: null }
+     * @property {paletteColor} paletteColor={ index: 6, color: null } The paletteColor object is used to define the positive value color
      */
     positiveValue: {
-      index: 6,
-      color: null,
+      paletteColor: {
+        index: 6,
+        color: null,
+      },
     },
     /**
      * Negative value color.
      * @type {object}
-     * @default { index: -1, color: '#cc6677' }
+     * @property {paletteColor} paletteColor={ index: -1, color: '#cc6677' } The paletteColor object is used to define the negative value color
      */
     negativeValue: {
-      index: -1,
-      color: '#cc6677',
+      paletteColor: {
+        index: -1,
+        color: '#cc6677',
+      },
     },
     /**
      * Subtotal value color.
      * @type {object}
-     * @default { index: -1, color: '#c3c3c3' }
+     * @property {paletteColor} paletteColor={ index: -1, color: '#c3c3c3' } The paletteColor object is used to define the subtotal value color
      */
     subtotal: {
-      index: -1,
-      color: '#c3c3c3',
+      paletteColor: {
+        index: -1,
+        color: '#c3c3c3',
+      },
     },
   },
   /**
@@ -238,7 +244,7 @@ const properties = {
      * @type {'labels'|'none'}
      * @default "labels"
      */
-    show: 'all',
+    show: 'labels',
     /**
      * Axis scale
      * @type {number}
