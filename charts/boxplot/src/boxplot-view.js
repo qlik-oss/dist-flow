@@ -191,8 +191,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
   namespace: '.boxplot',
 
   init({ $element, backendApi, environment, flags, lasso, layout, selectionsApi, picasso }) {
-    const tooltipApi = null;
-    this._super(picasso, $element, environment, backendApi, selectionsApi, tooltipApi);
+    this._super(picasso, $element, environment, backendApi, selectionsApi);
     this.flags = flags;
 
     this._derivedProperties = new DerivedProperties();
@@ -211,13 +210,11 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       isLassoDisabled: this.isLassoDisabled.bind(this),
       lasso,
     });
-    this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
+    this._tooltipHandler = TooltipHandler.create(this.chartInstance, $element, chartID);
     this._scrollHandler = new ScrollHandler(
       this.chartInstance,
       $element,
-      $element[0],
       this.getSlicedData.bind(this),
-      tooltipApi,
       this.updateChart.bind(this)
     );
     this._dataScroller = new DataScroller(backendApi, this.getData, this._scrollHandler);
