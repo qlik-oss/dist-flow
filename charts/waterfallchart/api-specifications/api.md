@@ -7,8 +7,11 @@
     * [.color](#properties.color) : <code>object</code>
         * [.auto](#properties.color.auto) : <code>boolean</code>
         * [.positiveValue](#properties.color.positiveValue) : <code>object</code>
+            * [.paletteColor](#properties.color.positiveValue.paletteColor) : [<code>paletteColor</code>](#paletteColor)
         * [.negativeValue](#properties.color.negativeValue) : <code>object</code>
+            * [.paletteColor](#properties.color.negativeValue.paletteColor) : [<code>paletteColor</code>](#paletteColor)
         * [.subtotal](#properties.color.subtotal) : <code>object</code>
+            * [.paletteColor](#properties.color.subtotal.paletteColor) : [<code>paletteColor</code>](#paletteColor)
     * [.dataPoint](#properties.dataPoint) : <code>object</code>
         * [.showLabels](#properties.dataPoint.showLabels) : <code>boolean</code>
     * [.dimensionAxis](#properties.dimensionAxis) : <code>object</code>
@@ -67,8 +70,11 @@ Note: Some of the color properties are depending on which theme is currently bei
 * [.color](#properties.color) : <code>object</code>
     * [.auto](#properties.color.auto) : <code>boolean</code>
     * [.positiveValue](#properties.color.positiveValue) : <code>object</code>
+        * [.paletteColor](#properties.color.positiveValue.paletteColor) : [<code>paletteColor</code>](#paletteColor)
     * [.negativeValue](#properties.color.negativeValue) : <code>object</code>
+        * [.paletteColor](#properties.color.negativeValue.paletteColor) : [<code>paletteColor</code>](#paletteColor)
     * [.subtotal](#properties.color.subtotal) : <code>object</code>
+        * [.paletteColor](#properties.color.subtotal.paletteColor) : [<code>paletteColor</code>](#paletteColor)
 
 <a name="properties.color.auto"></a>
 
@@ -85,6 +91,12 @@ and measures, that is, the settings are not fixed, but are dependent on the data
 Positive value color.
 
 **Kind**: static property of [<code>color</code>](#properties.color)  
+<a name="properties.color.positiveValue.paletteColor"></a>
+
+##### positiveValue.paletteColor : [<code>paletteColor</code>](#paletteColor)
+paletteColor
+
+**Kind**: static property of [<code>positiveValue</code>](#properties.color.positiveValue)  
 **Default**: <code>{ index: 6, color: null }</code>  
 <a name="properties.color.negativeValue"></a>
 
@@ -92,6 +104,12 @@ Positive value color.
 Negative value color.
 
 **Kind**: static property of [<code>color</code>](#properties.color)  
+<a name="properties.color.negativeValue.paletteColor"></a>
+
+##### negativeValue.paletteColor : [<code>paletteColor</code>](#paletteColor)
+paletteColor
+
+**Kind**: static property of [<code>negativeValue</code>](#properties.color.negativeValue)  
 **Default**: <code>{ index: -1, color: &#x27;#cc6677&#x27; }</code>  
 <a name="properties.color.subtotal"></a>
 
@@ -99,6 +117,12 @@ Negative value color.
 Subtotal value color.
 
 **Kind**: static property of [<code>color</code>](#properties.color)  
+<a name="properties.color.subtotal.paletteColor"></a>
+
+##### subtotal.paletteColor : [<code>paletteColor</code>](#paletteColor)
+paletteColor
+
+**Kind**: static property of [<code>subtotal</code>](#properties.color.subtotal)  
 **Default**: <code>{ index: -1, color: &#x27;#c3c3c3&#x27; }</code>  
 <a name="properties.dataPoint"></a>
 
