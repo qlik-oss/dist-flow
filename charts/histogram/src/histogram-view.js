@@ -35,11 +35,9 @@ function init({ environment, lasso, picasso, $element, backendApi, selectionsApi
 }
 
 function updateConstraints(constraints) {
-  const navigation = !constraints.active;
   const tooltip = !constraints.passive;
   const selection = !constraints.select && !constraints.active;
 
-  this._navigationEnabled = navigation;
   this._tooltipHandler[tooltip ? 'on' : 'off']();
   this._selectionHandler[selection ? 'on' : 'off']();
 }

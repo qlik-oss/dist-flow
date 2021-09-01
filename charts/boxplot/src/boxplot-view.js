@@ -698,8 +698,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     const lockedOuterDim = getLockedDim(layout);
     const rangeSelStatus = setRangeSelStatus(lockedOuterDim, layout);
     const handlers = {
-      scrollHandler: this._scrollHandler.isOn() && this._scrollHandler,
-      selectionHandler: this._selectionHandler.isOn() && this._selectionHandler,
+      scrollHandler: this._scrollHandler,
+      selectionHandler: this._selectionHandler,
     };
     const keys = {
       componentKey: shouldSelectInInnerDim(layout) && hasPointMarker(layout) ? 'point-marker' : 'box-marker',
@@ -741,10 +741,9 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       gridlines: layout.gridlines,
 
       // scroll
-      hasNavigation: this._scrollHandler.isOn(),
+      hasNavigation: true,
       isNavigationEnabledFn: () => this._scrollHandler.isOn(),
-      scrollSettings:
-        this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
+      scrollSettings: getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 
       // Lasso
       enableLasso: true,
@@ -892,8 +891,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
 
   getDisclaimerAttributes(layout) {
     const showDisclaimer = this.flags.isEnabled('SHOW_DISCLAIMER') ? !(layout.showDisclaimer === false) : true;
-    const scrollSettings =
-      this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
+    const scrollSettings = getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
     let explicitLimitedData;
     if (
       showDisclaimer &&

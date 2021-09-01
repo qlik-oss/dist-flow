@@ -307,7 +307,7 @@ function createChartSettings(layout) {
   });
 
   const handlers = {
-    scrollHandler: this._scrollHandler.isOn() && this._scrollHandler,
+    scrollHandler: this._scrollHandler,
     selectionHandler: null,
   };
 
@@ -355,10 +355,9 @@ function createChartSettings(layout) {
     },
 
     // scroll
-    hasNavigation: this._scrollHandler.isOn(),
+    hasNavigation: true,
     isNavigationEnabledFn: () => this._scrollHandler.isOn(),
-    scrollSettings:
-      this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
+    scrollSettings: getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 
     // ref-lines
     refLines: layout.refLine && layout.refLine.refLines,

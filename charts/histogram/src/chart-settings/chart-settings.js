@@ -193,8 +193,8 @@ function createChartSettings(chartView, layout) {
     gridlines: layout.gridlines,
 
     // scroll
-    hasNavigation: this._navigationEnabled,
-    isNavigationEnabledFn: () => chartView._scrollHandler.isOn(),
+    hasNavigation: false,
+    isNavigationEnabledFn: () => false,
 
     // ref-lines
     refLines: layout.refLine && layout.refLine.refLines,
