@@ -24,22 +24,13 @@ export default ScrollHandler;
  * Implementation details
  */
 
-function ScrollHandler(
-  chartInstance,
-  $chartElement,
-  chartContainer,
-  getSlicedDataFn,
-  tooltipApi,
-  onScrollCallback,
-  legendKey
-) {
-  if (!chartInstance || !$chartElement || !chartContainer || !getSlicedDataFn) {
+function ScrollHandler(chartInstance, $chartElement, getSlicedDataFn, onScrollCallback, legendKey) {
+  if (!chartInstance || !$chartElement || !getSlicedDataFn) {
     throw Error('Scroll-handler: Missing input');
   }
   this._chartInstance = chartInstance;
   this._$chartElement = $chartElement;
   this._getSlicedDataFn = getSlicedDataFn;
-  this._tooltipApi = tooltipApi;
   this._on = false;
   this._itemSize = 30;
   this.options = {
@@ -229,9 +220,6 @@ function onScroll() {
   if (this._disabled || this._sizeChanged) {
     this._sizeChanged = false;
     return;
-  }
-  if (this._tooltipApi) {
-    this._tooltipApi.cancel();
   }
   const self = this;
   this.getViewData()

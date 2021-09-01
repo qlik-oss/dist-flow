@@ -160,7 +160,6 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   namespace: '.distributionPlot',
 
   init({ lasso, environment, flags, picasso, $element, backendApi, selectionsApi }) {
-    const tooltipApi = null;
     this._super(picasso, $element, environment, backendApi, selectionsApi);
     this.flags = flags;
     this.picasso = picasso;
@@ -177,13 +176,11 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       selectPaths: ['/qUndoExclude/qHyperCubeDef'],
       lasso,
     });
-    this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, CONSTANTS.CHART_ID);
+    this._tooltipHandler = TooltipHandler.create(this.chartInstance, $element, CONSTANTS.CHART_ID);
     this._scrollHandler = new ScrollHandler(
       this.chartInstance,
       $element,
-      $element[0],
       this.getSlicedData.bind(this),
-      tooltipApi,
       this.onScrollCallback.bind(this),
       'legend'
     );

@@ -15,8 +15,7 @@ const chartID = 'object.histogram';
 //
 
 function init({ environment, lasso, picasso, $element, backendApi, selectionsApi }) {
-  const tooltipApi = null;
-  this._super(picasso, $element, environment, backendApi, selectionsApi, tooltipApi);
+  this._super(picasso, $element, environment, backendApi, selectionsApi);
 
   this.picassoElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
 
@@ -29,7 +28,7 @@ function init({ environment, lasso, picasso, $element, backendApi, selectionsApi
     selectPaths: ['/qUndoExclude/box/qHyperCubeDef'],
     lasso,
   });
-  this._tooltipHandler = TooltipHandler.create(this.chartInstance, tooltipApi, $element, chartID);
+  this._tooltipHandler = TooltipHandler.create(this.chartInstance, $element, chartID);
 
   this.setDataPaths(['qUndoExclude/box/qHyperCube']);
 }

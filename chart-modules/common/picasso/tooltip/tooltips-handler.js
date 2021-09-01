@@ -31,7 +31,7 @@ const DEFAULT_OPTIONS = {
  * @param {Object} chartInstance Picasso chart instance
  * @returns {Object} The selections handler instance
  */
-function Tooltips(chartInstance, tooltipApi, $element, chartType) {
+function Tooltips(chartInstance, $element, chartType) {
   if (!chartInstance) {
     throw Error('Tooltips-handler: Missing input');
   }
@@ -175,8 +175,8 @@ function Tooltips(chartInstance, tooltipApi, $element, chartType) {
 }
 
 export default {
-  create(chartInstance, tooltipApi, $element, chartType) {
-    return Tooltips(chartInstance, tooltipApi, $element, chartType);
+  create(chartInstance, $element, chartType) {
+    return Tooltips(chartInstance, $element, chartType);
   },
 };
 
