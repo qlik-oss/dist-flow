@@ -615,8 +615,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     const isOuterDimSingleSelect = isSingleSelect(layout, 1);
     const rangeSelStatus = retrieveRangeSelStatus(lockedDims, isInnerDimSingleSelect, isOuterDimSingleSelect);
     const handlers = {
-      scrollHandler: this._scrollHandler.isOn() && this._scrollHandler,
-      selectionHandler: this._selectionHandler.isOn() && this._selectionHandler,
+      scrollHandler: this._scrollHandler,
+      selectionHandler: this._selectionHandler,
     };
     const keys = {
       componentKey: showPoints ? 'point-marker' : 'box-marker',
@@ -659,10 +659,9 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       gridlines: layout.gridlines,
 
       // scroll
-      hasNavigation: this._scrollHandler.isOn(),
+      hasNavigation: true,
       isNavigationEnabledFn: () => this._scrollHandler.isOn(),
-      scrollSettings:
-        this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
+      scrollSettings: getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 
       // Lasso
       enableLasso: true,
@@ -868,8 +867,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       (!hypercubeUtil.hasSecondDimension(layout, DATA_PATH) && layout.qHyperCube.qSize.qcy > 10000) ||
       (hypercubeUtil.hasSecondDimension(layout, DATA_PATH) && layout.qHyperCube.qSize.qcy > 3000);
     const explicitLimitedData = showDisclaimer && limitedData;
-    const scrollSettings =
-      this._scrollHandler.isOn() && getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
+    const scrollSettings = getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
 
     return {
       data: layout && layout.qUndoExclude,
