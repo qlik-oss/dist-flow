@@ -10,6 +10,9 @@ function SelectionActions(chartInstance, selectionsApi, paths) {
   function fn() {}
 
   function update(added, removed, brush) {
+    if (!selectionsApi.isActive()) {
+      selectionsApi.begin(paths);
+    }
     const selections = PicassoQ.qBrushHelper(brush);
     selections.forEach((s) => {
       selectionsApi.select(s);
