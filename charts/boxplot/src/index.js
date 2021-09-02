@@ -15,11 +15,9 @@ import useLasso from '@qlik/common/nebula/use-lasso';
 import useResize from '@qlik/common/nebula/resize';
 import useEnvironment from '@qlik/common/nebula/use-environment';
 import setupSnapshot from '@qlik/common/nebula/snapshot';
-
-import properties from './object-properties';
-import data from './boxplot-data';
+import qae from './boxplot-qae';
 import ChartView from './boxplot-view';
-import ext from './ext';
+import ext from './boxplot-ext';
 import BackednAPi from './backend-api';
 
 function useView(env, picasso, environment) {
@@ -90,10 +88,7 @@ export default function supernova(env) {
   const picasso = picassoSetup();
 
   return {
-    qae: {
-      properties,
-      data: data(env),
-    },
+    qae: qae(env),
     ext: ext(env),
     component() {
       const environment = useEnvironment();

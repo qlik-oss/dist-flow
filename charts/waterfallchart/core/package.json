@@ -9,6 +9,6 @@
     "picasso-plugin-q": ">=0.35.1",
     "picasso.js": ">=0.35.1",
     "qlik-chart-modules": "^0.13.4",
-    "qlik-object-conversion": "^0.6.0"
+    "qlik-object-conversion": "^0.7.0"
   }
 }
