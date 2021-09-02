@@ -53,12 +53,8 @@ export default function (env) {
   };
 
   return {
-    targets: [
-      {
-        path: '/qHyperCubeDef',
-        dimensions,
-        measures,
-      },
-    ],
+    path: '/qHyperCubeDef',
+    dimensions,
+    measures,
   };
 }

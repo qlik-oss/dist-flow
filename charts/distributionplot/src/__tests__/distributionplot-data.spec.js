@@ -25,7 +25,7 @@ describe('distributionplot-data', () => {
       get: (property) => property,
     };
     const env = { translator };
-    distplotData = distplotDataFn(env).targets[0];
+    distplotData = distplotDataFn(env);
   });
 
   afterEach(() => {

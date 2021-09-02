@@ -18,8 +18,7 @@ import useResize from '@qlik/common/nebula/resize';
 import useEnvironment from '@qlik/common/nebula/use-environment';
 import setupSnapshot from '@qlik/common/nebula/snapshot';
 
-import properties from './object-properties';
-import data from './distributionplot-data';
+import qae from './distributionplot-qae';
 import ext from './ext';
 import ChartView from './distributionplot-view';
 import BackednAPi from './backend-api';
@@ -29,10 +28,7 @@ export default function supernova(env) {
   const picasso = picassoSetup();
 
   return {
-    qae: {
-      properties,
-      data: data(env),
-    },
+    qae: qae(env),
     ext: ext(env),
     component() {
       const element = useElement();
