@@ -1,6 +1,8 @@
 import pp from './distributionplot-properties';
 import softDefinition from './distributionplot-explore-properties';
 import propsLogic from './distributionplot-properties-logic';
+import data from './distributionplot-data';
+import { importProperties, exportProperties } from './distributionplot-import-export';
 
 export default function ext(env) {
   if (!env.anything?.sense) {
@@ -25,6 +27,22 @@ export default function ext(env) {
     onSoftPropertyChange(prevProperties, nextProperties) {
       propsLogic.onGlobalChangeColors(nextProperties);
     },
-    // TODO: import, export, ...
+    importProperties: (exportFormat, initialProperties, extension) => {
+      const dataDefinition = data(env);
+      extension.mapProperties();
+      const defaultPropertyValues = {
+        defaultDimension: extension.getDefaultDimensionProperties(),
+        defaultMeasure: extension.getDefaultMeasureProperties(),
+      };
+      return importProperties({
+        dataDefinition,
+        defaultPropertyValues,
+        exportFormat,
+        initialProperties,
+      });
+    },
+    exportProperties: (propertyTree, viewDataMode) => {
+      return exportProperties({ propertyTree, viewDataMode });
+    },
   };
 }
