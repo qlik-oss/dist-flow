@@ -29,7 +29,7 @@ describe('boxplot-data', () => {
       get: (property) => property,
     };
     const env = { translator };
-    boxplotData = boxplotDataFn(env).targets[0];
+    boxplotData = boxplotDataFn(env);
   });
 
   afterEach(() => {

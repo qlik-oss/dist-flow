@@ -1,13 +1,11 @@
 /* eslint-disable import/no-unresolved, prefer-rest-params */
 import HyperCubePropertyHandler from '../../../assets/objects/utils/data-properties/hypercube-handler';
 import propertyMapper from '../../../assets/client/utils/property-mapper';
-import objectConversion from '../../../assets/objects/conversion/object-conversion';
 
 import BoxPlotApi from './boxplot-api';
 import template from './boxplot.ng.html';
 import './boxplot-tooltip/boxplot-tooltip-picture-directive';
 
-const dataPath = 'qUndoExclude';
 const HYPERCUBE_PATH = 'boxplotDef';
 
 export default {
@@ -28,23 +26,6 @@ export default {
         qSuppressMissing: true,
       },
     },
-  },
-  importProperties() {
-    const propTree = objectConversion.hypercube.importProperties.apply(
-      objectConversion.hypercube.importProperties,
-      arguments
-    );
-    const props = propTree.qProperty;
-    // Turn off dimension limits, not supported in boxplot
-    props.boxplotDef.qHyperCubeDef.qDimensions.forEach((dim) => {
-      dim.qOtherTotalSpec.qOtherMode = 'OTHER_OFF'; // eslint-disable-line no-param-reassign
-    });
-    return propTree;
-  },
-  exportProperties: objectConversion.hypercube.exportProperties,
-  exportTableProperties(propertyTree) {
-    const boxHyperCubePath = `${dataPath}.box`;
-    return objectConversion.hypercube.exportProperties(propertyTree, boxHyperCubePath);
   },
   getCreatePropertyHandler(app) {
     const mappedDefinition = this.mappedDefinition;

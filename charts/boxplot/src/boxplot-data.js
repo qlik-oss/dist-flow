@@ -25,12 +25,8 @@ export default function data(env) {
   };
 
   return {
-    targets: [
-      {
-        path: '/boxplotDef/qHyperCubeDef',
-        dimensions,
-        measures,
-      },
-    ],
+    path: '/boxplotDef/qHyperCubeDef',
+    dimensions,
+    measures,
   };
 }
