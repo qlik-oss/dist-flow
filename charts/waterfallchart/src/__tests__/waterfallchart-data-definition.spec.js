@@ -9,7 +9,7 @@ describe('waterfall-data-definition', () => {
   beforeEach(() => {
     const translator = { get: (property) => property };
     const env = { translator };
-    waterfallData = waterfallDataFn(env).targets[0];
+    waterfallData = waterfallDataFn(env);
   });
 
   describe('measures.description', () => {
