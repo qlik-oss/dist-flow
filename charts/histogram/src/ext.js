@@ -1,7 +1,7 @@
 import conversion from 'qlik-object-conversion';
 import pp from './histogram-properties';
 import exploreProperties from './histogram-explore-properties';
-// import histogramExport from './histogram-export';
+import histogramExport from './histogram-export';
 
 export default function ext(env) {
   if (!env.anything?.sense) {
@@ -27,6 +27,6 @@ export default function ext(env) {
       const hypercubePath = 'qUndoExclude.box';
       return conversion.hypercube.exportProperties({ propertyTree, hypercubePath });
     },
-    // getExportRawDataOptions: histogramExport.getExportRawDataOptions,
+    getExportRawDataOptions: histogramExport.getExportRawDataOptions,
   };
 }

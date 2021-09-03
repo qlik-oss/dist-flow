@@ -1,11 +1,8 @@
-/* eslint-disable import/no-unresolved */
-import exportDialog from '../../../assets/client/services/export-dialog/export-dialog';
-
 /**
  * Implementation details
  */
 
-function getExportRawDataOptions(menu, cell) {
+function getExportRawDataOptions(menu, cell, exportDialog) {
   menu.addItem({
     translation: 'contextMenu.export',
     tid: 'export',
