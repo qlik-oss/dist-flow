@@ -4,7 +4,7 @@ const packagePath = path.resolve(__dirname, '../package.json');
 const pkg = require(packagePath); // eslint-disable-line
 
 module.exports = {
-  glob: [path.resolve(__dirname, '../src/object-properties.js')],
+  glob: [path.resolve(__dirname, '../src/boxplot-object-properties.js')],
   package: packagePath,
   api: {
     stability: 'experimental',

@@ -18,7 +18,7 @@ import setupSnapshot from '@qlik/common/nebula/snapshot';
 import qae from './boxplot-qae';
 import ChartView from './boxplot-view';
 import ext from './boxplot-ext';
-import BackednAPi from './backend-api';
+import BackednAPi from './boxplot-backend-api';
 
 function useView(env, picasso, environment) {
   const element = useElement();
