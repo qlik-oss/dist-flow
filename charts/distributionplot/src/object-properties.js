@@ -249,48 +249,16 @@ const properties = {
   /**
    * Wrapper for sorting properties which will be set on the outer dimension.
    * @type {object}
+   * @property {boolean} autoSort=true Sort automatically
+   * @property {'distplot-exp-min'|'distplot-exp-max'} elementId='distplot-exp-min' Sorting preset
+   * @property {ValueExpression} expression Expression for the sorting. Requires sortByExpression to be -1 or 1.
+   * @property {number} sortCriteria.sortByAscii=0 Sort by alphabetic
+   * @property {number} sortCriteria.sortByExpression=0 Sort by expression
+   * @property {number} sortCriteria.sortByNumeric=0 Sort by numeric
+   * @property {number} sortCriteria.sortByLoadOrder=0 Sort by load order
    */
   sorting: {
-    /**
-     * Sort automatically
-     * @type {boolean}
-     * @default
-     */
     autoSort: true,
-    /**
-     * Sorting preset
-     * @type {'distplot-exp-min'|'distplot-exp-max'}
-     * @default "distplot-exp-min"
-     */
-    elementId: 'distplot-exp-min',
-    /**
-     * Expression for the sorting. Requires sortByExpression to be -1 or 1.
-     * @type {ValueExpression}
-     */
-    expression: undefined,
-    /**
-     * @type {object}
-     */
-    sortCriteria: {
-      /**
-       * Sort by alphabetic
-       * @type {number}
-       * @default
-       */
-      sortByAscii: 0,
-      /**
-       * Sort by expression
-       * @type {number}
-       * @default
-       */
-      sortByExpression: 0,
-      /**
-       * Sort by numeric
-       * @type {number}
-       * @default
-       */
-      sortByNumeric: 0,
-    },
   },
   /**
    * Show title for the visualization.

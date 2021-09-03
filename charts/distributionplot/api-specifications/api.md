@@ -33,13 +33,6 @@
     * [.refLine](#properties.refLine) : <code>object</code>
         * [.refLines](#properties.refLine.refLines) : [<code>Array.&lt;refLine&gt;</code>](#refLine)
     * [.sorting](#properties.sorting) : <code>object</code>
-        * [.autoSort](#properties.sorting.autoSort) : <code>boolean</code>
-        * [.elementId](#properties.sorting.elementId) : <code>&#x27;distplot-exp-min&#x27;</code> \| <code>&#x27;distplot-exp-max&#x27;</code>
-        * [.expression](#properties.sorting.expression) : <code>ValueExpression</code>
-        * [.sortCriteria](#properties.sorting.sortCriteria) : <code>object</code>
-            * [.sortByAscii](#properties.sorting.sortCriteria.sortByAscii) : <code>number</code>
-            * [.sortByExpression](#properties.sorting.sortCriteria.sortByExpression) : <code>number</code>
-            * [.sortByNumeric](#properties.sorting.sortCriteria.sortByNumeric) : <code>number</code>
     * [.showTitles](#properties.showTitles) : <code>boolean</code>
     * [.subtitle](#properties.subtitle) : <code>string</code> \| <code>StringExpression</code>
     * [.title](#properties.title) : <code>string</code> \| <code>StringExpression</code>
@@ -306,67 +299,18 @@ Array of measure based reference line definitions
 Wrapper for sorting properties which will be set on the outer dimension.
 
 **Kind**: static property of [<code>properties</code>](#properties)  
+**Properties**
 
-* [.sorting](#properties.sorting) : <code>object</code>
-    * [.autoSort](#properties.sorting.autoSort) : <code>boolean</code>
-    * [.elementId](#properties.sorting.elementId) : <code>&#x27;distplot-exp-min&#x27;</code> \| <code>&#x27;distplot-exp-max&#x27;</code>
-    * [.expression](#properties.sorting.expression) : <code>ValueExpression</code>
-    * [.sortCriteria](#properties.sorting.sortCriteria) : <code>object</code>
-        * [.sortByAscii](#properties.sorting.sortCriteria.sortByAscii) : <code>number</code>
-        * [.sortByExpression](#properties.sorting.sortCriteria.sortByExpression) : <code>number</code>
-        * [.sortByNumeric](#properties.sorting.sortCriteria.sortByNumeric) : <code>number</code>
+| Name | Type | Default | Description |
+| --- | --- | --- | --- |
+| autoSort | <code>boolean</code> | <code>true</code> | Sort automatically |
+| elementId | <code>&#x27;distplot-exp-min&#x27;</code> \| <code>&#x27;distplot-exp-max&#x27;</code> | <code>&#x27;distplot-exp-min&#x27;</code> | Sorting preset |
+| expression | <code>ValueExpression</code> |  | Expression for the sorting. Requires sortByExpression to be -1 or 1. |
+| sortCriteria.sortByAscii | <code>number</code> | <code>0</code> | Sort by alphabetic |
+| sortCriteria.sortByExpression | <code>number</code> | <code>0</code> | Sort by expression |
+| sortCriteria.sortByNumeric | <code>number</code> | <code>0</code> | Sort by numeric |
+| sortCriteria.sortByLoadOrder | <code>number</code> | <code>0</code> | Sort by load order |
 
-<a name="properties.sorting.autoSort"></a>
-
-#### sorting.autoSort : <code>boolean</code>
-Sort automatically
-
-**Kind**: static property of [<code>sorting</code>](#properties.sorting)  
-**Default**: <code>true</code>  
-<a name="properties.sorting.elementId"></a>
-
-#### sorting.elementId : <code>&#x27;distplot-exp-min&#x27;</code> \| <code>&#x27;distplot-exp-max&#x27;</code>
-Sorting preset
-
-**Kind**: static property of [<code>sorting</code>](#properties.sorting)  
-**Default**: <code>&quot;distplot-exp-min&quot;</code>  
-<a name="properties.sorting.expression"></a>
-
-#### sorting.expression : <code>ValueExpression</code>
-Expression for the sorting. Requires sortByExpression to be -1 or 1.
-
-**Kind**: static property of [<code>sorting</code>](#properties.sorting)  
-<a name="properties.sorting.sortCriteria"></a>
-
-#### sorting.sortCriteria : <code>object</code>
-**Kind**: static property of [<code>sorting</code>](#properties.sorting)  
-
-* [.sortCriteria](#properties.sorting.sortCriteria) : <code>object</code>
-    * [.sortByAscii](#properties.sorting.sortCriteria.sortByAscii) : <code>number</code>
-    * [.sortByExpression](#properties.sorting.sortCriteria.sortByExpression) : <code>number</code>
-    * [.sortByNumeric](#properties.sorting.sortCriteria.sortByNumeric) : <code>number</code>
-
-<a name="properties.sorting.sortCriteria.sortByAscii"></a>
-
-##### sortCriteria.sortByAscii : <code>number</code>
-Sort by alphabetic
-
-**Kind**: static property of [<code>sortCriteria</code>](#properties.sorting.sortCriteria)  
-**Default**: <code>0</code>  
-<a name="properties.sorting.sortCriteria.sortByExpression"></a>
-
-##### sortCriteria.sortByExpression : <code>number</code>
-Sort by expression
-
-**Kind**: static property of [<code>sortCriteria</code>](#properties.sorting.sortCriteria)  
-**Default**: <code>0</code>  
-<a name="properties.sorting.sortCriteria.sortByNumeric"></a>
-
-##### sortCriteria.sortByNumeric : <code>number</code>
-Sort by numeric
-
-**Kind**: static property of [<code>sortCriteria</code>](#properties.sorting.sortCriteria)  
-**Default**: <code>0</code>  
 <a name="properties.showTitles"></a>
 
 ### properties.showTitles : <code>boolean</code>

@@ -373,7 +373,7 @@
             },
             "elementId": {
               "description": "Sorting preset",
-              "defaultValue": "distplot-exp-min",
+              "defaultValue": "'distplot-exp-min'",
               "kind": "union",
               "items": [
                 {
@@ -406,6 +406,11 @@
                 },
                 "sortByNumeric": {
                   "description": "Sort by numeric",
+                  "defaultValue": 0,
+                  "type": "number"
+                },
+                "sortByLoadOrder": {
+                  "description": "Sort by load order",
                   "defaultValue": 0,
                   "type": "number"
                 }
