@@ -518,15 +518,6 @@ export default function propertyDefinition(env) {
     };
   }
 
-  const innerData = {
-    uses: 'data',
-    // grouped: true,
-    items: {
-      dimensions,
-      measures,
-    },
-  };
-
   const boxPlotMode = {
     ref: 'boxplotDef.calculations.mode',
     translation: 'properties.boxplot.preset',
@@ -689,10 +680,10 @@ export default function propertyDefinition(env) {
   };
 
   const data = {
-    translation: 'Common.Data',
-    type: 'items',
+    uses: 'data',
     items: {
-      innerData,
+      dimensions,
+      measures,
     },
   };
 
