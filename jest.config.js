@@ -1,5 +1,7 @@
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
+  testEnvironment: 'jsdom',
+
   // this will become default in jest 27:
   testRunner: 'jest-circus/runner',
 
