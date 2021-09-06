@@ -7,13 +7,12 @@ const replacementStrings = {
 };
 
 const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
-const sourcemap = mode !== 'production';
 
 module.exports = {
   build: {
     core: 'core',
     mode,
     replacementStrings,
-    sourcemap,
+    sourcemap: true,
   },
 };
