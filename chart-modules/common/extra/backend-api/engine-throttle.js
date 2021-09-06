@@ -1,3 +1,4 @@
+/* eslint-disable prefer-arrow-callback */
 import extend from 'extend';
 
 const defaultOptions = {

@@ -31,8 +31,8 @@ export default function ext(env) {
         initialProperties,
       });
     },
-    exportProperties: (propertyTree, hyperCubePath, viewDataMode) => {
-      return exportProperties({ propertyTree, viewDataMode });
+    exportProperties(propertyTree, hyperCubePath, viewDataMode) {
+      exportProperties({ propertyTree, viewDataMode });
     },
   };
 }
