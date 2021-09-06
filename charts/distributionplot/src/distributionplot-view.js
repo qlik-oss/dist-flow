@@ -594,6 +594,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     if (this._tooltipHandler.isOn()) {
       tooltipSettings.point = this._tooltipHandler.setUp({
         chartBuilder,
+        colorService: this.colorService,
         data: hypercubeUtil.hasSecondDimension(layout, DATA_PATH) ? ['innerElemNo', 'elemNo'] : ['innerElemNo'],
         contexts: ['pointTip'],
         componentKey: 'point-marker',

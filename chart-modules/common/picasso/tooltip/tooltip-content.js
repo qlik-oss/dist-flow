@@ -121,7 +121,7 @@ function getColorByDimData(tooltipInfo, shape) {
   });
   const othersIndex = getOthersIndex(ids);
 
-  const { translator } = tooltipInfo.nebulaContext;
+  const { translator } = tooltipInfo;
   const label = colorSettings.label;
   const color = shape.attrs?.fill;
   const value = othersIndex !== -1 ? translator.get('properties.dimensionLimits.others') : colorData.label;
