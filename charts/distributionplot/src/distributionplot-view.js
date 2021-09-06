@@ -254,9 +254,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   _getDimAxisSettings(layout, selectionSettings) {
     const brushTrigger = getSelectionSettingsArray(selectionSettings.trigger);
     const brushConsume = getSelectionSettingsArray(selectionSettings.consume);
-    const containerSize = this.picassoElement.getBoundingClientRect()[
-      layout.orientation === 'vertical' ? 'height' : 'width'
-    ];
+    const containerSize =
+      this.picassoElement.getBoundingClientRect()[layout.orientation === 'vertical' ? 'height' : 'width'];
     const adjustedMaxGlyphCount = stringUtil.getAdjustedMaxGlyphCount(
       getMaxGlyphCountForDimAxis(this.layout || layout),
       layout[DATA_PATH][HYPERCUBE_PATH].qStackedDataPages[0].qData[0].qSubNodes
@@ -845,9 +844,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       ...colorData,
     };
 
-    snapshotLayout[DATA_PATH][HYPERCUBE_PATH].qStackedDataPages = this.layout[DATA_PATH][
-      HYPERCUBE_PATH
-    ].qStackedDataPages;
+    snapshotLayout[DATA_PATH][HYPERCUBE_PATH].qStackedDataPages =
+      this.layout[DATA_PATH][HYPERCUBE_PATH].qStackedDataPages;
     snapshotLayout[DATA_PATH].legendData = this.layout[DATA_PATH].legendData;
     columnOrderAdapter.toBefore(snapshotLayout);
     return snapshotLayout;

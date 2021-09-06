@@ -550,9 +550,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     // Do not use selection trigger when selecting in inner dimension
     const brushTrigger = shouldSelectInInnerDim(layout) ? [] : getSelectionSettingsArray(selectionSettings.trigger);
     const brushConsume = getSelectionSettingsArray(selectionSettings.consume);
-    const containerSize = this.picassoElement.getBoundingClientRect()[
-      layout.orientation === 'vertical' ? 'height' : 'width'
-    ];
+    const containerSize =
+      this.picassoElement.getBoundingClientRect()[layout.orientation === 'vertical' ? 'height' : 'width'];
     const maxLengthPx = containerSize / 4; // Label size should not be more than 25% of the container size
     const adjustedMaxGlyphCount = stringUtil.getAdjustedMaxGlyphCount(
       getMaxGlyphCountForDimAxis(this.layout || layout),
@@ -876,7 +875,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     snapshotLayout.qUndoExclude.box.qHyperCube.qDataPages = this.layout.qUndoExclude.box.qHyperCube.qDataPages;
     if (snapshotLayout.boxplotDef.elements.outliers.include) {
       // eslint-disable-next-line no-param-reassign
-      snapshotLayout.qUndoExclude.outliers.qHyperCube.qStackedDataPages = this.layout.qUndoExclude.outliers.qHyperCube.qStackedDataPages;
+      snapshotLayout.qUndoExclude.outliers.qHyperCube.qStackedDataPages =
+        this.layout.qUndoExclude.outliers.qHyperCube.qStackedDataPages;
     }
     return Promise.resolve(snapshotLayout);
   },

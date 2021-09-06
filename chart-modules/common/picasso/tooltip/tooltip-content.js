@@ -19,15 +19,17 @@ function filterDuplicateShapes(shapes) {
 export const createFilter = (filterShapes) => (shapes) =>
   filterShapes ? filterShapes(shapes) : filterDuplicateShapes(shapes);
 
-export const createContent = (context) => ({ h, data, style }) => {
-  const content = extractContent(context, data);
-  const renderSettings = {
-    h,
-    style,
-    translator: context.translator,
+export const createContent =
+  (context) =>
+  ({ h, data, style }) => {
+    const content = extractContent(context, data);
+    const renderSettings = {
+      h,
+      style,
+      translator: context.translator,
+    };
+    return context.renderer(renderSettings, content);
   };
-  return context.renderer(renderSettings, content);
-};
 
 function extractContent(tooltipInfo, uniqueShapes) {
   const dataset = tooltipInfo.chartInstance.dataset(tooltipInfo.dataPath);
