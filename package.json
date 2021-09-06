@@ -61,7 +61,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001255",
-    "**/puppeteer": "2.1.1"
+    "**/caniuse-lite": "1.0.30001255"
   }
 }
