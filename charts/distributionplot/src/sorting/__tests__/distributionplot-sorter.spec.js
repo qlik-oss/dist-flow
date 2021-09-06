@@ -99,9 +99,7 @@ describe('distplot-sorting-service', () => {
       await distplotSorter.applySorting(properties, layout, app);
 
       expect(properties.qUndoExclude.qHyperCubeDef.qInterColumnSortOrder, 'more than two dimensions').to.deep.equal([
-        0,
-        2,
-        1,
+        0, 2, 1,
       ]);
 
       properties.qUndoExclude.qHyperCubeDef.qDimensions = [{}];
@@ -109,8 +107,7 @@ describe('distplot-sorting-service', () => {
       await distplotSorter.applySorting(properties, layout, app);
 
       expect(properties.qUndoExclude.qHyperCubeDef.qInterColumnSortOrder, 'less than two dimensions').to.deep.equal([
-        1,
-        0,
+        1, 0,
       ]);
     });
 
