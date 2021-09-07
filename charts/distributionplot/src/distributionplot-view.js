@@ -182,7 +182,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       $element,
       this.getSlicedData.bind(this),
       this.onScrollCallback.bind(this),
-      'legend'
+      'colorLegend-cat'
     );
 
     this._maxBubbleScale = CONSTANTS.BUBBLE_SCALES_MAX;
@@ -769,7 +769,15 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         },
       },
     };
-    let { components } = this.colorService.getLegend(config);
+    const legend = this.colorService.getLegend(config, {
+      actions: {
+        interact: {
+          enabled: () => this._scrollHandler.isOn(),
+        },
+      },
+    });
+
+    let { components } = legend;
     components = components.filter((c) => !!c);
     if (components.length > 0 && this._selectionHandler.isOn()) {
       components[0].brush = {
@@ -779,6 +787,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
     }
 
     chartBuilder.settings.components.push(...components);
+    chartBuilder.settings.interactions[0].gestures.unshift(...legend.interactions);
   },
 
   resize() {
