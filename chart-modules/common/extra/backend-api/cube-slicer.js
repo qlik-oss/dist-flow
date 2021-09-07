@@ -62,7 +62,6 @@ const CubeSlicer = Class.extend('CubeSlicer', {
     this.pages = [];
   },
   store(pages) {
-    // TODO - store pages in order from left to right according to qLeft value (mek)
     this.pages = pages;
   },
   containsArea(area) {

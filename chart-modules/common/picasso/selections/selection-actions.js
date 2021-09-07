@@ -1,7 +1,7 @@
 import PicassoQ from 'picasso-plugin-q/dist/picasso-q';
 import selectionUtils from './selection-utils';
 
-// TODO: fix
+// TODO: maybe add support later
 const eventUtils = {
   showLockedFeedback: () => {},
 };

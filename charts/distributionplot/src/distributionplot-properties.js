@@ -545,11 +545,6 @@ export default function propertyDefinition(env) {
               }
               return persistentColorsShowFunc(data);
             },
-            // TODO: Why do we want to make readonly for multiple dim?
-            // ,
-            // readOnly: function( data ) {
-            // 	return getValue( data, "qHyperCubeDef.qDimensions.length" ) > 1;
-            // }
           },
 
           // // -- Color scheme measure
