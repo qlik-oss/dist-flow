@@ -17,11 +17,20 @@ import useLasso from '@qlik/common/nebula/use-lasso';
 import useResize from '@qlik/common/nebula/resize';
 import useEnvironment from '@qlik/common/nebula/use-environment';
 import setupSnapshot from '@qlik/common/nebula/snapshot';
+import SnapshotAPI from '@qlik/common/extra/backend-api/snapshot-api';
 
 import qae from './distributionplot-qae';
 import ext from './ext';
 import ChartView from './distributionplot-view';
-import BackednAPi from './backend-api';
+import BackednAPI from './backend-api';
+
+function getBackedApi(model, layout) {
+  const isSnapshot = !!layout.snapshotData;
+  if (isSnapshot) {
+    return new SnapshotAPI(layout, 'qUndoExclude.qHyperCube', 'qStackedDataPages');
+  }
+  return new BackednAPI(model);
+}
 
 export default function supernova(env) {
   locale(env.translator);
@@ -45,7 +54,7 @@ export default function supernova(env) {
 
       useEffect(() => {
         const $element = $(element);
-        const backendApi = new BackednAPi(model);
+        const backendApi = getBackedApi(model, layout);
         const selectionsApi = selections;
         const view = new ChartView({
           environment,

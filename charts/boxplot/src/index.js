@@ -15,10 +15,19 @@ import useLasso from '@qlik/common/nebula/use-lasso';
 import useResize from '@qlik/common/nebula/resize';
 import useEnvironment from '@qlik/common/nebula/use-environment';
 import setupSnapshot from '@qlik/common/nebula/snapshot';
+import SnapshotAPI from '@qlik/common/extra/backend-api/snapshot-api';
 import qae from './boxplot-qae';
 import ChartView from './boxplot-view';
 import ext from './boxplot-ext';
-import BackednAPi from './boxplot-backend-api';
+import BackednAPI from './boxplot-backend-api';
+
+function getBackedApi(model, layout) {
+  const isSnapshot = !!layout.snapshotData;
+  if (isSnapshot) {
+    return new SnapshotAPI(layout, 'qUndoExclude.box.qHyperCube', 'qDataPages');
+  }
+  return new BackednAPI(model);
+}
 
 function useView(env, picasso, environment) {
   const element = useElement();
@@ -29,7 +38,7 @@ function useView(env, picasso, environment) {
 
   const [instance, setInstance] = useState();
   useEffect(() => {
-    const backendApi = new BackednAPi(model);
+    const backendApi = getBackedApi(model, layout);
 
     const view = new ChartView({
       $element: $(element),

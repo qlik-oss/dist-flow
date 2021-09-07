@@ -1,10 +1,7 @@
 export default class BackednAPi {
   constructor(model) {
     this.model = model;
-  }
-
-  setPath(path) {
-    this.path = path;
+    this.path = '/qUndoExclude/box/qHyperCubeDef';
   }
 
   // eslint-disable-next-line class-methods-use-this, no-unused-vars
@@ -13,8 +10,7 @@ export default class BackednAPi {
   // eslint-disable-next-line class-methods-use-this, no-unused-vars
   updateCache(args) {}
 
-  // eslint-disable-next-line no-unused-vars
-  getData(pages, path, hyperCube) {
+  getData(pages) {
     return this.model.getHyperCubeData(this.path, pages);
   }
 }

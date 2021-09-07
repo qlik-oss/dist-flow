@@ -271,6 +271,7 @@ function createChartSettings(layout) {
   // Create components
   const isRtl = this.isRtl();
   const { theme } = this.environment;
+  const isSnapshot = !!layout.snapshotData;
   const chartBuilder = ChartBuilder.create({
     chartID,
     theme,
@@ -351,7 +352,7 @@ function createChartSettings(layout) {
     },
 
     // scroll
-    hasNavigation: true,
+    hasNavigation: !isSnapshot,
     isNavigationEnabledFn: () => this._scrollHandler.isOn(),
     scrollSettings: getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 

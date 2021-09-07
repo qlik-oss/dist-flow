@@ -153,7 +153,6 @@ function updateData(layout) {
             return Promise.resolve();
           }
 
-          self.backendApi.setPath('/qUndoExclude/box/qHyperCubeDef');
           self.backendApi.updateCache(layout.qUndoExclude.box);
 
           return self.getData(self.backendApi, layout.qUndoExclude.box.qHyperCube, rect);
