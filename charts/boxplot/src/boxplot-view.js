@@ -579,6 +579,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
     const isHorizontal = getIsHorizontal(layout.orientation);
     const hasSecondDimension = getHasSecondDimension(layout);
     const dimInfo = layout[HYPERCUBE_PATH].qHyperCube.qDimensionInfo;
+    const isSnapshot = !!layout.snapshotData;
 
     const measureDirection = isHorizontal ? 'x' : 'y';
     const dimensionDirection = isHorizontal ? 'y' : 'x';
@@ -737,7 +738,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       gridlines: layout.gridlines,
 
       // scroll
-      hasNavigation: true,
+      hasNavigation: !isSnapshot,
       isNavigationEnabledFn: () => this._scrollHandler.isOn(),
       scrollSettings: getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 
@@ -981,7 +982,6 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       const includeOutliers = getValue(layout, 'boxplotDef.elements.outliers.include');
       const propPaths = [];
       const dataPaths = [BOX_PATH];
-      self.backendApi.setPath('/qUndoExclude/box/qHyperCubeDef');
       if (getHasSecondDimension(layout)) {
         propPaths.push('/qUndoExclude/box/qHyperCubeDef');
       }

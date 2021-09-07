@@ -501,6 +501,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   createChartSettings(layout) {
     const isRtl = this.isRtl();
     const { theme } = this.environment;
+    const isSnapshot = !!layout.snapshotData;
     const hasVisibleComponentsProps = layout.presentation && layout.presentation.visibleComponents;
     const showPoints = hasVisibleComponentsProps && layout.presentation.visibleComponents.indexOf('point') !== -1;
     const showBox = hasVisibleComponentsProps && layout.presentation.visibleComponents.indexOf('box') !== -1;
@@ -656,7 +657,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       gridlines: layout.gridlines,
 
       // scroll
-      hasNavigation: true,
+      hasNavigation: !isSnapshot,
       isNavigationEnabledFn: () => this._scrollHandler.isOn(),
       scrollSettings: getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem()),
 

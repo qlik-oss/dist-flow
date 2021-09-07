@@ -17,10 +17,6 @@ export default class BackednAPi {
     }
   }
 
-  setPath(path) {
-    this.path = path;
-  }
-
   setCacheOptions(opts) {
     this.cacheCube.setOptions(opts);
   }
