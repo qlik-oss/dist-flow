@@ -755,6 +755,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
    * @returns {void}
    */
   addLegend(chartBuilder, isRtl, legendSelectionSettings) {
+    const LEGEND_DISPLAY_OREDER = 200;
+    const LEGEND_PRIO_ORDER = 50; // should be between axis (30) and refline (60) to be removed before axis but after refline
     const config = {
       eventName: 'legend-c',
       key: 'colorLegend',
@@ -779,11 +781,15 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
     let { components } = legend;
     components = components.filter((c) => !!c);
-    if (components.length > 0 && this._selectionHandler.isOn()) {
-      components[0].brush = {
-        consume: legendSelectionSettings.consume.map((c) => extend(true, c, { style: { active: null } })),
-        trigger: legendSelectionSettings.trigger,
-      };
+    if (components.length > 0) {
+      if (this._selectionHandler.isOn()) {
+        components[0].brush = {
+          consume: legendSelectionSettings.consume.map((c) => extend(true, c, { style: { active: null } })),
+          trigger: legendSelectionSettings.trigger,
+        };
+      }
+      components[0].layout.displayOrder = LEGEND_DISPLAY_OREDER;
+      components[0].layout.prioOrder = LEGEND_PRIO_ORDER;
     }
 
     chartBuilder.settings.components.push(...components);
