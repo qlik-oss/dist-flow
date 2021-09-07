@@ -279,7 +279,6 @@ function createChartSettings(layout) {
   const width = this.picassoElement.clientWidth;
   const height = this.picassoElement.clientHeight;
 
-  // TODO: fix tooltip
   const tooltipSettings = {};
   tooltipSettings.box = this._tooltipHandler.setUp({
     chartBuilder,

@@ -1,7 +1,7 @@
 import extend from 'extend';
 import Actions from './selection-actions';
 
-// TODO: fix
+// TODO: maybe add support later
 const eventUtils = {
   showLockedFeedback: () => {},
 };

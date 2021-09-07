@@ -5,8 +5,6 @@ import { createFilter, createContent } from './tooltip-content';
 import createTooltip from './tooltips-component';
 import defaultTooltipRenderer from './tooltip-renderer';
 
-// TODO: useDeviceType?
-
 const DEFAULT_OPTIONS = {
   tooltipKey: 'tooltip',
   data: [''],

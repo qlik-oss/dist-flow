@@ -9,7 +9,6 @@ export default {
   onMouseWheel,
 };
 
-// TODO: common function stolen from legend-data.js
 function getItemText(item) {
   if (item.label) {
     return item.label;
