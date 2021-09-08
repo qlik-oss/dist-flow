@@ -9,10 +9,10 @@ export default {
  * Implementation details
  */
 
-function saveDerivedProperties(model, layout, properties, prevProperties, state) {
+function saveDerivedProperties(model, layout, properties, prevProperties) {
   // Can't set new properties on a master item (SUI-1363)
 
-  if (hardPropertiesChecker.canModifyHardProperties(state, model, layout)) {
+  if (hardPropertiesChecker.canModifyHardProperties(layout)) {
     return model.setProperties(properties);
   }
 
