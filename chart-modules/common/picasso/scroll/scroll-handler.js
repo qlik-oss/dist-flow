@@ -201,11 +201,11 @@ function getMouseWheelData(orgEvent) {
   };
 }
 
-function onLegendMouseWheel(event, chart, legendKey) {
+function onLegendMouseWheel(e, event, chart, legendKey) {
   if (!!legendKey && chart.componentsFromPoint(event).some((c) => c.settings.key === legendKey)) {
     const legend = chart.component(legendKey);
     legend.emit(event.delta > 0 ? 'prev' : 'next');
-    event.preventDefault();
+    e.preventDefault();
     return true;
   }
   return false;
@@ -213,7 +213,7 @@ function onLegendMouseWheel(event, chart, legendKey) {
 
 function onMouseWheel(e) {
   const event = getMouseWheelData(e.originalEvent);
-  if (onLegendMouseWheel(event, this._chartInstance, this._legendKey) || this._disabled || !this.getScrollApi()) {
+  if (onLegendMouseWheel(e, event, this._chartInstance, this._legendKey) || this._disabled || !this.getScrollApi()) {
     return;
   }
   e.preventDefault();
