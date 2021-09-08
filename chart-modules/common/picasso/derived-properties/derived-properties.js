@@ -53,7 +53,7 @@ function updateDerivedProperties(settings) {
   Hash.updateHash(properties, settings.hashData);
 
   return settings.generateDerivedProperties(layout, properties).then(() =>
-    Save.saveDerivedProperties(model, layout, properties, prevProperties, null).then(() => {
+    Save.saveDerivedProperties(model, layout, properties, prevProperties).then(() => {
       self._generationInProgress = false;
 
       return Promise.resolve(true);
