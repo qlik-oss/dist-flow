@@ -1,5 +1,9 @@
 /** @jsx h */
 
+import rtlUtils from '@qlik/common/extra/rtl-util';
+
+const { detectTextDirection: getDirection } = rtlUtils;
+
 const NR_COLUMNS = 5;
 const BOX_COLOR = '#FFF';
 
@@ -97,10 +101,16 @@ function createCircleCell(settings) {
 }
 
 function renderHeader(settings, header) {
-  const { h, style } = settings;
+  const { h, style, rtl } = settings;
+  const headerStyle = {
+    ...style.cell,
+    fontWeight: 'bold',
+    textAlign: rtl ? 'right' : 'left',
+    direction: getDirection(header),
+  };
   const row = (
     <tr>
-      <td style={{ ...style.cell, fontWeight: 'bold' }} colSpan={NR_COLUMNS}>
+      <td style={headerStyle} colSpan={NR_COLUMNS}>
         {header}
       </td>
     </tr>
@@ -109,14 +119,17 @@ function renderHeader(settings, header) {
 }
 
 function renderLabelCell(settings, label) {
-  const { h, style } = settings;
-  const labelCell = <td style={style.cell}>{[label, ':']}</td>;
+  const { h, style, rtl } = settings;
+  const labelStyle = { ...style.cell, direction: getDirection(label), textAlign: rtl ? 'right' : 'left' };
+  const labelContent = rtl ? [':', label] : [label, ':'];
+  const labelCell = <td style={labelStyle}>{labelContent}</td>;
   return labelCell;
 }
 
 function renderValueCell(settings, value) {
-  const { h, style } = settings;
-  const valueCell = <td style={{ ...style.cell, textAlign: 'right' }}>{value}</td>;
+  const { h, style, rtl } = settings;
+  const valueStyle = { ...style.cell, direction: getDirection(value), textAlign: rtl ? 'left' : 'right' };
+  const valueCell = <td style={valueStyle}>{value}</td>;
   return valueCell;
 }
 
@@ -142,11 +155,13 @@ function renderBox(settings, box) {
 }
 
 function renderMoreIndicator(settings, content) {
-  const { h, style, translator } = settings;
+  const { h, style, rtl, translator } = settings;
+  const moreText = translator.get('Object.ChartTooltip.NMore', content.numberInExcess);
+  const moreStyle = { ...style.cell, textAlign: rtl ? 'right' : 'left', direction: getDirection(moreText) };
   const row = (
     <tr>
-      <td style={style.cell} colSpan={NR_COLUMNS}>
-        {translator.get('Object.ChartTooltip.NMore', content.numberInExcess)}
+      <td style={moreStyle} colSpan={NR_COLUMNS}>
+        {moreText}
       </td>
     </tr>
   );

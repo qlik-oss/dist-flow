@@ -1,10 +1,11 @@
 /* eslint no-underscore-dangle: 0 */
-const TOOLTIP_CONTAINER_SELECTOR = '#c-444-tooltip';
+const TOOLTIP_CONTAINER_ID = 'dist-flow-tooltip';
+const TOOLTIP_CONTAINER_SELECTOR = `#${TOOLTIP_CONTAINER_ID}`;
 
 function appendTooltipContainer() {
   if (!document.querySelector(TOOLTIP_CONTAINER_SELECTOR)) {
     const container = document.createElement('div');
-    container.id = 'c-444-tooltip';
+    container.id = TOOLTIP_CONTAINER_ID;
     container.style.overflow = 'hidden';
     container.style.position = 'fixed';
     container.style.pointerEvents = 'none';
