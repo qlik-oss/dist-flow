@@ -26,6 +26,7 @@ export const createContent =
     const renderSettings = {
       h,
       style,
+      rtl: context.direction === 'rtl',
       translator: context.translator,
     };
     return context.renderer(renderSettings, content);
