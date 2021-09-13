@@ -6,8 +6,7 @@ const setupSnapshot = (chartInstance) => {
       return undefined;
     }
 
-    chartInstance.setSnapshotData(layout);
-    return layout;
+    return chartInstance.setSnapshotData(layout);
   });
 
   useImperativeHandle(
