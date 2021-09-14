@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eo pipefail
+set -eov pipefail
 
 TARGET_FILE="ENV.tmp"
 
