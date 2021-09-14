@@ -295,10 +295,9 @@ function Selections(options) {
         context.brush.end();
       });
       document.removeEventListener('keyup', confirmOrCancelSelection);
-      // TODO reset lasso on deselect
-      // if (lasso.active()) {
-      //   lasso.toggle();
-      // }
+      if (lasso.active()) {
+        lasso.toggle();
+      }
     };
     selectionsApi.on('deactivated', onDeactivated);
     selectionsApiRestoreHelper.unbindDeactivated = () => {
