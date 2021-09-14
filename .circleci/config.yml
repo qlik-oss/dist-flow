@@ -102,6 +102,79 @@ jobs:
       - store_artifacts:
           path: ./SenseExtensions
 
+  install_build_auto:
+    executor: docker-node
+    steps:
+      - checkout
+      - run:
+          name: Setup git user
+          command: |
+            git config user.email "auto-merger@qlik.com"
+            git config user.name $GIT_USER
+      - run:
+          name: Prepare release
+          command: |
+            set -e
+            ./.circleci/prepare-release.sh
+            # log output
+            cat ENV.tmp
+            # store in BASH_ENV which CIRCLE_CI sources between every *run step*
+            cat ENV.tmp >> $BASH_ENV
+      - run:
+          name: Checkout branch
+          command: |
+            set -e
+            git checkout "$DIST_FLOW_BRANCH"
+            git reset --hard "$CIRCLE_SHA1"
+      - restore_cache:
+          key: v2-yarn-deps-{{ checksum "yarn.lock" }}
+      - run: yarn install --frozen-lockfile
+      - run:
+          name: Cut version
+          command: ./scripts/version.sh
+      - run:
+          name: Log auto release
+          command: ./.circleci/log.sh
+      - run:
+          name: Build packages
+          command: |
+            set -e
+            NODE_ENV=production yarn run build --concurrency 2
+      - run:
+          name: Remove tag trigger
+          command: git push -q https://$GH_ACCESS_TOKEN@github.com/qlik-oss/dist-flow.git :refs/tags/$CIRCLE_TAG
+          when: on_fail
+      - persist_to_workspace:
+          root: ~/dist-flow
+          paths:
+            - .
+
+  publish:
+    executor: docker-node
+    steps:
+      - use_workspace
+      - run:
+          name: Source DIST_FLOW environment variables
+          command: cat ENV.tmp >> $BASH_ENV
+      - run:
+          name: Setup publish access
+          command: |
+            set -eo pipefail
+            # Amend auth token for access to public npm registry for @nebula.js packages
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+
+      # for some odd reason git will push the tags even if the commit can't be pushed
+      # so we do a dry-run push first to make sure it's possible to push the commit
+      - run: git push -n -q https://$GH_ACCESS_TOKEN@github.com/qlik-oss/dist-flow.git $DIST_FLOW_BRANCH
+      - run: git push --follow-tags -q https://$GH_ACCESS_TOKEN@github.com/qlik-oss/dist-flow.git $DIST_FLOW_BRANCH
+      - run:
+          name: Publish packages
+          command: ./.circleci/publish.sh
+      - run:
+          name: Remove tag trigger
+          command: git push -q https://$GH_ACCESS_TOKEN@github.com/qlik-oss/dist-flow.git :refs/tags/$DIST_FLOW_TAG_TRIGGER
+          when: always
+
 workflows:
   build-all:
     jobs:
@@ -121,3 +194,36 @@ workflows:
       - test-rendering:
           requires:
             - build
+
+  trigger_release:
+    jobs:
+      - install_build_auto:
+          filters: &filter_auto_release
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^trigger-(pre)?release(-minor)?$/
+      - lint:
+          filters: *filter_auto_release
+          requires:
+            - install_build_auto
+      - test-unit:
+          filters: *filter_auto_release
+          requires:
+            - install_build_auto
+      - test-rendering:
+          filters: *filter_auto_release
+          requires:
+            - install_build_auto
+      - approve:
+          type: approval
+          filters: *filter_auto_release
+          requires:
+            - install_build_auto
+            - lint
+            - test-unit
+            - test-rendering
+      - publish:
+          filters: *filter_auto_release
+          requires:
+            - approve
