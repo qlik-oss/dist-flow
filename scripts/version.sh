@@ -6,7 +6,7 @@ NUM=$(npx lerna changed --loglevel silent | wc -l)
 
 set -o pipefail;
 
-LERNA_CMD="npx lerna version --yes --no-push --exact"
+LERNA_CMD="npx lerna version --yes --no-push --exact --no-private"
 
 if [[ "$DIST_FLOW_TAG_TRIGGER" == "trigger-release-minor" ]]; then
   LERNA_CMD="$LERNA_CMD minor"
@@ -15,7 +15,7 @@ fi
 if [[ "$DIST_FLOW_RELEASE" == "prerelease" ]]; then
   LERNA_CMD="$LERNA_CMD --conventional-prerelease --preid next"
 else
-  LERNA_CMD="$LERNA_CMD --conventional-graduate"
+  LERNA_CMD="$LERNA_CMD --conventional-commits"
 fi
 
 if [[ "$NUM" -gt 0 ]]; then
