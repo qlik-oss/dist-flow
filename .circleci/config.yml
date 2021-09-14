@@ -151,7 +151,7 @@ jobs:
           command: git push origin :refs/tags/$CIRCLE_TAG
           when: on_fail
       - persist_to_workspace:
-          root: ~/dist-flow
+          root: ~/dist-flow-charts
           paths:
             - .
 
