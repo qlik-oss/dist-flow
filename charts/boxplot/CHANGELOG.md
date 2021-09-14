@@ -1,0 +1,33 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.24.0 (2021-09-14)
+
+
+### Bug Fixes
+
+* basic select ([7f0c62d](https://github.com/qlik-oss/nebula.js/commit/7f0c62d17cca8c8a90994d430e6d1e6c26d90573))
+* **boxplot:** set whiskers default to true ([c70e32e](https://github.com/qlik-oss/nebula.js/commit/c70e32e78142f004a17a8e0019eca99b71a75c55))
+* console error opening boxplot explore menu ([3f53cf6](https://github.com/qlik-oss/nebula.js/commit/3f53cf6324caa839603156f21ffd9c718381dbf7))
+* export, add missing param + fix lint ([79c3683](https://github.com/qlik-oss/nebula.js/commit/79c3683bcdc1c36cbc4117add0d7224cad0a550d))
+* gridlines properties definition ([3c753a5](https://github.com/qlik-oss/nebula.js/commit/3c753a571c205b5d0325aab780cfa420ed8144ce))
+* lint ([d115563](https://github.com/qlik-oss/nebula.js/commit/d115563a528c9e39826dd33a4140e7dccdd8c5ea))
+* no data fetch or scrollbar in snapshot ([e080b43](https://github.com/qlik-oss/nebula.js/commit/e080b4354b98dfd643a43c890b8e319efa8ba0ce))
+* reference line console error ([b69e270](https://github.com/qlik-oss/nebula.js/commit/b69e270ff9cfbd34305c8dc30dbf3f2d6eb71485))
+* remove qUndoExclude ([0eac73f](https://github.com/qlik-oss/nebula.js/commit/0eac73f3a2ba6ed89cd7ee9d2a622ca0a26ff1ec))
+* revers order of measure in boxplot tooltip ([0724e0e](https://github.com/qlik-oss/nebula.js/commit/0724e0e1ea5ff5ddf787570ac44b3c9dd582b827))
+* should be gridlines ([4096589](https://github.com/qlik-oss/nebula.js/commit/40965899a42641f4cceed8d42755b4e458c21ec2))
+* string translation ([c982177](https://github.com/qlik-oss/nebula.js/commit/c982177993b7682b3bfb2fb4200edd5038cb1aad))
+* tooltip (not including custom boxplot template) ([30ff37e](https://github.com/qlik-oss/nebula.js/commit/30ff37ea22898deb645244ecd64b6a8c624b5edc))
+* tooltip in rtl mode ([dad6802](https://github.com/qlik-oss/nebula.js/commit/dad680292c6d14ab17691f5ba3bf95d8356be01e))
+* treat no scroll as temporary off ([440861c](https://github.com/qlik-oss/nebula.js/commit/440861c7d3a458b4e65ca9f0b94021606cba3335))
+* use jsx syntax ([44b7fd5](https://github.com/qlik-oss/nebula.js/commit/44b7fd58cfb38ff7b59d5ac83700c23b3b1f6251))
+
+
+### Features
+
+* add cache-cube in boxplot and distplot ([#3](https://github.com/qlik-oss/nebula.js/issues/3)) ([5e473e2](https://github.com/qlik-oss/nebula.js/commit/5e473e2c74c7a3b309feceb742e669f72a0ff3bd))
+* add version in default boxplot properties ([26e65df](https://github.com/qlik-oss/nebula.js/commit/26e65df717e7cee494c5ea716bc8996a040a35bd))
+* fix boxplot conversion ([8185420](https://github.com/qlik-oss/nebula.js/commit/8185420fa512ee9b9c08ddddecdfb7f082fb1b57))
