@@ -16,6 +16,11 @@ commands:
     steps:
       - attach_workspace:
           at: ~/dist-flow-charts
+  setup_write_access:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "d3:8b:35:a0:d4:6c:eb:76:68:1d:c1:48:27:7b:81:37"
 
 jobs:
   install:
@@ -106,11 +111,7 @@ jobs:
     executor: docker-node
     steps:
       - checkout
-      - run:
-          name: Setup git user
-          command: |
-            git config user.email "auto-merger@qlik.com"
-            git config user.name $GIT_USER
+      - setup_write_access
       - run:
           name: Prepare release
           command: |
@@ -142,7 +143,7 @@ jobs:
             NODE_ENV=production yarn run build --concurrency 2
       - run:
           name: Remove tag trigger
-          command: git push -q https://$GH_ACCESS_TOKEN@github.com/qlik-oss/dist-flow.git :refs/tags/$CIRCLE_TAG
+          command: git push origin :refs/tags/$CIRCLE_TAG
           when: on_fail
       - persist_to_workspace:
           root: ~/dist-flow
@@ -153,6 +154,7 @@ jobs:
     executor: docker-node
     steps:
       - use_workspace
+      - setup_write_access
       - run:
           name: Source DIST_FLOW environment variables
           command: cat ENV.tmp >> $BASH_ENV
@@ -165,14 +167,14 @@ jobs:
 
       # for some odd reason git will push the tags even if the commit can't be pushed
       # so we do a dry-run push first to make sure it's possible to push the commit
-      - run: git push -n -q https://$GH_ACCESS_TOKEN@github.com/qlik-oss/dist-flow.git $DIST_FLOW_BRANCH
-      - run: git push --follow-tags -q https://$GH_ACCESS_TOKEN@github.com/qlik-oss/dist-flow.git $DIST_FLOW_BRANCH
+      - run: git push origin -n $DIST_FLOW_BRANCH
+      - run: git push origin --follow-tags $DIST_FLOW_BRANCH
       - run:
           name: Publish packages
           command: ./.circleci/publish.sh
       - run:
           name: Remove tag trigger
-          command: git push -q https://$GH_ACCESS_TOKEN@github.com/qlik-oss/dist-flow.git :refs/tags/$DIST_FLOW_TAG_TRIGGER
+          command: git push origin :refs/tags/$DIST_FLOW_TAG_TRIGGER
           when: always
 
 workflows:
