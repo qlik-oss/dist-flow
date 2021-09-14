@@ -113,6 +113,11 @@ jobs:
       - checkout
       - setup_write_access
       - run:
+          name: Setup git user
+          command: |
+            git config user.email "auto-merger@qlik.com"
+            git config user.name "release-script"
+      - run:
           name: Prepare release
           command: |
             set -e
