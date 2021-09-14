@@ -1,7 +1,7 @@
 {
   "command": {
     "version": {
-      "allowBranch": ["master", "release/**"],
+      "allowBranch": ["main", "master", "release/**"],
       "conventionalCommits": true,
       "message": "chore(release): publish 🚀 [skip ci]"
     }
