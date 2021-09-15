@@ -26,12 +26,38 @@ function switchActiveDimIndex(byDimDef) {
   }
 }
 
+function needMigrateOldSnapshotColorData(layout) {
+  if (!layout.snapshotData) {
+    return false;
+  }
+  if (layout.snapshotData.content.chartData.legendDataPage) {
+    return false;
+  }
+  if (!layout.qUndoExclude.legendData) {
+    return false;
+  }
+  return true;
+}
+function migrateOldSnapshotColorData(layout) {
+  // avoid modifying the existing layout object
+  layout = extend({}, layout);
+  layout.snapshotData = extend({}, layout.snapshotData);
+  layout.snapshotData.content = extend({}, layout.snapshotData.content);
+  layout.snapshotData.content.chartData = extend({}, layout.snapshotData.content.chartData);
+
+  layout.snapshotData.content.chartData.legendDataPage = layout.qUndoExclude.legendData.qDataPages;
+}
+
 export default function create({ app, layout, localeInfo, model, picasso, environment }) {
   const { theme, translator } = environment;
   const colorSettings = extend(true, {}, layout.color.point);
   if (layout.qHyperCube.qDimensionInfo.length === 2) {
     switchActiveDimIndex(colorSettings.byDimDef); // compensate for that the distribution plot dimension are in an different order
   }
+  if (needMigrateOldSnapshotColorData(layout)) {
+    layout = migrateOldSnapshotColorData(layout);
+  }
+
   return createColorService({
     app,
     model,
