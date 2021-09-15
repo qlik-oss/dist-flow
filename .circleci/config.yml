@@ -132,6 +132,10 @@ jobs:
             set -e
             git checkout "$DIST_FLOW_BRANCH"
             git reset --hard "$CIRCLE_SHA1"
+      - save_cache:
+          key: know-hosts-{{ .Revision }}
+          paths:
+            - ~/.ssh/known_hosts
       - restore_cache:
           key: v2-yarn-deps-{{ checksum "yarn.lock" }}
       - run: yarn install --frozen-lockfile
@@ -160,6 +164,8 @@ jobs:
     steps:
       - use_workspace
       - setup_write_access
+      - restore_cache:
+          key: know-hosts-{{ .Revision }}
       - run:
           name: Source DIST_FLOW environment variables
           command: cat ENV.tmp >> $BASH_ENV
