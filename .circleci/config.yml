@@ -222,15 +222,10 @@ workflows:
           filters: *filter_auto_release
           requires:
             - install_build_auto
-      - approve:
-          type: approval
+      - publish:
           filters: *filter_auto_release
           requires:
             - install_build_auto
             - lint
             - test-unit
             - test-rendering
-      - publish:
-          filters: *filter_auto_release
-          requires:
-            - approve
