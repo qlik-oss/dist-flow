@@ -12830,11 +12830,6 @@ q@^1.1.2, q@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
 
-qlik-chart-modules@0.13.9:
-  version "0.13.9"
-  resolved "https://registry.yarnpkg.com/qlik-chart-modules/-/qlik-chart-modules-0.13.9.tgz#e4d0474e949fc1585de8f80feb7e034c83e05d1f"
-  integrity sha512-ZUfRTm1l1/awOZ7EpCuG9SMGPmQ2UPtLk4JLCb5Nk0wk9F6K6FLBvBDuWGvgJw9rJT4b9XuQbu/k5Su0wufnsw==
-
 qlik-chart-modules@0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/qlik-chart-modules/-/qlik-chart-modules-0.14.0.tgz#bb2fbfdacff62b5062875890b414c96aa2ec2f14"
