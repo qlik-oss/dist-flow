@@ -32,7 +32,7 @@ export default function ext(env) {
       });
     },
     exportProperties(propertyTree, hyperCubePath, viewDataMode) {
-      exportProperties({ propertyTree, viewDataMode });
+      return exportProperties({ propertyTree, viewDataMode });
     },
   };
 }
