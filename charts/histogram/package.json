@@ -19,6 +19,7 @@
   ],
   "files": [
     "api-specifications",
+    "core",
     "dist"
   ],
   "qext": {
