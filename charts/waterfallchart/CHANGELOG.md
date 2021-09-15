@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.3](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.25.2...@nebula.js/sn-waterfall@0.25.3) (2021-09-15)
+
+
+### Bug Fixes
+
+* update qlik-chart-common version to fix color in snapshot ([#75](https://github.com/qlik-oss/nebula.js/issues/75)) ([cb0aa65](https://github.com/qlik-oss/nebula.js/commit/cb0aa65c240c4ada005f06cef7c97d0091890cf8))
+
+
+
+
+
 ## [0.25.2](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.25.1...@nebula.js/sn-waterfall@0.25.2) (2021-09-15)
 
 
