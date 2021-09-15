@@ -863,7 +863,6 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
     snapshotLayout[DATA_PATH][HYPERCUBE_PATH].qStackedDataPages =
       this.layout[DATA_PATH][HYPERCUBE_PATH].qStackedDataPages;
-    snapshotLayout[DATA_PATH].legendData = this.layout[DATA_PATH].legendData;
     columnOrderAdapter.toBefore(snapshotLayout);
     return snapshotLayout;
   },
