@@ -260,7 +260,7 @@ export default function propertyDefinition(env) {
       othersGroup: {
         items: {
           label: {
-            options: isEnabled('SENSECLIENT_LAYERED_LABELS')
+            options: flags.isEnabled('SENSECLIENT_LAYERED_LABELS')
               ? [
                   {
                     value: 'auto',
