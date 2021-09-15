@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.2](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.25.1...@nebula.js/sn-waterfall@0.25.2) (2021-09-15)
+
+
+### Bug Fixes
+
+* **waterfall:** add missing return to fix export ([#73](https://github.com/qlik-oss/nebula.js/issues/73)) ([c26a6b5](https://github.com/qlik-oss/nebula.js/commit/c26a6b599ced35a7cf10e21af4df20faf85c45ac))
+
+
+
+
+
 ## [0.25.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.25.0...@nebula.js/sn-waterfall@0.25.1) (2021-09-15)
 
 **Note:** Version bump only for package @nebula.js/sn-waterfall
