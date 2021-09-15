@@ -46,6 +46,7 @@ function migrateOldSnapshotColorData(layout) {
   layout.snapshotData.content.chartData = extend({}, layout.snapshotData.content.chartData);
 
   layout.snapshotData.content.chartData.legendDataPage = layout.qUndoExclude.legendData.qDataPages;
+  return layout;
 }
 
 export default function create({ app, layout, localeInfo, model, picasso, environment }) {
