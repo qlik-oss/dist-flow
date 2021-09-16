@@ -12,7 +12,8 @@
     "test": "npm run test:unit",
     "test:rendering": "aw puppet --glob 'test/rendering/**/*.spec.js' --mocha.bail false",
     "test:rendering:ci": "node ./scripts/rendering-test.js",
-    "test:unit": "jest"
+    "test:unit": "jest",
+    "version": "yarn specs && git add **/*/api-specifications"
   },
   "keywords": [],
   "author": "",
