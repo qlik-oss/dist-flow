@@ -136,15 +136,13 @@ const ChartView = Class.extend({
   },
 
   addSnapshotChartSettings(settings, layout) {
-    const { freeResize, maximizeSnapshot } = this.environment.options;
+    const { freeResize } = this.environment.options;
     if (!freeResize && layout.snapshotData) {
       settings.dockLayout.logicalSize = {
         width: layout.snapshotData.content.size.w,
         height: layout.snapshotData.content.size.h,
+        preserveAspectRatio: true,
       };
-      if (maximizeSnapshot) {
-        settings.dockLayout.logicalSize.preserveAspectRatio = true;
-      }
     }
   },
 
