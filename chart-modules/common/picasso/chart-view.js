@@ -194,6 +194,9 @@ const ChartView = Class.extend({
   },
 
   setSnapshotData(snapshotLayout) {
+    if (!snapshotLayout.snapshotData) {
+      snapshotLayout.snapshotData = {};
+    }
     snapshotLayout.snapshotData.content = {
       // eslint-disable-line no-param-reassign
       chartData: {},
