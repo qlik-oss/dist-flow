@@ -3,7 +3,7 @@
   "info": {
     "name": "@nebula.js/sn-waterfall:properties",
     "description": "Waterfall chart generic object definition",
-    "version": "0.25.3",
+    "version": "0.25.5",
     "license": "MIT",
     "stability": "experimental",
     "x-qlik-visibility": "private"

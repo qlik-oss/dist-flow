@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.5](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.25.4...@nebula.js/sn-waterfall@0.25.5) (2021-09-16)
+
+**Note:** Version bump only for package @nebula.js/sn-waterfall
+
+
+
+
+
 ## [0.25.4](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.25.3...@nebula.js/sn-waterfall@0.25.4) (2021-09-16)
 
 **Note:** Version bump only for package @nebula.js/sn-waterfall
