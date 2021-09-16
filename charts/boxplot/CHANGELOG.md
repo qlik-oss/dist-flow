@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.25.2...@nebula.js/sn-boxplot@0.26.0) (2021-09-16)
+
+
+### Bug Fixes
+
+* fix undefined error ([c50bb39](https://github.com/qlik-oss/nebula.js/commit/c50bb394bf30b1599a4538f04af35867d8a61e4e))
+
+
+### Features
+
+* add layered labels to box plot ([17b1460](https://github.com/qlik-oss/nebula.js/commit/17b1460ab304d737852bd1114701cae15c82ba05))
+
+
+
+
+
 ## [0.25.2](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.25.1...@nebula.js/sn-boxplot@0.25.2) (2021-09-15)
 
 
