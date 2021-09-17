@@ -888,7 +888,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
   },
 
   getDisclaimerAttributes(layout) {
-    const showDisclaimer = this.flags.isEnabled('SHOW_DISCLAIMER') ? !(layout.showDisclaimer === false) : true;
+    const showDisclaimer = this.flags.isEnabled('SHOW_DISCLAIMER2') ? !(layout.showDisclaimer === false) : true;
     const scrollSettings = getPicassoScrollSettings(layout, this._scrollHandler.getScrollViewSizeInItem());
     let explicitLimitedData;
     if (
