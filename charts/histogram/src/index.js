@@ -4,6 +4,7 @@ import {
   useElement,
   useModel,
   usePromise,
+  useRenderState,
   useSelections,
   useState,
   useStaleLayout,
@@ -40,6 +41,7 @@ export default function supernova(env) {
       const model = useModel();
       const selections = useSelections();
       const layout = useStaleLayout();
+      const renderState = useRenderState();
 
       const [instance, setInstance] = useState();
 
@@ -54,6 +56,7 @@ export default function supernova(env) {
           lasso,
           picasso,
           selectionsApi,
+          renderState,
         });
 
         setInstance(view);
