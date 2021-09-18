@@ -8,6 +8,7 @@ import formatting from '@qlik/common/picasso/formatting';
 import stringUtil from '@qlik/common/extra/string-util';
 import CubeGenerator from './waterfallchart-cube-generator-by-measures';
 import waterfallUtils from './waterfallchart-utils';
+import tickGenerator from './waterfallchart-tick-generator';
 
 const chartID = waterfallUtils.chartID;
 const MAX_GLYPH_COUNT = 20;
@@ -348,6 +349,9 @@ function createChartSettings(layout) {
       component: {
         expand: 0,
         include: [0], // Make sure that the measure axis starts from 0.
+        ticks: {
+          values: () => tickGenerator.getTicks({ layout, height }),
+        },
       },
     },
 
