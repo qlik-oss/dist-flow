@@ -46,6 +46,6 @@
     "qlik-object-conversion": "0.7.0"
   },
   "peerDependencies": {
-    "@nebula.js/stardust": ">=1.4.0"
+    "@nebula.js/stardust": ">=2.0.0-beta.1"
   }
 }

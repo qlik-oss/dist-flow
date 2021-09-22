@@ -6,6 +6,7 @@ import {
   useElement,
   useModel,
   usePromise,
+  useRenderState,
   useSelections,
   useState,
   useStaleLayout,
@@ -49,6 +50,7 @@ export default function supernova(env) {
       const lasso = useLasso();
       const app = useApp();
       const appLayout = useAppLayout();
+      const renderState = useRenderState();
 
       const [instance, setInstance] = useState();
 
@@ -86,8 +88,10 @@ export default function supernova(env) {
           const properties = await model.getEffectiveProperties();
           const updatingDerivedProperties = await instance.updateDerivedProperties(properties, layout);
           if (updatingDerivedProperties) {
+            renderState.pending();
             return;
           }
+          renderState.restore();
         }
 
         // TODO: confim selection if triggered from engine (another websocket to the same session (browser tab))

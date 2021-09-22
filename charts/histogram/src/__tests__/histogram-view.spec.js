@@ -20,6 +20,7 @@ describe('Histogram', () => {
   let picasso;
   let translator;
   let theme;
+  let renderState;
   const sandbox = sinon.createSandbox();
 
   beforeEach(() => {
@@ -90,6 +91,11 @@ describe('Histogram', () => {
       watchActivated() {},
     };
 
+    renderState = {
+      pending: sandbox.stub(),
+      restore: sandbox.stub(),
+    };
+
     lasso = null;
     flags = null;
     picasso = picassoSetup();
@@ -106,6 +112,7 @@ describe('Histogram', () => {
       options,
       backendApi,
       selectionsApi,
+      renderState,
     });
   });
 

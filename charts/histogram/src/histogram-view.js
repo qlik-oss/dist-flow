@@ -14,8 +14,10 @@ const chartID = 'object.histogram';
 // Implementation details
 //
 
-function init({ environment, lasso, picasso, $element, backendApi, selectionsApi }) {
+function init({ environment, lasso, picasso, $element, backendApi, selectionsApi, renderState }) {
   this._super(picasso, $element, environment, backendApi, selectionsApi);
+
+  this.renderState = renderState;
 
   this.picassoElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM
 
@@ -146,6 +148,7 @@ function updateData(layout) {
           };
 
           if (!self._derivedProperties.isDerivedUpToDate(settings)) {
+            self.renderState.pending();
             return self._derivedProperties.updateDerivedProperties(settings);
           }
           if (!layout.qUndoExclude) {
@@ -153,6 +156,7 @@ function updateData(layout) {
             return Promise.resolve();
           }
 
+          self.renderState.restore();
           self.backendApi.updateCache(layout.qUndoExclude.box);
 
           return self.getData(self.backendApi, layout.qUndoExclude.box.qHyperCube, rect);

@@ -4,6 +4,7 @@ import {
   useElement,
   useModel,
   usePromise,
+  useRenderState,
   useSelections,
   useState,
   useStaleLayout,
@@ -64,6 +65,7 @@ function useUpdate(instance, environment) {
   const layout = useStaleLayout();
   const model = useModel();
   const constraints = useConstraints();
+  const renderState = useRenderState();
 
   const [, error] = usePromise(async () => {
     if (!instance) {
@@ -77,8 +79,10 @@ function useUpdate(instance, environment) {
       const properties = await model.getEffectiveProperties();
       const updatingDerivedProperties = await instance.updateDerivedProperties(properties, layout);
       if (updatingDerivedProperties) {
+        renderState.pending();
         return;
       }
+      renderState.restore();
     }
 
     // TODO: confim selection if triggered from engine (another websocket to the same session (browser tab))
