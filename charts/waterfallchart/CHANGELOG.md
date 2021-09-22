@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.6](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.25.5...@nebula.js/sn-waterfall@0.25.6) (2021-09-22)
+
+
+### Bug Fixes
+
+* display set min/max ([d359ae9](https://github.com/qlik-oss/nebula.js/commit/d359ae9e7b2bdaaeb39c15760fb480bb68af5c44))
+
+
+
+
+
 ## [0.25.5](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.25.4...@nebula.js/sn-waterfall@0.25.5) (2021-09-16)
 
 **Note:** Version bump only for package @nebula.js/sn-waterfall

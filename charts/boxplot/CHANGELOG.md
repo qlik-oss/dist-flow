@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.2](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.26.1...@nebula.js/sn-boxplot@0.26.2) (2021-09-22)
+
+
+### Bug Fixes
+
+* onRendered ([#82](https://github.com/qlik-oss/nebula.js/issues/82)) ([7d87364](https://github.com/qlik-oss/nebula.js/commit/7d87364f49b2e41f70f25f279a986c26c4dd3801))
+
+
+
+
+
 ## [0.26.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.26.0...@nebula.js/sn-boxplot@0.26.1) (2021-09-16)
 
 **Note:** Version bump only for package @nebula.js/sn-boxplot
