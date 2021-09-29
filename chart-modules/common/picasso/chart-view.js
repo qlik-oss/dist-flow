@@ -63,6 +63,8 @@ const ChartView = Class.extend({
     // Set properties that should be available in subclasses
 
     this.picassoElement = $element[0];
+    this.picassoElement.className += ' picasso-chart';
+
     // Paint a visually empty Picasso chart containing an event-area component
     this.chartInstance = picasso.chart({
       element: this.picassoElement,
