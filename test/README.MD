@@ -8,6 +8,26 @@ Here is how you do it:
 - Step 1: run `yarn test:rendering:ci` 
 
 
+# Tests Histogram
+
+-histogram_with_others:
+color set
+
+-histogram_basic_1:
+color set,
+value labels on,
+frequency label changed
+
+-histogram_basic_2:
+range set,
+axis changed to other side,
+gridline spacing changed
+
+-histogram_basic_3:
+all axes removed,
+gridlines removed,
+value labels on
+
 # Tests Dist_plot
 
 -distplot_with_others:
