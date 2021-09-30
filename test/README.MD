@@ -29,12 +29,25 @@ jitter turned on,
 points only
 
 -distplot_basic_3:
-3 Dimension,
+2 Dimension,
 ref line,
 jitter turned on,
 points only,
 color by dimension,
 x and y axis removed
+
+-distplot_basic_4:
+2 Dimension,
+ref line outside,
+y axis range data outside
+
+-distplot_basic_5:
+2 Dimension,
+color by expression,
+jitter on,
+points size changed
+
+
 
 # Tests Box_plot
 
