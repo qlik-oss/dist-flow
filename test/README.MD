@@ -7,7 +7,6 @@ Here is how you do it:
 
 - Step 1: run `yarn test:rendering:ci` 
 
-
 # Tests Histogram
 
 -histogram_with_others:
@@ -67,10 +66,7 @@ color by expression,
 jitter on,
 points size changed
 
-
-
 # Tests Box_plot
-
 
 -boxplot_basic_1:
 1 dimension,
@@ -117,7 +113,6 @@ max min range set,
 outside arrows seen,
 
 # Tests Waterfall
-
 
 -Waterfall_basic:
 3 measures,
