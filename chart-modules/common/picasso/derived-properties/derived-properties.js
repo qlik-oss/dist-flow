@@ -45,7 +45,7 @@ function updateDerivedProperties(settings) {
   const self = this;
   const model = settings.model;
   const layout = settings.layout;
-  const properties = settings.properties;
+  const properties = extend(true, {}, settings.properties);
   const prevProperties = extend(true, {}, properties);
 
   this._generationInProgress = true;
