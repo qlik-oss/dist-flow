@@ -22,13 +22,13 @@
     "@after-work.js/aw": "6.0.14",
     "@babel/preset-env": "7.15.6",
     "@babel/preset-react": "7.14.5",
-    "@nebula.js/cli": "2.0.0-beta.1",
-    "@nebula.js/cli-build": "2.0.0-beta.1",
-    "@nebula.js/cli-sense": "2.0.0-beta.1",
-    "@nebula.js/cli-serve": "2.0.0-beta.1",
+    "@nebula.js/cli": "2.0.0",
+    "@nebula.js/cli-build": "2.0.0",
+    "@nebula.js/cli-sense": "2.0.0",
+    "@nebula.js/cli-serve": "2.0.0",
     "@testing-library/jest-dom": "5.14.1",
     "babel-eslint": "10.1.0",
-    "babel-jest": "27.2.2",
+    "babel-jest": "27.2.4",
     "babel-loader": "8.2.2",
     "chai": "4.3.4",
     "enigma.js": "2.7.3",
@@ -39,13 +39,13 @@
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-mocha": "9.0.0",
     "eslint-plugin-prettier": "4.0.0",
-    "eslint-plugin-react": "7.26.0",
+    "eslint-plugin-react": "7.26.1",
     "extend": "3.0.2",
     "fs-extra": "10.0.0",
     "html-webpack-plugin": "5.3.2",
-    "jest": "27.2.2",
+    "jest": "27.2.4",
     "jest-canvas-mock": "2.3.1",
-    "jest-circus": "27.2.2",
+    "jest-circus": "27.2.4",
     "jest-junit": "12.3.0",
     "jsdoc-to-markdown": "7.0.1",
     "lerna": "4.0.0",
@@ -54,7 +54,7 @@
     "scriptappy-from-jsdoc": "0.7.0",
     "sinon": "11.1.2",
     "sinon-chai": "3.7.0",
-    "webpack": "5.54.0",
+    "webpack": "5.56.0",
     "webpack-dev-server": "3.11.2"
   },
   "workspaces": [
@@ -62,6 +62,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001260"
+    "**/caniuse-lite": "1.0.30001263"
   }
 }
