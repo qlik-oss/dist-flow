@@ -62,6 +62,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001263"
+    "**/caniuse-lite": "1.0.30001264"
   }
 }
