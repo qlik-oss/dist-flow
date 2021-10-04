@@ -129,7 +129,7 @@ describe('derived properties', () => {
       // Check that it got the correct arguments
       expect(settings.generateDerivedProperties.called).to.be.true;
       expect(settings.generateDerivedProperties.args[0][0]).to.equal(settings.layout);
-      expect(settings.generateDerivedProperties.args[0][1]).to.equal(settings.properties);
+      expect(settings.generateDerivedProperties.args[0][1]).to.not.equal(settings.properties);
     });
 
     it.skip("should update 'private' state indicating if generation is in progress", () => {
