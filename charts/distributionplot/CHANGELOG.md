@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.11](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.25.10...@nebula.js/sn-distributionplot@0.25.11) (2021-10-04)
+
+
+### Bug Fixes
+
+* handle more cases of missing properties ([#100](https://github.com/qlik-oss/nebula.js/issues/100)) ([ae16d9d](https://github.com/qlik-oss/nebula.js/commit/ae16d9d3c1cdbbef1643eb3f59210a8fcce555a0))
+
+
+
+
+
 ## [0.25.10](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.25.9...@nebula.js/sn-distributionplot@0.25.10) (2021-10-04)
 
 **Note:** Version bump only for package @nebula.js/sn-distributionplot
