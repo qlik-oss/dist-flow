@@ -58,6 +58,9 @@ export default function create({ app, layout, localeInfo, model, picasso, enviro
   if (needMigrateOldSnapshotColorData(layout)) {
     layout = migrateOldSnapshotColorData(layout);
   }
+  if (!colorSettings.mode) {
+    colorSettings.mode = 'primary';
+  }
 
   return createColorService({
     app,
@@ -67,7 +70,7 @@ export default function create({ app, layout, localeInfo, model, picasso, enviro
     config: {
       localeInfo,
       theme,
-      key: 'color', // KEYS.SCALE.MAIN.COLOR, KEYS.SCALE.COLOR
+      key: 'color',
       definitionPath: '/qUndoExclude/qHyperCubeDef',
     },
     createConfig: () => ({
