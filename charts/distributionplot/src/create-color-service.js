@@ -30,10 +30,10 @@ function needMigrateOldSnapshotColorData(layout) {
   if (!layout.snapshotData) {
     return false;
   }
-  if (layout.snapshotData.content.chartData.legendDataPage) {
+  if (layout.snapshotData.content?.chartData?.legendDataPage) {
     return false;
   }
-  if (!layout.qUndoExclude.legendData) {
+  if (!layout.qUndoExclude?.legendData) {
     return false;
   }
   return true;
