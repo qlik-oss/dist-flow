@@ -178,7 +178,9 @@ const ChartView = Class.extend({
       settings,
       partialData: isPartialData,
     });
-    // this.picassoElement.setAttribute('data-state', States.DATA.UPDATED); // For integration test
+
+    const STATE_DATA_UPDATED = 2;
+    this.picassoElement.setAttribute('data-state', STATE_DATA_UPDATED); // For integration test
   },
 
   destroy() {
