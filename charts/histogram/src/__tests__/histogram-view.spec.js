@@ -11,21 +11,17 @@ const expect = chai.expect;
 describe('Histogram', () => {
   let histogram;
   let $element;
-  let options;
   let backendApi;
+  let environment;
   let selectionsApi;
   let properties;
   let lasso;
-  let flags;
   let picasso;
-  let translator;
-  let theme;
   let renderState;
   const sandbox = sinon.createSandbox();
 
   beforeEach(() => {
     $element = $("<div><div class='picasso-chart'></div></div>");
-    options = {};
     properties = {
       qHyperCubeDef: {
         qDimensions: [
@@ -97,19 +93,16 @@ describe('Histogram', () => {
     };
 
     lasso = null;
-    flags = null;
     picasso = picassoSetup();
-    translator = null;
-    theme = null;
+    environment = {
+      app: 'app',
+    };
 
     histogram = new Histogram({
+      environment,
       lasso,
-      flags,
       picasso,
-      translator,
-      theme,
       $element,
-      options,
       backendApi,
       selectionsApi,
       renderState,

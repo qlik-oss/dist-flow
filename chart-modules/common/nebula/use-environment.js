@@ -1,6 +1,7 @@
-import { useAppLayout, useTranslator, useOptions, useMemo, useTheme, useDeviceType } from '@nebula.js/stardust';
+import { useApp, useAppLayout, useTranslator, useOptions, useMemo, useTheme, useDeviceType } from '@nebula.js/stardust';
 
 export default function useEnvironment() {
+  const app = useApp();
   const appLayout = useAppLayout();
   const deviceType = useDeviceType();
   const options = useOptions();
@@ -9,13 +10,14 @@ export default function useEnvironment() {
 
   const environment = useMemo(
     () => ({
+      app,
       appLayout,
       deviceType,
       options,
       theme,
       translator,
     }),
-    [appLayout, options.direction, options.freeResize, translator.language(), theme.name(), deviceType]
+    [app, appLayout, options.direction, options.freeResize, translator.language(), theme.name(), deviceType]
   );
 
   return environment;

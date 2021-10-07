@@ -130,7 +130,7 @@ function updateData(layout) {
         .addDefaultHyperCubeHash(
           properties.qHyperCubeDef,
           layout.qHyperCube,
-          model.app,
+          self.environment.app,
           getHashData(layout, properties)
         )
         .then((hashData) => {
@@ -143,7 +143,7 @@ function updateData(layout) {
             model,
             hashData,
             generateDerivedProperties(layout, properties) {
-              return cubesGenerator.generateHyperCubes(layout, properties, model.app, self.environment);
+              return cubesGenerator.generateHyperCubes(layout, properties, self.environment);
             },
           };
 

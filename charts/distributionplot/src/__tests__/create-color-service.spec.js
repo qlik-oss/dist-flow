@@ -13,7 +13,7 @@ describe('create-color-service', () => {
     const localeInfo = 'localeInfo';
     const theme = 'theme';
     const translator = 'translator';
-    const environment = { theme, translator };
+    const environment = { app, theme, translator };
     layout = {
       color: {
         point: null,
@@ -23,7 +23,7 @@ describe('create-color-service', () => {
       },
     };
 
-    const args = { app, layout, localeInfo, model, picasso, environment };
+    const args = { layout, localeInfo, model, picasso, environment };
     create = () => createColorService(args);
   });
 

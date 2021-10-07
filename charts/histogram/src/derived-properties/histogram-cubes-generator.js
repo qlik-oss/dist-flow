@@ -4,8 +4,8 @@ import ExpressionGenerator from '@qlik/common/picasso/expression-generator/expre
 import histogramMappings from './histogram-mappings';
 import histogramUtils from '../histogram-utils';
 
-async function generateHyperCubes(layout, properties, app, environment) {
-  const { translator } = environment;
+async function generateHyperCubes(layout, properties, environment) {
+  const { app, translator } = environment;
   const mappingValues = histogramMappings.getMappingValues(layout);
   const mappings = histogramMappings.getMappings(mappingValues);
 
