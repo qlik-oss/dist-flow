@@ -144,4 +144,18 @@ describe('Histogram', () => {
       });
     });
   });
+
+  describe('getDisclaimerAttributes', () => {
+    it('should set explicitRequireNumericDimension to true if dimension is not numeric', () => {
+      const layout = { qHyperCube: { qDimensionInfo: [{ qTags: ['$text'] }] } };
+      const attributes = histogram.getDisclaimerAttributes(layout);
+      expect(attributes.options.explicitRequireNumericDimension).to.eql(true);
+    });
+
+    it('should set explicitRequireNumericDimension to true if dimension is not numeric', () => {
+      const layout = { qHyperCube: { qDimensionInfo: [{ qTags: ['$numeric'] }] } };
+      const attributes = histogram.getDisclaimerAttributes(layout);
+      expect(attributes.options.explicitRequireNumericDimension).to.eql(false);
+    });
+  });
 });

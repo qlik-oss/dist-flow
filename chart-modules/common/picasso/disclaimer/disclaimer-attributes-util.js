@@ -60,14 +60,6 @@ const util = {
     return qHyperCube.qSize.qcy * qHyperCube.qSize.qcx === 0;
   },
 
-  getRequireNumericDimensionAttribute(qHyperCube, opts) {
-    return (
-      opts.requireNumericDimension &&
-      qHyperCube.qDimensionInfo.length > 0 &&
-      qHyperCube.qDimensionInfo[0].qTags.indexOf('$numeric') === -1
-    );
-  },
-
   getLimitedDataAttribute(qHyperCube, opts) {
     let result = false;
     let maxNbrOfDimensions;
@@ -136,7 +128,7 @@ const util = {
     if (dataAttributes.NoDataExist) {
       return dataAttributes;
     }
-    dataAttributes.RequireNumericDimension = this.getRequireNumericDimensionAttribute(data.qHyperCube, opts);
+    dataAttributes.RequireNumericDimension = opts.explicitRequireNumericDimension;
     if (dataAttributes.RequireNumericDimension) {
       return dataAttributes;
     }
