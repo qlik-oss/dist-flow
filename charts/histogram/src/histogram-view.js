@@ -55,6 +55,10 @@ function setSnapshotData(snapshotLayout) {
   return Promise.resolve(snapshotLayout);
 }
 
+function getRequireNumericDimensionAttribute(qHyperCube) {
+  return qHyperCube.qDimensionInfo.length > 0 && qHyperCube.qDimensionInfo[0].qTags.indexOf('$numeric') === -1;
+}
+
 function getDisclaimerAttributes(layout) {
   function isOnlyNanData() {
     const rows = getValue(layout, 'qUndoExclude.box.qHyperCube.qDataPages.0.qMatrix', []);
@@ -77,7 +81,7 @@ function getDisclaimerAttributes(layout) {
       bottom: true,
       supportNegative: false,
       explicitOnlyNanData: onlyNanData,
-      requireNumericDimension: true,
+      explicitRequireNumericDimension: getRequireNumericDimensionAttribute(layout.qHyperCube),
     },
   };
 }
