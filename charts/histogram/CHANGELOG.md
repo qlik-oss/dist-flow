@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.9](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.25.8...@nebula.js/sn-histogram@0.25.9) (2021-10-07)
+
+
+### Bug Fixes
+
+* **histogram:** correct require numeric dimension discalimer ([#103](https://github.com/qlik-oss/nebula.js/issues/103)) ([51d658d](https://github.com/qlik-oss/nebula.js/commit/51d658dd16fcf3e2628f9e9aa81a7ef5ec5c007b))
+* remove use of model.app (not working outside sense) ([#102](https://github.com/qlik-oss/nebula.js/issues/102)) ([13ea089](https://github.com/qlik-oss/nebula.js/commit/13ea089546d9646b086a2cc09fdcd9dee0c44fa6))
+
+
+
+
+
 ## [0.25.8](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.25.7...@nebula.js/sn-histogram@0.25.8) (2021-10-04)
 
 **Note:** Version bump only for package @nebula.js/sn-histogram

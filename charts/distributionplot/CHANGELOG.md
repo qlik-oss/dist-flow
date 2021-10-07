@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.12](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.25.11...@nebula.js/sn-distributionplot@0.25.12) (2021-10-07)
+
+
+### Bug Fixes
+
+* remove use of model.app (not working outside sense) ([#102](https://github.com/qlik-oss/nebula.js/issues/102)) ([13ea089](https://github.com/qlik-oss/nebula.js/commit/13ea089546d9646b086a2cc09fdcd9dee0c44fa6))
+
+
+
+
+
 ## [0.25.11](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.25.10...@nebula.js/sn-distributionplot@0.25.11) (2021-10-04)
 
 

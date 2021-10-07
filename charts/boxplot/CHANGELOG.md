@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.6](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.26.5...@nebula.js/sn-boxplot@0.26.6) (2021-10-07)
+
+
+### Bug Fixes
+
+* remove use of model.app (not working outside sense) ([#102](https://github.com/qlik-oss/nebula.js/issues/102)) ([13ea089](https://github.com/qlik-oss/nebula.js/commit/13ea089546d9646b086a2cc09fdcd9dee0c44fa6))
+
+
+
+
+
 ## [0.26.5](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.26.4...@nebula.js/sn-boxplot@0.26.5) (2021-10-04)
 
 **Note:** Version bump only for package @nebula.js/sn-boxplot
