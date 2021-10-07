@@ -32,10 +32,10 @@ function getBackedApi(model, layout) {
 
 function useView(env, picasso, environment) {
   const element = useElement();
-  const selections = useSelections();
-  const layout = useStaleLayout();
   const model = useModel();
   const lasso = useLasso();
+  const selections = useSelections();
+  const layout = useStaleLayout();
 
   const [instance, setInstance] = useState();
   useEffect(() => {

@@ -928,13 +928,13 @@ const BoxPlot = ChartView.extend('BoxPlot', {
   },
 
   updateDerivedProperties(properties, layout) {
-    const { translator } = this.environment;
+    const { app, translator } = this.environment;
     const self = this;
     const model = self.backendApi.model;
 
-    return getHashData(properties, model.app).then((hashData) =>
+    return getHashData(properties, app).then((hashData) =>
       self._derivedProperties
-        .addDefaultHyperCubeHash(properties.boxplotDef.qHyperCubeDef, layout.boxplotDef.qHyperCube, model.app, hashData)
+        .addDefaultHyperCubeHash(properties.boxplotDef.qHyperCubeDef, layout.boxplotDef.qHyperCube, app, hashData)
         .then((hashData) => {
           const settings = {
             layout,
@@ -942,7 +942,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
             model,
             hashData,
             generateDerivedProperties(layout, properties) {
-              return generateDerivedProperties(layout, properties, model.app, translator);
+              return generateDerivedProperties(layout, properties, app, translator);
             },
           };
 

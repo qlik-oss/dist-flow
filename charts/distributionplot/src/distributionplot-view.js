@@ -895,7 +895,6 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
   async _updateColorMapData(layout) {
     this.colorService = createColorService({
-      app: this.app,
       layout,
       localeInfo: this.localeInfo,
       model: this.backendApi.model,
@@ -928,12 +927,12 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
   },
 
   updateDerivedProperties(properties, layout) {
-    const { translator } = this.environment;
+    const { app, translator } = this.environment;
     const self = this;
     const model = self.backendApi.model;
 
     return self._derivedProperties
-      .addDefaultHyperCubeHash(properties.qHyperCubeDef, layout.qHyperCube, self.app, getHashData(properties))
+      .addDefaultHyperCubeHash(properties.qHyperCubeDef, layout.qHyperCube, app, getHashData(properties))
       .then((hashData) => {
         const derivedSettings = {
           layout,
@@ -941,7 +940,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
           model,
           hashData,
           generateDerivedProperties(layout, properties) {
-            return distributionPlotCubeGenerator.generateHyperCube(layout, properties, self.app, translator);
+            return distributionPlotCubeGenerator.generateHyperCube(layout, properties, app, translator);
           },
         };
 

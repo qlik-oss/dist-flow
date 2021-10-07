@@ -49,8 +49,8 @@ function migrateOldSnapshotColorData(layout) {
   return layout;
 }
 
-export default function create({ app, layout, localeInfo, model, picasso, environment }) {
-  const { theme, translator } = environment;
+export default function create({ layout, localeInfo, model, picasso, environment }) {
+  const { app, theme, translator } = environment;
   const colorSettings = extend(true, {}, layout.color.point);
   if (layout.qHyperCube.qDimensionInfo.length === 2) {
     switchActiveDimIndex(colorSettings.byDimDef); // compensate for that the distribution plot dimension are in an different order

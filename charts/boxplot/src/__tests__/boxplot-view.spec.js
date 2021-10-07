@@ -32,13 +32,12 @@ describe('boxplot-view', () => {
     let lasso;
     let flags;
     translator = Symbol('translator');
+    app = getFakeApp();
     const environment = {
+      app,
       translator,
     };
-    app = getFakeApp();
-    model = {
-      app,
-    };
+    model = Symbol('model');
     const backendApi = {
       model,
       setCacheOptions: () => {},

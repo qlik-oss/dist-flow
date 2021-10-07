@@ -1,6 +1,4 @@
 import {
-  useApp,
-  useAppLayout,
   useConstraints,
   useEffect,
   useElement,
@@ -48,8 +46,6 @@ export default function supernova(env) {
       const model = useModel();
       const constraints = useConstraints();
       const lasso = useLasso();
-      const app = useApp();
-      const appLayout = useAppLayout();
       const renderState = useRenderState();
 
       const [instance, setInstance] = useState();
@@ -67,7 +63,6 @@ export default function supernova(env) {
           backendApi,
           selectionsApi,
         });
-        view.app = app;
         setInstance(view);
 
         return () => {
@@ -79,7 +74,6 @@ export default function supernova(env) {
         if (!instance) {
           return;
         }
-        instance.appLayout = appLayout;
         instance.updateEnvironment(environment);
         instance.updateConstraints(constraints);
 
@@ -98,7 +92,7 @@ export default function supernova(env) {
 
         await instance.updateData(layout);
         await instance.paint();
-      }, [layout, instance, environment, appLayout]);
+      }, [layout, instance, environment]);
       if (error) {
         throw error;
       }
