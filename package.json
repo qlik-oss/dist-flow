@@ -20,8 +20,8 @@
   "license": "ISC",
   "devDependencies": {
     "@after-work.js/aw": "6.0.14",
-    "@babel/preset-env": "7.15.8",
-    "@babel/preset-react": "7.14.5",
+    "@babel/preset-env": "7.16.0",
+    "@babel/preset-react": "7.16.0",
     "@nebula.js/cli": "2.1.0",
     "@nebula.js/cli-build": "2.1.0",
     "@nebula.js/cli-sense": "2.1.0",
@@ -42,7 +42,7 @@
     "eslint-plugin-react": "7.26.1",
     "extend": "3.0.2",
     "fs-extra": "10.0.0",
-    "html-webpack-plugin": "5.4.0",
+    "html-webpack-plugin": "5.5.0",
     "jest": "27.3.1",
     "jest-canvas-mock": "2.3.1",
     "jest-circus": "27.3.1",
@@ -54,7 +54,7 @@
     "scriptappy-from-jsdoc": "0.7.0",
     "sinon": "11.1.2",
     "sinon-chai": "3.7.0",
-    "webpack": "5.59.1",
+    "webpack": "5.61.0",
     "webpack-dev-server": "3.11.2"
   },
   "workspaces": [
@@ -62,6 +62,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001271"
+    "**/caniuse-lite": "1.0.30001272"
   }
 }
