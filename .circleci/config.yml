@@ -123,13 +123,11 @@ jobs:
     steps:
       - use_workspace
       - run:
-          name: Dockerhub login
-          command: |
-            echo $DOCKERHUB_PASSWORD | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+          name: Qlik docker login
+          command: echo $DOCKER_TOKEN | docker login -u "$DOCKER_USER" --password-stdin
       - run:
-          name: Log into Github Docker Registry
-          command: |
-            echo $QLIK_DOCKER_DEV_PASSWORD | docker login -u $QLIK_DOCKER_DEV_USERNAME --password-stdin $QLIK_DOCKER_DEV_REGISTRY
+          name: Login to Github Project
+          command: echo "$APICULTURIST_TOKEN" | docker login ghcr.io -u "$APICULTURIST_GITHUB" --password-stdin
       - run:
           name: API Governance Setup
           command: |
@@ -256,6 +254,7 @@ workflows:
           requires:
             - build
       - api-governance:
+          context: api-compliance
           requires:
             - verify-specs
 
