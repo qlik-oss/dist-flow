@@ -123,8 +123,13 @@ jobs:
     steps:
       - use_workspace
       - run:
-          name: Qlik docker login
-          command: echo $DOCKER_TOKEN | docker login -u "$DOCKER_USER" --password-stdin
+          name: Dockerhub login
+          command: |
+            echo $DOCKERHUB_PASSWORD | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+      - run:
+          name: Log into Github Docker Registry
+          command: |
+            echo $QLIK_DOCKER_DEV_PASSWORD | docker login -u $QLIK_DOCKER_DEV_USERNAME --password-stdin $QLIK_DOCKER_DEV_REGISTRY
       - run:
           name: API Governance Setup
           command: |
