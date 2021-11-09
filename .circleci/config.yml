@@ -127,7 +127,7 @@ jobs:
           command: echo $DOCKER_TOKEN | docker login -u "$DOCKER_USER" --password-stdin
       - run:
           name: Login to Github Project
-          command: echo "$APICULTURIST_TOKEN" | docker login ghcr.io -u "$APICULTURIST_GITHUB" --password-stdin
+          command: echo "$APICULTURIST_TOKEN" | docker login ghcr.io/qlik-trial -u "$APICULTURIST_GITHUB" --password-stdin
       - run:
           name: API Governance Setup
           command: |
