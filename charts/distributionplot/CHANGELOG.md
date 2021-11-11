@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.13](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.25.12...@nebula.js/sn-distributionplot@0.25.13) (2021-11-11)
+
+**Note:** Version bump only for package @nebula.js/sn-distributionplot
+
+
+
+
+
 ## [0.25.12](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.25.11...@nebula.js/sn-distributionplot@0.25.12) (2021-10-07)
 
 

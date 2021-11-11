@@ -3,7 +3,7 @@
   "info": {
     "name": "@nebula.js/sn-distributionplot:properties",
     "description": "Distributionplot generic object definition",
-    "version": "0.25.12",
+    "version": "0.25.13",
     "license": "MIT",
     "stability": "experimental",
     "x-qlik-visibility": "private"

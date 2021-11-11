@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.10](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.25.9...@nebula.js/sn-histogram@0.25.10) (2021-11-11)
+
+
+### Bug Fixes
+
+* histogram not updated after removing calculated condition ([#117](https://github.com/qlik-oss/nebula.js/issues/117)) ([871fedd](https://github.com/qlik-oss/nebula.js/commit/871fedda2e65cb256e55531f962797953d8781e6))
+
+
+
+
+
 ## [0.25.9](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.25.8...@nebula.js/sn-histogram@0.25.9) (2021-10-07)
 
 
