@@ -97,6 +97,7 @@ function generateDataFromArray(arr) {
 }
 
 function generateDimensionInfoFromData(data, label) {
+  // eslint-disable-next-line camelcase
   const numUnique = Array_getUnique.call(data).length;
   const glyphCount = Math.max.apply(
     null,
