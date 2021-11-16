@@ -3,10 +3,14 @@
   "env": {
     "browser": true
   },
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "sourceType": "module",
-    "ecmaVersion": 2018
+    "requireConfigFile": false,
+    "ecmaVersion": 2018,
+    "babelOptions": {
+      "presets": ["@babel/preset-react"]
+    }
   },
   "extends": ["airbnb", "prettier"],
   "plugins": ["prettier"],
