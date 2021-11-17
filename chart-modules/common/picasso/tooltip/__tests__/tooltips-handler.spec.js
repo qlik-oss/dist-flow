@@ -29,6 +29,7 @@ describe('tooltip-handler for picasso', () => {
     mock = sandbox.mock(tooltipComponent);
     openMock = mock.expects('emit').once();
 
+    // eslint-disable-next-line no-import-assign
     createTooltip.default = sinon.stub();
 
     chartBuilder = {

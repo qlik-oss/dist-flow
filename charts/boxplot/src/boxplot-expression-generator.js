@@ -16,7 +16,7 @@ function replaceDefaultExpression(expression, innerMeasure, innerDim, outerDim) 
   // Handle fields on the fly
   innerDim = ExpressionWrapper.wrapExpression(innerDim);
   outerDim = ExpressionWrapper.wrapExpression(outerDim || '');
-  innerMeasure = innerMeasure.replace(new RegExp('^='), ''); // Remove intial '='
+  innerMeasure = innerMeasure.replace(/^=/, ''); // Remove intial '='
 
   return expression
     .replace(globalReplace('{{<OuterDim>}}'), outerDim ? `<${outerDim}>` : '')
