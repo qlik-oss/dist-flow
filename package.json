@@ -28,13 +28,13 @@
     "@nebula.js/cli-build": "2.2.0",
     "@nebula.js/cli-sense": "2.2.0",
     "@nebula.js/cli-serve": "2.2.0",
-    "@testing-library/jest-dom": "5.15.0",
+    "@testing-library/jest-dom": "5.15.1",
     "babel-jest": "27.3.1",
     "babel-loader": "8.2.3",
     "chai": "4.3.4",
     "enigma.js": "2.7.3",
     "eslint": "8.3.0",
-    "eslint-config-airbnb": "19.0.0",
+    "eslint-config-airbnb": "19.0.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-jsx-a11y": "6.5.1",
@@ -51,11 +51,11 @@
     "jsdoc-to-markdown": "7.1.0",
     "lerna": "4.0.0",
     "mocha-junit-reporter": "2.0.2",
-    "prettier": "2.4.1",
+    "prettier": "2.5.0",
     "scriptappy-from-jsdoc": "0.7.0",
     "sinon": "12.0.1",
     "sinon-chai": "3.7.0",
-    "webpack": "5.64.2",
+    "webpack": "5.64.4",
     "webpack-dev-server": "3.11.3"
   },
   "workspaces": [
@@ -63,6 +63,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001282"
+    "**/caniuse-lite": "1.0.30001283"
   }
 }
