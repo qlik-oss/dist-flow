@@ -128,24 +128,24 @@ jobs:
       - run:
           name: API Governance Setup
           command: |
-            docker pull qlik/asmquery
+            docker pull ghcr.io/qlik-download/api-compliance
             docker create -v /specs --name specs alpine:3.4 /bin/true
       - run:
           name: API Governance Boxplot Properties
           command: |
-            ./.circleci/api-gov.sh ./charts/boxplot/api-specifications/properties.json '/specs/properties.json' 77c6e2c9-3317-4c71-8d0b-cb05cb3882fc
+            ./.circleci/api-gov.sh ./charts/boxplot/api-specifications/properties.json '/specs/properties.json' 77c6e2c9-3317-4c71-8d0b-cb05cb3882fc './charts/boxplot/package.json'
       - run:
           name: API Governance Distplot Properties
           command: |
-            ./.circleci/api-gov.sh ./charts/distributionplot/api-specifications/properties.json '/specs/properties.json' 05b40971-ad90-4cd9-a15f-43297ff987ed
+            ./.circleci/api-gov.sh ./charts/distributionplot/api-specifications/properties.json '/specs/properties.json' 05b40971-ad90-4cd9-a15f-43297ff987ed './charts/distributionplot/package.json'
       - run:
           name: API Governance Histogram Properties
           command: |
-            ./.circleci/api-gov.sh ./charts/histogram/api-specifications/properties.json '/specs/properties.json' 401f0fab-a7f3-4a76-8a47-cb8161bf5290
+            ./.circleci/api-gov.sh ./charts/histogram/api-specifications/properties.json '/specs/properties.json' 401f0fab-a7f3-4a76-8a47-cb8161bf5290 './charts/histogram/package.json'
       - run:
           name: API Governance Waterfall Properties
           command: |
-            ./.circleci/api-gov.sh ./charts/waterfallchart/api-specifications/properties.json '/specs/properties.json' 6b828473-c3d7-4149-90db-cd908e9ee765
+            ./.circleci/api-gov.sh ./charts/waterfallchart/api-specifications/properties.json '/specs/properties.json' 6b828473-c3d7-4149-90db-cd908e9ee765 './charts/waterfallchart/package.json'
 
   install_build_auto:
     executor: docker-node
@@ -251,6 +251,7 @@ workflows:
           requires:
             - build
       - api-governance:
+          context: api-compliance
           requires:
             - verify-specs
 
