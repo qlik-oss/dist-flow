@@ -131,7 +131,7 @@ jobs:
       - run:
           name: API Governance Setup
           command: |
-            docker pull ghcr.io/qlik-trial/api-compliance
+            docker pull ghcr.io/qlik-download/api-compliance
             docker create -v /specs --name specs alpine:3.4 /bin/true
       - run:
           name: API Governance Boxplot Properties
