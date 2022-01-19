@@ -6,7 +6,7 @@ apiId=$3; specPath=$2; versionPath=$4
 VER=v$(cat ${versionPath} | jq -r '.version')
 
 docker run --volumes-from specs \
--e SPEC_PATHS="${apiId}@/specs/${specPath}" \
+-e SPEC_PATHS="${apiId}@/${specPath}" \
 -e COMMIT_SHA="$CIRCLE_SHA1" \
 -e RELEASE_TAG="$VER" \
 -e CREDENTIALS_S3_SECRETKEY="$APICULTURIST_S3" \
