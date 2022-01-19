@@ -12,4 +12,4 @@ docker run --volumes-from specs \
 -e CREDENTIALS_S3_SECRETKEY="$APICULTURIST_S3" \
 -e CREDENTIALS_GITHUB="$APICULTURIST_GITHUB" \
 -e CREDENTIALS_COLONY="$APICULTURIST_TOKEN" \
-ghcr.io/qlik-trial/api-compliance
+ghcr.io/qlik-download/api-compliance
