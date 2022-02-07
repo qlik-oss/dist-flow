@@ -2,9 +2,12 @@ export default {
   canModifyHardProperties,
 };
 
-function canModifyHardProperties(propsOrLayout) {
-  if (propsOrLayout.qHasSoftPatches || propsOrLayout.qExtendsId) {
+function canModifyHardProperties(layout) {
+  if (layout.qHasSoftPatches || layout.qExtendsId) {
     return false;
   }
-  return propsOrLayout.qMeta.privileges.indexOf('update') !== -1;
+  if (layout.permissions) {
+    return layout.permissions.update;
+  }
+  return layout.qMeta.privileges.indexOf('update') !== -1;
 }
