@@ -1,10 +1,10 @@
 import hardPropertiesChecker from '../hard-properties-checker';
 
 describe('set up state', () => {
-  let propsOrLayout;
+  let layout;
 
   beforeEach(() => {
-    propsOrLayout = {
+    layout = {
       qMeta: {
         privileges: ['update'],
       },
@@ -15,35 +15,42 @@ describe('set up state', () => {
   });
 
   it('should be able to update hard properties', () => {
-    const canModify = hardPropertiesChecker.canModifyHardProperties(propsOrLayout);
+    const canModify = hardPropertiesChecker.canModifyHardProperties(layout);
     expect(canModify).toBe(true);
   });
 
   it('should not allow the user to update hard properties, if no update permissions are allowed', () => {
-    propsOrLayout.qMeta.privileges = [];
-    const canModify = hardPropertiesChecker.canModifyHardProperties(propsOrLayout);
+    layout.qMeta.privileges = [];
+    const canModify = hardPropertiesChecker.canModifyHardProperties(layout);
     expect(canModify).toBe(false);
   });
 
   it('should not allow the user to update hard properties, if there exists soft patches', () => {
-    propsOrLayout.qHasSoftPatches = true;
+    layout.qHasSoftPatches = true;
 
-    const canModify = hardPropertiesChecker.canModifyHardProperties(propsOrLayout);
+    const canModify = hardPropertiesChecker.canModifyHardProperties(layout);
     expect(canModify).toBe(false);
   });
 
   it('should not allow the user to update hard properties, if the object is linked to a master visualization', () => {
-    propsOrLayout.qExtendsId = 'bj763u';
+    layout.qExtendsId = 'bj763u';
 
-    const canModify = hardPropertiesChecker.canModifyHardProperties(propsOrLayout);
+    const canModify = hardPropertiesChecker.canModifyHardProperties(layout);
     expect(canModify).toBe(false);
   });
 
   it('should not allow the user to update hard properties, if the object is linked to a master visualization and have soft patches', () => {
-    propsOrLayout.qExtendsId = 'bj763u';
-    propsOrLayout.qHasSoftPatches = true;
+    layout.qExtendsId = 'bj763u';
+    layout.qHasSoftPatches = true;
 
-    const canModify = hardPropertiesChecker.canModifyHardProperties(propsOrLayout);
+    const canModify = hardPropertiesChecker.canModifyHardProperties(layout);
+    expect(canModify).toBe(false);
+  });
+
+  it('should use permissions mixin if exists as it is correctly do not support uppdate on readonly apps', () => {
+    layout.permissions = { update: false };
+
+    const canModify = hardPropertiesChecker.canModifyHardProperties(layout);
     expect(canModify).toBe(false);
   });
 });
