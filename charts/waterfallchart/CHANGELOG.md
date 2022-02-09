@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.25.13](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.25.12...@nebula.js/sn-waterfall@0.25.13) (2022-02-09)
+
+
+### Bug Fixes
+
+* **waterfall:** set qSuppressZero to false on conversion ([a7e87f7](https://github.com/qlik-oss/nebula.js/commit/a7e87f7f2c51e05ab6d48e26ea1c550db30826ce))
+
+
+
+
+
 ## [0.25.12](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.25.11...@nebula.js/sn-waterfall@0.25.12) (2022-02-07)
 
 **Note:** Version bump only for package @nebula.js/sn-waterfall
