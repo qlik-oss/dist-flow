@@ -128,6 +128,9 @@ function generateHyperCubes(props, drillIndexes, layout, app, translator) {
   }
 
   if (cube.qDimensions[1]) {
+    if (cube.qDimensions[1].qDef.qSortCriterias.length === 0) {
+      cube.qDimensions[1].qDef.qSortCriterias.push({ qExpression: {} });
+    }
     outerDim = extend(true, {}, cube.qDimensions[1]);
     boxCube.qDimensions.push(outerDim);
   }
