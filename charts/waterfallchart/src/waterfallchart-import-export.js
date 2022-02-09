@@ -30,6 +30,8 @@ export function importProperties({ dataDefinition, defaultPropertyValues, export
     });
   }
 
+  props.qHyperCubeDef.qSuppressZero = false;
+
   return propTree;
 }
 
