@@ -22,8 +22,7 @@ export default function ext(env) {
     },
     importProperties: (exportFormat, initialProperties, extension, hypercubePath) => {
       const dataDefinition = data(env);
-      const layoutService = { layout: { templateId: initialProperties.templateId } };
-      extension.mapProperties(layoutService);
+      extension.mapProperties();
       const defaultPropertyValues = {
         defaultDimension: extension.getDefaultDimensionProperties(),
         defaultMeasure: extension.getDefaultMeasureProperties(),
