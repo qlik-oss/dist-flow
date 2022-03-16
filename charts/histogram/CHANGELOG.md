@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.25.11...@nebula.js/sn-histogram@0.26.0) (2022-03-16)
+
+
+### Bug Fixes
+
+* update object conversion for histogram ([9275532](https://github.com/qlik-oss/nebula.js/commit/92755329b6ea682e50e16f95c6586d36ac261277))
+
+
+### Features
+
+* add object conversion to histogram ([5c4fd9d](https://github.com/qlik-oss/nebula.js/commit/5c4fd9da8bc47c6b3b5ba55f86d43310094e073c))
+
+
+
+
+
 ## [0.25.11](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.25.10...@nebula.js/sn-histogram@0.25.11) (2022-02-07)
 
 **Note:** Version bump only for package @nebula.js/sn-histogram
