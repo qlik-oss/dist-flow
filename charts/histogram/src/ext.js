@@ -19,8 +19,8 @@ export default function ext(env) {
       sharing: true,
       viewData: true,
     },
-    importProperties: null, // Prevent conversion to and from this object
-    exportProperties: null,
+    importProperties: conversion.hypercube.importProperties,
+    exportProperties: conversion.hypercube.exportProperties,
     requireNumericDimension: true,
     exportTableProperties(propertyTree) {
       // the hypercube that will be used for "building" the table is under `qUndoExclude.box.qHyperCubeDef`
