@@ -11,7 +11,7 @@ describe('histogram-data', () => {
       get: (property) => property,
     };
     const env = { translator };
-    histogramData = histogramDataFn(env).targets[0];
+    histogramData = histogramDataFn(env);
   });
 
   describe('dimensions.description', () => {
