@@ -26,11 +26,14 @@ import ext from './ext';
 export default function supernova(env) {
   locale(env.translator);
   const picasso = picassoSetup();
+  const dataDefinition = data(env);
 
   return {
     qae: {
       properties,
-      data: data(env),
+      data: {
+        targets: [dataDefinition],
+      },
     },
     ext: ext(env),
     component() {

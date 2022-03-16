@@ -13,12 +13,8 @@ export default function data(env) {
     max: 0,
   };
   return {
-    targets: [
-      {
-        path: '/qHyperCubeDef',
-        dimensions,
-        measures,
-      },
-    ],
+    path: '/qHyperCubeDef',
+    dimensions,
+    measures,
   };
 }
