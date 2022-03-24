@@ -118,7 +118,8 @@ jobs:
             git diff --exit-code --stat;
 
   api-governance:
-    machine: true
+    machine:
+      image: ubuntu-2004:current
     working_directory: ~/dist-flow-charts
     steps:
       - use_workspace
