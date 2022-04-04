@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.26.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.25.14...@nebula.js/sn-distributionplot@0.26.0) (2022-04-04)
+
+
+### Features
+
+* support filters property on chart conversion ([443c6f2](https://github.com/qlik-oss/nebula.js/commit/443c6f2a3f8b9099e53fff132322df82cd486907))
+
+
+
+
+
 ## [0.25.14](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.25.13...@nebula.js/sn-distributionplot@0.25.14) (2022-02-07)
 
 **Note:** Version bump only for package @nebula.js/sn-distributionplot

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.27.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.26.0...@nebula.js/sn-histogram@0.27.0) (2022-04-04)
+
+
+### Features
+
+* support filters property on chart conversion ([443c6f2](https://github.com/qlik-oss/nebula.js/commit/443c6f2a3f8b9099e53fff132322df82cd486907))
+
+
+
+
+
 # [0.26.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.25.11...@nebula.js/sn-histogram@0.26.0) (2022-03-16)
 
 
