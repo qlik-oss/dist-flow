@@ -43,7 +43,7 @@
     "picasso-plugin-q": "1.4.2",
     "picasso.js": "1.4.2",
     "qlik-chart-modules": "0.20.1",
-    "qlik-object-conversion": "0.9.0"
+    "qlik-object-conversion": "0.10.0"
   },
   "peerDependencies": {
     "@nebula.js/stardust": ">=1.4.0"
