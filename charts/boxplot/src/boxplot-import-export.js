@@ -9,6 +9,7 @@ export function importProperties({ dataDefinition, defaultPropertyValues, export
     dataDefinition,
     defaultPropertyValues,
     hypercubePath: HYPERCUBE_PATH,
+    supportedFilters: false,
   });
 
   const props = propTree.qProperty;
