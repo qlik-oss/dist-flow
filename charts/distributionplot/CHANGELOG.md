@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.26.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.26.0...@nebula.js/sn-distributionplot@0.26.1) (2022-04-05)
+
+
+### Bug Fixes
+
+* update object conversion to store/restore filters properties ([4b6e32f](https://github.com/qlik-oss/nebula.js/commit/4b6e32f6fb099bb25a31792950ae06c2db9add8e))
+
+
+
+
+
 # [0.26.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.25.14...@nebula.js/sn-distributionplot@0.26.0) (2022-04-04)
 
 
