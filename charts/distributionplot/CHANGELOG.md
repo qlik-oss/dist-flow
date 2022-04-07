@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.27.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.27.0...@nebula.js/sn-distributionplot@0.27.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* fix conversion ([464d5e3](https://github.com/qlik-oss/nebula.js/commit/464d5e36a48df414a754d81b2340127601934d77))
+
+
+
+
+
 # [0.27.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.26.1...@nebula.js/sn-distributionplot@0.27.0) (2022-04-06)
 
 
