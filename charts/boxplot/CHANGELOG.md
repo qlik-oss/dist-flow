@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.28.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.28.0...@nebula.js/sn-boxplot@0.28.1) (2022-04-07)
+
+
+### Bug Fixes
+
+* fix undefined qLayoutExclude ([aeb5220](https://github.com/qlik-oss/nebula.js/commit/aeb5220fc376eb906f346cae48f7ab4e6cc3b02e))
+
+
+
+
+
 # [0.28.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.27.1...@nebula.js/sn-boxplot@0.28.0) (2022-04-06)
 
 
