@@ -14,7 +14,7 @@ export function importProperties({ dataDefinition, defaultPropertyValues, export
     props.qHyperCubeDef.qInterColumnSortOrder = [1, 2, 0]; // Since the distribution plot does not allow re-ordering of sorting prioritizes we must set this manually on conversion
   }
   distributionPlotColorBy.importColors(props);
-
+  props.qHyperCubeDef.qAlwaysFullyExpanded = true;
   return propTree;
 }
 
