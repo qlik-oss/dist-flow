@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.28.1...@nebula.js/sn-boxplot@0.29.0) (2022-04-26)
+
+
+### Bug Fixes
+
+* add sanity check for old charts without qDynamicScript ([c947a01](https://github.com/qlik-oss/nebula.js/commit/c947a0105259ebdeca4a8cbf60be5db8f2042957))
+
+
+### Features
+
+* update conversion for HC modifiers ([427cfab](https://github.com/qlik-oss/nebula.js/commit/427cfabf65ea46a520500fafec53576233292f3c))
+
+
+
+
+
 ## [0.28.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.28.0...@nebula.js/sn-boxplot@0.28.1) (2022-04-07)
 
 
