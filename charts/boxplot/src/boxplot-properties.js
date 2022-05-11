@@ -63,10 +63,12 @@ export default function propertyDefinition(env) {
   };
 
   const colorModeOptions = (data) => {
-    const options = [{
-      value: 'primary',
-      translation: 'properties.colorMode.primary',
-    }];
+    const options = [
+      {
+        value: 'primary',
+        translation: 'properties.colorMode.primary',
+      },
+    ];
     if (getValue(data, 'boxplotDef.color.mode') === 'byExpression') {
       options.push({
         value: 'byExpression',
@@ -158,7 +160,8 @@ export default function propertyDefinition(env) {
             ref: 'boxplotDef.color.auto',
             type: 'boolean',
             label: (data) => {
-              if (getValue(data, 'boxplotDef.color.auto')) return translator.get('Simple.Color.Auto', translator.get('properties.colorMode.primary'));
+              if (getValue(data, 'boxplotDef.color.auto'))
+                return translator.get('Simple.Color.Auto', translator.get('properties.colorMode.primary'));
               return translator.get('Common.Custom');
             },
             change: (data) => {

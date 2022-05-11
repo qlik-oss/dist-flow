@@ -373,7 +373,8 @@ export default function propertyDefinition(env) {
   }
 
   const label = (data) => {
-    if (getValue(data, 'color.point.auto')) return translator.get('Simple.Color.Auto', translator.get('properties.colorMode.primary'));
+    if (getValue(data, 'color.point.auto'))
+      return translator.get('Simple.Color.Auto', translator.get('properties.colorMode.primary'));
     return translator.get('Common.Custom');
   };
 
