@@ -1,4 +1,4 @@
-import { getValue } from 'qlik-chart-modules';
+import { setValue, getValue } from 'qlik-chart-modules';
 import sortOrderBuilder from '@qlik/common/extra/sort-order/sort-order';
 import settingsRetriever from './sorting/boxplot-sorting-settings-retriever';
 import elementsRetriever from './sorting/boxplot-sorting-elements-retriever';
@@ -24,6 +24,42 @@ export default function propertyDefinition(env) {
     const palette = theme.getDataColorPickerPalettes()[0].colors;
     const index = palette.indexOf(color);
     return { color, index };
+  };
+
+  const boxColor = {
+    ref: 'boxplotDef.color.box.paletteColor',
+    translation: 'properties.boxplot.boxColor',
+    type: 'object',
+    component: 'color-picker',
+    dualOutput: true,
+    show(data) {
+      return (
+        !getValue(data, 'boxplotDef.color.auto', true) &&
+        getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
+      );
+    },
+    defaultValue() {
+      const color = theme.getStyle(chartID, 'box.box', 'fill');
+      return lookupColorInPalette(color);
+    },
+  };
+
+  const outlierColor = {
+    ref: 'boxplotDef.color.point.paletteColor',
+    translation: 'properties.boxplot.outlierColor',
+    type: 'object',
+    component: 'color-picker',
+    dualOutput: true,
+    show(data) {
+      return (
+        !getValue(data, 'boxplotDef.color.auto', true) &&
+        getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
+      );
+    },
+    defaultValue() {
+      const color = theme.getDataColorSpecials().primary;
+      return lookupColorInPalette(color);
+    },
   };
 
   const colors = {
@@ -71,40 +107,8 @@ export default function propertyDefinition(env) {
               return !getValue(data, 'boxplotDef.color.auto', true);
             },
           },
-          boxColor: {
-            ref: 'boxplotDef.color.box.paletteColor',
-            translation: 'properties.boxplot.boxColor',
-            type: 'object',
-            component: 'color-picker',
-            dualOutput: true,
-            show(data) {
-              return (
-                !getValue(data, 'boxplotDef.color.auto', true) &&
-                getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
-              );
-            },
-            defaultValue() {
-              const color = theme.getStyle(chartID, 'box.box', 'fill');
-              return lookupColorInPalette(color);
-            },
-          },
-          outlierColor: {
-            ref: 'boxplotDef.color.point.paletteColor',
-            translation: 'properties.boxplot.outlierColor',
-            type: 'object',
-            component: 'color-picker',
-            dualOutput: true,
-            show(data) {
-              return (
-                !getValue(data, 'boxplotDef.color.auto', true) &&
-                getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
-              );
-            },
-            defaultValue() {
-              const color = theme.getDataColorSpecials().primary;
-              return lookupColorInPalette(color);
-            },
-          },
+          boxColor,
+          outlierColor,
           attributeExpression: {
             type: 'string',
             component: 'expression',
@@ -126,6 +130,58 @@ export default function propertyDefinition(env) {
             defaultValue: true,
             show: false,
           },
+        },
+      },
+      simpleColors: {
+        classification: {
+          section: 'color',
+          tags: ['simple'],
+          exclusive: true,
+        },
+        type: 'items',
+        items: {
+          autoColor: {
+            ref: 'boxplotDef.color.auto',
+            type: 'boolean',
+            label: (data) => {
+              if (getValue(data, 'boxplotDef.color.auto')) return 'Auto (Single color)';
+              return translator.get('Common.Custom');
+            },
+            change: (data) => {
+              if (!getValue(data, 'boxplotDef.color.auto')) {
+                setValue(data, 'boxplotDef.color.mode', 'primary');
+              }
+            },
+            component: 'switch',
+            defaultValue: true,
+            options: [
+              {
+                value: true,
+                translation: 'Common.Auto',
+              },
+              {
+                value: false,
+                translation: 'Common.Custom',
+              },
+            ],
+          },
+          colorMode: {
+            ref: 'boxplotDef.color.mode',
+            type: 'string',
+            component: 'dropdown',
+            options: [
+              {
+                value: 'primary',
+                translation: 'properties.colorMode.primary',
+              },
+            ],
+            defaultValue: 'primary',
+            show(data) {
+              return !getValue(data, 'boxplotDef.color.auto', true);
+            },
+          },
+          boxColor,
+          outlierColor,
         },
       },
     },

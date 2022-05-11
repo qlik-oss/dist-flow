@@ -1,4 +1,4 @@
-import { getValue } from 'qlik-chart-modules';
+import { setValue, getValue } from 'qlik-chart-modules';
 import HyperCubeDefGenerator from '@qlik/common/picasso/hypercube-def-generator/hypercube-def-generator';
 import sortOrderBuilder from '@qlik/common/extra/sort-order/sort-order';
 import distplotUtils from './distributionplot-utils';
@@ -372,6 +372,11 @@ export default function propertyDefinition(env) {
     }
   }
 
+  const label = (data) => {
+    if (getValue(data, 'color.point.auto')) return 'Auto (Single color)';
+    return translator.get('Common.Custom');
+  };
+
   const colorsAndLegend = {
     uses: 'colorsAndLegend',
     items: {
@@ -454,7 +459,6 @@ export default function propertyDefinition(env) {
               byDef.label = altLabel.qStringExpression ? `=${altLabel.qStringExpression.qExpr}` : altLabel;
             },
           },
-
           baseColors: {
             type: 'items',
             items: {
@@ -485,7 +489,6 @@ export default function propertyDefinition(env) {
               },
             },
           },
-
           paletteColor: {
             ref: 'color.point.paletteColor',
             translation: 'properties.distributionPlot.pointColor',
@@ -498,7 +501,6 @@ export default function propertyDefinition(env) {
               return propsLogic.isColorBySingle(data) && !useMeasureBaseColor && !useDimensionBaseColor;
             },
           },
-
           // Switch for showing/hiding custom color schemes
           useDimColVal: {
             ref: 'color.point.useDimColVal',
@@ -506,7 +508,6 @@ export default function propertyDefinition(env) {
               return propsLogic.isColorByDimension(data) && propsLogic.isDimensionLibraryItem(data);
             },
           },
-
           useMeasureGradient: {
             ref: 'color.point.useMeasureGradient',
             translation: 'properties.libraryColors',
@@ -530,9 +531,7 @@ export default function propertyDefinition(env) {
               return !auto && mode === 'byMeasure' && getValue(data, 'color.point.byMeasureDef.type') === 'libraryItem';
             },
           },
-
           // // -- Custom color scheme for color by dimensions --
-
           persistentColors: {
             ref: 'color.point.persistent',
             show(data) {
@@ -546,9 +545,7 @@ export default function propertyDefinition(env) {
               return persistentColorsShowFunc(data);
             },
           },
-
           // // -- Color scheme measure
-
           colorSchemeMeasure: {
             ref: 'color.point.measureScheme',
             show(data) {
@@ -565,9 +562,7 @@ export default function propertyDefinition(env) {
               return !propsLogic.isColorAuto(data) && propsLogic.isColorByMeasure(data);
             },
           },
-
           // // -- Color scheme dimension
-
           colorSchemeDimension: {
             ref: 'color.point.dimensionScheme',
             show(data) {
@@ -577,7 +572,6 @@ export default function propertyDefinition(env) {
               return show;
             },
           },
-
           customRange: {
             show(data) {
               return !propsLogic.isColorAuto(data);
@@ -615,7 +609,6 @@ export default function propertyDefinition(env) {
               },
             },
           },
-
           attributeExpression: {
             ref: 'color.point.expression.qValueExpression.qExpr',
             show(data) {
@@ -625,6 +618,63 @@ export default function propertyDefinition(env) {
           expressionIsColor: {
             ref: 'color.point.expressionIsColor',
             show: false,
+          },
+          boxColor: {
+            ref: 'color.box.paletteColor',
+            translation: 'properties.distributionPlot.boxColor',
+            type: 'object',
+            component: 'color-picker',
+            dualOutput: true,
+            defaultValue() {
+              const color = theme.getStyle(CONSTANTS.CHART_ID, 'box', 'fill');
+              return lookupColorInPalette(color);
+            },
+            show(data) {
+              return !getValue(data, 'color.point.auto', true);
+            },
+          },
+        },
+      },
+      simpleColors: {
+        items: {
+          autoColor: {
+            ref: 'color.point.auto',
+            undefinedValue: false,
+            label,
+            change: (data) => {
+              if (!getValue(data, 'color.point.auto')) {
+                setValue(data, 'color.point.mode', 'primary');
+              }
+            },
+          },
+          colorMode: {
+            ref: 'color.point.mode',
+            options: [
+              {
+                value: 'primary',
+                translation: 'properties.colorMode.primary',
+              },
+              {
+                value: 'byDimension',
+                translation: 'properties.colorMode.byDimension',
+              },
+            ],
+            show(data) {
+              return !propsLogic.isColorAuto(data);
+            },
+            globalChange() {},
+          },
+          paletteColor: {
+            ref: 'color.point.paletteColor',
+            translation: 'properties.distributionPlot.pointColor',
+            show(data, handler) {
+              const useMeasureBaseColor =
+                getValue(data, 'color.point.useBaseColors') === 'measure' && propsLogic.measuresHasBaseColors(handler);
+              const useDimensionBaseColor =
+                getValue(data, 'color.point.useBaseColors') === 'dimension' &&
+                propsLogic.dimensionsHasBaseColors(handler);
+              return propsLogic.isColorBySingle(data) && !useMeasureBaseColor && !useDimensionBaseColor;
+            },
           },
           boxColor: {
             ref: 'color.box.paletteColor',

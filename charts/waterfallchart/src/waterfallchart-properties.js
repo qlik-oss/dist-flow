@@ -146,6 +146,50 @@ export default function propertyDefinition(env) {
     },
   };
 
+  const autoColor = {
+    ref: 'color.auto',
+    type: 'boolean',
+    component: 'switch',
+    defaultValue: true,
+    options: [
+      {
+        value: true,
+        translation: 'Common.Auto',
+      },
+      {
+        value: false,
+        translation: 'Common.Custom',
+      },
+    ],
+  };
+  const positiveValueColor = {
+    ref: 'color.positiveValue.paletteColor',
+    translation: 'properties.waterfall.color.positiveValueColor',
+    type: 'object',
+    component: 'color-picker',
+    dualOutput: true,
+    defaultValue: { index: 6, color: null },
+    show: colorIsNotAuto,
+  };
+  const negativeValueColor = {
+    ref: 'color.negativeValue.paletteColor',
+    translation: 'properties.waterfall.color.negativeValueColor',
+    type: 'object',
+    component: 'color-picker',
+    dualOutput: true,
+    defaultValue: { index: -1, color: '#cc6677' },
+    show: colorIsNotAuto,
+  };
+  const subtotalColor = {
+    ref: 'color.subtotal.paletteColor',
+    translation: 'properties.waterfall.color.subtotalColor',
+    type: 'object',
+    component: 'color-picker',
+    dualOutput: true,
+    defaultValue: { index: -1, color: '#c3c3c3' },
+    show: colorIsNotAuto,
+  };
+
   const colors = {
     translation: 'properties.colorsAndLegend',
     type: 'items',
@@ -155,49 +199,29 @@ export default function propertyDefinition(env) {
         type: 'items',
         items: {
           autoColor: {
-            ref: 'color.auto',
-            type: 'boolean',
+            ...autoColor,
             translation: 'properties.colors',
-            component: 'switch',
-            defaultValue: true,
-            options: [
-              {
-                value: true,
-                translation: 'Common.Auto',
-              },
-              {
-                value: false,
-                translation: 'Common.Custom',
-              },
-            ],
           },
-          positiveValueColor: {
-            ref: 'color.positiveValue.paletteColor',
-            translation: 'properties.waterfall.color.positiveValueColor',
-            type: 'object',
-            component: 'color-picker',
-            dualOutput: true,
-            defaultValue: { index: 6, color: null },
-            show: colorIsNotAuto,
+          positiveValueColor,
+          negativeValueColor,
+          subtotalColor,
+        },
+      },
+      simpleColors: {
+        classification: {
+          section: 'color',
+          tags: ['simple'],
+          exclusive: true,
+        },
+        type: 'items',
+        items: {
+          autoColor: {
+            ...autoColor,
+            label: (data) => translator.get(data.color?.auto ? 'Common.Auto' : 'Common.Custom'),
           },
-          negativeValueColor: {
-            ref: 'color.negativeValue.paletteColor',
-            translation: 'properties.waterfall.color.negativeValueColor',
-            type: 'object',
-            component: 'color-picker',
-            dualOutput: true,
-            defaultValue: { index: -1, color: '#cc6677' },
-            show: colorIsNotAuto,
-          },
-          subtotalColor: {
-            ref: 'color.subtotal.paletteColor',
-            translation: 'properties.waterfall.color.subtotalColor',
-            type: 'object',
-            component: 'color-picker',
-            dualOutput: true,
-            defaultValue: { index: -1, color: '#c3c3c3' },
-            show: colorIsNotAuto,
-          },
+          positiveValueColor,
+          negativeValueColor,
+          subtotalColor,
         },
       },
       legend: {

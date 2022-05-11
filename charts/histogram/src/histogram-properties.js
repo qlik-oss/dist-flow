@@ -58,6 +58,10 @@ export default function propertyDefinition(env) {
     type: 'items',
     items: {
       colors: {
+        classification: {
+          section: 'color',
+          tags: ['simple'],
+        },
         type: 'items',
         items: {
           barColor: {
