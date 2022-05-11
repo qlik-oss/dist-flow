@@ -1,4 +1,4 @@
-import { getValue } from 'qlik-chart-modules';
+import { setValue, getValue } from 'qlik-chart-modules';
 import sortOrderBuilder from '@qlik/common/extra/sort-order/sort-order';
 import settingsRetriever from './sorting/boxplot-sorting-settings-retriever';
 import elementsRetriever from './sorting/boxplot-sorting-elements-retriever';
@@ -125,6 +125,87 @@ export default function propertyDefinition(env) {
             type: 'boolean',
             defaultValue: true,
             show: false,
+          },
+        },
+      },
+      simpleColors: {
+        classification: {
+          section: 'color',
+          tags: ['simple'],
+          exclusive: true,
+        },
+        type: 'items',
+        items: {
+          autoColor: {
+            ref: 'boxplotDef.color.auto',
+            type: 'boolean',
+            label: (data) => getValue(data, 'boxplotDef.color.auto') ? 'Auto (Single color)' : translator.get('Common.Custom'),
+            change: (data) => {
+              if (!getValue(data, 'boxplotDef.color.auto')) {
+                setValue(data, 'boxplotDef.color.mode', 'primary');
+              }
+            },
+            component: 'switch',
+            defaultValue: true,
+            options: [
+              {
+                value: true,
+                translation: 'Common.Auto',
+              },
+              {
+                value: false,
+                translation: 'Common.Custom',
+              },
+            ],
+          },
+          colorMode: {
+            ref: 'boxplotDef.color.mode',
+            type: 'string',
+            component: 'dropdown',
+            options: [
+              {
+                value: 'primary',
+                translation: 'properties.colorMode.primary',
+              },
+            ],
+            defaultValue: 'primary',
+            show(data) {
+              return !getValue(data, 'boxplotDef.color.auto', true);
+            },
+          },
+          boxColor: {
+            ref: 'boxplotDef.color.box.paletteColor',
+            translation: 'properties.boxplot.boxColor',
+            type: 'object',
+            component: 'color-picker',
+            dualOutput: true,
+            show(data) {
+              return (
+                !getValue(data, 'boxplotDef.color.auto', true) &&
+                getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
+              );
+            },
+            defaultValue() {
+              const color = theme.getStyle(chartID, 'box.box', 'fill');
+              return lookupColorInPalette(color);
+            },
+          },
+          outlierColor: {
+            ref: 'boxplotDef.color.point.paletteColor',
+            translation: 'properties.boxplot.outlierColor',
+            type: 'object',
+            component: 'color-picker',
+            dualOutput: true,
+            show(data) {
+              return (
+                !getValue(data, 'boxplotDef.color.auto', true) &&
+                getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
+              );
+            },
+            defaultValue() {
+              const color = theme.getDataColorSpecials().primary;
+              return lookupColorInPalette(color);
+            },
           },
         },
       },
@@ -262,23 +343,23 @@ export default function propertyDefinition(env) {
           label: {
             options: flags.isEnabled('SENSECLIENT_LAYERED_LABELS')
               ? [
-                  {
-                    value: 'auto',
-                    translation: 'Common.Auto',
-                  },
-                  {
-                    value: 'horizontal',
-                    translation: 'Common.Horizontal',
-                  },
-                  {
-                    value: 'tilted',
-                    translation: 'properties.labels.tilted',
-                  },
-                  {
-                    value: 'layered',
-                    translation: 'properties.labels.layered',
-                  },
-                ]
+                {
+                  value: 'auto',
+                  translation: 'Common.Auto',
+                },
+                {
+                  value: 'horizontal',
+                  translation: 'Common.Horizontal',
+                },
+                {
+                  value: 'tilted',
+                  translation: 'properties.labels.tilted',
+                },
+                {
+                  value: 'layered',
+                  translation: 'properties.labels.layered',
+                },
+              ]
               : undefined,
           },
         },
