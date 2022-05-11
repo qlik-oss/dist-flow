@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.29.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.28.0...@nebula.js/sn-waterfall@0.29.0) (2022-05-11)
+
+
+### Bug Fixes
+
+* fix duplication ([56e409b](https://github.com/qlik-oss/nebula.js/commit/56e409b4b0d6cf63bdbbca5f89ace3c8b3ace085))
+
+
+### Features
+
+* add simple definition for color section in simple mode ([c4484f6](https://github.com/qlik-oss/nebula.js/commit/c4484f65f82349d0dd20a4a7a6a297e4f20fdd3f))
+
+
+
+
+
 # [0.28.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.27.0...@nebula.js/sn-waterfall@0.28.0) (2022-04-26)
 
 
