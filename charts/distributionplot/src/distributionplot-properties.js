@@ -372,6 +372,11 @@ export default function propertyDefinition(env) {
     }
   }
 
+  const label = (data) => {
+    if (getValue(data, 'color.point.auto')) return 'Auto (Single color)';
+    return translator.get('Common.Custom');
+  };
+
   const colorsAndLegend = {
     uses: 'colorsAndLegend',
     items: {
@@ -635,7 +640,7 @@ export default function propertyDefinition(env) {
           autoColor: {
             ref: 'color.point.auto',
             undefinedValue: false,
-            label: (data) => (getValue(data, 'color.point.auto') ? 'Auto (Single color)' : translator.get('Common.Custom')),
+            label,
             change: (data) => {
               if (!getValue(data, 'color.point.auto')) {
                 setValue(data, 'color.point.mode', 'primary');
@@ -657,7 +662,7 @@ export default function propertyDefinition(env) {
             show(data) {
               return !propsLogic.isColorAuto(data);
             },
-            globalChange(){},
+            globalChange() {},
           },
           paletteColor: {
             ref: 'color.point.paletteColor',

@@ -26,6 +26,42 @@ export default function propertyDefinition(env) {
     return { color, index };
   };
 
+  const boxColor = {
+    ref: 'boxplotDef.color.box.paletteColor',
+    translation: 'properties.boxplot.boxColor',
+    type: 'object',
+    component: 'color-picker',
+    dualOutput: true,
+    show(data) {
+      return (
+        !getValue(data, 'boxplotDef.color.auto', true) &&
+        getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
+      );
+    },
+    defaultValue() {
+      const color = theme.getStyle(chartID, 'box.box', 'fill');
+      return lookupColorInPalette(color);
+    },
+  };
+
+  const outlierColor = {
+    ref: 'boxplotDef.color.point.paletteColor',
+    translation: 'properties.boxplot.outlierColor',
+    type: 'object',
+    component: 'color-picker',
+    dualOutput: true,
+    show(data) {
+      return (
+        !getValue(data, 'boxplotDef.color.auto', true) &&
+        getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
+      );
+    },
+    defaultValue() {
+      const color = theme.getDataColorSpecials().primary;
+      return lookupColorInPalette(color);
+    },
+  };
+
   const colors = {
     translation: 'properties.colors',
     type: 'items',
@@ -71,40 +107,8 @@ export default function propertyDefinition(env) {
               return !getValue(data, 'boxplotDef.color.auto', true);
             },
           },
-          boxColor: {
-            ref: 'boxplotDef.color.box.paletteColor',
-            translation: 'properties.boxplot.boxColor',
-            type: 'object',
-            component: 'color-picker',
-            dualOutput: true,
-            show(data) {
-              return (
-                !getValue(data, 'boxplotDef.color.auto', true) &&
-                getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
-              );
-            },
-            defaultValue() {
-              const color = theme.getStyle(chartID, 'box.box', 'fill');
-              return lookupColorInPalette(color);
-            },
-          },
-          outlierColor: {
-            ref: 'boxplotDef.color.point.paletteColor',
-            translation: 'properties.boxplot.outlierColor',
-            type: 'object',
-            component: 'color-picker',
-            dualOutput: true,
-            show(data) {
-              return (
-                !getValue(data, 'boxplotDef.color.auto', true) &&
-                getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
-              );
-            },
-            defaultValue() {
-              const color = theme.getDataColorSpecials().primary;
-              return lookupColorInPalette(color);
-            },
-          },
+          boxColor,
+          outlierColor,
           attributeExpression: {
             type: 'string',
             component: 'expression',
@@ -173,40 +177,8 @@ export default function propertyDefinition(env) {
               return !getValue(data, 'boxplotDef.color.auto', true);
             },
           },
-          boxColor: {
-            ref: 'boxplotDef.color.box.paletteColor',
-            translation: 'properties.boxplot.boxColor',
-            type: 'object',
-            component: 'color-picker',
-            dualOutput: true,
-            show(data) {
-              return (
-                !getValue(data, 'boxplotDef.color.auto', true) &&
-                getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
-              );
-            },
-            defaultValue() {
-              const color = theme.getStyle(chartID, 'box.box', 'fill');
-              return lookupColorInPalette(color);
-            },
-          },
-          outlierColor: {
-            ref: 'boxplotDef.color.point.paletteColor',
-            translation: 'properties.boxplot.outlierColor',
-            type: 'object',
-            component: 'color-picker',
-            dualOutput: true,
-            show(data) {
-              return (
-                !getValue(data, 'boxplotDef.color.auto', true) &&
-                getValue(data, 'boxplotDef.color.mode', 'primary') === 'primary'
-              );
-            },
-            defaultValue() {
-              const color = theme.getDataColorSpecials().primary;
-              return lookupColorInPalette(color);
-            },
-          },
+          boxColor,
+          outlierColor,
         },
       },
     },
