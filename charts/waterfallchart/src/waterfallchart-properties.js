@@ -211,6 +211,7 @@ export default function propertyDefinition(env) {
         classification: {
           section: 'color',
           tags: ['simple'],
+          exclusive: true,
         },
         type: 'items',
         items: {
