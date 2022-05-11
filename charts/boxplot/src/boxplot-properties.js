@@ -62,6 +62,22 @@ export default function propertyDefinition(env) {
     },
   };
 
+  const colorModeOptions = (data) => {
+    const options = [
+      {
+        value: 'primary',
+        translation: 'properties.colorMode.primary',
+      },
+    ];
+    if (getValue(data, 'boxplotDef.color.mode') === 'byExpression') {
+      options.push({
+        value: 'byExpression',
+        translation: 'properties.colorMode.byExpression',
+      });
+    }
+    return options;
+  };
+
   const colors = {
     translation: 'properties.colors',
     type: 'items',
@@ -144,7 +160,8 @@ export default function propertyDefinition(env) {
             ref: 'boxplotDef.color.auto',
             type: 'boolean',
             label: (data) => {
-              if (getValue(data, 'boxplotDef.color.auto')) return 'Auto (Single color)';
+              if (getValue(data, 'boxplotDef.color.auto'))
+                return translator.get('Simple.Color.Auto', translator.get('properties.colorMode.primary'));
               return translator.get('Common.Custom');
             },
             change: (data) => {
@@ -169,12 +186,7 @@ export default function propertyDefinition(env) {
             ref: 'boxplotDef.color.mode',
             type: 'string',
             component: 'dropdown',
-            options: [
-              {
-                value: 'primary',
-                translation: 'properties.colorMode.primary',
-              },
-            ],
+            options: colorModeOptions,
             defaultValue: 'primary',
             show(data) {
               return !getValue(data, 'boxplotDef.color.auto', true);

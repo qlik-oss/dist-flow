@@ -373,8 +373,29 @@ export default function propertyDefinition(env) {
   }
 
   const label = (data) => {
-    if (getValue(data, 'color.point.auto')) return 'Auto (Single color)';
+    if (getValue(data, 'color.point.auto'))
+      return translator.get('Simple.Color.Auto', translator.get('properties.colorMode.primary'));
     return translator.get('Common.Custom');
+  };
+
+  const colorModeOptions = (data) => {
+    const options = [
+      {
+        value: 'primary',
+        translation: 'properties.colorMode.primary',
+      },
+      {
+        value: 'byDimension',
+        translation: 'properties.colorMode.byDimension',
+      },
+    ];
+    if (getValue(data, 'color.point.mode') === 'byExpression') {
+      options.push({
+        value: 'byExpression',
+        translation: 'properties.colorMode.byExpression',
+      });
+    }
+    return options;
   };
 
   const colorsAndLegend = {
@@ -649,16 +670,7 @@ export default function propertyDefinition(env) {
           },
           colorMode: {
             ref: 'color.point.mode',
-            options: [
-              {
-                value: 'primary',
-                translation: 'properties.colorMode.primary',
-              },
-              {
-                value: 'byDimension',
-                translation: 'properties.colorMode.byDimension',
-              },
-            ],
+            options: colorModeOptions,
             show(data) {
               return !propsLogic.isColorAuto(data);
             },
