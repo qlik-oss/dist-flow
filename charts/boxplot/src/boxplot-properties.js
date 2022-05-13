@@ -365,24 +365,22 @@ export default function propertyDefinition(env) {
   };
 
   const dimensionAxis = {
-    uses: 'axis.dimensionAxis',
+    uses: 'axis.picasso.dimensionAxis',
     show(properties, handler, args) {
       const hasSecondDimension = getValue(args.layout, 'boxplotDef.qHyperCube.qDimensionInfo.length') > 1;
       return hasSecondDimension;
     },
     items: {
       dimensionAxisTitle: {
+        component: 'header',
+        type: 'string',
         show(properties, handler, args) {
           return getValue(args.layout, 'boxplotDef.qHyperCube.qDimensionInfo.length') > 1;
         },
-      },
-      continuousGroup: {
-        type: 'items',
-        show: false,
-        items: {
-          auto: {
-            show: false,
-          },
+        classification: {
+          section: 'axis',
+          tags: ['simple'],
+          exclusive: true,
         },
       },
       othersGroup: {

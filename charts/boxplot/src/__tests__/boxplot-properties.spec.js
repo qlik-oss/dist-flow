@@ -737,13 +737,6 @@ describe('boxplot-properties', () => {
       });
     });
 
-    describe('continuousGroup', () => {
-      it('should not show continuousGroup and auto in continuousGroup', () => {
-        expect(boxplotProperties.items.settings.items.dimensionAxis.items.continuousGroup.show).to.be.false;
-        expect(boxplotProperties.items.settings.items.dimensionAxis.items.continuousGroup.items.auto.show).to.be.false;
-      });
-    });
-
     describe('othersGroup', () => {
       describe('label', () => {
         it('should show lable orientation option when has more than 1 dimension', () => {
