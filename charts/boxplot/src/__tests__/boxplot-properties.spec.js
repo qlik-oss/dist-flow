@@ -1,5 +1,6 @@
 import chai from 'chai';
 import sinon from 'sinon';
+import * as chartModules from 'qlik-chart-modules';
 import boxplotPropertiesFn from '../boxplot-properties';
 import boxplotSorter from '../sorting/boxplot-sorter';
 import settingsRetriever from '../sorting/boxplot-sorting-settings-retriever';
@@ -630,15 +631,14 @@ describe('boxplot-properties', () => {
         let get;
         let set;
         let args;
-        let setter;
         sandbox = sinon.createSandbox();
         const definition = { type: 'string' };
         const getter = (type) => type;
 
         beforeEach(() => {
+          sandbox.stub(chartModules, 'setValue');
           args = { properties: { measureAxis: { autoMinMax: true, min: '10' } } };
           ({ get, set } = boxplotProperties.items.settings.items.measureAxis.items.startAt.convertFunctions);
-          setter = sandbox.stub();
         });
 
         afterEach(() => {
@@ -668,16 +668,16 @@ describe('boxplot-properties', () => {
         });
 
         describe('set', () => {
-          it('should call setter three times with correct values when select start at as zero', () => {
-            set('zero', setter, definition, args, '');
-            expect(setter).to.have.been.calledWith('', 'measureAxis.autoMinMax', false);
-            expect(setter).to.have.been.calledWith('', 'measureAxis.minMax', 'min');
-            expect(setter).to.have.been.calledWith('', 'measureAxis.min', 0);
+          it('should call setValue three times with correct values when select start at as zero', () => {
+            set('zero', undefined, definition, args, '');
+            expect(chartModules.setValue).to.have.been.calledWith('', 'measureAxis.autoMinMax', false);
+            expect(chartModules.setValue).to.have.been.calledWith('', 'measureAxis.minMax', 'min');
+            expect(chartModules.setValue).to.have.been.calledWith('', 'measureAxis.min', 0);
           });
 
-          it('should call setter one time with correct values when select start at as lowest', () => {
-            set('lowest', setter, definition, args, '');
-            expect(setter).to.have.been.calledWith('', 'measureAxis.autoMinMax', true);
+          it('should call setValue one time with correct values when select start at as lowest', () => {
+            set('lowest', undefined, definition, args, '');
+            expect(chartModules.setValue).to.have.been.calledWith('', 'measureAxis.autoMinMax', true);
           });
         });
       });

@@ -347,11 +347,11 @@ export default function propertyDefinition(env) {
           },
           set(value, setter, definition, args, data) {
             if (value === 'zero') {
-              setter(data, 'measureAxis.autoMinMax', false);
-              setter(data, 'measureAxis.minMax', 'min');
-              setter(data, 'measureAxis.min', 0);
+              setValue(data, 'measureAxis.autoMinMax', false);
+              setValue(data, 'measureAxis.minMax', 'min');
+              setValue(data, 'measureAxis.min', 0);
             } else {
-              setter(data, 'measureAxis.autoMinMax', true);
+              setValue(data, 'measureAxis.autoMinMax', true);
             }
           },
         },
