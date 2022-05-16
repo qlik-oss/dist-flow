@@ -624,7 +624,7 @@ describe('boxplot-properties', () => {
       });
 
       it('should have correct defaultValue', () => {
-        expect(boxplotProperties.items.settings.items.measureAxis.items.startAt.defaultValue).to.equal('zero');
+        expect(boxplotProperties.items.settings.items.measureAxis.items.startAt.defaultValue).to.equal('lowest');
       });
 
       describe('convertFunctions', () => {
