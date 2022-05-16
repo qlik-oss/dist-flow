@@ -564,5 +564,23 @@
       "ja-JP": "99 番目の百分位数",
       "ru-RU": "99-й процентиль"
     }
+  },
+  "properties.axis.startAt": {
+    "id": "properties.axis.startAt",
+    "locale": {
+      "en-US": "Start at"
+    }
+  },
+  "properties.axis.startAt.zero": {
+    "id": "properties.axis.startAt.zero",
+    "locale": {
+      "en-US": "Zero"
+    }
+  },
+  "properties.axis.startAt.lowest": {
+    "id": "properties.axis.startAt.lowest",
+    "locale": {
+      "en-US": "Lowest value"
+    }
   }
 }
