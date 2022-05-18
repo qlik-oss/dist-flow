@@ -287,6 +287,16 @@ export default function propertyDefinition(env) {
     items: {
       axis: {
         items: {
+          measureAxisTitle: {
+            component: 'header',
+            type: 'string',
+            label: translator.get('properties.yAxis'),
+            classification: {
+              section: 'axis',
+              tags: ['simple'],
+              exclusive: true,
+            },
+          },
           show: {
             translation: 'properties.labels',
             defaultValue: 'labels',
