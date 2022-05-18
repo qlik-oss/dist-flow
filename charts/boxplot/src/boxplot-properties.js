@@ -316,6 +316,52 @@ export default function propertyDefinition(env) {
 
   const measureAxis = {
     uses: 'axis.picasso.measureAxis',
+    items: {
+      startAt: {
+        type: 'string',
+        component: 'dropdown',
+        translation: 'properties.axis.startAt',
+        readOnly: (data) =>
+          !data.measureAxis.autoMinMax && !(data.measureAxis.minMax === 'min' && data.measureAxis.min === 0),
+        options: [
+          {
+            value: 'zero',
+            translation: 'properties.axis.startAt.zero',
+          },
+          {
+            value: 'lowest',
+            translation: 'properties.axis.startAt.lowest',
+          },
+        ],
+        defaultValue: 'lowest',
+        convertFunctions: {
+          get(getter, definition, args) {
+            const { autoMinMax, minMax, min } = args.properties?.measureAxis || {};
+            if (autoMinMax === true) {
+              return 'lowest';
+            }
+            if (!autoMinMax && minMax === 'min' && min === 0) {
+              return 'zero';
+            }
+            return getter(definition.type);
+          },
+          set(value, setter, definition, args, data) {
+            if (value === 'zero') {
+              setValue(data, 'measureAxis.autoMinMax', false);
+              setValue(data, 'measureAxis.minMax', 'min');
+              setValue(data, 'measureAxis.min', 0);
+            } else {
+              setValue(data, 'measureAxis.autoMinMax', true);
+            }
+          },
+        },
+        classification: {
+          section: 'axis',
+          tags: ['simple'],
+          exclusive: true,
+        },
+      },
+    },
   };
 
   const dimensionAxis = {
@@ -325,9 +371,27 @@ export default function propertyDefinition(env) {
       return hasSecondDimension;
     },
     items: {
+      dimensionAxisTitle: {
+        component: 'header',
+        type: 'string',
+        show(properties, handler, args) {
+          return getValue(args.layout, 'boxplotDef.qHyperCube.qDimensionInfo.length') > 1;
+        },
+        classification: {
+          section: 'axis',
+          tags: ['simple'],
+          exclusive: true,
+        },
+      },
       othersGroup: {
         items: {
           label: {
+            show(properties, handler, args) {
+              return (
+                getValue(args.layout, 'boxplotDef.qHyperCube.qDimensionInfo.length') > 1 &&
+                getValue(args.layout, 'orientation') !== 'horizontal'
+              );
+            },
             options: flags.isEnabled('SENSECLIENT_LAYERED_LABELS')
               ? [
                   {
@@ -348,6 +412,11 @@ export default function propertyDefinition(env) {
                   },
                 ]
               : undefined,
+          },
+          dock: {
+            show(properties, handler, args) {
+              return getValue(args.layout, 'boxplotDef.qHyperCube.qDimensionInfo.length') > 1;
+            },
           },
         },
       },
