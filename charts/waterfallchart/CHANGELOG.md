@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.29.0...@nebula.js/sn-waterfall@0.30.0) (2022-05-18)
+
+
+### Features
+
+* add correct measure title in simple mode ([0da3c7a](https://github.com/qlik-oss/nebula.js/commit/0da3c7a9c22bae343d50168ad20e230297ab09f3))
+
+
+
+
+
 # [0.29.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.28.0...@nebula.js/sn-waterfall@0.29.0) (2022-05-11)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.30.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.29.1...@nebula.js/sn-distributionplot@0.30.0) (2022-05-18)
+
+
+### Features
+
+* **distplot:** add property in axis simple mode ([de6d04d](https://github.com/qlik-oss/nebula.js/commit/de6d04dda00dfb04f41758d674f2f63972abeaf5))
+
+
+
+
+
 ## [0.29.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.29.0...@nebula.js/sn-distributionplot@0.29.1) (2022-05-11)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.30.1...@nebula.js/sn-boxplot@0.31.0) (2022-05-18)
+
+
+### Features
+
+* **boxplot:** add property in axis simple mode ([f5c52cf](https://github.com/qlik-oss/nebula.js/commit/f5c52cf28b5dc8d75ccce65e8a30222d1708f8ff))
+
+
+
+
+
 ## [0.30.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.30.0...@nebula.js/sn-boxplot@0.30.1) (2022-05-11)
 
 
