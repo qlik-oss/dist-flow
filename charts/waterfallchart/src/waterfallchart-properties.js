@@ -366,9 +366,33 @@ export default function propertyDefinition(env) {
     },
   };
 
+  const simpleLabels = {
+    items: {
+      labels: {
+        items: {
+          header: {
+            show(props, handler, args) {
+              return args.properties.qHyperCubeDef.qMeasures?.length;
+            },
+          },
+          pointLabels: {
+            component: 'checkbox',
+            ref: 'dataPoint.showLabels',
+            type: 'boolean',
+            translation: 'Simple.Label.Value',
+            show(props, handler, args) {
+              return args.properties.qHyperCubeDef.qMeasures?.length;
+            },
+          },
+        },
+      },
+    },
+  };
+
   const settings = {
     uses: 'settings',
     items: {
+      simpleLabels,
       presentation,
       colors,
       measureAxis,
