@@ -152,9 +152,66 @@ export default function propertyDefinition(env) {
     },
   };
 
+  const simpleLabels = {
+    items: {
+      labels: {
+        items: {
+          pointLabels: {
+            component: 'checkbox',
+            ref: 'dataPoint.showLabels',
+            type: 'boolean',
+            translation: 'Simple.Label.Value',
+            show(props, handler, args) {
+              return args.properties.qHyperCubeDef.qDimensions?.length;
+            },
+          },
+          dimensionTitle: {
+            component: 'checkbox',
+            ref: 'dimensionAxis.show',
+            type: 'string',
+            translation: 'Simple.Label.Dimension.Hide',
+            defaultValue: 'all',
+            show(props, handler, args) {
+              return args.properties.qHyperCubeDef.qDimensions?.length;
+            },
+            convertFunctions: {
+              get(getter, def, args) {
+                return (
+                  args.properties.dimensionAxis.show === 'labels' || args.properties.dimensionAxis.show === 'none'
+                );
+              },
+              set(value, setter, def, args) {
+                args.properties.dimensionAxis.show = value ? 'labels' : 'all';
+              },
+            },
+          },
+          measureTitle: {
+            component: 'checkbox',
+            ref: 'measureAxis.show',
+            type: 'string',
+            translation: 'Simple.Label.Measure.Hide',
+            defaultValue: 'all',
+            show(props, handler, args) {
+              return args.properties.qHyperCubeDef.qDimensions?.length;
+            },
+            convertFunctions: {
+              get(getter, def, args) {
+                return args.properties.measureAxis.show === 'labels' || args.properties.measureAxis.show === 'none';
+              },
+              set(value, setter, def, args) {
+                args.properties.measureAxis.show = value ? 'labels' : 'all';
+              },
+            },
+          },
+        }
+      }
+    }
+  };
+
   const settings = {
     uses: 'settings',
     items: {
+      simpleLabels,
       presentation,
       colors,
       measureAxis,
