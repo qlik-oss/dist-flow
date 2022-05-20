@@ -156,6 +156,11 @@ export default function propertyDefinition(env) {
     items: {
       labels: {
         items: {
+          header: {
+            show(props, handler, args) {
+              return args.properties.qHyperCubeDef.qDimensions?.length;
+            },
+          },
           pointLabels: {
             component: 'checkbox',
             ref: 'dataPoint.showLabels',
@@ -176,9 +181,7 @@ export default function propertyDefinition(env) {
             },
             convertFunctions: {
               get(getter, def, args) {
-                return (
-                  args.properties.dimensionAxis.show === 'labels' || args.properties.dimensionAxis.show === 'none'
-                );
+                return args.properties.dimensionAxis.show === 'labels' || args.properties.dimensionAxis.show === 'none';
               },
               set(value, setter, def, args) {
                 args.properties.dimensionAxis.show = value ? 'labels' : 'all';
@@ -203,9 +206,9 @@ export default function propertyDefinition(env) {
               },
             },
           },
-        }
-      }
-    }
+        },
+      },
+    },
   };
 
   const settings = {

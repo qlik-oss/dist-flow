@@ -429,7 +429,10 @@ export default function propertyDefinition(env) {
         items: {
           header: {
             show(props, handler, args) {
-              return args.properties.boxplotDef?.qHyperCubeDef?.qDimensions?.length && args.properties.boxplotDef?.qHyperCubeDef?.qMeasures?.length;
+              return (
+                args.properties.boxplotDef?.qHyperCubeDef?.qDimensions?.length &&
+                args.properties.boxplotDef?.qHyperCubeDef?.qMeasures?.length
+              );
             },
           },
           dimensionTitle: {
@@ -439,13 +442,14 @@ export default function propertyDefinition(env) {
             translation: 'Simple.Label.Dimension.Hide',
             defaultValue: 'all',
             show(props, handler, args) {
-              return args.properties.boxplotDef?.qHyperCubeDef?.qDimensions?.length > 1 && args.properties.boxplotDef?.qHyperCubeDef?.qMeasures?.length;
+              return (
+                args.properties.boxplotDef?.qHyperCubeDef?.qDimensions?.length > 1 &&
+                args.properties.boxplotDef?.qHyperCubeDef?.qMeasures?.length
+              );
             },
             convertFunctions: {
               get(getter, def, args) {
-                return (
-                  args.properties.dimensionAxis.show === 'labels' || args.properties.dimensionAxis.show === 'none'
-                );
+                return args.properties.dimensionAxis.show === 'labels' || args.properties.dimensionAxis.show === 'none';
               },
               set(value, setter, def, args) {
                 args.properties.dimensionAxis.show = value ? 'labels' : 'all';
@@ -459,7 +463,10 @@ export default function propertyDefinition(env) {
             translation: 'Simple.Label.Measure.Hide',
             defaultValue: 'all',
             show(props, handler, args) {
-              return args.properties.boxplotDef?.qHyperCubeDef?.qDimensions?.length && args.properties.boxplotDef?.qHyperCubeDef?.qMeasures?.length;
+              return (
+                args.properties.boxplotDef?.qHyperCubeDef?.qDimensions?.length &&
+                args.properties.boxplotDef?.qHyperCubeDef?.qMeasures?.length
+              );
             },
             convertFunctions: {
               get(getter, def, args) {
@@ -470,9 +477,9 @@ export default function propertyDefinition(env) {
               },
             },
           },
-        }
-      }
-    }
+        },
+      },
+    },
   };
 
   const settings = {

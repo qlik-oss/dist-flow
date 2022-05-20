@@ -370,6 +370,11 @@ export default function propertyDefinition(env) {
     items: {
       labels: {
         items: {
+          header: {
+            show(props, handler, args) {
+              return args.properties.qHyperCubeDef.qMeasures?.length;
+            },
+          },
           pointLabels: {
             component: 'checkbox',
             ref: 'dataPoint.showLabels',
@@ -379,9 +384,9 @@ export default function propertyDefinition(env) {
               return args.properties.qHyperCubeDef.qMeasures?.length;
             },
           },
-        }
-      }
-    }
+        },
+      },
+    },
   };
 
   const settings = {
