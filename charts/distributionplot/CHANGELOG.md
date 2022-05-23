@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.31.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.30.0...@nebula.js/sn-distributionplot@0.31.0) (2022-05-23)
+
+
+### Features
+
+* add labels section to simple property panel ([b9901b1](https://github.com/qlik-oss/nebula.js/commit/b9901b1b10faa764bfd3542d061b54c40e882c15))
+
+
+
+
+
 # [0.30.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.29.1...@nebula.js/sn-distributionplot@0.30.0) (2022-05-18)
 
 
