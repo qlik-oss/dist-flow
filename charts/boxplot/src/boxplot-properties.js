@@ -79,6 +79,12 @@ export default function propertyDefinition(env) {
   };
 
   const simpleColors = {
+    classification: {
+      section: 'color',
+      tags: ['simple'],
+      exclusive: true,
+    },
+    type: 'items',
     items: {
       simpleItems: {
         items: {
