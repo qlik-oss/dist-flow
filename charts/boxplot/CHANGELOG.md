@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.32.0...@nebula.js/sn-boxplot@0.33.0) (2022-05-25)
+
+
+### Features
+
+* update colors section to support disclaimer ([f7ca32b](https://github.com/qlik-oss/nebula.js/commit/f7ca32bd42fe0147e483e047e33c829d8dff1012))
+
+
+
+
+
 # [0.32.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.31.0...@nebula.js/sn-boxplot@0.32.0) (2022-05-23)
 
 

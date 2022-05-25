@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.31.0...@nebula.js/sn-distributionplot@0.32.0) (2022-05-25)
+
+
+### Bug Fixes
+
+* fix lint issue ([ef3d3a2](https://github.com/qlik-oss/nebula.js/commit/ef3d3a2b4d4cebf72b6f94cc2cc9b91800b12da7))
+
+
+### Features
+
+* update colors section to support disclaimer ([f7ca32b](https://github.com/qlik-oss/nebula.js/commit/f7ca32bd42fe0147e483e047e33c829d8dff1012))
+
+
+
+
+
 # [0.31.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.30.0...@nebula.js/sn-distributionplot@0.31.0) (2022-05-23)
 
 
