@@ -396,23 +396,23 @@ export default function propertyDefinition(env) {
             },
             options: flags.isEnabled('SENSECLIENT_LAYERED_LABELS')
               ? [
-                {
-                  value: 'auto',
-                  translation: 'Common.Auto',
-                },
-                {
-                  value: 'horizontal',
-                  translation: 'Common.Horizontal',
-                },
-                {
-                  value: 'tilted',
-                  translation: 'properties.labels.tilted',
-                },
-                {
-                  value: 'layered',
-                  translation: 'properties.labels.layered',
-                },
-              ]
+                  {
+                    value: 'auto',
+                    translation: 'Common.Auto',
+                  },
+                  {
+                    value: 'horizontal',
+                    translation: 'Common.Horizontal',
+                  },
+                  {
+                    value: 'tilted',
+                    translation: 'properties.labels.tilted',
+                  },
+                  {
+                    value: 'layered',
+                    translation: 'properties.labels.layered',
+                  },
+                ]
               : undefined,
           },
           dock: {
@@ -487,7 +487,7 @@ export default function propertyDefinition(env) {
             show(data) {
               return !propsLogic.isColorAuto(data);
             },
-            globalChange() { },
+            globalChange() {},
           },
           paletteColor: {
             ref: 'color.point.paletteColor',
@@ -553,7 +553,7 @@ export default function propertyDefinition(env) {
             show(data) {
               return !propsLogic.isColorAuto(data);
             },
-            globalChange() /* data, handler */ { }, // overriding with empty func
+            globalChange() /* data, handler */ {}, // overriding with empty func
           },
           colorByDimension: {
             ref: 'color.point.byDimDef',
