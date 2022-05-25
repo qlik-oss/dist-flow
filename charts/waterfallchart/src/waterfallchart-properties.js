@@ -348,23 +348,23 @@ export default function propertyDefinition(env) {
           label: {
             options: flags.isEnabled('SENSECLIENT_LAYERED_LABELS')
               ? [
-                {
-                  value: 'auto',
-                  translation: 'Common.Auto',
-                },
-                {
-                  value: 'horizontal',
-                  translation: 'Common.Horizontal',
-                },
-                {
-                  value: 'tilted',
-                  translation: 'properties.labels.tilted',
-                },
-                {
-                  value: 'layered',
-                  translation: 'properties.labels.layered',
-                },
-              ]
+                  {
+                    value: 'auto',
+                    translation: 'Common.Auto',
+                  },
+                  {
+                    value: 'horizontal',
+                    translation: 'Common.Horizontal',
+                  },
+                  {
+                    value: 'tilted',
+                    translation: 'properties.labels.tilted',
+                  },
+                  {
+                    value: 'layered',
+                    translation: 'properties.labels.layered',
+                  },
+                ]
               : undefined,
           },
         },
