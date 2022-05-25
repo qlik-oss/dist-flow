@@ -190,6 +190,28 @@ export default function propertyDefinition(env) {
     show: colorIsNotAuto,
   };
 
+  const simpleColors = {
+    classification: {
+      section: 'color',
+      tags: ['simple'],
+      exclusive: true,
+    },
+    type: 'items',
+    items: {
+      simpleItems: {
+        items: {
+          autoColor: {
+            ...autoColor,
+            label: (data) => translator.get(data.color?.auto ? 'Common.Auto' : 'Common.Custom'),
+          },
+          positiveValueColor,
+          negativeValueColor,
+          subtotalColor,
+        },
+      },
+    },
+  };
+
   const colors = {
     translation: 'properties.colorsAndLegend',
     type: 'items',
@@ -207,23 +229,7 @@ export default function propertyDefinition(env) {
           subtotalColor,
         },
       },
-      simpleColors: {
-        classification: {
-          section: 'color',
-          tags: ['simple'],
-          exclusive: true,
-        },
-        type: 'items',
-        items: {
-          autoColor: {
-            ...autoColor,
-            label: (data) => translator.get(data.color?.auto ? 'Common.Auto' : 'Common.Custom'),
-          },
-          positiveValueColor,
-          negativeValueColor,
-          subtotalColor,
-        },
-      },
+      simpleColors,
       legend: {
         type: 'items',
         items: {
