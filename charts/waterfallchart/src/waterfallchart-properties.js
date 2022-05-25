@@ -190,6 +190,22 @@ export default function propertyDefinition(env) {
     show: colorIsNotAuto,
   };
 
+  const simpleColors = {
+    items: {
+      simpleItems: {
+        items: {
+          autoColor: {
+            ...autoColor,
+            label: (data) => translator.get(data.color?.auto ? 'Common.Auto' : 'Common.Custom'),
+          },
+          positiveValueColor,
+          negativeValueColor,
+          subtotalColor,
+        },
+      },
+    },
+  };
+
   const colors = {
     translation: 'properties.colorsAndLegend',
     type: 'items',
@@ -207,23 +223,7 @@ export default function propertyDefinition(env) {
           subtotalColor,
         },
       },
-      simpleColors: {
-        classification: {
-          section: 'color',
-          tags: ['simple'],
-          exclusive: true,
-        },
-        type: 'items',
-        items: {
-          autoColor: {
-            ...autoColor,
-            label: (data) => translator.get(data.color?.auto ? 'Common.Auto' : 'Common.Custom'),
-          },
-          positiveValueColor,
-          negativeValueColor,
-          subtotalColor,
-        },
-      },
+      simpleColors,
       legend: {
         type: 'items',
         items: {
@@ -342,23 +342,23 @@ export default function propertyDefinition(env) {
           label: {
             options: flags.isEnabled('SENSECLIENT_LAYERED_LABELS')
               ? [
-                  {
-                    value: 'auto',
-                    translation: 'Common.Auto',
-                  },
-                  {
-                    value: 'horizontal',
-                    translation: 'Common.Horizontal',
-                  },
-                  {
-                    value: 'tilted',
-                    translation: 'properties.labels.tilted',
-                  },
-                  {
-                    value: 'layered',
-                    translation: 'properties.labels.layered',
-                  },
-                ]
+                {
+                  value: 'auto',
+                  translation: 'Common.Auto',
+                },
+                {
+                  value: 'horizontal',
+                  translation: 'Common.Horizontal',
+                },
+                {
+                  value: 'tilted',
+                  translation: 'properties.labels.tilted',
+                },
+                {
+                  value: 'layered',
+                  translation: 'properties.labels.layered',
+                },
+              ]
               : undefined,
           },
         },

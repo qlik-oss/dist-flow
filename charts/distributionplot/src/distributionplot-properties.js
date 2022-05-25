@@ -396,23 +396,23 @@ export default function propertyDefinition(env) {
             },
             options: flags.isEnabled('SENSECLIENT_LAYERED_LABELS')
               ? [
-                  {
-                    value: 'auto',
-                    translation: 'Common.Auto',
-                  },
-                  {
-                    value: 'horizontal',
-                    translation: 'Common.Horizontal',
-                  },
-                  {
-                    value: 'tilted',
-                    translation: 'properties.labels.tilted',
-                  },
-                  {
-                    value: 'layered',
-                    translation: 'properties.labels.layered',
-                  },
-                ]
+                {
+                  value: 'auto',
+                  translation: 'Common.Auto',
+                },
+                {
+                  value: 'horizontal',
+                  translation: 'Common.Horizontal',
+                },
+                {
+                  value: 'tilted',
+                  translation: 'properties.labels.tilted',
+                },
+                {
+                  value: 'layered',
+                  translation: 'properties.labels.layered',
+                },
+              ]
               : undefined,
           },
           dock: {
@@ -467,6 +467,59 @@ export default function propertyDefinition(env) {
     return options;
   };
 
+  const simpleColors = {
+    items: {
+      simpleItems: {
+        items: {
+          autoColor: {
+            ref: 'color.point.auto',
+            undefinedValue: false,
+            label,
+            change: (data) => {
+              if (!getValue(data, 'color.point.auto')) {
+                setValue(data, 'color.point.mode', 'primary');
+              }
+            },
+          },
+          colorMode: {
+            ref: 'color.point.mode',
+            options: colorModeOptions,
+            show(data) {
+              return !propsLogic.isColorAuto(data);
+            },
+            globalChange() { },
+          },
+          paletteColor: {
+            ref: 'color.point.paletteColor',
+            translation: 'properties.distributionPlot.pointColor',
+            show(data, handler) {
+              const useMeasureBaseColor =
+                getValue(data, 'color.point.useBaseColors') === 'measure' && propsLogic.measuresHasBaseColors(handler);
+              const useDimensionBaseColor =
+                getValue(data, 'color.point.useBaseColors') === 'dimension' &&
+                propsLogic.dimensionsHasBaseColors(handler);
+              return propsLogic.isColorBySingle(data) && !useMeasureBaseColor && !useDimensionBaseColor;
+            },
+          },
+          boxColor: {
+            ref: 'color.box.paletteColor',
+            translation: 'properties.distributionPlot.boxColor',
+            type: 'object',
+            component: 'color-picker',
+            dualOutput: true,
+            defaultValue() {
+              const color = theme.getStyle(CONSTANTS.CHART_ID, 'box', 'fill');
+              return lookupColorInPalette(color);
+            },
+            show(data) {
+              return !getValue(data, 'color.point.auto', true);
+            },
+          },
+        },
+      },
+    },
+  };
+
   const colorsAndLegend = {
     uses: 'colorsAndLegend',
     items: {
@@ -500,7 +553,7 @@ export default function propertyDefinition(env) {
             show(data) {
               return !propsLogic.isColorAuto(data);
             },
-            globalChange() /* data, handler */ {}, // overriding with empty func
+            globalChange() /* data, handler */ { }, // overriding with empty func
           },
           colorByDimension: {
             ref: 'color.point.byDimDef',
@@ -725,54 +778,7 @@ export default function propertyDefinition(env) {
           },
         },
       },
-      simpleColors: {
-        items: {
-          autoColor: {
-            ref: 'color.point.auto',
-            undefinedValue: false,
-            label,
-            change: (data) => {
-              if (!getValue(data, 'color.point.auto')) {
-                setValue(data, 'color.point.mode', 'primary');
-              }
-            },
-          },
-          colorMode: {
-            ref: 'color.point.mode',
-            options: colorModeOptions,
-            show(data) {
-              return !propsLogic.isColorAuto(data);
-            },
-            globalChange() {},
-          },
-          paletteColor: {
-            ref: 'color.point.paletteColor',
-            translation: 'properties.distributionPlot.pointColor',
-            show(data, handler) {
-              const useMeasureBaseColor =
-                getValue(data, 'color.point.useBaseColors') === 'measure' && propsLogic.measuresHasBaseColors(handler);
-              const useDimensionBaseColor =
-                getValue(data, 'color.point.useBaseColors') === 'dimension' &&
-                propsLogic.dimensionsHasBaseColors(handler);
-              return propsLogic.isColorBySingle(data) && !useMeasureBaseColor && !useDimensionBaseColor;
-            },
-          },
-          boxColor: {
-            ref: 'color.box.paletteColor',
-            translation: 'properties.distributionPlot.boxColor',
-            type: 'object',
-            component: 'color-picker',
-            dualOutput: true,
-            defaultValue() {
-              const color = theme.getStyle(CONSTANTS.CHART_ID, 'box', 'fill');
-              return lookupColorInPalette(color);
-            },
-            show(data) {
-              return !getValue(data, 'color.point.auto', true);
-            },
-          },
-        },
-      },
+      simpleColors,
       legend: {
         show: propsLogic.showLegend,
         type: 'items',

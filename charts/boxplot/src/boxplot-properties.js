@@ -78,6 +78,53 @@ export default function propertyDefinition(env) {
     return options;
   };
 
+  const simpleColors = {
+    items: {
+      simpleItems: {
+        items: {
+          autoColor: {
+            ref: 'boxplotDef.color.auto',
+            type: 'boolean',
+            label: (data) => {
+              if (getValue(data, 'boxplotDef.color.auto'))
+                return translator.get('Simple.Color.Auto', translator.get('properties.colorMode.primary'));
+              return translator.get('Common.Custom');
+            },
+            change: (data) => {
+              if (!getValue(data, 'boxplotDef.color.auto')) {
+                setValue(data, 'boxplotDef.color.mode', 'primary');
+              }
+            },
+            component: 'switch',
+            defaultValue: true,
+            options: [
+              {
+                value: true,
+                translation: 'Common.Auto',
+              },
+              {
+                value: false,
+                translation: 'Common.Custom',
+              },
+            ],
+          },
+          colorMode: {
+            ref: 'boxplotDef.color.mode',
+            type: 'string',
+            component: 'dropdown',
+            options: colorModeOptions,
+            defaultValue: 'primary',
+            show(data) {
+              return !getValue(data, 'boxplotDef.color.auto', true);
+            },
+          },
+          boxColor,
+          outlierColor,
+        },
+      },
+    },
+  };
+
   const colors = {
     translation: 'properties.colors',
     type: 'items',
@@ -148,54 +195,7 @@ export default function propertyDefinition(env) {
           },
         },
       },
-      simpleColors: {
-        classification: {
-          section: 'color',
-          tags: ['simple'],
-          exclusive: true,
-        },
-        type: 'items',
-        items: {
-          autoColor: {
-            ref: 'boxplotDef.color.auto',
-            type: 'boolean',
-            label: (data) => {
-              if (getValue(data, 'boxplotDef.color.auto'))
-                return translator.get('Simple.Color.Auto', translator.get('properties.colorMode.primary'));
-              return translator.get('Common.Custom');
-            },
-            change: (data) => {
-              if (!getValue(data, 'boxplotDef.color.auto')) {
-                setValue(data, 'boxplotDef.color.mode', 'primary');
-              }
-            },
-            component: 'switch',
-            defaultValue: true,
-            options: [
-              {
-                value: true,
-                translation: 'Common.Auto',
-              },
-              {
-                value: false,
-                translation: 'Common.Custom',
-              },
-            ],
-          },
-          colorMode: {
-            ref: 'boxplotDef.color.mode',
-            type: 'string',
-            component: 'dropdown',
-            options: colorModeOptions,
-            defaultValue: 'primary',
-            show(data) {
-              return !getValue(data, 'boxplotDef.color.auto', true);
-            },
-          },
-          boxColor,
-          outlierColor,
-        },
-      },
+      simpleColors,
     },
   };
 
