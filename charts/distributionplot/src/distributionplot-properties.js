@@ -960,7 +960,7 @@ export default function propertyDefinition(env) {
           tags: ['simple'],
         },
       },
-      simpleSortingItems: {
+      simpleSorting: {
         component: 'sorting-with-elements',
         expressionRef: CONSTANTS.SORTING_EXPRESSION,
         elementRef: CONSTANTS.SORTING_ELEMENT_ID,
