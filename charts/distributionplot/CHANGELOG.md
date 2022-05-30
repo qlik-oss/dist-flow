@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.33.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.32.0...@nebula.js/sn-distributionplot@0.33.0) (2022-05-30)
+
+
+### Features
+
+* add simple sorting to property panel def ([815e2da](https://github.com/qlik-oss/nebula.js/commit/815e2daa9fc47511f2b0a94f038a04efefab0a1e))
+
+
+
+
+
 # [0.32.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.31.0...@nebula.js/sn-distributionplot@0.32.0) (2022-05-25)
 
 
