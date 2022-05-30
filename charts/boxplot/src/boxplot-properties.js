@@ -562,6 +562,35 @@ export default function propertyDefinition(env) {
         change(data, handler, properties, args) {
           boxplotSorter.applySorting(properties, args.layout, translator);
         },
+        classification: {
+          section: 'sorting',
+          tags: ['simple'],
+        },
+      },
+      simpleSortingItems: {
+        component: 'sorting-with-elements',
+        expressionRef: SORTING_REFS.EXPRESSION,
+        elementRef: SORTING_REFS.ELEMENT_ID,
+        sortCriteriasRef: SORTING_REFS.SORT_CRITERIA,
+        autoSortRef: SORTING_REFS.AUTO_SORT,
+        elements(args) {
+          if (!args.properties.qUndoExclude || !args.properties.qUndoExclude.hashCode) {
+            return Promise.reject();
+          }
+
+          const settings = settingsRetriever.getSettings(args.layout);
+          const elements = elementsRetriever.getElements(args.properties, settings, translator);
+
+          return Promise.resolve(elements);
+        },
+        show(properties) {
+          return hasMultipleDimensions(properties) && !getValue(properties, SORTING_REFS.AUTO_SORT);
+        },
+        classification: {
+          section: 'sorting',
+          tags: ['simple'],
+          exclusive: true,
+        },
       },
       sortingItems: {
         component: 'items',
@@ -587,9 +616,15 @@ export default function propertyDefinition(env) {
         },
       },
       noData: {
-        component: 'no-data',
+        component: 'text',
+        translation: 'Common.NoData',
+        style: 'hint',
         show(properties) {
           return !hasMultipleDimensions(properties);
+        },
+        classification: {
+          section: 'sorting',
+          tags: ['simple'],
         },
       },
     },

@@ -955,6 +955,35 @@ export default function propertyDefinition(env) {
           }
           return undefined;
         },
+        classification: {
+          section: 'sorting',
+          tags: ['simple'],
+        },
+      },
+      simpleSortingItems: {
+        component: 'sorting-with-elements',
+        expressionRef: CONSTANTS.SORTING_EXPRESSION,
+        elementRef: CONSTANTS.SORTING_ELEMENT_ID,
+        sortCriteriasRef: CONSTANTS.SORT_CRITERIA,
+        show(properties) {
+          return distplotUtils.hasMultipleDimensions(properties) && !distplotUtils.isAutoSort(properties);
+        },
+        elements(args) {
+          return HyperCubeDefGenerator.getAllHyperCubeExpressions(
+            args.properties.qHyperCubeDef,
+            args.layout.qHyperCube,
+            args.model.app
+          ).then((expressions) => {
+            const settings = settingsRetriever.getSettings(args.layout);
+
+            return elementsRetriever.getElements(expressions.measures, expressions.dimensions, settings, translator);
+          });
+        },
+        classification: {
+          section: 'sorting',
+          tags: ['simple'],
+          exclusive: true,
+        },
       },
       sortingItems: {
         type: 'items',
@@ -981,9 +1010,15 @@ export default function propertyDefinition(env) {
         },
       },
       noData: {
-        component: 'no-data',
+        component: 'text',
+        translation: 'Common.NoData',
+        style: 'hint',
         show(properties) {
           return !distplotUtils.hasMultipleDimensions(properties);
+        },
+        classification: {
+          section: 'sorting',
+          tags: ['simple'],
         },
       },
     },
