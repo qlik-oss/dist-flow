@@ -10,6 +10,7 @@ export function importProperties({ dataDefinition, defaultPropertyValues, export
     defaultPropertyValues,
     hypercubePath: HYPERCUBE_PATH,
     supportedFilters: false,
+    isHCModifierSupported: false,
   });
 
   const props = propTree.qProperty;
