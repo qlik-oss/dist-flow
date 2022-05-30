@@ -505,6 +505,168 @@ describe('boxplot-properties', () => {
       });
     });
 
+    describe('simple-sorting', () => {
+      describe('show', () => {
+        it('shold return false if not multiple dimensions', () => {
+          const properties = {
+            boxplotDef: {
+              qHyperCubeDef: {
+                qDimensions: [{}],
+              },
+            },
+          };
+
+          const result = sorting.items.simpleSorting.show(properties);
+
+          expect(result).to.be.false;
+        });
+
+        it('shold return false if multiple dimensions but autoSort is on', () => {
+          const properties = {
+            boxplotDef: {
+              sorting: {
+                autoSort: true,
+              },
+              qHyperCubeDef: {
+                qDimensions: [{}, {}],
+              },
+            },
+          };
+
+          const result = sorting.items.simpleSorting.show(properties);
+
+          expect(result).to.be.false;
+        });
+
+        it('should return true if multiple dimensions and autoSort is off', () => {
+          const properties = {
+            boxplotDef: {
+              sorting: {
+                autoSort: false,
+              },
+              qHyperCubeDef: {
+                qDimensions: [{}, {}],
+              },
+            },
+          };
+
+          const result = sorting.items.simpleSorting.show(properties);
+
+          expect(result).to.be.true;
+        });
+      });
+
+      describe('expression', () => {
+        let simpleSorting;
+        beforeEach(() => {
+          simpleSorting = sorting.items.simpleSorting;
+        });
+
+        describe('toggled', () => {
+          it('should have correct refs', () => {
+            const { expressionRef, elementRef, sortCriteriasRef } = simpleSorting;
+
+            expect(expressionRef).to.equal('boxplotDef.sorting.expression');
+            expect(elementRef).to.equal('boxplotDef.sorting.elementId');
+            expect(sortCriteriasRef).to.equal('boxplotDef.sorting.sortCriteria');
+          });
+        });
+
+        describe('sortByElement', () => {
+          describe('elements', () => {
+            it('should reject promise if qUndoExclude or qUndoExclude.hashCode is missing', () => {
+              const args = {
+                properties: {},
+              };
+
+              simpleSorting.elements(args);
+
+              expect(Promise.reject.calledOnce, 'no qUndoExclude').to.be.true;
+
+              args.properties.qUndoExclude = {};
+
+              Promise.reject.reset();
+
+              simpleSorting.elements(args);
+
+              expect(Promise.reject.calledOnce, 'no qUndoExclude.hashCode').to.be.true;
+            });
+
+            it('should call boxplot-sorting-elements-retriever.getElements with correct arguments', () => {
+              const measures = [];
+
+              const args = {
+                properties: {
+                  qUndoExclude: {
+                    hashCode: 123,
+                    box: {
+                      qHyperCubeDef: {
+                        qMeasures: measures,
+                      },
+                    },
+                  },
+                },
+                layout: {
+                  boxplotDef: {
+                    qHyperCube: {
+                      qDimensionInfo: [
+                        {},
+                        {
+                          qCardinal: 42,
+                        },
+                      ],
+                    },
+                  },
+                },
+              };
+
+              simpleSorting.elements(args);
+
+              expect(elementsRetriever.getElements.calledOnce, 'elementsRetriever.getElements call count').to.be.true;
+              expect(
+                elementsRetriever.getElements.calledWithExactly(args.properties, returnedSettings, translator),
+                'calledWithExactly'
+              ).to.be.true;
+            });
+
+            it('should resolve promise with the elements received from boxplotSorter.getElements', () => {
+              const measures = [];
+
+              const args = {
+                properties: {
+                  qUndoExclude: {
+                    hashCode: 123,
+                    box: {
+                      qHyperCubeDef: {
+                        qMeasures: measures,
+                      },
+                    },
+                  },
+                },
+                layout: {
+                  boxplotDef: {
+                    qHyperCube: {
+                      qDimensionInfo: [
+                        {},
+                        {
+                          qCardinal: 42,
+                        },
+                      ],
+                    },
+                  },
+                },
+              };
+
+              simpleSorting.elements(args);
+
+              expect(Promise.resolve.calledOnce, 'calledOnce').to.be.true;
+              expect(Promise.resolve.calledWithExactly(returnedElements), 'calledWithExactly').to.be.true;
+            });
+          });
+        });
+      });
+    });
+
     describe('no data', () => {
       let noData;
       beforeEach(() => {
