@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.33.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.33.0...@nebula.js/sn-distributionplot@0.33.1) (2022-05-31)
+
+
+### Bug Fixes
+
+* set isHCModifierSupported to false to prevent unquarantineProperty (qDynamicScripts) for box-plot ([#155](https://github.com/qlik-oss/nebula.js/issues/155)) ([4ff4e91](https://github.com/qlik-oss/nebula.js/commit/4ff4e918a28fc9d14162ba54fb83c42ca47d6f5e))
+
+
+
+
+
 # [0.33.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.32.0...@nebula.js/sn-distributionplot@0.33.0) (2022-05-30)
 
 

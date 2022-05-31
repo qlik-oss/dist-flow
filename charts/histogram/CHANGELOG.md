@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.31.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.31.0...@nebula.js/sn-histogram@0.31.1) (2022-05-31)
+
+
+### Bug Fixes
+
+* fix wording for histogram labels section ([0437647](https://github.com/qlik-oss/nebula.js/commit/0437647d37e57406e818b2119aa1b4e1fe50662e))
+* set isHCModifierSupported to false to prevent unquarantineProperty (qDynamicScripts) for box-plot ([#155](https://github.com/qlik-oss/nebula.js/issues/155)) ([4ff4e91](https://github.com/qlik-oss/nebula.js/commit/4ff4e918a28fc9d14162ba54fb83c42ca47d6f5e))
+
+
+
+
+
 # [0.31.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.30.0...@nebula.js/sn-histogram@0.31.0) (2022-05-23)
 
 
