@@ -174,7 +174,7 @@ export default function propertyDefinition(env) {
             component: 'checkbox',
             ref: 'dimensionAxis.show',
             type: 'string',
-            translation: 'Simple.Label.Dimension.Hide',
+            translation: 'Simple.Label.XAxis.Hide',
             defaultValue: 'all',
             show(props, handler, args) {
               return args.properties.qHyperCubeDef.qDimensions?.length;
@@ -192,7 +192,7 @@ export default function propertyDefinition(env) {
             component: 'checkbox',
             ref: 'measureAxis.show',
             type: 'string',
-            translation: 'Simple.Label.Measure.Hide',
+            translation: 'Simple.Label.YAxis.Hide',
             defaultValue: 'all',
             show(props, handler, args) {
               return args.properties.qHyperCubeDef.qDimensions?.length;
