@@ -489,10 +489,10 @@ export default function propertyDefinition(env) {
               return !propsLogic.isColorAuto(data);
             },
             change(data) {
-              if (util.getValue(data, 'color.point.mode', undefined) === 'primary') {
-                const useBaseColors = util.getValue(data, 'color.point.useBaseColors', undefined);
+              if (getValue(data, 'color.point.mode', undefined) === 'primary') {
+                const useBaseColors = getValue(data, 'color.point.useBaseColors', undefined);
                 if (useBaseColors !== undefined && useBaseColors !== 'off') {
-                  util.setValue(data, 'color.point.useBaseColors', 'off');
+                  setValue(data, 'color.point.useBaseColors', 'off');
                 }
               }
             },
