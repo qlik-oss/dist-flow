@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.34.2](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.34.1...@nebula.js/sn-boxplot@0.34.2) (2022-06-02)
+
+
+### Bug Fixes
+
+* adjust simple sorting ([915ad36](https://github.com/qlik-oss/nebula.js/commit/915ad366e46818cdc198206d2967f8d264f38bd0))
+
+
+
+
+
 ## [0.34.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.34.0...@nebula.js/sn-boxplot@0.34.1) (2022-05-31)
 
 

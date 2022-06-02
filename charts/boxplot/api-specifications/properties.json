@@ -3,7 +3,7 @@
   "info": {
     "name": "@nebula.js/sn-boxplot:properties",
     "description": "Boxplot generic object definition",
-    "version": "0.34.1",
+    "version": "0.34.2",
     "license": "MIT",
     "stability": "experimental",
     "x-qlik-visibility": "private"
