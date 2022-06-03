@@ -467,9 +467,30 @@ export default function propertyDefinition(env) {
     return options;
   };
 
+  const showPointPaletteColor = (data, handler) => {
+    const useMeasureBaseColor =
+      getValue(data, 'color.point.useBaseColors') === 'measure' && propsLogic.measuresHasBaseColors(handler);
+    const useDimensionBaseColor =
+      getValue(data, 'color.point.useBaseColors') === 'dimension' && propsLogic.dimensionsHasBaseColors(handler);
+    return propsLogic.isColorBySingle(data) && !useMeasureBaseColor && !useDimensionBaseColor;
+  };
+
+  const showDisclaimer = (data, handler) =>
+    !getValue(data, 'color.point.auto', undefined) &&
+    getValue(data, 'color.point.mode', undefined) === 'primary' &&
+    !showPointPaletteColor(data, handler);
+
   const simpleColors = {
     items: {
+      disclaimer: {
+        show(data, handler) {
+          return showDisclaimer(data, handler);
+        },
+      },
       simpleItems: {
+        show(data, handler) {
+          return !showDisclaimer(data, handler);
+        },
         items: {
           autoColor: {
             ref: 'color.point.auto',
@@ -501,14 +522,7 @@ export default function propertyDefinition(env) {
           paletteColor: {
             ref: 'color.point.paletteColor',
             translation: 'properties.distributionPlot.pointColor',
-            show(data, handler) {
-              const useMeasureBaseColor =
-                getValue(data, 'color.point.useBaseColors') === 'measure' && propsLogic.measuresHasBaseColors(handler);
-              const useDimensionBaseColor =
-                getValue(data, 'color.point.useBaseColors') === 'dimension' &&
-                propsLogic.dimensionsHasBaseColors(handler);
-              return propsLogic.isColorBySingle(data) && !useMeasureBaseColor && !useDimensionBaseColor;
-            },
+            show: showPointPaletteColor,
           },
           boxColor: {
             ref: 'color.box.paletteColor',
