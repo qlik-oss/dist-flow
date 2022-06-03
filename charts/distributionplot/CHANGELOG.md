@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.34.0...@nebula.js/sn-distributionplot@0.35.0) (2022-06-03)
+
+
+### Features
+
+* show disclaimer for mismatch ([4311ffa](https://github.com/qlik-oss/nebula.js/commit/4311ffa9d0dafaad6ea4764ec24070e533f1e562))
+
+
+
+
+
 # [0.34.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.33.1...@nebula.js/sn-distributionplot@0.34.0) (2022-06-02)
 
 
