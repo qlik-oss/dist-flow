@@ -91,6 +91,7 @@ export default function propertyDefinition(env) {
           autoColor: {
             ref: 'boxplotDef.color.auto',
             type: 'boolean',
+            forceLabel: true,
             label: (data) => {
               if (getValue(data, 'boxplotDef.color.auto'))
                 return translator.get('Simple.Color.Auto', translator.get('properties.colorMode.primary'));
@@ -341,8 +342,8 @@ export default function propertyDefinition(env) {
         ],
         defaultValue: 'lowest',
         convertFunctions: {
-          get(getter, definition, args) {
-            const { autoMinMax, minMax, min } = args.properties?.measureAxis || {};
+          get(getter, definition, args, data) {
+            const { autoMinMax, minMax, min } = data?.measureAxis || {};
             if (autoMinMax === true) {
               return 'lowest';
             }
@@ -434,10 +435,10 @@ export default function propertyDefinition(env) {
       labels: {
         items: {
           header: {
-            show(props, handler, args) {
+            show(props) {
               return (
-                args.properties.boxplotDef?.qHyperCubeDef?.qDimensions?.length &&
-                args.properties.boxplotDef?.qHyperCubeDef?.qMeasures?.length
+                props.boxplotDef?.qHyperCubeDef?.qDimensions?.length &&
+                props.boxplotDef?.qHyperCubeDef?.qMeasures?.length
               );
             },
           },
@@ -447,18 +448,18 @@ export default function propertyDefinition(env) {
             type: 'string',
             translation: 'Simple.Label.Dimension.Hide',
             defaultValue: 'all',
-            show(props, handler, args) {
+            show(props) {
               return (
-                args.properties.boxplotDef?.qHyperCubeDef?.qDimensions?.length > 1 &&
-                args.properties.boxplotDef?.qHyperCubeDef?.qMeasures?.length
+                props.boxplotDef?.qHyperCubeDef?.qDimensions?.length > 1 &&
+                props.boxplotDef?.qHyperCubeDef?.qMeasures?.length
               );
             },
             convertFunctions: {
-              get(getter, def, args) {
-                return args.properties.dimensionAxis.show === 'labels' || args.properties.dimensionAxis.show === 'none';
+              get(getter, def, args, data) {
+                return data.dimensionAxis.show === 'labels' || data.dimensionAxis.show === 'none';
               },
-              set(value, setter, def, args) {
-                args.properties.dimensionAxis.show = value ? 'labels' : 'all';
+              set(value, setter, def, args, data) {
+                data.dimensionAxis.show = value ? 'labels' : 'all';
               },
             },
           },
@@ -468,18 +469,18 @@ export default function propertyDefinition(env) {
             type: 'string',
             translation: 'Simple.Label.Measure.Hide',
             defaultValue: 'all',
-            show(props, handler, args) {
+            show(props) {
               return (
-                args.properties.boxplotDef?.qHyperCubeDef?.qDimensions?.length &&
-                args.properties.boxplotDef?.qHyperCubeDef?.qMeasures?.length
+                props.boxplotDef?.qHyperCubeDef?.qDimensions?.length &&
+                props.boxplotDef?.qHyperCubeDef?.qMeasures?.length
               );
             },
             convertFunctions: {
-              get(getter, def, args) {
-                return args.properties.measureAxis.show === 'labels' || args.properties.measureAxis.show === 'none';
+              get(getter, def, args, data) {
+                return data.measureAxis.show === 'labels' || data.measureAxis.show === 'none';
               },
-              set(value, setter, def, args) {
-                args.properties.measureAxis.show = value ? 'labels' : 'all';
+              set(value, setter, def, args, data) {
+                data.measureAxis.show = value ? 'labels' : 'all';
               },
             },
           },
@@ -565,8 +566,8 @@ export default function propertyDefinition(env) {
           },
         ],
         show: hasMultipleDimensions,
-        change(data, handler, properties, args) {
-          boxplotSorter.applySorting(properties, args.layout, translator);
+        change(data, handler) {
+          boxplotSorter.applySorting(data, handler.layout, translator);
         },
         classification: {
           section: 'sorting',
@@ -579,12 +580,12 @@ export default function propertyDefinition(env) {
         elementRef: SORTING_REFS.ELEMENT_ID,
         sortCriteriasRef: SORTING_REFS.SORT_CRITERIA,
         elements(args) {
-          if (!args.properties.qUndoExclude || !args.properties.qUndoExclude.hashCode) {
+          if (!args.handler.properties.qUndoExclude || !args.handler.properties.qUndoExclude.hashCode) {
             return Promise.reject();
           }
 
-          const settings = settingsRetriever.getSettings(args.layout);
-          const elements = elementsRetriever.getElements(args.properties, settings, translator);
+          const settings = settingsRetriever.getSettings(args.handler.layout);
+          const elements = elementsRetriever.getElements(args.handler.properties, settings, translator);
 
           return Promise.resolve(elements);
         },
