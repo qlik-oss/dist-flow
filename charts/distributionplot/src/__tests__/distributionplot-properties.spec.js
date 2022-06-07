@@ -122,14 +122,15 @@ describe('distributionplot-properties', () => {
       describe('convertFunctions', () => {
         let get;
         let set;
-        let args;
+        let data;
         sandbox = sinon.createSandbox();
         const definition = { type: 'string' };
         const getter = (type) => type;
+        const args = {};
 
         beforeEach(() => {
           sandbox.stub(chartModules, 'setValue');
-          args = { properties: { measureAxis: { autoMinMax: true, min: '10' } } };
+          data = { measureAxis: { autoMinMax: true, min: '10' } };
           ({ get, set } = distributionplotProperties.items.settings.items.measureAxis.items.startAt.convertFunctions);
         });
 
@@ -139,23 +140,17 @@ describe('distributionplot-properties', () => {
 
         describe('get', () => {
           it('should convert value to lowest when is autoMinMax', () => {
-            expect(get(getter, definition, args)).to.equal('lowest');
+            expect(get(getter, definition, args, data)).to.equal('lowest');
           });
 
           it('should convert value to zero when is not autoMinMax, type is min and min is 0', () => {
-            args = {
-              properties: { measureAxis: { autoMinMax: false, minMax: 'min', min: 0 } },
-            };
-            expect(get(getter, definition, args)).to.equal('zero');
+            data = { measureAxis: { autoMinMax: false, minMax: 'min', min: 0 } };
+            expect(get(getter, definition, args, data)).to.equal('zero');
           });
 
           it('should return value from getter when is not autoMinMax and type is max', () => {
-            args = {
-              properties: {
-                measureAxis: { autoMinMax: false, minMax: 'max', min: 0 },
-              },
-            };
-            expect(get(getter, definition, args)).to.equal('string');
+            data = { measureAxis: { autoMinMax: false, minMax: 'max', min: 0 } };
+            expect(get(getter, definition, args, data)).to.equal('string');
           });
         });
 
@@ -187,7 +182,7 @@ describe('distributionplot-properties', () => {
     describe('dimensionAxisTitle', () => {
       it('shoould return ture when has more than 1 dimension', () => {
         const properties = {};
-        const args = {
+        const handler = {
           layout: {
             qHyperCube: {
               qDimensionInfo: [{ cId: '1' }, { cId: '2' }],
@@ -198,15 +193,14 @@ describe('distributionplot-properties', () => {
         expect(
           distributionplotProperties.items.settings.items.dimensionAxis.items.dimensionAxisTitle.show(
             properties,
-            undefined,
-            args
+            handler
           )
         ).to.be.true;
       });
 
       it('shoould return false when has 1 dimension', () => {
         const properties = {};
-        const args = {
+        const handler = {
           layout: {
             qHyperCube: {
               qDimensionInfo: [{ cId: '1' }],
@@ -217,8 +211,7 @@ describe('distributionplot-properties', () => {
         expect(
           distributionplotProperties.items.settings.items.dimensionAxis.items.dimensionAxisTitle.show(
             properties,
-            undefined,
-            args
+            handler
           )
         ).to.be.false;
       });
@@ -228,7 +221,7 @@ describe('distributionplot-properties', () => {
       describe('label', () => {
         it('should show lable orientation option when has more than 1 dimension', () => {
           const properties = {};
-          const args = {
+          const handler = {
             layout: {
               qHyperCube: {
                 qDimensionInfo: [{ cId: '1' }, { cId: '2' }],
@@ -239,15 +232,14 @@ describe('distributionplot-properties', () => {
           expect(
             distributionplotProperties.items.settings.items.dimensionAxis.items.othersGroup.items.label.show(
               properties,
-              undefined,
-              args
+              handler
             )
           ).to.be.true;
         });
 
         it('should not show lable orientation option when has 1 dimension', () => {
           const properties = {};
-          const args = {
+          const handler = {
             layout: {
               boxplotDef: {
                 qHyperCube: {
@@ -260,8 +252,7 @@ describe('distributionplot-properties', () => {
           expect(
             distributionplotProperties.items.settings.items.dimensionAxis.items.othersGroup.items.label.show(
               properties,
-              undefined,
-              args
+              handler
             )
           ).to.be.false;
         });
@@ -270,7 +261,7 @@ describe('distributionplot-properties', () => {
       describe('dock', () => {
         it('should show lable orientation option when has more than 1 dimension', () => {
           const properties = {};
-          const args = {
+          const handler = {
             layout: {
               qHyperCube: {
                 qDimensionInfo: [{ cId: '1' }, { cId: '2' }],
@@ -281,15 +272,14 @@ describe('distributionplot-properties', () => {
           expect(
             distributionplotProperties.items.settings.items.dimensionAxis.items.othersGroup.items.dock.show(
               properties,
-              undefined,
-              args
+              handler
             )
           ).to.be.true;
         });
 
         it('should not show lable orientation option when has 1 dimension', () => {
           const properties = {};
-          const args = {
+          const handler = {
             layout: {
               qHyperCube: {
                 qDimensionInfo: [{ cId: '1' }],
@@ -300,8 +290,7 @@ describe('distributionplot-properties', () => {
           expect(
             distributionplotProperties.items.settings.items.dimensionAxis.items.othersGroup.items.dock.show(
               properties,
-              undefined,
-              args
+              handler
             )
           ).to.be.false;
         });
