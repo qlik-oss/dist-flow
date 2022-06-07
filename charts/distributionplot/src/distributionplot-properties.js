@@ -984,13 +984,16 @@ export default function propertyDefinition(env) {
           }
           return undefined;
         },
+        classification: {
+          section: 'sorting',
+          tags: ['simple'],
+        },
       },
       simpleSorting: {
         component: 'sorting-with-elements',
         expressionRef: CONSTANTS.SORTING_EXPRESSION,
         elementRef: CONSTANTS.SORTING_ELEMENT_ID,
         sortCriteriasRef: CONSTANTS.SORT_CRITERIA,
-        autoSortRef: CONSTANTS.AUTO_SORT,
         show(properties) {
           return distplotUtils.hasMultipleDimensions(properties) && !distplotUtils.isAutoSort(properties);
         },

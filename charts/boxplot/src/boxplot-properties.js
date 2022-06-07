@@ -568,13 +568,16 @@ export default function propertyDefinition(env) {
         change(data, handler, properties, args) {
           boxplotSorter.applySorting(properties, args.layout, translator);
         },
+        classification: {
+          section: 'sorting',
+          tags: ['simple'],
+        },
       },
       simpleSorting: {
         component: 'sorting-with-elements',
         expressionRef: SORTING_REFS.EXPRESSION,
         elementRef: SORTING_REFS.ELEMENT_ID,
         sortCriteriasRef: SORTING_REFS.SORT_CRITERIA,
-        autoSortRef: SORTING_REFS.AUTO_SORT,
         elements(args) {
           if (!args.properties.qUndoExclude || !args.properties.qUndoExclude.hashCode) {
             return Promise.reject();
