@@ -377,8 +377,8 @@ export default function propertyDefinition(env) {
       labels: {
         items: {
           header: {
-            show(props, handler, args) {
-              return args.properties.qHyperCubeDef.qMeasures?.length;
+            show(props) {
+              return props.qHyperCubeDef.qMeasures?.length;
             },
           },
           pointLabels: {
@@ -386,8 +386,8 @@ export default function propertyDefinition(env) {
             ref: 'dataPoint.showLabels',
             type: 'boolean',
             translation: 'Simple.Label.Value',
-            show(props, handler, args) {
-              return args.properties.qHyperCubeDef.qMeasures?.length;
+            show(props) {
+              return props.qHyperCubeDef.qMeasures?.length;
             },
           },
         },

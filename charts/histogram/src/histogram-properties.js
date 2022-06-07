@@ -157,8 +157,8 @@ export default function propertyDefinition(env) {
       labels: {
         items: {
           header: {
-            show(props, handler, args) {
-              return args.properties.qHyperCubeDef.qDimensions?.length;
+            show(props) {
+              return props.qHyperCubeDef.qDimensions?.length;
             },
           },
           pointLabels: {
@@ -166,8 +166,8 @@ export default function propertyDefinition(env) {
             ref: 'dataPoint.showLabels',
             type: 'boolean',
             translation: 'Simple.Label.Value',
-            show(props, handler, args) {
-              return args.properties.qHyperCubeDef.qDimensions?.length;
+            show(props) {
+              return props.qHyperCubeDef.qDimensions?.length;
             },
           },
           dimensionTitle: {
@@ -176,15 +176,15 @@ export default function propertyDefinition(env) {
             type: 'string',
             translation: 'Simple.Label.XAxis.Hide',
             defaultValue: 'all',
-            show(props, handler, args) {
-              return args.properties.qHyperCubeDef.qDimensions?.length;
+            show(props) {
+              return props.qHyperCubeDef.qDimensions?.length;
             },
             convertFunctions: {
-              get(getter, def, args) {
-                return args.properties.dimensionAxis.show === 'labels' || args.properties.dimensionAxis.show === 'none';
+              get(getter, def, args, data) {
+                return data.dimensionAxis.show === 'labels' || data.dimensionAxis.show === 'none';
               },
-              set(value, setter, def, args) {
-                args.properties.dimensionAxis.show = value ? 'labels' : 'all';
+              set(value, setter, def, args, data) {
+                data.dimensionAxis.show = value ? 'labels' : 'all';
               },
             },
           },
@@ -194,15 +194,15 @@ export default function propertyDefinition(env) {
             type: 'string',
             translation: 'Simple.Label.YAxis.Hide',
             defaultValue: 'all',
-            show(props, handler, args) {
-              return args.properties.qHyperCubeDef.qDimensions?.length;
+            show(props) {
+              return props.qHyperCubeDef.qDimensions?.length;
             },
             convertFunctions: {
-              get(getter, def, args) {
-                return args.properties.measureAxis.show === 'labels' || args.properties.measureAxis.show === 'none';
+              get(getter, def, args, data) {
+                return data.measureAxis.show === 'labels' || data.measureAxis.show === 'none';
               },
-              set(value, setter, def, args) {
-                args.properties.measureAxis.show = value ? 'labels' : 'all';
+              set(value, setter, def, args, data) {
+                data.measureAxis.show = value ? 'labels' : 'all';
               },
             },
           },
