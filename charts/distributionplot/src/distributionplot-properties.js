@@ -337,8 +337,8 @@ export default function propertyDefinition(env) {
         ],
         defaultValue: 'lowest',
         convertFunctions: {
-          get(getter, definition, args) {
-            const { autoMinMax, minMax, min } = args.properties?.measureAxis || {};
+          get(getter, definition, args, data) {
+            const { autoMinMax, minMax, min } = data?.measureAxis || {};
             if (autoMinMax === true) {
               return 'lowest';
             }
@@ -368,16 +368,16 @@ export default function propertyDefinition(env) {
 
   const dimensionAxis = {
     uses: 'axis.picasso.dimensionAxis',
-    show(properties, handler, args) {
-      const hasSecondDimension = getValue(args.layout, `${CONSTANTS.HYPERCUBE_PATH}.qDimensionInfo.length`) > 1;
+    show(properties, handler) {
+      const hasSecondDimension = getValue(handler.layout, `${CONSTANTS.HYPERCUBE_PATH}.qDimensionInfo.length`) > 1;
       return hasSecondDimension;
     },
     items: {
       dimensionAxisTitle: {
         component: 'header',
         type: 'string',
-        show(properties, handler, args) {
-          return getValue(args.layout, `${CONSTANTS.HYPERCUBE_PATH}.qDimensionInfo.length`) > 1;
+        show(properties, handler) {
+          return getValue(handler.layout, `${CONSTANTS.HYPERCUBE_PATH}.qDimensionInfo.length`) > 1;
         },
         classification: {
           section: 'axis',
@@ -388,10 +388,10 @@ export default function propertyDefinition(env) {
       othersGroup: {
         items: {
           label: {
-            show(properties, handler, args) {
+            show(properties, handler) {
               return (
-                getValue(args.layout, `${CONSTANTS.HYPERCUBE_PATH}.qDimensionInfo.length`) > 1 &&
-                getValue(args.layout, 'orientation') !== 'horizontal'
+                getValue(handler.layout, `${CONSTANTS.HYPERCUBE_PATH}.qDimensionInfo.length`) > 1 &&
+                getValue(handler.layout, 'orientation') !== 'horizontal'
               );
             },
             options: flags.isEnabled('SENSECLIENT_LAYERED_LABELS')
@@ -416,8 +416,8 @@ export default function propertyDefinition(env) {
               : undefined,
           },
           dock: {
-            show(properties, handler, args) {
-              return getValue(args.layout, `${CONSTANTS.HYPERCUBE_PATH}.qDimensionInfo.length`) > 1;
+            show(properties, handler) {
+              return getValue(handler.layout, `${CONSTANTS.HYPERCUBE_PATH}.qDimensionInfo.length`) > 1;
             },
           },
         },
@@ -836,10 +836,8 @@ export default function propertyDefinition(env) {
       labels: {
         items: {
           header: {
-            show(props, handler, args) {
-              return (
-                args.properties.qHyperCubeDef.qDimensions?.length && args.properties.qHyperCubeDef.qMeasures?.length
-              );
+            show(props) {
+              return props.qHyperCubeDef.qDimensions?.length && props.qHyperCubeDef.qMeasures?.length;
             },
           },
           dimensionTitle: {
@@ -848,17 +846,15 @@ export default function propertyDefinition(env) {
             type: 'string',
             translation: 'Simple.Label.Dimension.Hide',
             defaultValue: 'all',
-            show(props, handler, args) {
-              return (
-                args.properties.qHyperCubeDef.qDimensions?.length > 1 && args.properties.qHyperCubeDef.qMeasures?.length
-              );
+            show(props) {
+              return props.qHyperCubeDef.qDimensions?.length > 1 && props.qHyperCubeDef.qMeasures?.length;
             },
             convertFunctions: {
-              get(getter, def, args) {
-                return args.properties.dimensionAxis.show === 'labels' || args.properties.dimensionAxis.show === 'none';
+              get(getter, def, args, data) {
+                return data.dimensionAxis.show === 'labels' || data.dimensionAxis.show === 'none';
               },
-              set(value, setter, def, args) {
-                args.properties.dimensionAxis.show = value ? 'labels' : 'all';
+              set(value, setter, def, args, data) {
+                data.dimensionAxis.show = value ? 'labels' : 'all';
               },
             },
           },
@@ -868,17 +864,15 @@ export default function propertyDefinition(env) {
             type: 'string',
             translation: 'Simple.Label.Measure.Hide',
             defaultValue: 'all',
-            show(props, handler, args) {
-              return (
-                args.properties.qHyperCubeDef.qDimensions?.length && args.properties.qHyperCubeDef.qMeasures?.length
-              );
+            show(props) {
+              return props.qHyperCubeDef.qDimensions?.length && props.qHyperCubeDef.qMeasures?.length;
             },
             convertFunctions: {
-              get(getter, def, args) {
-                return args.properties.measureAxis.show === 'labels' || args.properties.measureAxis.show === 'none';
+              get(getter, def, args, data) {
+                return data.measureAxis.show === 'labels' || data.measureAxis.show === 'none';
               },
-              set(value, setter, def, args) {
-                args.properties.measureAxis.show = value ? 'labels' : 'all';
+              set(value, setter, def, args, data) {
+                data.measureAxis.show = value ? 'labels' : 'all';
               },
             },
           },
@@ -979,8 +973,8 @@ export default function propertyDefinition(env) {
         ],
         show: distplotUtils.hasMultipleDimensions,
         change(data, handler, properties, args) {
-          if (properties && distplotUtils.hasMultipleDimensions(properties) && args.layout) {
-            return distplotSorter.applySorting(properties, args.layout, args.model.app, null, translator);
+          if (data && distplotUtils.hasMultipleDimensions(data) && handler.layout) {
+            return distplotSorter.applySorting(data, handler.layout, args.model.app, null, translator);
           }
           return undefined;
         },
@@ -999,8 +993,8 @@ export default function propertyDefinition(env) {
         },
         elements(args) {
           return HyperCubeDefGenerator.getAllHyperCubeExpressions(
-            args.properties.qHyperCubeDef,
-            args.layout.qHyperCube,
+            args.handler.properties.qHyperCubeDef,
+            args.handler.layout.qHyperCube,
             args.model.app
           ).then((expressions) => {
             const settings = settingsRetriever.getSettings(args.layout);
