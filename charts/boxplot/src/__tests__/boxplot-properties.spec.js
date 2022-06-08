@@ -102,15 +102,15 @@ describe('boxplot-properties', () => {
         it('should call boxplot-sorting-service.applySorting with correct arguments', () => {
           const properties = {};
 
-          const args = {
+          const handler = {
             layout: {},
           };
 
-          autoSort.change({}, {}, properties, args);
+          autoSort.change({}, handler, properties, {});
 
           expect(boxplotSorter.applySorting.calledOnce, 'boxplotSorter.applySorting call count').to.be.true;
           expect(
-            boxplotSorter.applySorting.calledWithExactly(properties, args.layout, translator),
+            boxplotSorter.applySorting.calledWithExactly(properties, handler.layout, translator),
             'boxplotSorter.applySorting arguments'
           ).to.be.true;
         });
@@ -576,14 +576,14 @@ describe('boxplot-properties', () => {
           describe('elements', () => {
             it('should reject promise if qUndoExclude or qUndoExclude.hashCode is missing', () => {
               const args = {
-                properties: {},
+                handler: { properties: {} },
               };
 
               simpleSorting.elements(args);
 
               expect(Promise.reject.calledOnce, 'no qUndoExclude').to.be.true;
 
-              args.properties.qUndoExclude = {};
+              args.handler.properties.qUndoExclude = {};
 
               Promise.reject.reset();
 
@@ -596,25 +596,27 @@ describe('boxplot-properties', () => {
               const measures = [];
 
               const args = {
-                properties: {
-                  qUndoExclude: {
-                    hashCode: 123,
-                    box: {
-                      qHyperCubeDef: {
-                        qMeasures: measures,
+                handler: {
+                  properties: {
+                    qUndoExclude: {
+                      hashCode: 123,
+                      box: {
+                        qHyperCubeDef: {
+                          qMeasures: measures,
+                        },
                       },
                     },
                   },
-                },
-                layout: {
-                  boxplotDef: {
-                    qHyperCube: {
-                      qDimensionInfo: [
-                        {},
-                        {
-                          qCardinal: 42,
-                        },
-                      ],
+                  layout: {
+                    boxplotDef: {
+                      qHyperCube: {
+                        qDimensionInfo: [
+                          {},
+                          {
+                            qCardinal: 42,
+                          },
+                        ],
+                      },
                     },
                   },
                 },
@@ -624,7 +626,7 @@ describe('boxplot-properties', () => {
 
               expect(elementsRetriever.getElements.calledOnce, 'elementsRetriever.getElements call count').to.be.true;
               expect(
-                elementsRetriever.getElements.calledWithExactly(args.properties, returnedSettings, translator),
+                elementsRetriever.getElements.calledWithExactly(args.handler.properties, returnedSettings, translator),
                 'calledWithExactly'
               ).to.be.true;
             });
@@ -633,25 +635,27 @@ describe('boxplot-properties', () => {
               const measures = [];
 
               const args = {
-                properties: {
-                  qUndoExclude: {
-                    hashCode: 123,
-                    box: {
-                      qHyperCubeDef: {
-                        qMeasures: measures,
+                handler: {
+                  properties: {
+                    qUndoExclude: {
+                      hashCode: 123,
+                      box: {
+                        qHyperCubeDef: {
+                          qMeasures: measures,
+                        },
                       },
                     },
                   },
-                },
-                layout: {
-                  boxplotDef: {
-                    qHyperCube: {
-                      qDimensionInfo: [
-                        {},
-                        {
-                          qCardinal: 42,
-                        },
-                      ],
+                  layout: {
+                    boxplotDef: {
+                      qHyperCube: {
+                        qDimensionInfo: [
+                          {},
+                          {
+                            qCardinal: 42,
+                          },
+                        ],
+                      },
                     },
                   },
                 },
@@ -792,14 +796,15 @@ describe('boxplot-properties', () => {
       describe('convertFunctions', () => {
         let get;
         let set;
-        let args;
+        let data;
         sandbox = sinon.createSandbox();
         const definition = { type: 'string' };
         const getter = (type) => type;
+        const args = {};
 
         beforeEach(() => {
           sandbox.stub(chartModules, 'setValue');
-          args = { properties: { measureAxis: { autoMinMax: true, min: '10' } } };
+          data = { measureAxis: { autoMinMax: true, min: '10' } };
           ({ get, set } = boxplotProperties.items.settings.items.measureAxis.items.startAt.convertFunctions);
         });
 
@@ -809,23 +814,17 @@ describe('boxplot-properties', () => {
 
         describe('get', () => {
           it('should convert value to lowest when is autoMinMax', () => {
-            expect(get(getter, definition, args)).to.equal('lowest');
+            expect(get(getter, definition, args, data)).to.equal('lowest');
           });
 
           it('should convert value to zero when is not autoMinMax, type is min and min is 0', () => {
-            args = {
-              properties: { measureAxis: { autoMinMax: false, minMax: 'min', min: 0 } },
-            };
-            expect(get(getter, definition, args)).to.equal('zero');
+            data = { measureAxis: { autoMinMax: false, minMax: 'min', min: 0 } };
+            expect(get(getter, definition, args, data)).to.equal('zero');
           });
 
           it('should return value from getter when is not autoMinMax and type is max', () => {
-            args = {
-              properties: {
-                measureAxis: { autoMinMax: false, minMax: 'max', min: 0 },
-              },
-            };
-            expect(get(getter, definition, args)).to.equal('string');
+            data = { measureAxis: { autoMinMax: false, minMax: 'max', min: 0 } };
+            expect(get(getter, definition, args, data)).to.equal('string');
           });
         });
 
