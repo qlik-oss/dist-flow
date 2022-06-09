@@ -600,15 +600,6 @@ export default function propertyDefinition(env) {
           tags: ['simple'],
           exclusive: true,
         },
-        reset(data) {
-          const sortCriteria = getValue(data, SORTING_REFS.SORT_CRITERIA, {});
-          Object.keys(sortCriteria).forEach((key) => {
-            sortCriteria[key] = 1;
-          });
-          if (sortCriteria.sortByExpression !== undefined) {
-            sortCriteria.sortByExpression = 0;
-          }
-        },
       },
       sortingItems: {
         component: 'items',
