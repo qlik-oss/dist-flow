@@ -982,6 +982,9 @@ export default function propertyDefinition(env) {
           section: 'sorting',
           tags: ['simple'],
         },
+        reset(data) {
+          data.sorting = { autoSort: true };
+        },
       },
       simpleSorting: {
         component: 'sorting-with-elements',
