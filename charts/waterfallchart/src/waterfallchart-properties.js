@@ -385,6 +385,7 @@ export default function propertyDefinition(env) {
             component: 'checkbox',
             ref: 'dataPoint.showLabels',
             type: 'boolean',
+            defaultValue: true,
             translation: 'Simple.Label.Value',
             show(props) {
               return props.qHyperCubeDef.qMeasures?.length;
