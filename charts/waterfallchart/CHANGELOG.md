@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.3](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.32.2...@nebula.js/sn-waterfall@0.32.3) (2022-06-27)
+
+
+### Bug Fixes
+
+* default value for waterfall data point labels ([e8d553f](https://github.com/qlik-oss/nebula.js/commit/e8d553fe88430cc9d5e13a26a46f5399991b265e))
+
+
+
+
+
 ## [0.32.2](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.32.1...@nebula.js/sn-waterfall@0.32.2) (2022-06-08)
 
 **Note:** Version bump only for package @nebula.js/sn-waterfall
