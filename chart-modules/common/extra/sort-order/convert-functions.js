@@ -61,7 +61,8 @@ function enumConvertFunctions(isReverseSortFn) {
           setFn('integer', 0);
           break;
         default:
-          setFn('integer', undefined); // will delete the property
+          // will delete the property
+          setFn('integer', undefined);
           break;
       }
     },
