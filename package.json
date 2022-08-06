@@ -28,7 +28,7 @@
     "@nebula.js/cli-build": "2.13.0",
     "@nebula.js/cli-sense": "2.13.0",
     "@nebula.js/cli-serve": "2.13.0",
-    "@testing-library/jest-dom": "5.16.4",
+    "@testing-library/jest-dom": "5.16.5",
     "babel-jest": "27.5.1",
     "babel-loader": "8.2.5",
     "chai": "4.3.6",
@@ -63,6 +63,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001373"
+    "**/caniuse-lite": "1.0.30001374"
   }
 }
