@@ -86,6 +86,12 @@ function onChangeCalcCond(data) {
   }
 }
 
+function hasDimValueColors(handler, libraryId) {
+  const dims = getValue(handler, 'layout.qHyperCube.qDimensionInfo', []);
+  const activeDim = dims.filter((d) => d?.qLibraryId === libraryId);
+  return activeDim[0]?.coloring?.hasValueColors ?? true;
+}
+
 export default {
   measuresHasBaseColors,
   dimensionsHasBaseColors,
@@ -101,4 +107,5 @@ export default {
   isMeasureLibraryItem,
   showLegend,
   showColorByLabel,
+  hasDimValueColors,
 };

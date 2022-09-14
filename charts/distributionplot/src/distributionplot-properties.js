@@ -484,12 +484,12 @@ export default function propertyDefinition(env) {
     items: {
       disclaimer: {
         show(data, handler) {
-          return showDisclaimer(data, handler);
+          return flags.isEnabled('SIMPLE_PROPERTIES_LIBRARY_COLOR') ? false : showDisclaimer(data, handler);
         },
       },
       simpleItems: {
         show(data, handler) {
-          return !showDisclaimer(data, handler);
+          return flags.isEnabled('SIMPLE_PROPERTIES_LIBRARY_COLOR') ? true : !showDisclaimer(data, handler);
         },
         items: {
           autoColor: {
@@ -519,10 +519,41 @@ export default function propertyDefinition(env) {
             },
             globalChange() {},
           },
+          baseColors: {
+            type: 'items',
+            items: {
+              useBaseColor: {
+                ref: 'color.point.useBaseColors',
+                show(data, handler) {
+                  const mode = getValue(data, 'color.point.mode', 'primary');
+                  return (
+                    flags.isEnabled('SIMPLE_PROPERTIES_LIBRARY_COLOR') &&
+                    !propsLogic.isColorAuto(data) &&
+                    mode === 'primary' &&
+                    (propsLogic.measuresHasBaseColors(handler) || propsLogic.dimensionsHasBaseColors(handler))
+                  );
+                },
+              },
+            },
+          },
           paletteColor: {
             ref: 'color.point.paletteColor',
             translation: 'properties.distributionPlot.pointColor',
             show: showPointPaletteColor,
+          },
+          // Switch for showing/hiding custom color schemes
+          useDimColVal: {
+            ref: 'color.point.useDimColVal',
+            show(data, handler, args) {
+              const libraryId = data.color.point?.byDimDef?.key ?? null;
+              const hasValueColors = propsLogic.hasDimValueColors(args.handler, libraryId);
+              return (
+                flags.isEnabled('SIMPLE_PROPERTIES_LIBRARY_COLOR') &&
+                hasValueColors &&
+                propsLogic.isColorByDimension(data) &&
+                propsLogic.isDimensionLibraryItem(data)
+              );
+            },
           },
           boxColor: {
             ref: 'color.box.paletteColor',
