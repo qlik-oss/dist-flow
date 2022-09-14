@@ -163,7 +163,7 @@ describe('distributionplot-properties-logic', () => {
 
   it('should expose the correct api', () => {
     expect(distplotPropsLogic).to.be.an('object');
-    expect(Object.keys(distplotPropsLogic).length).to.equal(13);
+    expect(Object.keys(distplotPropsLogic).length).to.equal(14);
   });
 
   // Test exposed methods
@@ -292,6 +292,42 @@ describe('distributionplot-properties-logic', () => {
 
       expect(data.qUndoExclude.qHyperCubeDef.qCalcCond).to.equals('qCalcCond');
       expect(data.qUndoExclude.qHyperCubeDef.qCalcCondition).to.equals('qCalcCondition');
+    });
+  });
+
+  describe('hasDimValueColors', () => {
+    it('should return correct hasValueColors', () => {
+      const handler = {
+        layout: {
+          qHyperCube: {
+            qDimensionInfo: [
+              {
+                qLibraryId: 'test',
+                coloring: { hasValueColors: false },
+              },
+            ],
+          },
+        },
+      };
+
+      expect(distplotPropsLogic.hasDimValueColors(handler, 'test')).to.be.false;
+    });
+
+    it('should return true when has no hasValueColors value', () => {
+      const handler = {
+        layout: {
+          qHyperCube: {
+            qDimensionInfo: [
+              {
+                qLibraryId: 'test',
+                coloring: {},
+              },
+            ],
+          },
+        },
+      };
+
+      expect(distplotPropsLogic.hasDimValueColors(handler, 'test')).to.be.true;
     });
   });
 });
