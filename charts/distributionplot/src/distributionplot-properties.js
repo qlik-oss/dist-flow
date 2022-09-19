@@ -476,7 +476,7 @@ export default function propertyDefinition(env) {
       if (data.color?.point?.byDimDef !== undefined && (data.color?.point?.byDimDef?.activeDimensionIndex ?? -1) < 0) {
         options.push({
           value: -1,
-          label: data.color.point.byDimDef.label,
+          label: data.color.point.byDimDef?.label ?? '',
         });
       }
       return options;
