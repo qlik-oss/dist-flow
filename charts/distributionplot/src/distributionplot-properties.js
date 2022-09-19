@@ -491,7 +491,7 @@ export default function propertyDefinition(env) {
         value: index,
         label: translator.get('properties.colorBy.currentDimension', index + 1),
       }));
-      if (data.color?.point?.byDimDef !== undefined && (data.color?.point?.byDimDef?.activeDimensionIndex ?? -1) < 0) {
+      if ((data.color?.point?.byDimDef?.activeDimensionIndex ?? -1) < 0) {
         options.push({
           value: -1,
           label: getLabel(data, args),
