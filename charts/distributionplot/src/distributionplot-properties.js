@@ -467,6 +467,23 @@ export default function propertyDefinition(env) {
     return options;
   };
 
+  const byDimensionOptions = (data) => {
+    if (data.qHyperCubeDef?.qDimensions?.length) {
+      const options = data.qHyperCubeDef?.qDimensions.map((d, index) => ({
+        value: index,
+        label: translator.get('properties.colorBy.currentDimension', index + 1),
+      }));
+      if (data.color?.point?.byDimDef !== undefined && (data.color?.point?.byDimDef?.activeDimensionIndex ?? -1) < 0) {
+        options.push({
+          value: -1,
+          label: data.color.point.byDimDef.label,
+        });
+      }
+      return options;
+    }
+    return [];
+  };
+
   const showPointPaletteColor = (data, handler) => {
     const useMeasureBaseColor =
       getValue(data, 'color.point.useBaseColors') === 'measure' && propsLogic.measuresHasBaseColors(handler);
@@ -519,6 +536,23 @@ export default function propertyDefinition(env) {
             },
             globalChange() {},
           },
+          colorByDimension: {
+            ref: 'color.point.byDimDef.activeDimensionIndex',
+            schemaIgnore: true,
+            type: 'number',
+            component: 'dropdown',
+            defaultValue: -1,
+            options: byDimensionOptions,
+            translation: 'properties.colorBy.selectDimension',
+            libraryItemType: 'dimension',
+            show(data, handler, args) {
+              return propsLogic.isColorByDimension(data) && byDimensionOptions(data, handler, args).length > 1;
+            },
+            change(data) {
+              updateAltLabel(data, 'color.point.byDimDef');
+            },
+            grouped: true,
+          },
           baseColors: {
             type: 'items',
             items: {
@@ -545,8 +579,8 @@ export default function propertyDefinition(env) {
           useDimColVal: {
             ref: 'color.point.useDimColVal',
             show(data, handler, args) {
-              const libraryId = data.color.point?.byDimDef?.key ?? null;
-              const hasValueColors = propsLogic.hasDimValueColors(args.handler, libraryId);
+              const activeDimId = data.color.point?.byDimDef?.activeDimensionIndex ?? null;
+              const hasValueColors = propsLogic.hasDimValueColors(args.handler, activeDimId);
               return (
                 flags.isEnabled('SIMPLE_PROPERTIES_LIBRARY_COLOR') &&
                 hasValueColors &&

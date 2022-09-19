@@ -302,7 +302,6 @@ describe('distributionplot-properties-logic', () => {
           qHyperCube: {
             qDimensionInfo: [
               {
-                qLibraryId: 'test',
                 coloring: { hasValueColors: false },
               },
             ],
@@ -310,7 +309,7 @@ describe('distributionplot-properties-logic', () => {
         },
       };
 
-      expect(distplotPropsLogic.hasDimValueColors(handler, 'test')).to.be.false;
+      expect(distplotPropsLogic.hasDimValueColors(handler, 0)).to.be.false;
     });
 
     it('should return true when has no hasValueColors value', () => {
@@ -319,7 +318,6 @@ describe('distributionplot-properties-logic', () => {
           qHyperCube: {
             qDimensionInfo: [
               {
-                qLibraryId: 'test',
                 coloring: {},
               },
             ],
@@ -327,7 +325,7 @@ describe('distributionplot-properties-logic', () => {
         },
       };
 
-      expect(distplotPropsLogic.hasDimValueColors(handler, 'test')).to.be.true;
+      expect(distplotPropsLogic.hasDimValueColors(handler, 0)).to.be.true;
     });
   });
 });
