@@ -467,7 +467,25 @@ export default function propertyDefinition(env) {
     return options;
   };
 
-  const byDimensionOptions = (data) => {
+  const getLabel = (data, args) => {
+    if (data.color.point.byDimDef?.type === 'libraryItem') {
+      const libId = data.color.point.byDimDef?.key ?? '';
+      const qDimensionInfo = args.handler.layout.qUndoExclude?.qHyperCube?.qDimensionInfo ?? [];
+      for (let i = 0; i < qDimensionInfo.length; i++) {
+        const qAttrDimInfo = qDimensionInfo[i].qAttrDimInfo;
+        if (qAttrDimInfo) {
+          for (let j = 0; j < qAttrDimInfo.length; j++) {
+            if (qAttrDimInfo[j].colorMapRef === libId) return qAttrDimInfo[j].qFallbackTitle;
+          }
+        }
+      }
+      return '';
+    }
+
+    return data.color.point.byDimDef?.label ?? '';
+  };
+
+  const byDimensionOptions = (data, handler, args) => {
     if (data.qHyperCubeDef?.qDimensions?.length) {
       const options = data.qHyperCubeDef?.qDimensions.map((d, index) => ({
         value: index,
@@ -476,7 +494,7 @@ export default function propertyDefinition(env) {
       if (data.color?.point?.byDimDef !== undefined && (data.color?.point?.byDimDef?.activeDimensionIndex ?? -1) < 0) {
         options.push({
           value: -1,
-          label: data.color.point.byDimDef?.label ?? '',
+          label: getLabel(data, args),
         });
       }
       return options;
