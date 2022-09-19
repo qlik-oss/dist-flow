@@ -538,20 +538,13 @@ export default function propertyDefinition(env) {
           },
           colorByDimension: {
             ref: 'color.point.byDimDef.activeDimensionIndex',
-            schemaIgnore: true,
-            type: 'number',
-            component: 'dropdown',
-            defaultValue: -1,
             options: byDimensionOptions,
-            translation: 'properties.colorBy.selectDimension',
-            libraryItemType: 'dimension',
             show(data, handler, args) {
               return propsLogic.isColorByDimension(data) && byDimensionOptions(data, handler, args).length > 1;
             },
             change(data) {
               updateAltLabel(data, 'color.point.byDimDef');
             },
-            grouped: true,
           },
           baseColors: {
             type: 'items',
