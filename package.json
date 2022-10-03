@@ -27,7 +27,7 @@
     "@nebula.js/cli": "3.0.3",
     "@nebula.js/cli-build": "2.13.0",
     "@nebula.js/cli-sense": "3.0.3",
-    "@nebula.js/cli-serve": "2.13.0",
+    "@nebula.js/cli-serve": "3.0.3",
     "@testing-library/jest-dom": "5.16.5",
     "babel-jest": "27.5.1",
     "babel-loader": "8.2.5",
