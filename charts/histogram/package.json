@@ -39,11 +39,11 @@
     "extend": "3.0.2",
     "hammerjs": "2.0.8",
     "jquery": "3.6.1",
-    "picasso-plugin-hammer": "1.8.0",
-    "picasso-plugin-q": "1.8.0",
-    "picasso.js": "1.8.0",
-    "qlik-chart-modules": "0.38.0",
-    "qlik-object-conversion": "0.14.0"
+    "picasso-plugin-hammer": "1.8.1",
+    "picasso-plugin-q": "1.8.1",
+    "picasso.js": "1.8.1",
+    "qlik-chart-modules": "0.40.0",
+    "qlik-object-conversion": "0.15.0"
   },
   "peerDependencies": {
     "@nebula.js/stardust": ">=2.0.0-beta.1"
