@@ -22,12 +22,12 @@
     "@after-work.js/aw": "6.0.14",
     "@babel/core": "7.19.3",
     "@babel/eslint-parser": "7.19.1",
-    "@babel/preset-env": "7.19.3",
+    "@babel/preset-env": "7.19.4",
     "@babel/preset-react": "7.18.6",
-    "@nebula.js/cli": "3.0.3",
-    "@nebula.js/cli-build": "3.0.3",
-    "@nebula.js/cli-sense": "3.0.3",
-    "@nebula.js/cli-serve": "3.0.3",
+    "@nebula.js/cli": "3.0.4",
+    "@nebula.js/cli-build": "3.0.4",
+    "@nebula.js/cli-sense": "3.0.4",
+    "@nebula.js/cli-serve": "3.0.4",
     "@testing-library/jest-dom": "5.16.5",
     "babel-jest": "27.5.1",
     "babel-loader": "8.2.5",
@@ -40,7 +40,7 @@
     "eslint-plugin-jsx-a11y": "6.6.1",
     "eslint-plugin-mocha": "10.1.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.31.9",
+    "eslint-plugin-react": "7.31.10",
     "extend": "3.0.2",
     "fs-extra": "10.1.0",
     "html-webpack-plugin": "5.5.0",
@@ -63,6 +63,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001418"
+    "**/caniuse-lite": "1.0.30001419"
   }
 }
