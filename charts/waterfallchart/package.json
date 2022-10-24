@@ -42,7 +42,7 @@
     "jquery": "3.6.1",
     "picasso-plugin-q": "1.8.1",
     "picasso.js": "1.8.1",
-    "qlik-chart-modules": "0.40.0",
+    "qlik-chart-modules": "0.43.0",
     "qlik-object-conversion": "0.15.0"
   },
   "peerDependencies": {
