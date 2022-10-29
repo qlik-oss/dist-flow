@@ -30,7 +30,7 @@
     "@nebula.js/cli-serve": "3.0.4",
     "@testing-library/jest-dom": "5.16.5",
     "babel-jest": "27.5.1",
-    "babel-loader": "8.2.5",
+    "babel-loader": "9.0.0",
     "chai": "4.3.6",
     "enigma.js": "2.10.0",
     "eslint": "8.26.0",
