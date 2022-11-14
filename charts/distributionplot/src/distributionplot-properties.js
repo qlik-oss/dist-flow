@@ -8,6 +8,7 @@ import settingsRetriever from './sorting/distributionplot-sorting-settings-retri
 import elementsRetriever from './sorting/distributionplot-sorting-elements-retriever';
 import expressionSortOrderer from './sorting/distributionplot-expression-sort-orderer';
 import CONSTANTS from './distributionplot-constants';
+import { getStylingPanelDefinition } from './styling-panel-definition';
 
 function getNumMeasures(obj) {
   return getValue(obj, 'qHyperCubeDef.qMeasures.length', 0);
@@ -27,6 +28,10 @@ function persistentColorsShowFunc(data) {
 export default function propertyDefinition(env) {
   const { flags, translator } = env;
   const theme = env.anything.sense.theme;
+
+  // Feature Flags
+  const stylingPanelEnabled = env.flags.isEnabled('SENSECLIENT_VIZ_1624_STYLINGPANEL_DIST_PLOT');
+  const bkgOptionsEnabled = env.flags.isEnabled('DIST_BKG_OPTIONS');
 
   const lookupColorInPalette = (color) => {
     const palette = theme.getDataColorPickerPalettes()[0].colors;
@@ -172,6 +177,7 @@ export default function propertyDefinition(env) {
     type: 'items',
     translation: 'properties.presentation',
     items: {
+      styleEditor: stylingPanelEnabled ? getStylingPanelDefinition(bkgOptionsEnabled) : undefined,
       orientation: {
         ref: 'orientation',
         type: 'string',
