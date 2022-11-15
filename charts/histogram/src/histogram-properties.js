@@ -2,6 +2,7 @@ import { getValue } from 'qlik-chart-modules';
 import isInteger from '@qlik/common/extra/is-integer';
 import histogramUtils from './histogram-utils';
 import propsLogic from './histogram-properties-logic';
+import stylingPanelDefinition from './styling-panel-property-definition';
 
 const maxCountMode = 'maxCount';
 const sizeMode = 'size';
@@ -81,6 +82,8 @@ export default function propertyDefinition(env) {
     type: 'items',
     translation: 'properties.presentation',
     items: {
+      sliceStyling: stylingPanelDefinition,
+      sliceStyling: flags?.isEnabled('SENSECLIENT_IM_2021_STYLINGPANEL_HISTOGRAM') ? stylingPanelDefinition : {},
       gridLines: {
         type: 'items',
         snapshot: {
