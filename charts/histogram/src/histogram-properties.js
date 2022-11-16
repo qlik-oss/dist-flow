@@ -16,7 +16,7 @@ function showBinCount(data) {
 }
 
 export default function propertyDefinition(env) {
-  const { translator } = env;
+  const { flags, translator } = env;
 
   const measureAxis = {
     uses: 'axis.picasso.measureAxis',
@@ -82,8 +82,7 @@ export default function propertyDefinition(env) {
     type: 'items',
     translation: 'properties.presentation',
     items: {
-      sliceStyling: stylingPanelDefinition,
-      sliceStyling: flags?.isEnabled('SENSECLIENT_IM_2021_STYLINGPANEL_HISTOGRAM') ? stylingPanelDefinition : {},
+      sliceStyling: flags?.isEnabled('SENSECLIENT_IM_2021_STYLINGPANEL_HISTOGRAM') ? stylingPanelDefinition : undefined,
       gridLines: {
         type: 'items',
         snapshot: {
