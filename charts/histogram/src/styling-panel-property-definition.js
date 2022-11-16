@@ -4,6 +4,7 @@ const stylingPanelDefinition = {
     translation: 'LayerStyleEditor.component.styling',
     subtitle: 'LayerStyleEditor.component.styling',
     useGeneral: true,
+    useBackground: true,
   };
   
   export default stylingPanelDefinition;
