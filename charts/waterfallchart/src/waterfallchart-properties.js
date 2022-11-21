@@ -2,6 +2,7 @@ import extend from 'extend';
 import { getValue } from 'qlik-chart-modules';
 // import defaultProperties from '../../../assets/client/property-panel/default-properties';
 import waterfallUtils from './waterfallchart-utils';
+import getStylingPanelDefinition from './styling-panel-property-definition';
 
 function colorIsNotAuto(data) {
   return !data.color.auto;
@@ -9,6 +10,9 @@ function colorIsNotAuto(data) {
 
 export default function propertyDefinition(env) {
   const { flags, translator } = env;
+  // feature flags
+  const stylingPanelEnabled = env.flags.isEnabled('SENSECLIENT_IM_2020_STYLINGPANEL_WATERFALLCHART');
+  const bkgOptionsEnabled = env.flags.isEnabled('WATERFALLCHART_BKG_OPTIONS');
   const data = {
     uses: 'data',
     addTranslation: 'Properties.AddData',
@@ -75,6 +79,7 @@ export default function propertyDefinition(env) {
     translation: 'properties.presentation',
     grouped: true,
     items: {
+      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled),
       gridLines: {
         type: 'items',
         snapshot: {
