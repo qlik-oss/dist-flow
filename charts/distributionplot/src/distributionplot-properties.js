@@ -30,7 +30,7 @@ export default function propertyDefinition(env) {
   const theme = env.anything.sense.theme;
 
   // Feature Flags
-  const stylingPanelEnabled = env.flags.isEnabled('SENSECLIENT_VIZ_1624_STYLINGPANEL_DIST_PLOT');
+  const stylingPanelEnabled = env.flags.isEnabled('SENSECLIENT_IM_2018_STYLINGPANEL_DIST_PLOT');
   const bkgOptionsEnabled = env.flags.isEnabled('DIST_BKG_OPTIONS');
 
   const lookupColorInPalette = (color) => {
