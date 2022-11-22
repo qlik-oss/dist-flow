@@ -27,6 +27,7 @@
     "icon": "waterfallchart"
   },
   "main": "dist/sn-waterfall.js",
+  "systemjs": "dist/sn-waterfall.systemjs.js",
   "scripts": {
     "build": "nebula build --config ../../nebula.config.js",
     "lint": "eslint src",

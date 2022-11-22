@@ -28,6 +28,7 @@
     "icon": "distributionplot"
   },
   "main": "dist/sn-distplot.js",
+  "systemjs": "dist/sn-distplot.systemjs.js",
   "scripts": {
     "build": "nebula build --config ../../nebula.config.js",
     "lint": "eslint src",
