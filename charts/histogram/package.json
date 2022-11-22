@@ -27,6 +27,7 @@
     "icon": "histogram"
   },
   "main": "dist/sn-histogram.js",
+  "systemjs": "dist/sn-histogram.systemjs.js",
   "scripts": {
     "build": "nebula build --config ../../nebula.config.js",
     "lint": "eslint src",

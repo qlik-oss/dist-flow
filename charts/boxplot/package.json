@@ -27,6 +27,7 @@
     "icon": "boxplot"
   },
   "main": "dist/sn-boxplot.js",
+  "systemjs": "dist/sn-boxplot.systemjs.js",
   "scripts": {
     "build": "nebula build --config ../../nebula.config.js",
     "lint": "eslint src",
