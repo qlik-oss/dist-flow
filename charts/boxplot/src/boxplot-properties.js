@@ -6,6 +6,7 @@ import boxplotUtils from './boxplot-utils';
 import propsLogic from './boxplot-properties-logic';
 import boxplotSorter from './sorting/boxplot-sorter';
 import ObjectUtils from './object-utils/object-utils';
+import { getStylingPanelDefinition } from './styling-panel-definition';
 
 const chartID = 'object.boxPlot';
 
@@ -19,6 +20,9 @@ const SORTING_REFS = {
 export default function propertyDefinition(env) {
   const { flags, translator } = env;
   const theme = env.anything.sense.theme;
+
+  const stylingPanelEnabled = flags.isEnabled('SENSECLIENT_IM_2019_STYLINGPANEL_BOXPLOT');
+  const bkgOptionsEnabled = flags.isEnabled('BOXPLOT_BKG_OPTIONS');
 
   const lookupColorInPalette = (color) => {
     const palette = theme.getDataColorPickerPalettes()[0].colors;
@@ -235,6 +239,7 @@ export default function propertyDefinition(env) {
     type: 'items',
     translation: 'properties.presentation',
     items: {
+      styleEditor: stylingPanelEnabled ? getStylingPanelDefinition(bkgOptionsEnabled) : undefined,
       orientation: {
         ref: 'orientation',
         type: 'string',
