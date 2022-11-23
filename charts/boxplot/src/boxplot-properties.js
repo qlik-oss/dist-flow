@@ -6,7 +6,7 @@ import boxplotUtils from './boxplot-utils';
 import propsLogic from './boxplot-properties-logic';
 import boxplotSorter from './sorting/boxplot-sorter';
 import ObjectUtils from './object-utils/object-utils';
-import { getStylingPanelDefinition } from './styling-panel-definition';
+import getStylingPanelDefinition from './styling-panel-definition';
 
 const chartID = 'object.boxPlot';
 

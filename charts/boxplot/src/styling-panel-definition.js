@@ -1,4 +1,4 @@
-export const getStylingPanelDefinition = (bkgOptionsEnabled) => {
+export default getStylingPanelDefinition = (bkgOptionsEnabled) => {
   return {
     component: 'styling-panel',
     chartTitle: 'Object.BoxPlot',
