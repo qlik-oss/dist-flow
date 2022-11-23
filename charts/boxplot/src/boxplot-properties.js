@@ -239,7 +239,7 @@ export default function propertyDefinition(env) {
     type: 'items',
     translation: 'properties.presentation',
     items: {
-      styleEditor: stylingPanelEnabled ? getStylingPanelDefinition(bkgOptionsEnabled) : undefined,
+      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled),
       orientation: {
         ref: 'orientation',
         type: 'string',
