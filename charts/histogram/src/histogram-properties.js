@@ -18,8 +18,8 @@ function showBinCount(data) {
 export default function propertyDefinition(env) {
   const { translator } = env;
 
-  const stylingPanelEnabled = env.flags.isEnabled('SENSECLIENT_IM_2021_STYLINGPANEL_HISTOGRAM');
-  const bkgOptionsEnabled = env.flags.isEnabled('HISTOGRAM_BKG_OPTIONS');
+  const stylingPanelEnabled = env?.flags?.isEnabled('SENSECLIENT_IM_2021_STYLINGPANEL_HISTOGRAM');
+  const bkgOptionsEnabled = env?.flags?.isEnabled('HISTOGRAM_BKG_OPTIONS');
 
   const measureAxis = {
     uses: 'axis.picasso.measureAxis',
