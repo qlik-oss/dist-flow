@@ -2,6 +2,7 @@ import { getValue } from 'qlik-chart-modules';
 import isInteger from '@qlik/common/extra/is-integer';
 import histogramUtils from './histogram-utils';
 import propsLogic from './histogram-properties-logic';
+import getStylingPanelDefinition from './styling-panel-definition';
 
 const maxCountMode = 'maxCount';
 const sizeMode = 'size';
@@ -16,6 +17,9 @@ function showBinCount(data) {
 
 export default function propertyDefinition(env) {
   const { translator } = env;
+
+  const stylingPanelEnabled = env.flags.isEnabled('SENSECLIENT_IM_2021_STYLINGPANEL_HISTOGRAM');
+  const bkgOptionsEnabled = env.flags.isEnabled('HISTOGRAM_BKG_OPTIONS');
 
   const measureAxis = {
     uses: 'axis.picasso.measureAxis',
@@ -81,6 +85,7 @@ export default function propertyDefinition(env) {
     type: 'items',
     translation: 'properties.presentation',
     items: {
+      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled),
       gridLines: {
         type: 'items',
         snapshot: {
