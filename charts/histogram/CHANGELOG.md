@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.32.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.31.5...@nebula.js/sn-histogram@0.32.0) (2022-11-24)
+
+### Bug Fixes
+
+- test case issue ([8af2bb3](https://github.com/qlik-oss/nebula.js/commit/8af2bb3b2b7e54483bb1bc8b6d421322ed25eedf))
+
+### Features
+
+- **histogram:** enabled new styling panel ([720bfe2](https://github.com/qlik-oss/nebula.js/commit/720bfe2b8282ea7fedfbd88cc0db89133fc43369))
+
 ## [0.31.5](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.31.4...@nebula.js/sn-histogram@0.31.5) (2022-11-24)
 
 **Note:** Version bump only for package @nebula.js/sn-histogram
