@@ -5954,10 +5954,10 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@1.0.30001431, caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000989, caniuse-lite@^1.0.30001154, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.30001259, caniuse-lite@^1.0.30001370:
-  version "1.0.30001431"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001431.tgz#e7c59bd1bc518fae03a4656be442ce6c4887a795"
-  integrity sha512-zBUoFU0ZcxpvSt9IU66dXVT/3ctO1cy4y9cscs1szkPlcWb6pasYM144GqrUygUbT+k7cmUCW61cvskjcv0enQ==
+caniuse-lite@1.0.30001434, caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000989, caniuse-lite@^1.0.30001154, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.30001259, caniuse-lite@^1.0.30001370:
+  version "1.0.30001434"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001434.tgz#ec1ec1cfb0a93a34a0600d37903853030520a4e5"
+  integrity sha512-aOBHrLmTQw//WFa2rcF1If9fa3ypkC1wzqqiKHgfdrXTWcU8C4gKVZT77eQAPWN1APys3+uQ0Df07rKauXGEYA==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -13545,20 +13545,20 @@ phin@^2.9.1:
   version "2.9.3"
   resolved "https://registry.yarnpkg.com/phin/-/phin-2.9.3.tgz#f9b6ac10a035636fb65dfc576aaaa17b8743125c"
 
-picasso-plugin-hammer@1.9.7:
-  version "1.9.7"
-  resolved "https://registry.yarnpkg.com/picasso-plugin-hammer/-/picasso-plugin-hammer-1.9.7.tgz#41ec191ea81601ad35a5a2619351d3920dcbd627"
-  integrity sha512-goKzph+ZSUM4F9CCY0tArzKgk/WU1AeMNqPeZ4+jd9IZ9luU994o8sn2d9RJxJBjFgEuRVkqEoXJe4kcUJlrSg==
+picasso-plugin-hammer@1.9.9:
+  version "1.9.9"
+  resolved "https://registry.yarnpkg.com/picasso-plugin-hammer/-/picasso-plugin-hammer-1.9.9.tgz#d2f7efb85bbb968f4946120815b6f6dbebb33f7d"
+  integrity sha512-cDi1uhyK47Fc5NghD9e+UWzWBme4xm9I2AiOtnzIquDd8GpTTUerIXWfseNv/e9qsOARao8QkjK/rQGJ9sUjfw==
 
-picasso-plugin-q@1.9.7:
-  version "1.9.7"
-  resolved "https://registry.yarnpkg.com/picasso-plugin-q/-/picasso-plugin-q-1.9.7.tgz#f9725c43a90c48cd923fdac17f97a95363c62ea3"
-  integrity sha512-b2BMmb77OWNgoUT7Cql2ilzfAe/fMa6f8yB6IGBRPsxF9OnrYoCL0qgTXXzL81X5sMWdF1OOFNjYLt2mJNrihg==
+picasso-plugin-q@1.9.9:
+  version "1.9.9"
+  resolved "https://registry.yarnpkg.com/picasso-plugin-q/-/picasso-plugin-q-1.9.9.tgz#edb479fa9c12839510794fba64b52edb40b80a00"
+  integrity sha512-DL3wX+UhYYebOYW2U8vfGt9J3zKxXOsge3DqLuvNzMnn3+x0k60tHa1uembJM3w95Zz3jgtgnVtrEtOgVMr0vQ==
 
-picasso.js@1.9.7:
-  version "1.9.7"
-  resolved "https://registry.yarnpkg.com/picasso.js/-/picasso.js-1.9.7.tgz#93a83bd30d347de726e7e189ee730966b780e193"
-  integrity sha512-b+TU/6fIkLumlUQph0J4vPbOWvWMUTt0bcwqMM7nOsEZS4GinNNV/KEaMenz4ugwIVmI7QU0o4LzAskr3INb5g==
+picasso.js@1.9.9:
+  version "1.9.9"
+  resolved "https://registry.yarnpkg.com/picasso.js/-/picasso.js-1.9.9.tgz#641bf0da91ad82e747228486e7db4b96c13f216b"
+  integrity sha512-MX7JCXEDSnU8Wf+VgklaWizXo2yFsul4+R+MQJRAcvamRCTTmyzuQKN9PA9uy1SUmOM0ygh2K8+b9Ei28OJRxw==
 
 picocolors@^1.0.0:
   version "1.0.0"
@@ -14017,10 +14017,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.7.1.tgz#e235806850d057f97bb08368a4f7d899f7760c64"
-  integrity sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==
+prettier@2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.0.tgz#c7df58393c9ba77d6fba3921ae01faf994fb9dc9"
+  integrity sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==
 
 pretty-error@^4.0.0:
   version "4.0.0"
