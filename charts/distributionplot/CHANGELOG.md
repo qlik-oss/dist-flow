@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.37.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.37.0...@nebula.js/sn-distributionplot@0.37.1) (2022-11-28)
+
+### Bug Fixes
+
+- change chart background feature flags ([24bd4bf](https://github.com/qlik-oss/nebula.js/commit/24bd4bffdb167e824dff9918c21aa45151e2e264))
+
 # [0.37.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.36.1...@nebula.js/sn-distributionplot@0.37.0) (2022-11-24)
 
 ### Bug Fixes

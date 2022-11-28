@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.32.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.32.0...@nebula.js/sn-histogram@0.32.1) (2022-11-28)
+
+### Bug Fixes
+
+- **histogram:** change background options feature flag ([4e89d56](https://github.com/qlik-oss/nebula.js/commit/4e89d569b2c1f803e4214c2e68b7426505b3d482))
+
 # [0.32.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.31.5...@nebula.js/sn-histogram@0.32.0) (2022-11-24)
 
 ### Bug Fixes
