@@ -22,7 +22,7 @@ export default function propertyDefinition(env) {
   const theme = env.anything.sense.theme;
 
   const stylingPanelEnabled = flags.isEnabled('SENSECLIENT_IM_2019_STYLINGPANEL_BOXPLOT');
-  const bkgOptionsEnabled = flags.isEnabled('BOXPLOT_BKG_OPTIONS');
+  const bkgOptionsEnabled = flags.isEnabled('SENSECLIENT_IM_2019_BOXPLOT_BG');
 
   const lookupColorInPalette = (color) => {
     const palette = theme.getDataColorPickerPalettes()[0].colors;
