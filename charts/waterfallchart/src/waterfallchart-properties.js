@@ -12,7 +12,7 @@ export default function propertyDefinition(env) {
   const { flags, translator } = env;
   // feature flags
   const stylingPanelEnabled = env.flags.isEnabled('SENSECLIENT_IM_2020_STYLINGPANEL_WATERFALLCHART');
-  const bkgOptionsEnabled = env.flags.isEnabled('WATERFALLCHART_BKG_OPTIONS');
+  const bkgOptionsEnabled = env.flags.isEnabled('SENSECLIENT_IM_2020_WATERFALLCHART_BG');
   const data = {
     uses: 'data',
     addTranslation: 'Properties.AddData',

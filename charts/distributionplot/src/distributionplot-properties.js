@@ -31,7 +31,7 @@ export default function propertyDefinition(env) {
 
   // Feature Flags
   const stylingPanelEnabled = env.flags.isEnabled('SENSECLIENT_IM_2018_STYLINGPANEL_DIST_PLOT');
-  const bkgOptionsEnabled = env.flags.isEnabled('DIST_BKG_OPTIONS');
+  const bkgOptionsEnabled = env.flags.isEnabled('SENSECLIENT_IM_2018_DIST_BG');
 
   const lookupColorInPalette = (color) => {
     const palette = theme.getDataColorPickerPalettes()[0].colors;
