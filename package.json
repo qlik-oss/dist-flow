@@ -20,7 +20,7 @@
   "license": "ISC",
   "devDependencies": {
     "@after-work.js/aw": "6.0.14",
-    "@babel/core": "7.20.2",
+    "@babel/core": "7.20.5",
     "@babel/eslint-parser": "7.19.1",
     "@babel/preset-env": "7.20.2",
     "@babel/preset-react": "7.18.6",
@@ -33,7 +33,7 @@
     "babel-loader": "9.1.0",
     "chai": "4.3.7",
     "enigma.js": "2.10.0",
-    "eslint": "8.28.0",
+    "eslint": "8.29.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-import": "2.26.0",
@@ -49,7 +49,7 @@
     "jest-circus": "27.5.1",
     "jest-junit": "15.0.0",
     "jsdoc-to-markdown": "7.1.1",
-    "lerna": "6.0.3",
+    "lerna": "6.1.0",
     "mocha-junit-reporter": "2.2.0",
     "prettier": "2.8.0",
     "scriptappy-from-jsdoc": "0.7.0",
@@ -63,6 +63,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001434"
+    "**/caniuse-lite": "1.0.30001435"
   }
 }
