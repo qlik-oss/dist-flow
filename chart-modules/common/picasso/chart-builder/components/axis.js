@@ -48,7 +48,11 @@ function axis(settings, options) {
       },
     },
   };
-  return extend(true, {}, defaultSettings, settings || {});
+  const axisSettings = extend(true, {}, defaultSettings, settings || {});
+  axisSettings.brush.consume.forEach((consume) => {
+    consume.style.active.strokeWidth = 0;
+  });
+  return axisSettings;
 }
 
 function xAxis(settings, options) {
