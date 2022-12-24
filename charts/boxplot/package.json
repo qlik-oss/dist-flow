@@ -39,11 +39,11 @@
     "@qlik/common": "0.0.1",
     "extend": "3.0.2",
     "hammerjs": "2.0.8",
-    "jquery": "3.6.2",
+    "jquery": "3.6.3",
     "picasso-plugin-hammer": "1.9.10",
     "picasso-plugin-q": "1.9.10",
     "picasso.js": "1.9.10",
-    "qlik-chart-modules": "0.45.0",
+    "qlik-chart-modules": "0.46.0",
     "qlik-object-conversion": "0.15.0"
   },
   "peerDependencies": {
