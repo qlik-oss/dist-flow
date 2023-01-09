@@ -48,7 +48,7 @@
     "jest-canvas-mock": "2.4.0",
     "jest-circus": "27.5.1",
     "jest-junit": "15.0.0",
-    "jsdoc-to-markdown": "7.1.1",
+    "jsdoc-to-markdown": "8.0.0",
     "lerna": "6.3.0",
     "mocha-junit-reporter": "2.2.0",
     "prettier": "2.8.1",
