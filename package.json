@@ -24,10 +24,10 @@
     "@babel/eslint-parser": "7.19.1",
     "@babel/preset-env": "7.20.2",
     "@babel/preset-react": "7.18.6",
-    "@nebula.js/cli": "3.0.4",
-    "@nebula.js/cli-build": "3.0.4",
-    "@nebula.js/cli-sense": "3.0.4",
-    "@nebula.js/cli-serve": "3.0.4",
+    "@nebula.js/cli": "3.1.1",
+    "@nebula.js/cli-build": "3.1.1",
+    "@nebula.js/cli-sense": "3.1.1",
+    "@nebula.js/cli-serve": "3.1.1",
     "@testing-library/jest-dom": "5.16.5",
     "babel-jest": "27.5.1",
     "babel-loader": "9.1.2",
@@ -36,11 +36,11 @@
     "eslint": "8.32.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.6.0",
-    "eslint-plugin-import": "2.27.4",
+    "eslint-plugin-import": "2.27.5",
     "eslint-plugin-jsx-a11y": "6.7.1",
     "eslint-plugin-mocha": "10.1.0",
     "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.32.0",
+    "eslint-plugin-react": "7.32.1",
     "extend": "3.0.2",
     "fs-extra": "11.1.0",
     "html-webpack-plugin": "5.5.0",
@@ -63,6 +63,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001445"
+    "**/caniuse-lite": "1.0.30001448"
   }
 }
