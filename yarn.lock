@@ -3437,10 +3437,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nebula.js/cli-build@3.1.1", "@nebula.js/cli-build@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-build/-/cli-build-3.1.1.tgz#d949e2d885c18e4d82b3e0b33c6d8c90103ec59f"
-  integrity sha512-0hSnroQ/OKujnixOLycFxijx4ETwXG9OKsEAFOvzgNzIaAAtppbho27l/kWTyeXqU95tUHyMATnQoDnw2qm7zg==
+"@nebula.js/cli-build@3.1.2", "@nebula.js/cli-build@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-build/-/cli-build-3.1.2.tgz#7039beaf0955a0da55f987d336ff02b4fe3f4240"
+  integrity sha512-RxeRjfHe6QUoUmUR51Zw4GNItRPmsxsJfVGP8eMnai9mAckrMpjeJyoQbeaa1pl+27EmBTnMD3BkYHf8jrXFMg==
   dependencies:
     "@babel/cli" "7.20.7"
     "@babel/core" "7.20.12"
@@ -3460,25 +3460,25 @@
     rollup-plugin-sourcemaps "0.6.3"
     yargs "17.6.2"
 
-"@nebula.js/cli-create@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-create/-/cli-create-3.1.1.tgz#0c7180beefb00d09b30a3bd419c2ff3920ebd213"
-  integrity sha512-zEXMjVeKRgYFbnlqupREtHo0+NKo9KgfQCwiDCyQenGy7kT2L2tcfVd3uE8fILMEnFSMEoSin2P4ilsGz9sbqA==
+"@nebula.js/cli-create@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-create/-/cli-create-3.1.2.tgz#3648065b28bb51bcd860f8b10e38a181aeb3e09f"
+  integrity sha512-dRJhDfKruLPP1M7UARrrqK2uZeVMP3Kssndv2DLpU8FBR2g3n9S9aW/uCiOt5M47/Pit+rGLHPJkiONbFeY1SQ==
   dependencies:
     chalk "4.1.2"
     ejs "3.1.8"
     fs-extra "11.1.0"
     inquirer "8.2.5"
 
-"@nebula.js/cli-sense@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-sense/-/cli-sense-3.1.1.tgz#4ab53f2193830d98a96bb017044712b1bf17a59f"
-  integrity sha512-g3Kp/kX9BypsSWJ27keb2ddTWz9ZBoqvy5uUxRxv0rX7TIaC2r6mZsP+6NAwvu40zerjROWwcOH3Q/AJcVjZpA==
+"@nebula.js/cli-sense@3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-sense/-/cli-sense-3.1.2.tgz#6e261b1fceb8bdafe9fbeb89a38c40ffa1ae1968"
+  integrity sha512-WM/7uWpDFIweAiBUM9JR1QbSBXZ/AmoVBT1NmoeCgZTTHbrUwYDfnZCbHgkJ5e3bN6GDXrbEbAvuCm8dOtGWBw==
   dependencies:
     "@babel/cli" "7.20.7"
     "@babel/core" "7.20.12"
     "@babel/preset-env" "7.20.2"
-    "@nebula.js/stardust" "^3.1.1"
+    "@nebula.js/stardust" "^3.1.2"
     "@rollup/plugin-babel" "6.0.3"
     "@rollup/plugin-commonjs" "24.0.0"
     "@rollup/plugin-node-resolve" "15.0.1"
@@ -3490,12 +3490,12 @@
     rollup "3.10.0"
     yargs "17.6.2"
 
-"@nebula.js/cli-serve@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-serve/-/cli-serve-3.1.1.tgz#8c50a3c2b6bedf93e987b632fc940c139e51fc45"
-  integrity sha512-vFlWZWdbh9d35E1Ehvcyp6cZ9yzbsxvvzZcHat7DkreAlm6I9WamLUYxqsEqAr+b+opepqt6Lhu6sYmRTL8/3g==
+"@nebula.js/cli-serve@3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-serve/-/cli-serve-3.1.2.tgz#3e9ed961abf1a1b2de9004a5073a062f62ebcdc9"
+  integrity sha512-w/aBrHgTMfqltmsVD1Un5wjpMj7E2xADjmzlXvsJK3lGTwT4gffrwlt7IE8BX30dPdIkedhqDayrYVh9kvfA+g==
   dependencies:
-    "@nebula.js/cli-build" "^3.1.1"
+    "@nebula.js/cli-build" "^3.1.2"
     "@qlik/sdk" "^0.18.0"
     body-parser "1.20.1"
     chalk "4.1.2"
@@ -3514,19 +3514,19 @@
     ws "8.12.0"
     yargs "17.6.2"
 
-"@nebula.js/cli@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli/-/cli-3.1.1.tgz#4dbb748f7d5c7662df52c4ad3d97e0ac300c35c8"
-  integrity sha512-OeqIwXvw47EI0dv1nXjyO5/fTqRD6sJjkbiZiI1sca6huuF7f/MYHcBRJF0CSvGBvxoPaE7K7sVL9Vn9NWyKtA==
+"@nebula.js/cli@3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli/-/cli-3.1.2.tgz#6a495fb17423e282111f8da711a394739367ee3f"
+  integrity sha512-h6VIEBDCjBZXLdMq3+trwVVZih2JQ8dROUOj760NoE/ZxnqcpvTwYbtSujbZLbWxFyKxjV1BpUNnErTWJYKnqw==
   dependencies:
-    "@nebula.js/cli-create" "^3.1.1"
+    "@nebula.js/cli-create" "^3.1.2"
     import-cwd "3.0.0"
     yargs "17.6.2"
 
-"@nebula.js/stardust@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-3.1.1.tgz#7839578e17239c7cdc5fe6dcabbd8edb700f7b51"
-  integrity sha512-HCAlKDyhYIzHmMi9555OW9bejJ7vGoRvRG3eDYaUnjzo7aF8jljQJCsbQi9qO8bQW7lT4fccJ5o0Ub4hNO/Srg==
+"@nebula.js/stardust@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-3.1.2.tgz#f8fdb6bfea2ff49f124b106d853eebd992f1b93e"
+  integrity sha512-F1dZM5kiDt0Ex8SF6Z3rWWiwHm7vPkcnxYpzU0Kce6OyhbEa+p6K0HaD/Kg4zm/toTIQH/lmbJdX4kvEeqtW2Q==
   dependencies:
     "@types/qlik-engineapi" "12.67.12"
 
@@ -5774,10 +5774,10 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@1.0.30001449, caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000989, caniuse-lite@^1.0.30001154, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.30001259, caniuse-lite@^1.0.30001370:
-  version "1.0.30001449"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001449.tgz#a8d11f6a814c75c9ce9d851dc53eb1d1dfbcd657"
-  integrity sha512-CPB+UL9XMT/Av+pJxCKGhdx+yg1hzplvFJQlJ2n68PyQGMz9L/E2zCyLdOL8uasbouTUgnPl+y0tccI/se+BEw==
+caniuse-lite@1.0.30001450, caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000989, caniuse-lite@^1.0.30001154, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.30001259, caniuse-lite@^1.0.30001370:
+  version "1.0.30001450"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001450.tgz#022225b91200589196b814b51b1bbe45144cf74f"
+  integrity sha512-qMBmvmQmFXaSxexkjjfMvD5rnDL0+m+dUMZKoDYsGG8iZN29RuYh9eRoMvKsT6uMAWlyUUGDEQGJJYjzCIO9ew==
 
 capture-exit@^2.0.0:
   version "2.0.0"
