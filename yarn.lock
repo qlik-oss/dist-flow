@@ -2877,10 +2877,10 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nebula.js/cli-build@3.1.3", "@nebula.js/cli-build@^3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-build/-/cli-build-3.1.3.tgz#6d911aa3e03165fdf115c43a6c08cd5bb3076cd4"
-  integrity sha512-77ByvTjWcET90AWpJzjlNnyGxHLJj8SYeOzA/IB02l8cgxZicGXpgc1CEy4TX7HpfSo2PZKQy9rnz6HO2A8MCQ==
+"@nebula.js/cli-build@3.2.2", "@nebula.js/cli-build@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-build/-/cli-build-3.2.2.tgz#750cf1b2d0af5f42bf881704ca334b6ff1d7253f"
+  integrity sha512-XFKefRgR2LxYEzkkQdkj4RE9NtXhwfxr7vUCAaTPDw1wWCeW1vcLWgfTNR6UGKWBtAUsmbkQCGOJtD0W33SOvA==
   dependencies:
     "@babel/cli" "7.20.7"
     "@babel/core" "7.20.12"
@@ -2900,25 +2900,25 @@
     rollup-plugin-sourcemaps "0.6.3"
     yargs "17.6.2"
 
-"@nebula.js/cli-create@^3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-create/-/cli-create-3.1.3.tgz#dca0e1324a2c03af4b03e1367aab977392a70abc"
-  integrity sha512-UyfdJfNIkMckk6eKxhZy6vMS0tztT0raIgN0XOJNDcnn4hS8Do8vrn4OJsmsxb1SsHyOpmtWwVa0Sm8lk6vO7g==
+"@nebula.js/cli-create@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-create/-/cli-create-3.2.2.tgz#d3f2bc529645b0e83cdbd46962852a5b4ad058bc"
+  integrity sha512-4RoI+yG42w4qDIvskWoS5OTmjsR21LAmwvKRrnHrjH3aQarS53OKtwUodugjySve0YDtXVSt3dmOlDuEt7VU/A==
   dependencies:
     chalk "4.1.2"
     ejs "3.1.8"
     fs-extra "11.1.0"
     inquirer "8.2.5"
 
-"@nebula.js/cli-sense@3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-sense/-/cli-sense-3.1.3.tgz#e2214fed121687fd75bacdcce086de25b111ba45"
-  integrity sha512-0dYhE2yinTuTH34uSeahhK18WxfpeEFB/MZdu4yPJbvjHwSvY9dzDJOyf3YbUCFqM7l5Q/qQCW0/jIjAQvAS7g==
+"@nebula.js/cli-sense@3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-sense/-/cli-sense-3.2.2.tgz#67ae40728c070b44261c930568212d501bef8c3c"
+  integrity sha512-PHh3Werg5LO2kc1By54KbOdwc0Fcw4iA35GThKy2uE4P/2WS1RJ1/NfjSVABxRD99fhv+HbsTAFb4u2OooKHpg==
   dependencies:
     "@babel/cli" "7.20.7"
     "@babel/core" "7.20.12"
     "@babel/preset-env" "7.20.2"
-    "@nebula.js/stardust" "^3.1.3"
+    "@nebula.js/stardust" "^3.2.2"
     "@rollup/plugin-babel" "6.0.3"
     "@rollup/plugin-commonjs" "24.0.1"
     "@rollup/plugin-node-resolve" "15.0.1"
@@ -2930,12 +2930,12 @@
     rollup "3.12.1"
     yargs "17.6.2"
 
-"@nebula.js/cli-serve@3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-serve/-/cli-serve-3.1.3.tgz#4b86d849a1656c57a0b26b4a37a322418d66f2d1"
-  integrity sha512-2dsbKn/PykEYXLCPh/Fm/R4633y7mAr5XwJmpgtVtCxQS0NVBeicw0rhIiS6qRI3WrW7NmrxmQERDpIQXIkQzg==
+"@nebula.js/cli-serve@3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-serve/-/cli-serve-3.2.2.tgz#7cd1cf183c7303aabd8181fa8e0db30f8089e15f"
+  integrity sha512-xI3d5qTDNLJcMYiVJyoUVAjwlYqOJ1XS79Xy5gwCcznM03t3ABEH9Ui6AYcQ+0XAIaqmP5sOZ8EFAxaq86pu3w==
   dependencies:
-    "@nebula.js/cli-build" "^3.1.3"
+    "@nebula.js/cli-build" "^3.2.2"
     "@qlik/sdk" "^0.18.0"
     body-parser "1.20.1"
     chalk "4.1.2"
@@ -2954,19 +2954,19 @@
     ws "8.12.0"
     yargs "17.6.2"
 
-"@nebula.js/cli@3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli/-/cli-3.1.3.tgz#ea1efbc9fee665d7fc938a59d58e003830f3c2a8"
-  integrity sha512-vJdGdNrydLF58gASafkmH9dnfaAZzY7dDSqrMk82DgXlCdvou28k9X0eaQgBN1VgEkA0+bLYcrddlSaFNeiFVw==
+"@nebula.js/cli@3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli/-/cli-3.2.2.tgz#0637a63cfd8f2dfb1d6a9f9fad3df4eb64fa1702"
+  integrity sha512-OxlB+9oiX3RCevnjySUi8NS4kRU84v+q0JvScXMrmeWPNmtXrz+w7ibHyXs/uXWnF5tNirWPwhKAoQEjgZAqfw==
   dependencies:
-    "@nebula.js/cli-create" "^3.1.3"
+    "@nebula.js/cli-create" "^3.2.2"
     import-cwd "3.0.0"
     yargs "17.6.2"
 
-"@nebula.js/stardust@^3.1.3":
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-3.1.3.tgz#10dc06941a8ad68d9d596ac5a075ceb7a689d25b"
-  integrity sha512-L3/u9CuIgtgEyF4VpIAl4Hzg1dxHGO/us0LQSdK31s4/r4bX6fo1jUtgI8VUZ/cw81moRchM6NE46TKxbr8yYg==
+"@nebula.js/stardust@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-3.2.2.tgz#625f82da2801924b055b4521fd1bdaef426943ef"
+  integrity sha512-wUrrIeJqyWpfXJV/Vw35c0hEhoE6lCHF10oQ7JenZLanQJMQ9eopwEkJL89ixj44/wOsq5ElixWjKN8L76TP+g==
   dependencies:
     "@types/qlik-engineapi" "12.67.12"
 
@@ -5270,10 +5270,10 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@1.0.30001458, caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000989, caniuse-lite@^1.0.30001154, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.30001259, caniuse-lite@^1.0.30001370:
-  version "1.0.30001458"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001458.tgz#871e35866b4654a7d25eccca86864f411825540c"
-  integrity sha512-lQ1VlUUq5q9ro9X+5gOEyH7i3vm+AYVT1WDCVB69XOZ17KZRhnZ9J0Sqz7wTHQaLBJccNCHq8/Ww5LlOIZbB0w==
+caniuse-lite@1.0.30001460, caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000989, caniuse-lite@^1.0.30001154, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.30001259, caniuse-lite@^1.0.30001370:
+  version "1.0.30001460"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001460.tgz#31d2e26f0a2309860ed3eff154e03890d9d851a7"
+  integrity sha512-Bud7abqjvEjipUkpLs4D7gR0l8hBYBHoa+tGtKJHvT2AYzLp1z7EmVkUT4ERpVUfca8S2HGIVs883D8pUH1ZzQ==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -13152,20 +13152,20 @@ phin@^2.9.1:
   version "2.9.3"
   resolved "https://registry.yarnpkg.com/phin/-/phin-2.9.3.tgz#f9b6ac10a035636fb65dfc576aaaa17b8743125c"
 
-picasso-plugin-hammer@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/picasso-plugin-hammer/-/picasso-plugin-hammer-2.1.1.tgz#999d54ed432233bcb34aaa703a036bb604447ffa"
-  integrity sha512-dE4fbpa4Mmxp9HbnxUwbkehK45PerZ2TPxtEr4rIWHyVdzMUlGjjNTA/Jeo+CuGfHbchKcCQDOH60v5IP0Gqjw==
+picasso-plugin-hammer@2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/picasso-plugin-hammer/-/picasso-plugin-hammer-2.2.2.tgz#8a78a739b85fe81ebea902e8aa882146c0ffb376"
+  integrity sha512-UL86hLtf6ztoDsMvp4QBOYDM7jI7OPMRpRU8TRTnclL2RTrRF7nZFjXA3R+DteHvvaM2Nb66wsMyOm2amNk8jw==
 
-picasso-plugin-q@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/picasso-plugin-q/-/picasso-plugin-q-2.1.1.tgz#f3b19159bf94cc997343b58dd3418950c9703fd8"
-  integrity sha512-33KRQTtmHIc+bgPh7YrhrIGo/QiPZb21MPRzfVLmIpZev21CpYLLY5PHrEpeMaiNO02Zb103ZA8e9Dz50ZaJ8w==
+picasso-plugin-q@2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/picasso-plugin-q/-/picasso-plugin-q-2.2.2.tgz#5f8949c902e80224cec4f03a2892f3cca3774ec4"
+  integrity sha512-R6irHV0pY8eHdCVJBW8VmqCGrNSSGosmgilOOHkEX8OcIjBuVZs1ZQHtenR4zxloAFbRZnHtJwWqiDy9yIR65A==
 
-picasso.js@2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/picasso.js/-/picasso.js-2.1.1.tgz#fb7348d14a6a5cce3e220e48a18cae703acc44ce"
-  integrity sha512-nI9VXSZkq34zDlzJzV2a0CYal3A6tS44Ras8Q8oDWD6PWe6885PU7gJPBRjCdgULJvCRSKlH1SuOrXzstRQAqQ==
+picasso.js@2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/picasso.js/-/picasso.js-2.2.2.tgz#ff205af70b9ee4622a9f86f277a72d714ded03e6"
+  integrity sha512-mSql1jC7ltxe++17DBacAa4wrzmG3ZhY+/udFSvCYUXwoSSKWuQ+wq3c2l+GOb+XFwubBRwE+k/AJB9TeJ9xkw==
 
 picocolors@^1.0.0:
   version "1.0.0"
@@ -13837,10 +13837,10 @@ q@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
 
-qlik-chart-modules@0.48.0:
-  version "0.48.0"
-  resolved "https://registry.yarnpkg.com/qlik-chart-modules/-/qlik-chart-modules-0.48.0.tgz#7eb41b7176859516b05611460e11f2f4bbefe126"
-  integrity sha512-d0EcanNZVcwfbKrzd4nEr0gddzoVKMSsgRI35NwCu5igSbURX8YxYEov9Seb/64HcOXDQ0Lx8Vc/qcGODpGhKg==
+qlik-chart-modules@0.49.0:
+  version "0.49.0"
+  resolved "https://registry.yarnpkg.com/qlik-chart-modules/-/qlik-chart-modules-0.49.0.tgz#008373b8032d3592cb139ca698f82ee4c80ec49f"
+  integrity sha512-E8aj/9A/fKe7GloIaY5QmqV0TJtp6vHVAJCQ1jXvBkRQumkRCFac7s+SOHl3AKwgEIfUpiyCwScyIr4YHGIVPQ==
 
 qlik-modifiers@0.5.1:
   version "0.5.1"
