@@ -13842,6 +13842,11 @@ qlik-chart-modules@0.49.0:
   resolved "https://registry.yarnpkg.com/qlik-chart-modules/-/qlik-chart-modules-0.49.0.tgz#008373b8032d3592cb139ca698f82ee4c80ec49f"
   integrity sha512-E8aj/9A/fKe7GloIaY5QmqV0TJtp6vHVAJCQ1jXvBkRQumkRCFac7s+SOHl3AKwgEIfUpiyCwScyIr4YHGIVPQ==
 
+qlik-chart-modules@0.52.0:
+  version "0.52.0"
+  resolved "https://registry.yarnpkg.com/qlik-chart-modules/-/qlik-chart-modules-0.52.0.tgz#2209cf2a2ba52b8d8294dd42f14afa3a1fa18ca3"
+  integrity sha512-oSTh+kVXPKvAIZlbcE0jzuYiRp07B7g0IYa821bwvmCRHp5zEHXp0jS/CwxV6NTP+O6FnkuncbN92jVV2TvJ2Q==
+
 qlik-modifiers@0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/qlik-modifiers/-/qlik-modifiers-0.5.1.tgz#df81fe57e24fc88f7271e91bc23ab960144667a4"
