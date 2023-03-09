@@ -6,6 +6,7 @@ import DependentInteractions from '@qlik/common/picasso/selections/dependent-int
 import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import formatting from '@qlik/common/picasso/formatting';
 import stringUtil from '@qlik/common/extra/string-util';
+import { getAxisLabelSettings, getValueLabelSettings } from '@qlik/common/extra/chart-style-component';
 import CubeGenerator from './waterfallchart-cube-generator-by-measures';
 import waterfallUtils from './waterfallchart-utils';
 import tickGenerator from './waterfallchart-tick-generator';
@@ -155,8 +156,9 @@ function getLabel(context) {
   return formatting.formatMeasureValue(field, measure);
 }
 
-function getBarLabelSettings(theme) {
-  const outsideValueColor = theme.getStyle(chartID, 'value.color', 'default');
+function getBarLabelSettings(theme, layout) {
+  const valueLabelSettings = getValueLabelSettings(chartID, theme, layout, true);
+  const outsideValueColor = valueLabelSettings.fill || theme.getStyle(chartID, 'value.color', 'default');
   const darkColor = theme.getStyle(chartID, 'value.color', 'dark');
   const lightColor = theme.getStyle(chartID, 'value.color', 'light');
   return {
@@ -165,6 +167,7 @@ function getBarLabelSettings(theme) {
         {
           strategy: {
             settings: {
+              ...valueLabelSettings,
               direction(context) {
                 return context.data && context.data.end.value > context.data.start.value ? 'up' : 'down';
               },
@@ -280,7 +283,6 @@ function createChartSettings(layout) {
   });
   const width = this.picassoElement.clientWidth;
   const height = this.picassoElement.clientHeight;
-
   const tooltipSettings = {};
   tooltipSettings.box = this._tooltipHandler.setUp({
     chartBuilder,
@@ -364,6 +366,7 @@ function createChartSettings(layout) {
     refLines: layout.refLine && layout.refLine.refLines,
 
     brushActions: this._dependentActions.gestures,
+    ...getAxisLabelSettings(chartID, theme, layout),
   });
 
   chartBuilder.addComponent('box-marker', getBarSettings(tooltipSettings, layout));
@@ -379,7 +382,7 @@ function createChartSettings(layout) {
   }
 
   if (layout.dataPoint.showLabels) {
-    chartBuilder.addComponent('labels', getBarLabelSettings(theme));
+    chartBuilder.addComponent('labels', getBarLabelSettings(theme, layout));
   }
 
   // Add snapshot settings
