@@ -1,5 +1,6 @@
-import { setValue, getValue } from 'qlik-chart-modules';
+import { setValue, getValue, fontResolver as createFontResolver } from 'qlik-chart-modules';
 import sortOrderBuilder from '@qlik/common/extra/sort-order/sort-order';
+import { getChartFontResolver } from '@qlik/common/extra/chart-style-component';
 import settingsRetriever from './sorting/boxplot-sorting-settings-retriever';
 import elementsRetriever from './sorting/boxplot-sorting-elements-retriever';
 import boxplotUtils from './boxplot-utils';
@@ -234,12 +235,12 @@ export default function propertyDefinition(env) {
       },
     },
   };
-
+  const fontResolver = getChartFontResolver(theme, translator, chartID, createFontResolver);
   const presentation = {
     type: 'items',
     translation: 'properties.presentation',
     items: {
-      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled),
+      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled, fontResolver, flags),
       orientation: {
         ref: 'orientation',
         type: 'string',
