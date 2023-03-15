@@ -2,6 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
+import * as ChartStyleComponent from '@qlik/common/extra/chart-style-component';
 import DistributionPlot from '../distributionplot-view';
 
 const expect = chai.expect;
@@ -67,7 +68,9 @@ describe('Distributionplot', () => {
     environment = {
       deviceType: null,
       options: {},
-      theme: null,
+      theme: {
+        getStyle: jest.fn(),
+      },
       translator: null,
     };
   });
@@ -113,5 +116,30 @@ describe('Distributionplot', () => {
     });
     const result = distributionplot.createChartSettings(backendApi.model.layout);
     expect(result.components).to.eql([]);
+  });
+  it('createChartSettings should create settings from layout', async () => {
+    backendApi.model.layout.qUndoExclude.qHyperCube.qDimensionInfo = [{ qData: [{ qSubNodes: [] }] }];
+    backendApi.model.layout.qUndoExclude.qHyperCube.qMeasureInfo = [{ qFallbackTitle: 'MyTitle' }];
+    backendApi.model.layout.components = [{ key: 'axis', axis: { title: { fontColor: { color: 'MyColor' } } } }];
+    distributionplot = new DistributionPlot({
+      lasso,
+      flags,
+      picasso,
+      environment,
+      $element,
+      backendApi,
+      selectionsApi,
+    });
+    distributionplot.layout = backendApi.model.layout;
+    distributionplot.colorService = {
+      getScales: jest.fn(),
+      getPalettes: jest.fn(),
+    };
+    sandbox.spy(ChartStyleComponent, 'getAxisTitleSettings');
+    sandbox.spy(ChartStyleComponent, 'getAxisLabelSettings');
+    sandbox.stub(distributionplot, '_getDimAxisSettings');
+    distributionplot.createChartSettings(backendApi.model.layout);
+    expect(ChartStyleComponent.getAxisTitleSettings).to.have.been.calledOnce;
+    expect(ChartStyleComponent.getAxisLabelSettings).to.have.been.calledOnce;
   });
 });

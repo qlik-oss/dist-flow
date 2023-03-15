@@ -770,7 +770,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
         brushComponents: ['box-marker'],
       },
 
-      brushActions: this._dependentActions.gestures,
+      brushActions: this._dependentActions?.gestures,
 
       // ref-lines
       refLines: layout.refLine && layout.refLine.refLines,

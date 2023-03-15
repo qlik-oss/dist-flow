@@ -158,7 +158,7 @@ function getLabel(context) {
 
 function getBarLabelSettings(theme, layout) {
   const valueLabelSettings = getValueLabelSettings(chartID, theme, layout, true);
-  const outsideValueColor = valueLabelSettings.fill || theme.getStyle(chartID, 'value.color', 'default');
+  const outsideValueColor = valueLabelSettings?.fill || theme.getStyle(chartID, 'value.color', 'default');
   const darkColor = theme.getStyle(chartID, 'value.color', 'dark');
   const lightColor = theme.getStyle(chartID, 'value.color', 'light');
   return {

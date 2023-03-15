@@ -13,7 +13,12 @@ describe('waterfallchart-properties', () => {
     const flags = {
       isEnabled: () => true,
     };
-    const env = { translator, flags };
+    const anything = {
+      sense: {
+        theme: {},
+      },
+    };
+    const env = { translator, flags, anything };
     waterfallChartProperties = waterfallChartPropertiesFn(env);
   });
 
