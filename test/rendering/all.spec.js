@@ -3,7 +3,6 @@ import errorEvent from '../utils/on-pageerror-event';
 
 const puppeteer = require('puppeteer');
 const fs = require('fs');
-
 const OPTS = {
   artifactsPath: 'test/rendering/__artifacts__',
 };
