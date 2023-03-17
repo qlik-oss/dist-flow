@@ -19,7 +19,7 @@ describe('ChartStyleComponent', () => {
       getStyle: jest.fn(),
     };
     fontResolver = getChartFontResolver(theme, layout, 'object.Histogram', createFontResolver);
-    chartStyleComponent = ChartStyleComponent(key, ref, fontResolver);
+    chartStyleComponent = ChartStyleComponent(fontResolver, theme, 'object.histogram');
   });
 
   it('should get proper styling options', () => {
@@ -55,6 +55,6 @@ describe('ChartStyleComponent', () => {
         },
       },
     };
-    expect(JSON.stringify(chartStyleComponent)).toEqual(JSON.stringify(styleComponent));
+    expect(JSON.stringify(chartStyleComponent.getOptions(key, ref))).toEqual(JSON.stringify(styleComponent));
   });
 });

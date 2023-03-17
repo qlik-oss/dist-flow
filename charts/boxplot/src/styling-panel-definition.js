@@ -1,6 +1,4 @@
-import ChartStyleComponent from '@qlik/common/extra/chart-style-component';
-
-const getStylingPanelDefinition = (bkgOptionsEnabled, fontResolver, flags) => ({
+const getStylingPanelDefinition = (bkgOptionsEnabled, styleOptions, flags) => ({
   component: 'styling-panel',
   chartTitle: 'Object.BoxPlot',
   translation: 'LayerStyleEditor.component.styling',
@@ -14,12 +12,12 @@ const getStylingPanelDefinition = (bkgOptionsEnabled, fontResolver, flags) => ({
           axisTitleSection: {
             translation: 'properties.axis.title',
             component: 'panel-section',
-            items: ChartStyleComponent('axis', 'axis.title', fontResolver),
+            items: styleOptions.getOptions('axis', 'axis.title'),
           },
           axisLabelSection: {
             translation: 'properties.axis.label',
             component: 'panel-section',
-            items: ChartStyleComponent('axis', 'axis.label.name', fontResolver),
+            items: styleOptions.getOptions('axis', 'axis.label.name'),
           },
         }
       : undefined,

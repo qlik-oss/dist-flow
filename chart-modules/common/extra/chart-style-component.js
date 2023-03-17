@@ -1,52 +1,61 @@
-const ChartStyleComponent = (key, ref, fontResolver) => {
-  const getFontFamilyComponent = () => ({
-    ref: `${ref}.fontFamily`,
-    component: 'dropdown',
-    options: () => fontResolver.getOptions(`${ref}.fontFamily`),
-    defaultValue: () => fontResolver.getDefaultValue(`${ref}.fontFamily`),
-  });
+const ChartStyleComponent = (fontResolver, theme, chartId) => {
+  const propertyDefs = {};
+  propertyDefs.getOptions = (key, ref) => {
+    const getFontFamilyComponent = () => ({
+      ref: `${ref}.fontFamily`,
+      component: 'dropdown',
+      options: () => fontResolver.getOptions(`${ref}.fontFamily`),
+      defaultValue: () => fontResolver.getDefaultValue(`${ref}.fontFamily`),
+    });
 
-  const getFontSizeComponent = () => ({
-    ref: `${ref}.fontSize`,
-    component: 'dropdown',
-    width: true,
-    options: () => fontResolver.getOptions(`${ref}.fontSize`),
-    defaultValue: () => fontResolver.getDefaultValue(`${ref}.fontSize`),
-  });
+    const getFontSizeComponent = () => ({
+      ref: `${ref}.fontSize`,
+      component: 'dropdown',
+      width: true,
+      options: () => fontResolver.getOptions(`${ref}.fontSize`),
+      defaultValue: () => fontResolver.getDefaultValue(`${ref}.fontSize`),
+    });
 
-  const getColorComponent = () => ({
-    ref: `${ref}.fontColor`,
-    component: 'color-picker',
-    width: false,
-  });
+    const getColorComponent = (theme, chartId) => ({
+      ref: `${ref}.fontColor`,
+      component: 'color-picker',
+      width: false,
+      defaultValue: () => {
+        const color = theme.getStyle(chartId, `${ref}.color`, 'color');
+        const palette = theme.getDataColorPickerPalettes()[0].colors;
+        const index = palette.indexOf(color);
+        return { color, index };
+      },
+    });
 
-  const getFontWrapperComponent = () => ({
-    fontWrapper: {
-      component: 'inline-wrapper',
-      items: {
-        fontSize: {
-          ...getFontSizeComponent(),
-        },
-        fontColor: {
-          ...getColorComponent(),
+    const getFontWrapperComponent = (theme, chartId) => ({
+      fontWrapper: {
+        component: 'inline-wrapper',
+        items: {
+          fontSize: {
+            ...getFontSizeComponent(),
+          },
+          fontColor: {
+            ...getColorComponent(theme, chartId),
+          },
         },
       },
-    },
-  });
-
-  return {
-    labelSection: {
-      component: 'items',
-      ref: 'components',
-      key,
-      items: {
-        fontFamily: {
-          ...getFontFamilyComponent(ref, fontResolver),
+    });
+    return {
+      labelSection: {
+        component: 'items',
+        ref: 'components',
+        key,
+        items: {
+          fontFamily: {
+            ...getFontFamilyComponent(),
+          },
+          ...getFontWrapperComponent(theme, chartId),
         },
-        ...getFontWrapperComponent(ref, fontResolver),
       },
-    },
+    };
   };
+  return propertyDefs;
 };
 
 export const getChartFontResolver = (theme, translator, chartId, createFontResolver) =>
@@ -65,9 +74,9 @@ export const getAxisTitleSettings = (chartId, theme, layout) => ({
   style: {
     text: {
       fontFamily:
-        overrides('axis', layout)?.axis?.title?.fontFamily ?? theme.getStyle(chartId, 'axis.title', 'fontFamily'),
-      fontSize: overrides('axis', layout)?.axis?.title?.fontSize ?? theme.getStyle(chartId, 'axis.title', 'fontSize'),
-      fill: overrides('axis', layout)?.axis?.title?.fontColor?.color ?? theme.getStyle(chartId, 'axis.title', 'color'),
+        overrides('axis', layout)?.axis?.title?.fontFamily || theme.getStyle(chartId, 'axis.title', 'fontFamily'),
+      fontSize: overrides('axis', layout)?.axis?.title?.fontSize || theme.getStyle(chartId, 'axis.title', 'fontSize'),
+      fill: overrides('axis', layout)?.axis?.title?.fontColor?.color || theme.getStyle(chartId, 'axis.title', 'color'),
     },
   },
 });
@@ -75,13 +84,13 @@ export const getAxisLabelSettings = (chartId, theme, layout) => ({
   settings: {
     labels: {
       fontFamily:
-        overrides('axis', layout)?.axis?.label?.name?.fontFamily ??
+        overrides('axis', layout)?.axis?.label?.name?.fontFamily ||
         theme.getStyle(chartId, 'axis.label.name', 'fontFamily'),
       fontSize:
-        overrides('axis', layout)?.axis?.label?.name?.fontSize ??
+        overrides('axis', layout)?.axis?.label?.name?.fontSize ||
         theme.getStyle(chartId, 'axis.label.name', 'fontSize'),
       fill:
-        overrides('axis', layout)?.axis?.label?.name?.fontColor?.color ??
+        overrides('axis', layout)?.axis?.label?.name?.fontColor?.color ||
         theme.getStyle(chartId, 'axis.label.name', 'color'),
     },
   },
@@ -89,14 +98,14 @@ export const getAxisLabelSettings = (chartId, theme, layout) => ({
 
 export const getValueLabelSettings = (chartId, theme, layout, shouldParse) => {
   const fontFamily =
-    overrides('value', layout)?.label?.value?.fontFamily ?? theme.getStyle(chartId, 'label.value.name', 'fontFamily');
+    overrides('value', layout)?.label?.value?.fontFamily || theme.getStyle(chartId, 'label.value.name', 'fontFamily');
   let fontSize =
-    overrides('value', layout)?.label?.value?.fontSize ?? theme.getStyle(chartId, 'label.value.size', 'fontSize');
+    overrides('value', layout)?.label?.value?.fontSize || theme.getStyle(chartId, 'label.value.size', 'fontSize');
   if (shouldParse) {
     fontSize = parseFloat(fontSize);
   }
   const fill =
-    overrides('value', layout)?.label?.value?.fontColor?.color ?? theme.getStyle(chartId, 'label.value.color', 'color');
+    overrides('value', layout)?.label?.value?.fontColor?.color || theme.getStyle(chartId, 'label.value.color', 'color');
   return {
     fontFamily,
     fontSize,
