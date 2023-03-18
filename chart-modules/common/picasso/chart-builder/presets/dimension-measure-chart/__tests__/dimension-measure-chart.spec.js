@@ -50,7 +50,7 @@ describe('dimension-measure-chart', () => {
         measureAxisProperties: {
           show: 'all',
         },
-        settings: {
+        axisLabelStyle: {
           label: {
             color: '#33333',
           },
@@ -329,7 +329,7 @@ describe('dimension-measure-chart', () => {
         measureAxisProperties: {
           show: 'all',
         },
-        style: {
+        axisTitleStyle: {
           title: {
             color: '#33333',
           },
@@ -694,7 +694,7 @@ describe('dimension-measure-chart', () => {
         dimensionAxisProperties: {
           show: 'all',
         },
-        settings: {
+        axisLabelStyle: {
           title: {
             color: '#33333',
           },
@@ -972,7 +972,7 @@ describe('dimension-measure-chart', () => {
         dimensionAxisProperties: {
           show: 'all',
         },
-        style: {
+        axisTitleStyle: {
           label: {
             color: '#33333',
           },

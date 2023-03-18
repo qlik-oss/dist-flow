@@ -16,7 +16,7 @@ import chartStyleUtils from '@qlik/common/extra/chart-style-utils';
 import ObjectUtils from '@qlik/common/extra/object-utils';
 import Color from '@qlik/common/extra/color-cache';
 
-import { getAxisLabelSettings, getAxisTitleSettings } from '@qlik/common/extra/chart-style-component';
+import { getAxisLabelStyle, getAxisTitleStyle } from '@qlik/common/extra/chart-style-component';
 import DataScroller from './boxplot-data-scroller';
 import CubeGenerator from './boxplot-cubes-generator';
 import tooltipRenderer from './boxplot-box-tooltip-renderer';
@@ -774,8 +774,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
 
       // ref-lines
       refLines: layout.refLine && layout.refLine.refLines,
-      ...getAxisTitleSettings(chartID, theme, layout),
-      ...getAxisLabelSettings(chartID, theme, layout),
+      axisTitleStyle: getAxisTitleStyle(chartID, theme, layout),
+      axisLabelStyle: getAxisLabelStyle(chartID, theme, layout),
     });
 
     const settings = chartBuilder.getSettings();

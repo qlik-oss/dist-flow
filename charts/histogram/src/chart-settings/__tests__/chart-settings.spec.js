@@ -52,10 +52,10 @@ describe('Histogram chart settings', () => {
         },
       ],
     };
-    sandbox.spy(ChartStyleComponent, 'getAxisTitleSettings');
-    sandbox.spy(ChartStyleComponent, 'getAxisLabelSettings');
+    sandbox.spy(ChartStyleComponent, 'getAxisTitleStyle');
+    sandbox.spy(ChartStyleComponent, 'getAxisLabelStyle');
     ChartSettings.createChartSettings(chartView, layout);
-    expect(ChartStyleComponent.getAxisTitleSettings).to.have.been.calledOnce;
-    expect(ChartStyleComponent.getAxisLabelSettings).to.have.been.calledOnce;
+    expect(ChartStyleComponent.getAxisTitleStyle).to.have.been.calledOnce;
+    expect(ChartStyleComponent.getAxisLabelStyle).to.have.been.calledOnce;
   });
 });

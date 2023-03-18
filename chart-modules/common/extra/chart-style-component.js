@@ -70,33 +70,28 @@ export const getChartFontResolver = (theme, translator, chartId, createFontResol
 
 const overrides = (key, layout) => (layout.components || []).find((c) => c.key === key);
 
-export const getAxisTitleSettings = (chartId, theme, layout) => ({
-  style: {
-    text: {
-      fontFamily:
-        overrides('axis', layout)?.axis?.title?.fontFamily || theme.getStyle(chartId, 'axis.title', 'fontFamily'),
-      fontSize: overrides('axis', layout)?.axis?.title?.fontSize || theme.getStyle(chartId, 'axis.title', 'fontSize'),
-      fill: overrides('axis', layout)?.axis?.title?.fontColor?.color || theme.getStyle(chartId, 'axis.title', 'color'),
-    },
+export const getAxisTitleStyle = (chartId, theme, layout) => ({
+  text: {
+    fontFamily:
+      overrides('axis', layout)?.axis?.title?.fontFamily || theme.getStyle(chartId, 'axis.title', 'fontFamily'),
+    fontSize: overrides('axis', layout)?.axis?.title?.fontSize || theme.getStyle(chartId, 'axis.title', 'fontSize'),
+    fill: overrides('axis', layout)?.axis?.title?.fontColor?.color || theme.getStyle(chartId, 'axis.title', 'color'),
   },
 });
-export const getAxisLabelSettings = (chartId, theme, layout) => ({
-  settings: {
-    labels: {
-      fontFamily:
-        overrides('axis', layout)?.axis?.label?.name?.fontFamily ||
-        theme.getStyle(chartId, 'axis.label.name', 'fontFamily'),
-      fontSize:
-        overrides('axis', layout)?.axis?.label?.name?.fontSize ||
-        theme.getStyle(chartId, 'axis.label.name', 'fontSize'),
-      fill:
-        overrides('axis', layout)?.axis?.label?.name?.fontColor?.color ||
-        theme.getStyle(chartId, 'axis.label.name', 'color'),
-    },
+export const getAxisLabelStyle = (chartId, theme, layout) => ({
+  labels: {
+    fontFamily:
+      overrides('axis', layout)?.axis?.label?.name?.fontFamily ||
+      theme.getStyle(chartId, 'axis.label.name', 'fontFamily'),
+    fontSize:
+      overrides('axis', layout)?.axis?.label?.name?.fontSize || theme.getStyle(chartId, 'axis.label.name', 'fontSize'),
+    fill:
+      overrides('axis', layout)?.axis?.label?.name?.fontColor?.color ||
+      theme.getStyle(chartId, 'axis.label.name', 'color'),
   },
 });
 
-export const getValueLabelSettings = (chartId, theme, layout, shouldParse) => {
+export const getValueLabelStyle = (chartId, theme, layout, shouldParse) => {
   const fontFamily =
     overrides('value', layout)?.label?.value?.fontFamily || theme.getStyle(chartId, 'label.value.name', 'fontFamily');
   let fontSize =

@@ -1,12 +1,12 @@
 import chartStyleUtils from '@qlik/common/extra/chart-style-utils';
-import { getValueLabelSettings } from '@qlik/common/extra/chart-style-component';
+import { getValueLabelStyle } from '@qlik/common/extra/chart-style-component';
 
 //
 // Implementation details
 //
 
 function createLabelSettings(layout, theme, chartId) {
-  const valueLabelSettings = getValueLabelSettings(chartId, theme, layout, true);
+  const valueLabelSettings = getValueLabelStyle(chartId, theme, layout, true);
   const boxFillColor = valueLabelSettings.fill || theme.getColorPickerColor(layout.color.bar.paletteColor);
 
   return {

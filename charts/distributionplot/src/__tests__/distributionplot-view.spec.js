@@ -135,11 +135,11 @@ describe('Distributionplot', () => {
       getScales: jest.fn(),
       getPalettes: jest.fn(),
     };
-    sandbox.spy(ChartStyleComponent, 'getAxisTitleSettings');
-    sandbox.spy(ChartStyleComponent, 'getAxisLabelSettings');
+    sandbox.spy(ChartStyleComponent, 'getAxisTitleStyle');
+    sandbox.spy(ChartStyleComponent, 'getAxisLabelStyle');
     sandbox.stub(distributionplot, '_getDimAxisSettings');
     distributionplot.createChartSettings(backendApi.model.layout);
-    expect(ChartStyleComponent.getAxisTitleSettings).to.have.been.calledOnce;
-    expect(ChartStyleComponent.getAxisLabelSettings).to.have.been.calledOnce;
+    expect(ChartStyleComponent.getAxisTitleStyle).to.have.been.calledOnce;
+    expect(ChartStyleComponent.getAxisLabelStyle).to.have.been.calledOnce;
   });
 });

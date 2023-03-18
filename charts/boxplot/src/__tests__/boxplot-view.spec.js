@@ -169,7 +169,7 @@ describe('boxplot-view', () => {
       getScrollViewSizeInItem: jest.fn(),
     };
     view.createChartSettings(layout);
-    expect(ChartStyleComponent.getAxisTitleSettings).toBeCalledTimes(1);
-    expect(ChartStyleComponent.getAxisLabelSettings).toBeCalledTimes(1);
+    expect(ChartStyleComponent.getAxisTitleStyle).toBeCalledTimes(1);
+    expect(ChartStyleComponent.getAxisLabelStyle).toBeCalledTimes(1);
   });
 });

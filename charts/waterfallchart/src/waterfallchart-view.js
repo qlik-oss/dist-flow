@@ -6,7 +6,7 @@ import DependentInteractions from '@qlik/common/picasso/selections/dependent-int
 import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import formatting from '@qlik/common/picasso/formatting';
 import stringUtil from '@qlik/common/extra/string-util';
-import { getAxisLabelSettings, getValueLabelSettings } from '@qlik/common/extra/chart-style-component';
+import { getAxisLabelStyle, getValueLabelStyle } from '@qlik/common/extra/chart-style-component';
 import CubeGenerator from './waterfallchart-cube-generator-by-measures';
 import waterfallUtils from './waterfallchart-utils';
 import tickGenerator from './waterfallchart-tick-generator';
@@ -157,7 +157,7 @@ function getLabel(context) {
 }
 
 function getBarLabelSettings(theme, layout) {
-  const valueLabelSettings = getValueLabelSettings(chartID, theme, layout, true);
+  const valueLabelSettings = getValueLabelStyle(chartID, theme, layout, true);
   const outsideValueColor = valueLabelSettings?.fill || theme.getStyle(chartID, 'value.color', 'default');
   const darkColor = theme.getStyle(chartID, 'value.color', 'dark');
   const lightColor = theme.getStyle(chartID, 'value.color', 'light');
@@ -366,7 +366,7 @@ function createChartSettings(layout) {
     refLines: layout.refLine && layout.refLine.refLines,
 
     brushActions: this._dependentActions.gestures,
-    ...getAxisLabelSettings(chartID, theme, layout),
+    axisLabelStyle: getAxisLabelStyle(chartID, theme, layout),
   });
 
   chartBuilder.addComponent('box-marker', getBarSettings(tooltipSettings, layout));

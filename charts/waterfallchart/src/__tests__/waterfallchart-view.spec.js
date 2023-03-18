@@ -66,8 +66,8 @@ describe('Waterfallchart-view', () => {
     sandbox.stub(CubeGenerator, 'generateSlicedHyperCube');
     sandbox.stub(CubeGenerator, 'getGeneratedDimensionPath');
     sandbox.stub(CubeGenerator, 'getGeneratedMeasurePath');
-    sandbox.stub(ChartStyleComponent, 'getAxisLabelSettings');
-    sandbox.stub(ChartStyleComponent, 'getValueLabelSettings');
+    sandbox.stub(ChartStyleComponent, 'getAxisLabelStyle');
+    sandbox.stub(ChartStyleComponent, 'getValueLabelStyle');
   });
 
   afterEach(() => {
@@ -110,7 +110,7 @@ describe('Waterfallchart-view', () => {
     waterfallchart._tooltipHandler.setUp = sinon.mock().once().withArgs().returns({ trigger: {} });
     waterfallchart.getBarSettings = jest.fn();
     waterfallchart.createChartSettings(layout);
-    expect(ChartStyleComponent.getAxisLabelSettings).have.been.calledOnce;
-    expect(ChartStyleComponent.getValueLabelSettings).have.been.calledOnce;
+    expect(ChartStyleComponent.getAxisLabelStyle).have.been.calledOnce;
+    expect(ChartStyleComponent.getValueLabelStyle).have.been.calledOnce;
   });
 });

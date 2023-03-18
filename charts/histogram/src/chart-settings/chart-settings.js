@@ -1,7 +1,7 @@
 import { getValue } from 'qlik-chart-modules';
 import ChartBuilder from '@qlik/common/picasso/chart-builder/chart-builder';
 import DependentInteractions from '@qlik/common/picasso/selections/dependent-interactions';
-import { getAxisLabelSettings, getAxisTitleSettings } from '@qlik/common/extra/chart-style-component';
+import { getAxisLabelStyle, getAxisTitleStyle } from '@qlik/common/extra/chart-style-component';
 import DimensionAxis from './dimension-axis';
 import DimensionScale from './dimension-scale';
 import BoxMarker from './box-marker';
@@ -198,8 +198,8 @@ function createChartSettings(chartView, layout) {
 
     // ref-lines
     refLines: layout.refLine && layout.refLine.refLines,
-    ...getAxisTitleSettings(chartID, theme, layout),
-    ...getAxisLabelSettings(chartID, theme, layout),
+    axisTitleStyle: getAxisTitleStyle(chartID, theme, layout),
+    axisLabelStyle: getAxisLabelStyle(chartID, theme, layout),
   });
 
   const settings = chartBuilder.getSettings();
