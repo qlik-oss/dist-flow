@@ -56,6 +56,7 @@ export default function supernova(env) {
           $element,
           backendApi,
           environment,
+          flags: env.flags,
           lasso,
           picasso,
           selectionsApi,

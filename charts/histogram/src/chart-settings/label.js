@@ -5,8 +5,8 @@ import { getValueLabelStyle } from '@qlik/common/extra/chart-style-component';
 // Implementation details
 //
 
-function createLabelSettings(layout, theme, chartId) {
-  const valueLabelSettings = getValueLabelStyle(chartId, theme, layout, true);
+function createLabelSettings(layout, theme, chartId, flags) {
+  const valueLabelSettings = getValueLabelStyle(chartId, theme, layout, flags);
   const boxFillColor = valueLabelSettings.fill || theme.getColorPickerColor(layout.color.bar.paletteColor);
 
   return {
@@ -18,7 +18,12 @@ function createLabelSettings(layout, theme, chartId) {
               ...valueLabelSettings,
               labels: [
                 {
-                  placements: [{ fill: boxFillColor }, { fill: chartStyleUtils.getInverse(boxFillColor) }],
+                  placements: [
+                    { fill: boxFillColor },
+                    {
+                      fill: flags.isEnabled('CLIENT_IM_3364') ? boxFillColor : chartStyleUtils.getInverse(boxFillColor),
+                    },
+                  ],
                 },
               ],
             },

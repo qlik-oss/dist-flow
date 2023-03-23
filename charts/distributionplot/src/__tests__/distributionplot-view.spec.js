@@ -61,7 +61,9 @@ describe('Distributionplot', () => {
       watchActivated() {},
     };
     lasso = null;
-    flags = null;
+    flags = {
+      isEnabled: jest.fn().mockReturnValue(true),
+    };
     picasso = picassoSetup();
     sandbox = sinon.createSandbox();
 

@@ -198,8 +198,8 @@ function createChartSettings(chartView, layout) {
 
     // ref-lines
     refLines: layout.refLine && layout.refLine.refLines,
-    axisTitleStyle: getAxisTitleStyle(chartID, theme, layout),
-    axisLabelStyle: getAxisLabelStyle(chartID, theme, layout),
+    axisTitleStyle: getAxisTitleStyle(chartID, theme, layout, chartView.flags),
+    axisLabelStyle: getAxisLabelStyle(chartID, theme, layout, chartView.flags),
   });
 
   const settings = chartBuilder.getSettings();
@@ -216,7 +216,7 @@ function createChartSettings(chartView, layout) {
   chartBuilder.addComponent('box-marker', boxMarkerSettings);
 
   if (layout.dataPoint && layout.dataPoint.showLabels) {
-    const binLabelSettings = Label.createSettings(layout, theme, chartID);
+    const binLabelSettings = Label.createSettings(layout, theme, chartID, chartView.flags);
     chartBuilder.addComponent('labels', binLabelSettings);
   }
 

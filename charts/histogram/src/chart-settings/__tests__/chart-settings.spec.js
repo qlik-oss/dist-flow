@@ -18,6 +18,9 @@ describe('Histogram chart settings', () => {
     };
     chartView.isRtl = sinon.mock;
     chartView.addSnapshotChartSettings = sinon.mock;
+    chartView.flags = {
+      isEnabled: jest.fn().mockReturnValue(true),
+    };
     chartView.environment = {
       theme: {
         getStyle: jest.fn(),

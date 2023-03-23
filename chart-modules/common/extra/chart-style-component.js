@@ -70,37 +70,33 @@ export const getChartFontResolver = (theme, translator, chartId, createFontResol
 
 const overrides = (key, layout) => (layout.components || []).find((c) => c.key === key);
 
-export const getAxisTitleStyle = (chartId, theme, layout) => ({
-  text: {
-    fontFamily:
-      overrides('axis', layout)?.axis?.title?.fontFamily || theme.getStyle(chartId, 'axis.title', 'fontFamily'),
-    fontSize: overrides('axis', layout)?.axis?.title?.fontSize || theme.getStyle(chartId, 'axis.title', 'fontSize'),
-    fill: overrides('axis', layout)?.axis?.title?.fontColor?.color || theme.getStyle(chartId, 'axis.title', 'color'),
-  },
-});
-export const getAxisLabelStyle = (chartId, theme, layout) => ({
-  labels: {
-    fontFamily:
-      overrides('axis', layout)?.axis?.label?.name?.fontFamily ||
-      theme.getStyle(chartId, 'axis.label.name', 'fontFamily'),
-    fontSize:
-      overrides('axis', layout)?.axis?.label?.name?.fontSize || theme.getStyle(chartId, 'axis.label.name', 'fontSize'),
-    fill:
-      overrides('axis', layout)?.axis?.label?.name?.fontColor?.color ||
-      theme.getStyle(chartId, 'axis.label.name', 'color'),
-  },
-});
+export const getAxisTitleStyle = (chartId, theme, layout, flags) => {
+  const axis = flags.isEnabled('CLIENT_IM_3364') ? overrides('axis', layout)?.axis : {};
+  return {
+    text: {
+      fontFamily: axis?.title?.fontFamily || theme.getStyle(chartId, 'axis.title', 'fontFamily'),
+      fontSize: axis?.title?.fontSize || theme.getStyle(chartId, 'axis.title', 'fontSize'),
+      fill: axis?.title?.fontColor?.color || theme.getStyle(chartId, 'axis.title', 'color'),
+    },
+  };
+};
+export const getAxisLabelStyle = (chartId, theme, layout, flags) => {
+  const axis = flags.isEnabled('CLIENT_IM_3364') ? overrides('axis', layout)?.axis : {};
+  return {
+    labels: {
+      fontFamily: axis?.label?.name?.fontFamily || theme.getStyle(chartId, 'axis.label.name', 'fontFamily'),
+      fontSize: axis?.label?.name?.fontSize || theme.getStyle(chartId, 'axis.label.name', 'fontSize'),
+      fill: axis?.label?.name?.fontColor?.color || theme.getStyle(chartId, 'axis.label.name', 'color'),
+    },
+  };
+};
 
-export const getValueLabelStyle = (chartId, theme, layout, shouldParse) => {
-  const fontFamily =
-    overrides('value', layout)?.label?.value?.fontFamily || theme.getStyle(chartId, 'label.value.name', 'fontFamily');
-  let fontSize =
-    overrides('value', layout)?.label?.value?.fontSize || theme.getStyle(chartId, 'label.value.size', 'fontSize');
-  if (shouldParse) {
-    fontSize = parseFloat(fontSize);
-  }
-  const fill =
-    overrides('value', layout)?.label?.value?.fontColor?.color || theme.getStyle(chartId, 'label.value.color', 'color');
+export const getValueLabelStyle = (chartId, theme, layout, flags) => {
+  const value = flags.isEnabled('CLIENT_IM_3364') ? overrides('value', layout)?.label : {};
+  const fontFamily = value?.value?.fontFamily || theme.getStyle(chartId, 'label.value.name', 'fontFamily');
+  let fontSize = value?.value?.fontSize || theme.getStyle(chartId, 'label.value.size', 'fontSize');
+  fontSize = parseFloat(fontSize);
+  const fill = value?.value?.fontColor?.color || theme.getStyle(chartId, 'label.value.color', 'color');
   return {
     fontFamily,
     fontSize,

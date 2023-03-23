@@ -19,7 +19,7 @@ const BAR_WIDTH_RATIO = 0.7;
 // Implementation details
 //
 
-function init({ picasso, environment, $element }) {
+function init({ picasso, environment, $element, flags }) {
   const backendApi = null;
   const selectionsApi = null;
   this._super(picasso, $element, environment, backendApi, selectionsApi);
@@ -32,6 +32,7 @@ function init({ picasso, environment, $element }) {
   );
   this._scrollHandler.setOptions({ direction: 'horizontal' });
   this.setDataPaths(['generated/qHyperCube']);
+  this.flags = flags;
 }
 
 function getSlicedData(top, height) {
@@ -156,8 +157,8 @@ function getLabel(context) {
   return formatting.formatMeasureValue(field, measure);
 }
 
-function getBarLabelSettings(theme, layout) {
-  const valueLabelSettings = getValueLabelStyle(chartID, theme, layout, true);
+function getBarLabelSettings(theme, layout, flags) {
+  const valueLabelSettings = getValueLabelStyle(chartID, theme, layout, flags);
   const outsideValueColor = valueLabelSettings?.fill || theme.getStyle(chartID, 'value.color', 'default');
   const darkColor = theme.getStyle(chartID, 'value.color', 'dark');
   const lightColor = theme.getStyle(chartID, 'value.color', 'light');
@@ -177,7 +178,9 @@ function getBarLabelSettings(theme, layout) {
                     { fill: outsideValueColor },
                     {
                       fill(s) {
-                        return getInsideValueColor(s.data.boxColor.value, darkColor, lightColor);
+                        return flags.isEnabled('CLIENT_IM_3364')
+                          ? outsideValueColor
+                          : getInsideValueColor(s.data.boxColor.value, darkColor, lightColor);
                       },
                     },
                     {
@@ -366,7 +369,7 @@ function createChartSettings(layout) {
     refLines: layout.refLine && layout.refLine.refLines,
 
     brushActions: this._dependentActions.gestures,
-    axisLabelStyle: getAxisLabelStyle(chartID, theme, layout),
+    axisLabelStyle: getAxisLabelStyle(chartID, theme, layout, this.flags),
   });
 
   chartBuilder.addComponent('box-marker', getBarSettings(tooltipSettings, layout));
@@ -382,7 +385,7 @@ function createChartSettings(layout) {
   }
 
   if (layout.dataPoint.showLabels) {
-    chartBuilder.addComponent('labels', getBarLabelSettings(theme, layout));
+    chartBuilder.addComponent('labels', getBarLabelSettings(theme, layout, this.flags));
   }
 
   // Add snapshot settings
