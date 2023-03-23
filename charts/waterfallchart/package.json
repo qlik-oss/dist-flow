@@ -20,7 +20,8 @@
   "files": [
     "api-specifications",
     "core",
-    "dist"
+    "dist",
+    "sn-waterfall-ext"
   ],
   "qext": {
     "name": "Waterfall",

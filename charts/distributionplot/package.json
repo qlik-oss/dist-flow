@@ -21,7 +21,8 @@
   "files": [
     "api-specifications",
     "core",
-    "dist"
+    "dist",
+    "sn-distributionplot-ext"
   ],
   "qext": {
     "name": "Distributionplot",
