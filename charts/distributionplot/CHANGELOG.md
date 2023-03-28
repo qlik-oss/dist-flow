@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.38.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.37.2...@nebula.js/sn-distributionplot@0.38.0) (2023-03-28)
+
+### Features
+
+- added styling for distplot ([914e642](https://github.com/qlik-oss/nebula.js/commit/914e64230c3ace2a75601cd433d67138b51649c6))
+
 ## [0.37.2](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.37.1...@nebula.js/sn-distributionplot@0.37.2) (2022-12-07)
 
 **Note:** Version bump only for package @nebula.js/sn-distributionplot
