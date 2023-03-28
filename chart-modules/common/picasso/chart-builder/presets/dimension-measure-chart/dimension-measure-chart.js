@@ -143,6 +143,7 @@ function addMeasureScale(chartBuilder, options, chartOrientation, measureAxisPro
 function addMeasureAxisComponent(chartBuilder, options, measureDirection, measureAxisProperties) {
   let measureAxisSettings = {
     scale: 'measure',
+    settings: options.axisLabelStyle || {},
     forceBounds: measureAxisProperties && !measureAxisProperties.autoMinMax && measureAxisProperties.showBounds,
   };
   measureAxisSettings = extend(measureAxisSettings, CONSTANTS.LAYOUTSETTINGS.measureAxis);
@@ -155,6 +156,7 @@ function addMeasureAxisComponent(chartBuilder, options, measureDirection, measur
 function addMeasureAxisTitleComponent(chartBuilder, options, measureDirection) {
   let measureTitleSettings = {
     text: options.measureTitleText,
+    style: options.axisTitleStyle || {},
   };
   measureTitleSettings = extend(measureTitleSettings, CONSTANTS.LAYOUTSETTINGS.measureAxisTitle);
 
@@ -176,6 +178,7 @@ function addDimensionScale(chartBuilder, options, chartOrientation) {
 function addDimensionAxisComponent(chartBuilder, options, dimensionDirection) {
   let dimensionAxisSettings = {
     scale: 'dimension',
+    settings: options.axisLabelStyle || {},
   };
   dimensionAxisSettings = extend(dimensionAxisSettings, CONSTANTS.LAYOUTSETTINGS.dimensionAxis);
 
@@ -189,6 +192,7 @@ function addDimensionAxisComponent(chartBuilder, options, dimensionDirection) {
 function addDimensionAxisTitleComponent(chartBuilder, options, dimensionDirection) {
   let dimensionAxisTitleSettings = {
     text: options.dimensionTitleText,
+    style: options.axisTitleStyle || {},
   };
   dimensionAxisTitleSettings = extend(dimensionAxisTitleSettings, CONSTANTS.LAYOUTSETTINGS.dimensionAxisTitle);
 

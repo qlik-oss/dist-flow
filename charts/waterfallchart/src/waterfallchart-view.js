@@ -6,6 +6,7 @@ import DependentInteractions from '@qlik/common/picasso/selections/dependent-int
 import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import formatting from '@qlik/common/picasso/formatting';
 import stringUtil from '@qlik/common/extra/string-util';
+import { getAxisLabelStyle, getValueLabelStyle } from '@qlik/common/extra/chart-style-component';
 import CubeGenerator from './waterfallchart-cube-generator-by-measures';
 import waterfallUtils from './waterfallchart-utils';
 import tickGenerator from './waterfallchart-tick-generator';
@@ -18,7 +19,7 @@ const BAR_WIDTH_RATIO = 0.7;
 // Implementation details
 //
 
-function init({ picasso, environment, $element }) {
+function init({ picasso, environment, $element, flags }) {
   const backendApi = null;
   const selectionsApi = null;
   this._super(picasso, $element, environment, backendApi, selectionsApi);
@@ -31,6 +32,7 @@ function init({ picasso, environment, $element }) {
   );
   this._scrollHandler.setOptions({ direction: 'horizontal' });
   this.setDataPaths(['generated/qHyperCube']);
+  this.flags = flags;
 }
 
 function getSlicedData(top, height) {
@@ -155,8 +157,9 @@ function getLabel(context) {
   return formatting.formatMeasureValue(field, measure);
 }
 
-function getBarLabelSettings(theme) {
-  const outsideValueColor = theme.getStyle(chartID, 'value.color', 'default');
+function getBarLabelSettings(theme, layout, flags) {
+  const valueLabelSettings = getValueLabelStyle(chartID, theme, layout, flags);
+  const outsideValueColor = valueLabelSettings?.fill || theme.getStyle(chartID, 'value.color', 'default');
   const darkColor = theme.getStyle(chartID, 'value.color', 'dark');
   const lightColor = theme.getStyle(chartID, 'value.color', 'light');
   return {
@@ -165,6 +168,7 @@ function getBarLabelSettings(theme) {
         {
           strategy: {
             settings: {
+              ...valueLabelSettings,
               direction(context) {
                 return context.data && context.data.end.value > context.data.start.value ? 'up' : 'down';
               },
@@ -174,7 +178,9 @@ function getBarLabelSettings(theme) {
                     { fill: outsideValueColor },
                     {
                       fill(s) {
-                        return getInsideValueColor(s.data.boxColor.value, darkColor, lightColor);
+                        return flags.isEnabled('CLIENT_IM_3364')
+                          ? outsideValueColor
+                          : getInsideValueColor(s.data.boxColor.value, darkColor, lightColor);
                       },
                     },
                     {
@@ -280,7 +286,6 @@ function createChartSettings(layout) {
   });
   const width = this.picassoElement.clientWidth;
   const height = this.picassoElement.clientHeight;
-
   const tooltipSettings = {};
   tooltipSettings.box = this._tooltipHandler.setUp({
     chartBuilder,
@@ -364,6 +369,7 @@ function createChartSettings(layout) {
     refLines: layout.refLine && layout.refLine.refLines,
 
     brushActions: this._dependentActions.gestures,
+    axisLabelStyle: getAxisLabelStyle(chartID, theme, layout, this.flags),
   });
 
   chartBuilder.addComponent('box-marker', getBarSettings(tooltipSettings, layout));
@@ -379,7 +385,7 @@ function createChartSettings(layout) {
   }
 
   if (layout.dataPoint.showLabels) {
-    chartBuilder.addComponent('labels', getBarLabelSettings(theme));
+    chartBuilder.addComponent('labels', getBarLabelSettings(theme, layout, this.flags));
   }
 
   // Add snapshot settings

@@ -14,9 +14,10 @@ const chartID = 'object.histogram';
 // Implementation details
 //
 
-function init({ environment, lasso, picasso, $element, backendApi, selectionsApi, renderState }) {
+function init({ environment, flags, lasso, picasso, $element, backendApi, selectionsApi, renderState }) {
   this._super(picasso, $element, environment, backendApi, selectionsApi);
 
+  this.flags = flags;
   this.renderState = renderState;
 
   this.picassoElement.__do_not_use_findShapes = this.chartInstance.findShapes.bind(this.chartInstance); // to allow access to renderered content via DOM

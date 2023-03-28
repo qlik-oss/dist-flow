@@ -44,6 +44,33 @@ describe('dimension-measure-chart', () => {
       expect(chartBuilderMock.addComponent.calledWith('x-axis')).to.be.true;
     });
 
+    it('should add settings to measure axis', () => {
+      dimensionMeasureChart(chartBuilderMock, {
+        orientation: 'horizontal',
+        measureAxisProperties: {
+          show: 'all',
+        },
+        axisLabelStyle: {
+          label: {
+            color: '#33333',
+          },
+        },
+      });
+      const expectedSettings = {
+        scale: 'measure',
+        settings: {
+          label: {
+            color: '#33333',
+          },
+        },
+        minimumLayoutMode: 'XSMALL',
+        prioOrder: 10,
+        displayOrder: 80,
+        forceBounds: undefined,
+      };
+      expect(chartBuilderMock.addComponent.calledWith('x-axis', expectedSettings)).to.be.true;
+    });
+
     it('should be added via chart-builder as x-axis if chart is horizontal and options.measureAxisProperties.show is labels', () => {
       dimensionMeasureChart(chartBuilderMock, {
         orientation: 'horizontal',
@@ -294,6 +321,33 @@ describe('dimension-measure-chart', () => {
       });
 
       expect(chartBuilderMock.addComponent.calledWith('x-axis-title')).to.be.true;
+    });
+
+    it('should add style to measure axis title', () => {
+      dimensionMeasureChart(chartBuilderMock, {
+        measureTitleText: 'Text',
+        measureAxisProperties: {
+          show: 'all',
+        },
+        axisTitleStyle: {
+          title: {
+            color: '#33333',
+          },
+        },
+      });
+
+      const expectedStyleSettings = {
+        text: 'Text',
+        style: {
+          title: {
+            color: '#33333',
+          },
+        },
+        minimumLayoutMode: 'XSMALL',
+        prioOrder: 30,
+        displayOrder: 90,
+      };
+      expect(chartBuilderMock.addComponent.calledWith('x-axis-title', expectedStyleSettings)).to.be.true;
     });
 
     it('should be added via chart-builder as x-axis-title if chart is horizontal, has optionsMeasureTitleText and options.measureAxisProperties.show is all', () => {
@@ -634,6 +688,36 @@ describe('dimension-measure-chart', () => {
       expect(dimensionAxisCall.args[0]).to.equal('y-axis');
     });
 
+    it('should add settings for styling to dimension axis', () => {
+      dimensionMeasureChart(chartBuilderMock, {
+        includeDimensionAxis: true,
+        dimensionAxisProperties: {
+          show: 'all',
+        },
+        axisLabelStyle: {
+          title: {
+            color: '#33333',
+          },
+        },
+      });
+
+      const expectedDimensionAxisSettings = {
+        scale: 'dimension',
+        settings: {
+          title: {
+            color: '#33333',
+          },
+        },
+        minimumLayoutMode: 'XSMALL',
+        prioOrder: 10,
+        displayOrder: 80,
+      };
+      const dimensionAxisCall = chartBuilderMock.addComponent.getCall(DIMENSIONAXIS_ADD_COMPONENT_CALL_NUMBER);
+
+      expect(dimensionAxisCall.args[0]).to.equal('y-axis');
+      expect(dimensionAxisCall.args[1]).to.eql(expectedDimensionAxisSettings);
+    });
+
     it('should be added as y-axis if includeDimensionAxis is true, chart has no orientation and options.dimensionAxisProperties.show is labels', () => {
       dimensionMeasureChart(chartBuilderMock, {
         includeDimensionAxis: true,
@@ -879,6 +963,39 @@ describe('dimension-measure-chart', () => {
       );
 
       expect(dimensionAxisTitleCall.args[0]).to.equal('y-axis-title');
+    });
+
+    it('should add title styling from settings to y-axis-title', () => {
+      dimensionMeasureChart(chartBuilderMock, {
+        includeDimensionAxis: true,
+        dimensionTitleText: 'Text',
+        dimensionAxisProperties: {
+          show: 'all',
+        },
+        axisTitleStyle: {
+          label: {
+            color: '#33333',
+          },
+        },
+      });
+
+      const expectedDimensionTitleSettings = {
+        text: 'Text',
+        style: {
+          label: {
+            color: '#33333',
+          },
+        },
+        minimumLayoutMode: 'XSMALL',
+        prioOrder: 30,
+        displayOrder: 90,
+      };
+      const dimensionAxisTitleCall = chartBuilderMock.addComponent.getCall(
+        DIMENSIONAXISTITLE_ADD_COMPONENT_CALL_NUMBER
+      );
+
+      expect(dimensionAxisTitleCall.args[0]).to.equal('y-axis-title');
+      expect(dimensionAxisTitleCall.args[1]).to.eql(expectedDimensionTitleSettings);
     });
 
     it('should be added via chart-builder as y-axis-title if includeDimensionAxis is true, chart has no orientation, has options.dimensionTitleText and options.dimensionAxisProperties.show is title', () => {

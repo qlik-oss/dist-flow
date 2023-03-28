@@ -1,6 +1,7 @@
 import extend from 'extend';
-import { getValue } from 'qlik-chart-modules';
+import { fontResolver as createFontResolver, getValue } from 'qlik-chart-modules';
 // import defaultProperties from '../../../assets/client/property-panel/default-properties';
+import ChartStyleComponent, { getChartFontResolver } from '@qlik/common/extra/chart-style-component';
 import waterfallUtils from './waterfallchart-utils';
 import getStylingPanelDefinition from './styling-panel-property-definiton';
 
@@ -74,12 +75,15 @@ export default function propertyDefinition(env) {
     },
   };
 
+  const theme = env.anything.sense.theme;
+  const fontResolver = getChartFontResolver(theme, translator, waterfallUtils.chartID, createFontResolver);
+  const styleOptions = ChartStyleComponent(fontResolver, theme, waterfallUtils.chartID);
   const presentation = {
     type: 'items',
     translation: 'properties.presentation',
     grouped: true,
     items: {
-      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled),
+      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled, styleOptions, flags),
       gridLines: {
         type: 'items',
         snapshot: {

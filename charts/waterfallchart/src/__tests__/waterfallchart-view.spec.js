@@ -2,6 +2,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import $ from 'jquery';
 import picassoSetup from '@qlik/common/picasso/picasso-setup';
+import * as ChartStyleComponent from '@qlik/common/extra/chart-style-component';
 import WaterfallChartView from '../waterfallchart-view';
 import CubeGenerator from '../waterfallchart-cube-generator-by-measures';
 
@@ -20,8 +21,13 @@ describe('Waterfallchart-view', () => {
     environment = {
       deviceType: null,
       options: {},
-      theme: null,
-      translator: null,
+      theme: {
+        getStyle: jest.fn(),
+        getColorPickerColor: jest.fn(),
+      },
+      translator: {
+        get: () => {},
+      },
     };
     layout = {
       generated: {
@@ -42,6 +48,15 @@ describe('Waterfallchart-view', () => {
         ],
         qMeasureInfo: [],
       },
+      dimensionAxis: {
+        label: 'MyLabel',
+      },
+      qDef: {
+        isCustomFormatted: false,
+      },
+      dataPoint: {
+        showLabels: true,
+      },
     };
 
     picasso = picassoSetup();
@@ -51,6 +66,8 @@ describe('Waterfallchart-view', () => {
     sandbox.stub(CubeGenerator, 'generateSlicedHyperCube');
     sandbox.stub(CubeGenerator, 'getGeneratedDimensionPath');
     sandbox.stub(CubeGenerator, 'getGeneratedMeasurePath');
+    sandbox.stub(ChartStyleComponent, 'getAxisLabelStyle');
+    sandbox.stub(ChartStyleComponent, 'getValueLabelStyle');
   });
 
   afterEach(() => {
@@ -86,5 +103,14 @@ describe('Waterfallchart-view', () => {
 
     expect(CubeGenerator.generateHyperCube).have.been.calledOnce;
     expect(CubeGenerator.generateSlicedHyperCube).have.been.calledWith(sinon.match.any, 3, 12);
+  });
+
+  it('createChartSettings should create settings from layout', async () => {
+    waterfallchart = new WaterfallChartView({ picasso, environment, $element });
+    waterfallchart._tooltipHandler.setUp = sinon.mock().once().withArgs().returns({ trigger: {} });
+    waterfallchart.getBarSettings = jest.fn();
+    waterfallchart.createChartSettings(layout);
+    expect(ChartStyleComponent.getAxisLabelStyle).have.been.calledOnce;
+    expect(ChartStyleComponent.getValueLabelStyle).have.been.calledOnce;
   });
 });

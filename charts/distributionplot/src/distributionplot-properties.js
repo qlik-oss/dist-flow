@@ -1,6 +1,7 @@
-import { setValue, getValue } from 'qlik-chart-modules';
+import { fontResolver as createFontResolver, setValue, getValue } from 'qlik-chart-modules';
 import HyperCubeDefGenerator from '@qlik/common/picasso/hypercube-def-generator/hypercube-def-generator';
 import sortOrderBuilder from '@qlik/common/extra/sort-order/sort-order';
+import ChartStyleComponent, { getChartFontResolver } from '@qlik/common/extra/chart-style-component';
 import distplotUtils from './distributionplot-utils';
 import propsLogic from './distributionplot-properties-logic';
 import distplotSorter from './sorting/distributionplot-sorter';
@@ -173,11 +174,13 @@ export default function propertyDefinition(env) {
       },
     },
   };
+  const fontResolver = getChartFontResolver(theme, translator, CONSTANTS.CHART_ID, createFontResolver);
+  const styleOptions = ChartStyleComponent(fontResolver, theme, CONSTANTS.CHART_ID);
   const presentation = {
     type: 'items',
     translation: 'properties.presentation',
     items: {
-      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled),
+      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled, styleOptions, flags),
       orientation: {
         ref: 'orientation',
         type: 'string',

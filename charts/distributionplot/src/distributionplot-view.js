@@ -12,6 +12,7 @@ import stringUtil from '@qlik/common/extra/string-util';
 import chartStyleUtils from '@qlik/common/extra/chart-style-utils';
 import hypercubeUtil from '@qlik/common/extra/hypercube-util';
 
+import { getAxisLabelStyle, getAxisTitleStyle } from '@qlik/common/extra/chart-style-component';
 import Jitter from './jitter';
 import columnOrderAdapter from './distributionplot-column-order-adapter';
 import CONSTANTS from './distributionplot-constants';
@@ -692,6 +693,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
       // ref-lines
       refLines: layout.refLine && layout.refLine.refLines,
+      axisTitleStyle: getAxisTitleStyle(CONSTANTS.CHART_ID, theme, layout, this.flags),
+      axisLabelStyle: getAxisLabelStyle(CONSTANTS.CHART_ID, theme, layout, this.flags),
     });
 
     // Box marker

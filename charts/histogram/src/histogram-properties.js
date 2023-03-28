@@ -1,5 +1,6 @@
-import { getValue } from 'qlik-chart-modules';
+import { fontResolver as createFontResolver, getValue } from 'qlik-chart-modules';
 import isInteger from '@qlik/common/extra/is-integer';
+import ChartStyleComponent, { getChartFontResolver } from '@qlik/common/extra/chart-style-component';
 import histogramUtils from './histogram-utils';
 import propsLogic from './histogram-properties-logic';
 import getStylingPanelDefinition from './styling-panel-definition';
@@ -80,12 +81,14 @@ export default function propertyDefinition(env) {
       },
     },
   };
-
+  const chartID = 'object.histogram';
+  const fontResolver = getChartFontResolver(theme, translator, chartID, createFontResolver);
+  const styleOptions = ChartStyleComponent(fontResolver, theme, chartID);
   const presentation = {
     type: 'items',
     translation: 'properties.presentation',
     items: {
-      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled),
+      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled, styleOptions, env?.flags),
       gridLines: {
         type: 'items',
         snapshot: {

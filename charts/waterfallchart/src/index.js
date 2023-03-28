@@ -34,7 +34,7 @@ export default function supernova(env) {
 
       useEffect(() => {
         const $element = $(element);
-        const view = new ChartView({ picasso, environment, $element });
+        const view = new ChartView({ picasso, environment, $element, flags: env.flags });
 
         setInstance(view);
 
