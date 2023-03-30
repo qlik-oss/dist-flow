@@ -21,6 +21,7 @@
   "files": [
     "api-specifications",
     "core",
+    "core/esm",
     "dist",
     "sn-distributionplot-ext"
   ],
