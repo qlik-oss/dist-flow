@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.36.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.36.0...@nebula.js/sn-boxplot@0.36.1) (2023-03-30)
+
+### Bug Fixes
+
+- core/esm missing in release ([#264](https://github.com/qlik-oss/nebula.js/issues/264)) ([f7b2e7f](https://github.com/qlik-oss/nebula.js/commit/f7b2e7f6605f4766fb232f400859ae790b2129cc))
+
 # [0.36.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.35.2...@nebula.js/sn-boxplot@0.36.0) (2023-03-28)
 
 ### Features
