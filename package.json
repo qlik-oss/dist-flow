@@ -33,7 +33,7 @@
     "babel-loader": "9.1.2",
     "chai": "4.3.7",
     "enigma.js": "2.11.0",
-    "eslint": "8.37.0",
+    "eslint": "8.38.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-import": "2.27.5",
@@ -55,7 +55,7 @@
     "scriptappy-from-jsdoc": "0.7.0",
     "sinon": "15.0.3",
     "sinon-chai": "3.7.0",
-    "webpack": "5.77.0",
+    "webpack": "5.78.0",
     "webpack-dev-server": "3.11.3"
   },
   "workspaces": [
@@ -63,6 +63,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001473"
+    "**/caniuse-lite": "1.0.30001476"
   }
 }
