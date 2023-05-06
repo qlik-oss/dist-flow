@@ -20,8 +20,8 @@
   "license": "ISC",
   "devDependencies": {
     "@after-work.js/aw": "6.0.14",
-    "@babel/core": "7.21.5",
-    "@babel/eslint-parser": "7.21.3",
+    "@babel/core": "7.21.8",
+    "@babel/eslint-parser": "7.21.8",
     "@babel/preset-env": "7.21.5",
     "@babel/preset-react": "7.18.6",
     "@nebula.js/cli": "3.3.0",
@@ -33,7 +33,7 @@
     "babel-loader": "9.1.2",
     "chai": "4.3.7",
     "enigma.js": "2.11.0",
-    "eslint": "8.39.0",
+    "eslint": "8.40.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.8.0",
     "eslint-plugin-import": "2.27.5",
@@ -49,13 +49,13 @@
     "jest-circus": "27.5.1",
     "jest-junit": "16.0.0",
     "jsdoc-to-markdown": "8.0.0",
-    "lerna": "6.6.1",
+    "lerna": "6.6.2",
     "mocha-junit-reporter": "2.2.0",
     "prettier": "2.8.8",
     "scriptappy-from-jsdoc": "0.7.0",
     "sinon": "15.0.4",
     "sinon-chai": "3.7.0",
-    "webpack": "5.81.0",
+    "webpack": "5.82.0",
     "webpack-dev-server": "3.11.3"
   },
   "workspaces": [
@@ -63,6 +63,6 @@
     "chart-modules/*"
   ],
   "resolutions": {
-    "**/caniuse-lite": "1.0.30001481"
+    "**/caniuse-lite": "1.0.30001482"
   }
 }
