@@ -22,7 +22,9 @@ export default {
   refLines: {
     minimumLayoutMode: 'SPARK',
     prioOrder: 60,
-    displayOrder: -10,
+    layout: {
+      displayOrder: 10000,
+    },
   },
 
   // XMALL
