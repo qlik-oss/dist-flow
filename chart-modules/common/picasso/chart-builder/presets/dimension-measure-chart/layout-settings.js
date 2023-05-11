@@ -20,9 +20,9 @@ export default {
   },
 
   refLines: {
-    minimumLayoutMode: 'SPARK',
-    prioOrder: 60,
     layout: {
+      minimumLayoutMode: 'SPARK',
+      prioOrder: 60,
       displayOrder: 10000,
     },
   },
