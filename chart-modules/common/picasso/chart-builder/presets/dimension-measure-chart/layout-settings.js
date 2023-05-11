@@ -23,7 +23,7 @@ export default {
     layout: {
       minimumLayoutMode: 'SPARK',
       prioOrder: 60,
-      displayOrder: 10000,
+      displayOrder: 1110,
     },
   },
 
