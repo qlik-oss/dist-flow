@@ -20,9 +20,11 @@ export default {
   },
 
   refLines: {
-    minimumLayoutMode: 'SPARK',
-    prioOrder: 60,
-    displayOrder: -10,
+    layout: {
+      minimumLayoutMode: 'SPARK',
+      prioOrder: 60,
+      displayOrder: 1110,
+    },
   },
 
   // XMALL
