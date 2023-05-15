@@ -3473,25 +3473,25 @@
     fs-extra "11.1.0"
     inquirer "8.2.5"
 
-"@nebula.js/cli-sense@3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-sense/-/cli-sense-3.3.0.tgz#fdbc6699b10336e199b211e8e07c4c95cdec0741"
-  integrity sha512-HkF6sIp3azQTM7bMjvFXBqyGA2cGaFn+YG7ZZYSk2mV/mU13pNEH12TFyoi5a0HtgeSqVvVQoWDC2EsFS63Dcw==
+"@nebula.js/cli-sense@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-sense/-/cli-sense-4.0.2.tgz#474b1869e2e31710248a8bedbee097057c632bec"
+  integrity sha512-sJM9PdjzLX9RFzUNafEcsOk+1H8fZgOzSZ9DPhiBVQwZJTwnHP00z5S8QeF55UpScDiOaamUvRioMskGIs2ySA==
   dependencies:
-    "@babel/cli" "7.21.0"
-    "@babel/core" "7.21.0"
-    "@babel/preset-env" "7.20.2"
-    "@nebula.js/stardust" "^3.3.0"
+    "@babel/cli" "7.21.5"
+    "@babel/core" "7.21.8"
+    "@babel/preset-env" "7.21.5"
+    "@nebula.js/stardust" "^4.0.2"
     "@rollup/plugin-babel" "6.0.3"
-    "@rollup/plugin-commonjs" "24.0.1"
-    "@rollup/plugin-node-resolve" "15.0.1"
+    "@rollup/plugin-commonjs" "24.1.0"
+    "@rollup/plugin-node-resolve" "15.0.2"
     "@rollup/plugin-replace" "5.0.2"
-    "@rollup/plugin-terser" "0.4.0"
+    "@rollup/plugin-terser" "0.4.1"
     extend "3.0.2"
-    fs-extra "11.1.0"
+    fs-extra "11.1.1"
     node-event-emitter "0.0.1"
-    rollup "3.17.3"
-    yargs "17.7.1"
+    rollup "3.21.5"
+    yargs "17.7.2"
 
 "@nebula.js/cli-serve@4.0.2":
   version "4.0.2"
@@ -3526,10 +3526,10 @@
     import-cwd "3.0.0"
     yargs "17.7.1"
 
-"@nebula.js/stardust@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-3.3.0.tgz#8705317fa655049432e04c296e98b9dc85c1ca78"
-  integrity sha512-BSKQJLzbT6NZB4ceE9KXWPjScZ73GwRjfpi8W4qcKgFrM6gOV68nXkdnGOrqA/OEzQPE1esXKX9/wqr+7/mOlQ==
+"@nebula.js/stardust@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-4.0.2.tgz#61ad1160021eb6a155023829f7a9892fe14aa75c"
+  integrity sha512-L81zLCtBLT0/Y1v1g7F3eUm3XZ8NG2YDftGHrMnQv3DckyEMub7KWVnAuLlMX2y2oscg8qjyK/M4lO2fYCmKTw==
   dependencies:
     "@types/qlik-engineapi" "12.67.12"
 
