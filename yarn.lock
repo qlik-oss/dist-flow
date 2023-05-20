@@ -2155,10 +2155,10 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@eslint/js@8.40.0":
-  version "8.40.0"
-  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.40.0.tgz#3ba73359e11f5a7bd3e407f70b3528abfae69cec"
-  integrity sha512-ElyB54bJIhXQYVKjDSvCkPO1iU1tSAeVQJbllWJq1XQSmmA4dgFk8CbiBGpiOPxleE48vDogxCtmMYku4HSVLA==
+"@eslint/js@8.41.0":
+  version "8.41.0"
+  resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.41.0.tgz#080321c3b68253522f7646b55b577dd99d2950b3"
+  integrity sha512-LxcyMGxwmTh2lY9FwHPGWOHmYFCZvbrFCBZL4FzSSsxsRPuhrYUg/49/0KDfW8tnIEaEHtfmn6+NPN+1DqaNmA==
 
 "@gar/promisify@^1.1.3":
   version "1.1.3"
@@ -2941,17 +2941,17 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@nebula.js/cli-build@4.0.2", "@nebula.js/cli-build@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-build/-/cli-build-4.0.2.tgz#cf9442fa8b62434c81cfa0829507b2830629cb97"
-  integrity sha512-8T+R26Kmvczk99j1GLil9KhNSJSyOvWRbuq/x3y97XC3w9nqw15PBARrxKeXgEvLzGKgq40VPQMqOsAqv8K7DA==
+"@nebula.js/cli-build@4.0.3", "@nebula.js/cli-build@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-build/-/cli-build-4.0.3.tgz#41cf6dc364b463c78efd0a9f38434a22974e212a"
+  integrity sha512-zGpeL/V78g6HCmHwDhpyRCtht4VBpRPhZF8IYfmITJPQxgR+5oCsZ7ja7c7Z0dwOwzTFTVfp6TndcbH0P/bYJA==
   dependencies:
     "@babel/cli" "7.21.5"
     "@babel/core" "7.21.8"
     "@babel/plugin-transform-react-jsx" "7.21.5"
     "@babel/preset-env" "7.21.5"
     "@rollup/plugin-babel" "6.0.3"
-    "@rollup/plugin-commonjs" "24.1.0"
+    "@rollup/plugin-commonjs" "25.0.0"
     "@rollup/plugin-json" "6.0.0"
     "@rollup/plugin-node-resolve" "15.0.2"
     "@rollup/plugin-replace" "5.0.2"
@@ -2959,7 +2959,7 @@
     chalk "4.1.2"
     extend "3.0.2"
     postcss "^8.4.23"
-    rollup "3.21.5"
+    rollup "3.21.7"
     rollup-plugin-postcss "4.0.2"
     rollup-plugin-sourcemaps "0.6.3"
     yargs "17.7.2"
@@ -2974,33 +2974,33 @@
     fs-extra "11.1.1"
     inquirer "8.2.5"
 
-"@nebula.js/cli-sense@4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-sense/-/cli-sense-4.0.2.tgz#474b1869e2e31710248a8bedbee097057c632bec"
-  integrity sha512-sJM9PdjzLX9RFzUNafEcsOk+1H8fZgOzSZ9DPhiBVQwZJTwnHP00z5S8QeF55UpScDiOaamUvRioMskGIs2ySA==
+"@nebula.js/cli-sense@4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-sense/-/cli-sense-4.0.3.tgz#5f04f7158c96b4ac4b8256248d9fb3c2e6fe67d8"
+  integrity sha512-miiw6Q7G1m7FAoUtAwetkXgNCh6kcpkFMbvxM2uQkjAR60gs+mEZ69mlbfQxmOmLs7aejhycx2HlQSqVb/Ukeg==
   dependencies:
     "@babel/cli" "7.21.5"
     "@babel/core" "7.21.8"
     "@babel/preset-env" "7.21.5"
-    "@nebula.js/stardust" "^4.0.2"
+    "@nebula.js/stardust" "^4.0.3"
     "@rollup/plugin-babel" "6.0.3"
-    "@rollup/plugin-commonjs" "24.1.0"
+    "@rollup/plugin-commonjs" "25.0.0"
     "@rollup/plugin-node-resolve" "15.0.2"
     "@rollup/plugin-replace" "5.0.2"
     "@rollup/plugin-terser" "0.4.1"
     extend "3.0.2"
     fs-extra "11.1.1"
     node-event-emitter "0.0.1"
-    rollup "3.21.5"
+    rollup "3.21.7"
     yargs "17.7.2"
 
-"@nebula.js/cli-serve@4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@nebula.js/cli-serve/-/cli-serve-4.0.2.tgz#ce720a453ec0c2c2ec017b072296aa4898066e06"
-  integrity sha512-rtYarPBUlDiZ/g4mzgphSjeRg6KS4jfU93eyvRXFQ4lhyL7cnPeGAJ523rgOpTPPMflNC0jjHGh2Ir8QVPB0tA==
+"@nebula.js/cli-serve@4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@nebula.js/cli-serve/-/cli-serve-4.0.3.tgz#7d7950f55515ebd45ec18d1c4e2b034243f74c5f"
+  integrity sha512-e3G4VS+1UXlHmq4HB/k3IieZdUrKzKqXnQVu8zvPbnxnIMSWbZBP2JSdyXWqZ8merbehN6XonK/SrtB7xPFx+Q==
   dependencies:
-    "@nebula.js/cli-build" "^4.0.2"
-    "@qlik/sdk" "^0.20.1"
+    "@nebula.js/cli-build" "^4.0.3"
+    "@qlik/sdk" "^0.21.1"
     body-parser "1.20.2"
     chalk "4.1.2"
     chokidar "3.5.3"
@@ -3012,8 +3012,8 @@
     puppeteer "14.4.1"
     regenerator-runtime "0.13.11"
     source-map-loader "4.0.1"
-    webpack "5.82.0"
-    webpack-cli "5.1.0"
+    webpack "5.82.1"
+    webpack-cli "5.1.1"
     webpack-dev-server "4.15.0"
     ws "8.13.0"
     yargs "17.7.2"
@@ -3027,10 +3027,10 @@
     import-cwd "3.0.0"
     yargs "17.7.2"
 
-"@nebula.js/stardust@^4.0.2":
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-4.0.2.tgz#61ad1160021eb6a155023829f7a9892fe14aa75c"
-  integrity sha512-L81zLCtBLT0/Y1v1g7F3eUm3XZ8NG2YDftGHrMnQv3DckyEMub7KWVnAuLlMX2y2oscg8qjyK/M4lO2fYCmKTw==
+"@nebula.js/stardust@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@nebula.js/stardust/-/stardust-4.0.3.tgz#cc992dc76277cc90bc181d0c26df94e5972ea818"
+  integrity sha512-wx9rNYfRyxRY+SmjgKeL213mkItG51nc1zHBDh5iXYFV8p8BFe6Im4YkFihsAUEbulR7gcgcXffLZMbx9A3YFg==
   dependencies:
     "@types/qlik-engineapi" "12.67.12"
 
@@ -3477,10 +3477,10 @@
   dependencies:
     esquery "^1.0.1"
 
-"@qlik/sdk@^0.20.1":
-  version "0.20.1"
-  resolved "https://registry.yarnpkg.com/@qlik/sdk/-/sdk-0.20.1.tgz#86200354ca8109799f36e6bc6b9447a224d61e74"
-  integrity sha512-gOo5AX+oy5dB6D4ZpmHsFH1RfQ0cKA6WqUf50mtzWQGRrXY2lAMlipYTstTpi27C6uJUaOvZCq/TuM1gMRSULw==
+"@qlik/sdk@^0.21.1":
+  version "0.21.1"
+  resolved "https://registry.yarnpkg.com/@qlik/sdk/-/sdk-0.21.1.tgz#e0ecdc3ea160885957b1d7dcdbea823883635254"
+  integrity sha512-WLl6hHvtP/G3+/QB7uPDu2h99wS+su58sIQH8zT/7e8mv5h5ZPSQl0/xJf27gt96txdFby6MfF/dCbgoRUG7Bg==
   dependencies:
     "@types/jsonwebtoken" "9.0.1"
     enigma.js "2.11.0"
@@ -3495,10 +3495,10 @@
     "@babel/helper-module-imports" "^7.18.6"
     "@rollup/pluginutils" "^5.0.1"
 
-"@rollup/plugin-commonjs@24.1.0":
-  version "24.1.0"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-24.1.0.tgz#79e54bd83bb64396761431eee6c44152ef322100"
-  integrity sha512-eSL45hjhCWI0jCCXcNtLVqM5N1JlBGvlFfY0m6oOYnLCJ6N0qEXoZql4sY2MOUArzhH4SA/qBpTxvvZp2Sc+DQ==
+"@rollup/plugin-commonjs@25.0.0":
+  version "25.0.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-commonjs/-/plugin-commonjs-25.0.0.tgz#ef55d12415dfcfb77fd52650dc1448c8aae8ed5c"
+  integrity sha512-hoho2Kay9TZrLu0bnDsTTCaj4Npa+THk9snajP/XDNb9a9mmjTjh52EQM9sKl3HD1LsnihX7js+eA2sd2uKAhw==
   dependencies:
     "@rollup/pluginutils" "^5.0.1"
     commondir "^1.0.1"
@@ -3598,6 +3598,13 @@
   integrity sha512-SwUDyjWnah1AaNl7kxsa7cfLhlTYoiyhDAIgyh+El30YvXs/o7OLXpYH88Zdhyx9JExKrmHDJ+10bwIcY80Jmw==
   dependencies:
     "@sinonjs/commons" "^2.0.0"
+
+"@sinonjs/fake-timers@^10.2.0":
+  version "10.2.0"
+  resolved "https://registry.yarnpkg.com/@sinonjs/fake-timers/-/fake-timers-10.2.0.tgz#b3e322a34c5f26e3184e7f6115695f299c1b1194"
+  integrity sha512-OPwQlEdg40HAj5KNF8WW6q2KG4Z+cBCZb3m4ninfTZKaBmbIJodviQsDBoYMPHkOyJJMHnOJo5j2+LKDOhOACg==
+  dependencies:
+    "@sinonjs/commons" "^3.0.0"
 
 "@sinonjs/fake-timers@^8.0.1":
   version "8.0.1"
@@ -4221,7 +4228,7 @@
   resolved "https://registry.yarnpkg.com/@webpack-cli/info/-/info-2.0.1.tgz#eed745799c910d20081e06e5177c2b2569f166c0"
   integrity sha512-fE1UEWTwsAxRhrJNikE7v4EotYflkEhBL7EbajfkPlf6E37/2QshOy/D48Mw8G5XMFlQtS6YV42vtbG9zBpIQA==
 
-"@webpack-cli/serve@^2.0.3":
+"@webpack-cli/serve@^2.0.4":
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/@webpack-cli/serve/-/serve-2.0.4.tgz#3982ee6f8b42845437fc4d391e93ac5d9da52f0f"
   integrity sha512-0xRgjgDLdz6G7+vvDLlaRpFatJaJ69uTalZLRSMX5B3VUrDmXcrVA3+6fXXQgmYz7bY9AAgs348XQdmtLsK41A==
@@ -5441,10 +5448,10 @@ caniuse-api@^3.0.0:
     lodash.memoize "^4.1.2"
     lodash.uniq "^4.5.0"
 
-caniuse-lite@1.0.30001487, caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000989, caniuse-lite@^1.0.30001154, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.30001259, caniuse-lite@^1.0.30001370:
-  version "1.0.30001487"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001487.tgz#d882d1a34d89c11aea53b8cdc791931bdab5fe1b"
-  integrity sha512-83564Z3yWGqXsh2vaH/mhXfEM0wX+NlBCm1jYHOb97TrTWJEmPTccZgeLTPBUUb0PNVo+oomb7wkimZBIERClA==
+caniuse-lite@1.0.30001488, caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000989, caniuse-lite@^1.0.30001154, caniuse-lite@^1.0.30001219, caniuse-lite@^1.0.30001259, caniuse-lite@^1.0.30001370:
+  version "1.0.30001488"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001488.tgz#d19d7b6e913afae3e98f023db97c19e9ddc5e91f"
+  integrity sha512-NORIQuuL4xGpIy6iCCQGN4iFjlBXtfKWIenlUuyZJumLRIindLb7wXM+GO8erEhb7vXfcnf4BAg2PrSDN5TNLQ==
 
 capture-exit@^2.0.0:
   version "2.0.0"
@@ -7145,7 +7152,7 @@ end-of-stream@^1.4.1:
   dependencies:
     once "^1.4.0"
 
-enhanced-resolve@^5.13.0, enhanced-resolve@^5.14.0:
+enhanced-resolve@^5.14.0:
   version "5.14.0"
   resolved "https://registry.yarnpkg.com/enhanced-resolve/-/enhanced-resolve-5.14.0.tgz#0b6c676c8a3266c99fa281e4433a706f5c0c61c4"
   integrity sha512-+DCows0XNwLDcUhbFJPdlQEVnT2zXlCv7hPxemTz86/O+B/hCQ+mb7ydkPKiflpVraqLPCAfu7lDy+hBXueojw==
@@ -7585,15 +7592,15 @@ eslint-visitor-keys@^3.4.1:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-3.4.1.tgz#c22c48f48942d08ca824cc526211ae400478a994"
   integrity sha512-pZnmmLwYzf+kWaM/Qgrvpen51upAktaaiI01nsJD/Yr3lMOdNtq0cxkrrg16w64VtisN6okbs7Q8AfGqj4c9fA==
 
-eslint@8.40.0:
-  version "8.40.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.40.0.tgz#a564cd0099f38542c4e9a2f630fa45bf33bc42a4"
-  integrity sha512-bvR+TsP9EHL3TqNtj9sCNJVAFK3fBN8Q7g5waghxyRsPLIMwL73XSKnZFK0hk/O2ANC+iAoq6PWMQ+IfBAJIiQ==
+eslint@8.41.0:
+  version "8.41.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-8.41.0.tgz#3062ca73363b4714b16dbc1e60f035e6134b6f1c"
+  integrity sha512-WQDQpzGBOP5IrXPo4Hc0814r4/v2rrIsB0rhT7jtunIalgg6gYXWhRMOejVO8yH21T/FGaxjmFjBMNqcIlmH1Q==
   dependencies:
     "@eslint-community/eslint-utils" "^4.2.0"
     "@eslint-community/regexpp" "^4.4.0"
     "@eslint/eslintrc" "^2.0.3"
-    "@eslint/js" "8.40.0"
+    "@eslint/js" "8.41.0"
     "@humanwhocodes/config-array" "^0.11.8"
     "@humanwhocodes/module-importer" "^1.0.1"
     "@nodelib/fs.walk" "^1.2.8"
@@ -7613,13 +7620,12 @@ eslint@8.40.0:
     find-up "^5.0.0"
     glob-parent "^6.0.2"
     globals "^13.19.0"
-    grapheme-splitter "^1.0.4"
+    graphemer "^1.4.0"
     ignore "^5.2.0"
     import-fresh "^3.0.0"
     imurmurhash "^0.1.4"
     is-glob "^4.0.0"
     is-path-inside "^3.0.3"
-    js-sdsl "^4.1.4"
     js-yaml "^4.1.0"
     json-stable-stringify-without-jsonify "^1.0.1"
     levn "^0.4.1"
@@ -8929,10 +8935,10 @@ graceful-fs@^4.2.4:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
-grapheme-splitter@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/grapheme-splitter/-/grapheme-splitter-1.0.4.tgz#9cf3a665c6247479896834af35cf1dbb4400767e"
-  integrity sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==
+graphemer@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
+  integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
 growl@1.10.5:
   version "1.10.5"
@@ -10314,10 +10320,10 @@ jake@^10.8.5:
     filelist "^1.0.1"
     minimatch "^3.0.4"
 
-jest-canvas-mock@2.5.0:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/jest-canvas-mock/-/jest-canvas-mock-2.5.0.tgz#3e60f87f77ddfa273cf8e7e4ea5f86fa827c7117"
-  integrity sha512-s2bmY2f22WPMzhB2YA93kiyf7CAfWAnV/sFfY9s48IVOrGmwui1eSFluDPesq1M+7tSC1hJAit6mzO0ZNXvVBA==
+jest-canvas-mock@2.5.1:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/jest-canvas-mock/-/jest-canvas-mock-2.5.1.tgz#81509af658ef485e9a1bf39c64e06761517bdbcb"
+  integrity sha512-IVnRiz+v4EYn3ydM/pBo8GW/J+nU/Hg5gHBQQOUQhdRyNfvHnabB8ReqARLO0p+kvQghqr4V0tA92CF3JcUSRg==
   dependencies:
     cssfontparser "^1.2.1"
     moo-color "^1.0.2"
@@ -10892,11 +10898,6 @@ jquery@3.7.0:
   version "3.7.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.0.tgz#fe2c01a05da500709006d8790fe21c8a39d75612"
   integrity sha512-umpJ0/k8X0MvD1ds0P9SfowREz2LenHsQaxSohMZ5OMNEU2r0tf8pdeEFTHMFxWVxKNyU9rTtK3CWzUCTKJUeQ==
-
-js-sdsl@^4.1.4:
-  version "4.1.4"
-  resolved "https://registry.yarnpkg.com/js-sdsl/-/js-sdsl-4.1.4.tgz#78793c90f80e8430b7d8dc94515b6c77d98a26a6"
-  integrity sha512-Y2/yD55y5jteOAmY50JbUZYwk3CP3wnLPEZnlR1w9oKhITrBEtAxwuWKebFf8hMrPMgbYwFoWK/lH2sBkErELw==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
@@ -14993,10 +14994,10 @@ rollup-pluginutils@^2.8.2:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@3.21.5:
-  version "3.21.5"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.21.5.tgz#1fbae43dc1079497b04604707f1cf979e51bfe49"
-  integrity sha512-a4NTKS4u9PusbUJcfF4IMxuqjFzjm6ifj76P54a7cKnvVzJaG12BLVR+hgU2YDGHzyMMQNxLAZWuALsn8q2oQg==
+rollup@3.21.7:
+  version "3.21.7"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-3.21.7.tgz#022ab47416712c93546f369abfb20da5fb8ed42e"
+  integrity sha512-KXPaEuR8FfUoK2uHwNjxTmJ18ApyvD6zJpYv9FOJSqLStmt6xOY84l1IjK2dSolQmoXknrhEFRaPRgOPdqCT5w==
   optionalDependencies:
     fsevents "~2.3.2"
 
@@ -15451,13 +15452,13 @@ sinon-chai@3.7.0:
   resolved "https://registry.yarnpkg.com/sinon-chai/-/sinon-chai-3.7.0.tgz#cfb7dec1c50990ed18c153f1840721cf13139783"
   integrity sha512-mf5NURdUaSdnatJx3uhoBOrY9dtL19fiOtAdT1Azxg3+lNJFiuN0uzaU3xX1LeAfL17kHQhTAJgpsfhbMJMY2g==
 
-sinon@15.0.4:
-  version "15.0.4"
-  resolved "https://registry.yarnpkg.com/sinon/-/sinon-15.0.4.tgz#bcca6fef19b14feccc96473f0d7adc81e0bc5268"
-  integrity sha512-uzmfN6zx3GQaria1kwgWGeKiXSSbShBbue6Dcj0SI8fiCNFbiUDqKl57WFlY5lyhxZVUKmXvzgG2pilRQCBwWg==
+sinon@15.1.0:
+  version "15.1.0"
+  resolved "https://registry.yarnpkg.com/sinon/-/sinon-15.1.0.tgz#87656841545f7c63bd1e291df409fafd0e9aec09"
+  integrity sha512-cS5FgpDdE9/zx7no8bxROHymSlPLZzq0ChbbLk1DrxBfc+eTeBK3y8nIL+nu/0QeYydhhbLIr7ecHJpywjQaoQ==
   dependencies:
     "@sinonjs/commons" "^3.0.0"
-    "@sinonjs/fake-timers" "^10.0.2"
+    "@sinonjs/fake-timers" "^10.2.0"
     "@sinonjs/samsam" "^8.0.0"
     diff "^5.1.0"
     nise "^5.1.4"
@@ -16964,15 +16965,15 @@ webidl-conversions@^6.1.0:
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-6.1.0.tgz#9111b4d7ea80acd40f5270d666621afa78b69514"
   integrity sha512-qBIvFLGiBpLjfwmYAaHPXsn+ho5xZnGvyGvsarywGNc8VyQJUMHJ8OBKGGrPER0okBeMDaan4mNBlgBROxuI8w==
 
-webpack-cli@5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-5.1.0.tgz#abc4b1f44b50250f2632d8b8b536cfe2f6257891"
-  integrity sha512-a7KRJnCxejFoDpYTOwzm5o21ZXMaNqtRlvS183XzGDUPRdVEzJNImcQokqYZ8BNTnk9DkKiuWxw75+DCCoZ26w==
+webpack-cli@5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/webpack-cli/-/webpack-cli-5.1.1.tgz#c211ac6d911e77c512978f7132f0d735d4a97ace"
+  integrity sha512-OLJwVMoXnXYH2ncNGU8gxVpUtm3ybvdioiTvHgUyBuyMLKiVvWy+QObzBsMtp5pH7qQoEuWgeEUQ/sU3ZJFzAw==
   dependencies:
     "@discoveryjs/json-ext" "^0.5.0"
     "@webpack-cli/configtest" "^2.1.0"
     "@webpack-cli/info" "^2.0.1"
-    "@webpack-cli/serve" "^2.0.3"
+    "@webpack-cli/serve" "^2.0.4"
     colorette "^2.0.14"
     commander "^10.0.1"
     cross-spawn "^7.0.3"
@@ -17100,10 +17101,10 @@ webpack-sources@^3.2.3:
   resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-3.2.3.tgz#2d4daab8451fd4b240cc27055ff6a0c2ccea0cde"
   integrity sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==
 
-webpack@5.82.0:
-  version "5.82.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.82.0.tgz#3c0d074dec79401db026b4ba0fb23d6333f88e7d"
-  integrity sha512-iGNA2fHhnDcV1bONdUu554eZx+XeldsaeQ8T67H6KKHl2nUSwX8Zm7cmzOA46ox/X1ARxf7Bjv8wQ/HsB5fxBg==
+webpack@5.82.1:
+  version "5.82.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.82.1.tgz#8f38c78e53467556e8a89054ebd3ef6e9f67dbab"
+  integrity sha512-C6uiGQJ+Gt4RyHXXYt+v9f+SN1v83x68URwgxNQ98cvH8kxiuywWGP4XeNZ1paOzZ63aY3cTciCEQJNFUljlLw==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^1.0.0"
@@ -17114,7 +17115,7 @@ webpack@5.82.0:
     acorn-import-assertions "^1.7.6"
     browserslist "^4.14.5"
     chrome-trace-event "^1.0.2"
-    enhanced-resolve "^5.13.0"
+    enhanced-resolve "^5.14.0"
     es-module-lexer "^1.2.1"
     eslint-scope "5.1.1"
     events "^3.2.0"
@@ -17130,10 +17131,10 @@ webpack@5.82.0:
     watchpack "^2.4.0"
     webpack-sources "^3.2.3"
 
-webpack@5.82.1:
-  version "5.82.1"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.82.1.tgz#8f38c78e53467556e8a89054ebd3ef6e9f67dbab"
-  integrity sha512-C6uiGQJ+Gt4RyHXXYt+v9f+SN1v83x68URwgxNQ98cvH8kxiuywWGP4XeNZ1paOzZ63aY3cTciCEQJNFUljlLw==
+webpack@5.83.1:
+  version "5.83.1"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-5.83.1.tgz#fcb69864a0669ac3539a471081952c45b15d1c40"
+  integrity sha512-TNsG9jDScbNuB+Lb/3+vYolPplCS3bbEaJf+Bj0Gw4DhP3ioAflBb1flcRt9zsWITyvOhM96wMQNRWlSX52DgA==
   dependencies:
     "@types/eslint-scope" "^3.7.3"
     "@types/estree" "^1.0.0"
