@@ -3,6 +3,8 @@ import sinon from 'sinon';
 import * as d3Scale from 'd3-scale';
 import tickGenerator from '../waterfallchart-tick-generator';
 
+jest.mock('d3-scale');
+
 const expect = chai.expect;
 
 describe('getMinorTicks', () => {
