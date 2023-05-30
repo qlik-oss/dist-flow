@@ -64,7 +64,7 @@ export const getChartFontResolver = (theme, translator, chartId, createFontResol
     translator,
     config: {
       id: chartId,
-      paths: ['axis.title', 'axis.label.name', 'label.value'],
+      paths: ['axis.title', 'axis.label.name', 'label.value', 'legend.title', 'legend.label'],
     },
   });
 
@@ -101,6 +101,24 @@ export const getValueLabelStyle = (chartId, theme, layout, flags) => {
     fontFamily,
     fontSize,
     fill,
+  };
+};
+
+export const getLegendTitleStyle = (chartId, theme, layout, flags) => {
+  const legend = flags.isEnabled('CLIENT_IM_3051') ? overrides('legend', layout)?.legend : {};
+  return {
+    fontFamily: legend?.title?.fontFamily || theme.getStyle(chartId, 'legend.title', 'fontFamily'),
+    fontSize: legend?.title?.fontSize || theme.getStyle(chartId, 'legend.title', 'fontSize'),
+    color: legend?.title?.fontColor?.color || theme.getStyle(chartId, 'legend.title', 'color'),
+  };
+};
+
+export const getLegendLabelStyle = (chartId, theme, layout, flags) => {
+  const legend = flags.isEnabled('CLIENT_IM_3051') ? overrides('legend', layout)?.legend : {};
+  return {
+    fontFamily: legend?.label?.fontFamily || theme.getStyle(chartId, 'legend.label', 'fontFamily'),
+    fontSize: legend?.label?.fontSize || theme.getStyle(chartId, 'legend.label', 'fontSize'),
+    color: legend?.label?.fontColor?.color || theme.getStyle(chartId, 'legend.label', 'color'),
   };
 };
 
