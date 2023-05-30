@@ -85,14 +85,22 @@ jobs:
           path: coverage
 
   test-rendering:
-    executor: browser-node
+    docker:
+      - image: circleci/node:16.10.0-browsers
+      - image: mcr.microsoft.com/playwright:focal
     steps:
       - use_workspace
-      - run: MOCHA_FILE=test-results/rendering/test.xml npm run test:rendering:ci
+      - run:
+          name: Install Playwright
+          command: |
+            npx playwright install
+      - run: yarn run test:rendering
       - store_test_results:
-          path: test-results
+          path: ./test/rendering/reports/xml/report.xml
       - store_artifacts:
-          path: ./test/rendering/__artifacts__
+          path: ./test/rendering/suites
+      - store_artifacts:
+          path: ./test/rendering/reports/html
 
   publish-dev:
     executor: docker-node
