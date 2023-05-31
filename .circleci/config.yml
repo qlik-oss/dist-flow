@@ -85,11 +85,13 @@ jobs:
           path: coverage
 
   test-rendering:
+    working_directory: ~/dist-flow-charts
     docker:
       - image: circleci/node:16.10.0-browsers
       - image: mcr.microsoft.com/playwright:focal
     steps:
-      - use_workspace
+      - attach_workspace:
+          at: ~/dist-flow-charts
       - run:
           name: Install Playwright
           command: |
