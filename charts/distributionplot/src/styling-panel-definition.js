@@ -1,3 +1,41 @@
+/**
+ * Gets definition of items that should be in the styling panel for the chart.
+ * @param {*} flags
+ * @param {*} styleOptions
+ * @returns definition or undefined if nothing is toggled on by feature flags
+ */
+const getStylingItems = (flags, styleOptions) => {
+  const items = {};
+
+  if (flags?.isEnabled('CLIENT_IM_3364')) {
+    items.axisTitleSection = {
+      translation: 'properties.axis.title',
+      component: 'panel-section',
+      items: styleOptions.getOptions('axis', 'axis.title'),
+    };
+    items.axisLabelSection = {
+      translation: 'properties.axis.label',
+      component: 'panel-section',
+      items: styleOptions.getOptions('axis', 'axis.label.name'),
+    };
+  }
+
+  if (flags?.isEnabled('CLIENT_IM_3051')) {
+    items.legendTitleSection = {
+      translation: 'properties.legend.title',
+      component: 'panel-section',
+      items: styleOptions.getOptions('legend', 'legend.title'),
+    };
+    items.legendLabelSection = {
+      translation: 'properties.legend.label',
+      component: 'panel-section',
+      items: styleOptions.getOptions('legend', 'legend.label'),
+    };
+  }
+
+  return Object.keys(items).length > 0 ? items : undefined;
+};
+
 const getStylingPanelDefinition = (bkgOptionsEnabled, styleOptions, flags) => ({
   component: 'styling-panel',
   chartTitle: 'Object.DistributionPlot',
@@ -6,21 +44,7 @@ const getStylingPanelDefinition = (bkgOptionsEnabled, styleOptions, flags) => ({
   ref: 'components',
   useGeneral: true,
   useBackground: bkgOptionsEnabled,
-  items:
-    flags && flags?.isEnabled('CLIENT_IM_3364')
-      ? {
-          axisTitleSection: {
-            translation: 'properties.axis.title',
-            component: 'panel-section',
-            items: styleOptions.getOptions('axis', 'axis.title'),
-          },
-          axisLabelSection: {
-            translation: 'properties.axis.label',
-            component: 'panel-section',
-            items: styleOptions.getOptions('axis', 'axis.label.name'),
-          },
-        }
-      : undefined,
+  items: getStylingItems(flags, styleOptions),
 });
 
 export default getStylingPanelDefinition;

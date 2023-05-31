@@ -6,7 +6,7 @@ import DependentInteractions from '@qlik/common/picasso/selections/dependent-int
 import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import formatting from '@qlik/common/picasso/formatting';
 import stringUtil from '@qlik/common/extra/string-util';
-import { getAxisLabelStyle, getValueLabelStyle } from '@qlik/common/extra/chart-style-component';
+import { getAxisLabelStyle, getValueLabelStyle, getLegendLabelStyle } from '@qlik/common/extra/chart-style-component';
 import CubeGenerator from './waterfallchart-cube-generator-by-measures';
 import waterfallUtils from './waterfallchart-utils';
 import tickGenerator from './waterfallchart-tick-generator';
@@ -249,7 +249,7 @@ function getBridgeSettings(isRtl, theme) {
   };
 }
 
-function getLegendSettings(environment, layout) {
+function getLegendSettings(environment, layout, flags) {
   const { theme, translator } = environment;
   const positveColor = waterfallUtils.getColorForPositiveValue(layout, theme);
   const negativeColor = waterfallUtils.getColorForNegativeValue(layout, theme);
@@ -257,6 +257,8 @@ function getLegendSettings(environment, layout) {
   const positiveText = translator.get('waterfall.legend.positiveValue.label');
   const negativeText = translator.get('waterfall.legend.negativeValue.label');
   const subtotalText = translator.get('waterfall.legend.subtotal.label');
+  const labelStyleSettings = getLegendLabelStyle(chartID, theme, layout, flags);
+
   return {
     displayOrder: 200,
     minimumLayoutMode: 'MEDIUM',
@@ -267,6 +269,13 @@ function getLegendSettings(environment, layout) {
       range: [positveColor, negativeColor, subtotalColor],
     },
     style: {
+      item: {
+        label: {
+          fontSize: labelStyleSettings.fontSize,
+          fontFamily: labelStyleSettings.fontFamily,
+          fill: labelStyleSettings.color,
+        },
+      },
       title: {
         show: false,
       },
@@ -376,7 +385,7 @@ function createChartSettings(layout) {
   chartBuilder.addComponent('point-marker', getBridgeSettings(isRtl, theme));
 
   if (!layout.legend || layout.legend.show) {
-    chartBuilder.addComponent('categorical-legend', getLegendSettings(this.environment, layout), {
+    chartBuilder.addComponent('categorical-legend', getLegendSettings(this.environment, layout, this.flags), {
       dock: layout.legend ? layout.legend.dock : 'auto',
       isRtl,
       chartWidth: width,
