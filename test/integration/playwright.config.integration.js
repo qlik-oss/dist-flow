@@ -1,10 +1,9 @@
-const normalReporters = [
-  ['dot'],
-  ['html', { outputFolder: './reports/html' }],
-  ['junit', { outputFile: './reports/xml/report.xml' }],
-];
 const config = {
-  reporter: process.env.CI ? 'github' : normalReporters,
+  reporter: [
+    ['dot'],
+    ['html', { outputFolder: './reports/html' }],
+    ['junit', { outputFile: './test/integration/reports/xml/report.xml' }],
+  ],
   testDir: './',
   forbidOnly: !!process.env.CI,
   timeout: 60000,

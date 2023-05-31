@@ -104,6 +104,26 @@ jobs:
       - store_artifacts:
           path: ./test/rendering/reports/html
 
+  test-integration:
+    working_directory: ~/dist-flow-charts
+    docker:
+      - image: circleci/node:16.10.0-browsers
+      - image: mcr.microsoft.com/playwright:focal
+    steps:
+      - attach_workspace:
+          at: ~/dist-flow-charts
+      - run:
+          name: Install Playwright
+          command: |
+            npx playwright install
+      - run: yarn run test:integration
+      - store_test_results:
+          path: ./test/integration/reports/xml/report.xml
+      - store_artifacts:
+          path: ./test/integration/suites
+      - store_artifacts:
+          path: ./test/integration/reports/html
+
   publish-dev:
     executor: docker-node
     steps:
@@ -262,6 +282,9 @@ workflows:
       - test-rendering:
           requires:
             - build
+      - test-integration:
+          requires:
+            - build
       - api-governance:
           context: api-compliance
           requires:
@@ -287,6 +310,10 @@ workflows:
           filters: *filter_auto_release
           requires:
             - install_build_auto
+      - test-integration:
+          filters: *filter_auto_release
+          requires:
+            - install_build_auto
       - publish:
           filters: *filter_auto_release
           requires:
@@ -294,3 +321,4 @@ workflows:
             - lint
             - test-unit
             - test-rendering
+            - test-integration
