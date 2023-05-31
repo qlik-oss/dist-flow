@@ -10,7 +10,7 @@ TestGenerator.fromFixtures({
   },
   fixturePath: path.join(__dirname, '__fixtures__'),
   styles: [
-    { fixture: 'theming_global', styles: [['.njs-viz', 'background', '#272822']] },
-    { fixture: 'theming_scoped', styles: [['.njs-viz', 'background', '#272822']] },
+    { fixture: 'distplot_theming_global', styles: [['.njs-viz', 'background', '#272822']] },
+    { fixture: 'distplot_theming_scoped', styles: [['.njs-viz', 'background', '#272822']] },
   ],
 });
