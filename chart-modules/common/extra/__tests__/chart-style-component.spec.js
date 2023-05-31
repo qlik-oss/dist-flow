@@ -25,7 +25,8 @@ describe('ChartStyleComponent', () => {
     const theme = {
       getStyle: jest.fn(),
     };
-    fontResolver = getChartFontResolver(theme, layout, 'object.Histogram', createFontResolver);
+    const flags = undefined;
+    fontResolver = getChartFontResolver(theme, layout, 'object.Histogram', createFontResolver, flags);
     chartStyleComponent = ChartStyleComponent(fontResolver, theme, 'object.histogram');
   });
 
