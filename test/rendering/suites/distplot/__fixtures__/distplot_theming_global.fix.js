@@ -7,7 +7,7 @@ export default () => ({
   genericObjects: [
     {
       getLayout() {
-        return{
+        return {
           qInfo: {
             qId: '6bd3545e-23d4-4311-8e28-4f3db9206e55',
             qType: 'embeddedsnapshot',
