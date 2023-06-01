@@ -6,6 +6,11 @@ TestGenerator.fromFixtures({
   serveConfig: {
     type: 'boxplot',
     entry: path.resolve(__dirname, '../../../../charts/boxplot/dist/sn-boxplot.js'),
+    flags: {
+      SENSECLIENT_IM_2019_BOXPLOT_BG: true,
+      SENSECLIENT_IM_2019_STYLINGPANEL_BOXPLOT: true,
+      CLIENT_IM_3364: true,
+    },
     port: 8014,
   },
   fixturePath: path.join(__dirname, '__fixtures__'),

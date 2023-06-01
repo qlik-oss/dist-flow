@@ -6,6 +6,11 @@ TestGenerator.fromFixtures({
   serveConfig: {
     type: 'histogram',
     entry: path.resolve(__dirname, '../../../../charts/histogram/dist/sn-histogram.js'),
+    flags: {
+      SENSECLIENT_IM_2021_HISTOGRAM_BG: true,
+      SENSECLIENT_IM_2021_STYLINGPANEL_HISTOGRAM: true,
+      CLIENT_IM_3364: true,
+    },
     port: 8016,
   },
   fixturePath: path.join(__dirname, '__fixtures__'),
