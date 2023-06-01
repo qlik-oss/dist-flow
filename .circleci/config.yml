@@ -8,7 +8,8 @@ executors:
   browser-node:
     # Available images https://hub.docker.com/r/circleci/node/tags/
     docker:
-      - image: circleci/node:14.18.2-browsers
+      - image: circleci/node:16.10.0-browsers
+      - image: mcr.microsoft.com/playwright:focal
     working_directory: ~/dist-flow-charts
 
 commands:
@@ -85,13 +86,9 @@ jobs:
           path: coverage
 
   test-rendering:
-    working_directory: ~/dist-flow-charts
-    docker:
-      - image: circleci/node:16.10.0-browsers
-      - image: mcr.microsoft.com/playwright:focal
+    executor: browser-node
     steps:
-      - attach_workspace:
-          at: ~/dist-flow-charts
+      - use_workspace
       - run:
           name: Install Playwright
           command: |
@@ -108,13 +105,9 @@ jobs:
           path: ./test/rendering/reports/html
 
   test-integration:
-    working_directory: ~/dist-flow-charts
-    docker:
-      - image: circleci/node:16.10.0-browsers
-      - image: mcr.microsoft.com/playwright:focal
+    executor: browser-node
     steps:
-      - attach_workspace:
-          at: ~/dist-flow-charts
+      - use_workspace
       - run:
           name: Install Playwright
           command: |
