@@ -1,8 +1,6 @@
 /** @type {import('@jest/types').Config.InitialOptions} */
 module.exports = {
   testEnvironment: 'jsdom',
-
-  // this will become default in jest 27:
   testRunner: 'jest-circus/runner',
 
   testRegex: '__tests__/.+\\.(test|spec)\\.(js|jsx)$',
@@ -11,6 +9,7 @@ module.exports = {
     '^.+\\.jsx?$': 'babel-jest',
     // '^.+\\.html$': '<rootDir>/jest/__mocks__/html-loader.js',
   },
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!d3|internmap)'],
 
   setupFilesAfterEnv: ['<rootDir>/jest/setup.js'],
 

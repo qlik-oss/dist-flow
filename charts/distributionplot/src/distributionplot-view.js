@@ -11,8 +11,13 @@ import ScrollHandler from '@qlik/common/picasso/scroll/scroll-handler';
 import stringUtil from '@qlik/common/extra/string-util';
 import chartStyleUtils from '@qlik/common/extra/chart-style-utils';
 import hypercubeUtil from '@qlik/common/extra/hypercube-util';
+import {
+  getAxisLabelStyle,
+  getAxisTitleStyle,
+  getLegendLabelStyle,
+  getLegendTitleStyle,
+} from '@qlik/common/extra/chart-style-component';
 
-import { getAxisLabelStyle, getAxisTitleStyle } from '@qlik/common/extra/chart-style-component';
 import Jitter from './jitter';
 import columnOrderAdapter from './distributionplot-column-order-adapter';
 import CONSTANTS from './distributionplot-constants';
@@ -738,7 +743,12 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
         ? layout.legend.show !== false
         : !layout.color.point.auto && layout.color.point.mode === 'byDimension'; // For old apps without layout.legend
       if (showLegend) {
-        this.addLegend(chartBuilder, isRtl, legendSelectionSettings);
+        const styleOverrides = {
+          title: getLegendTitleStyle(CONSTANTS.CHART_ID, theme, layout, this.flags),
+          label: getLegendLabelStyle(CONSTANTS.CHART_ID, theme, layout, this.flags),
+        };
+
+        this.addLegend(chartBuilder, isRtl, legendSelectionSettings, styleOverrides);
       }
     }
 
@@ -758,13 +768,14 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
    * @param isRtl {Boolean}
    * @returns {void}
    */
-  addLegend(chartBuilder, isRtl, legendSelectionSettings) {
+  addLegend(chartBuilder, isRtl, legendSelectionSettings, styleOverrides) {
     const LEGEND_DISPLAY_OREDER = 200;
     const LEGEND_PRIO_ORDER = 50; // should be between axis (30) and refline (60) to be removed before axis but after refline
     const config = {
       eventName: 'legend-c',
       key: 'colorLegend',
       styleReference: 'object.comboChart',
+      styleOverrides,
       rtl: isRtl,
       settings: {
         item: {

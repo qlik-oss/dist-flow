@@ -1,3 +1,36 @@
+/**
+ * Gets definition of items that should be in the styling panel for the chart.
+ * @param {*} flags
+ * @param {*} styleOptions
+ * @returns definition or undefined if nothing is toggled on by feature flags
+ */
+const getStylingItems = (flags, styleOptions) => {
+  const items = {};
+
+  if (flags?.isEnabled('CLIENT_IM_3364')) {
+    items.axisLabelSection = {
+      translation: 'properties.axis.label',
+      component: 'panel-section',
+      items: styleOptions.getOptions('axis', 'axis.label.name'),
+    };
+    items.valueLabelSection = {
+      translation: 'properties.value.label',
+      component: 'panel-section',
+      items: styleOptions.getOptions('value', 'label.value'),
+    };
+  }
+
+  if (flags?.isEnabled('CLIENT_IM_3051')) {
+    items.legendLabelSection = {
+      translation: 'properties.legend.label',
+      component: 'panel-section',
+      items: styleOptions.getOptions('legend', 'legend.label'),
+    };
+  }
+
+  return Object.keys(items).length > 0 ? items : undefined;
+};
+
 const getStylingPanelDefinition = (bkgOptionsEnabled, styleOptions, flags) => ({
   component: 'styling-panel',
   chartTitle: 'Object.WaterfallChart',
@@ -6,21 +39,7 @@ const getStylingPanelDefinition = (bkgOptionsEnabled, styleOptions, flags) => ({
   ref: 'components',
   useGeneral: true,
   useBackground: bkgOptionsEnabled,
-  items:
-    flags && flags?.isEnabled('CLIENT_IM_3364')
-      ? {
-          axisLabelSection: {
-            translation: 'properties.axis.label',
-            component: 'panel-section',
-            items: styleOptions.getOptions('axis', 'axis.label.name'),
-          },
-          valueLabelSection: {
-            translation: 'properties.value.label',
-            component: 'panel-section',
-            items: styleOptions.getOptions('value', 'label.value'),
-          },
-        }
-      : undefined,
+  items: getStylingItems(flags, styleOptions),
 });
 
 export default getStylingPanelDefinition;

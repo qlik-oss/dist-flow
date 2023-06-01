@@ -108,6 +108,7 @@ describe('Waterfallchart-view', () => {
   it('createChartSettings should create settings from layout', async () => {
     waterfallchart = new WaterfallChartView({ picasso, environment, $element });
     waterfallchart._tooltipHandler.setUp = sinon.mock().once().withArgs().returns({ trigger: {} });
+    waterfallchart.flags = { isEnabled: () => true };
     waterfallchart.getBarSettings = jest.fn();
     waterfallchart.createChartSettings(layout);
     expect(ChartStyleComponent.getAxisLabelStyle).have.been.calledOnce;
