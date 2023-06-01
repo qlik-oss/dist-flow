@@ -2,7 +2,7 @@
 
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const config = require('../test/__setup__/webpack.config.js');
+const config = require('../testplaywright/utils/webpack.config.js');
 
 process.on('message', async (message) => {
   if (message === 'CLOSE') {
