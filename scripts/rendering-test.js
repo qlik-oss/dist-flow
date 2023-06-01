@@ -31,7 +31,7 @@ function exec(cmd, stdio = 'inherit') {
 server = cp.fork('./scripts/integration-server.js');
 server.on('message', async (message) => {
   if (message === 'READY') {
-    exec('npm run test:rendering -- --mocha.reporter mocha-junit-reporter');
+    exec('npm run test:rendering');
   }
 });
 

@@ -8,7 +8,8 @@ executors:
   browser-node:
     # Available images https://hub.docker.com/r/circleci/node/tags/
     docker:
-      - image: circleci/node:14.18.2-browsers
+      - image: circleci/node:16.10.0-browsers
+      - image: mcr.microsoft.com/playwright:focal
     working_directory: ~/dist-flow-charts
 
 commands:
@@ -88,11 +89,36 @@ jobs:
     executor: browser-node
     steps:
       - use_workspace
-      - run: MOCHA_FILE=test-results/rendering/test.xml npm run test:rendering:ci
+      - run:
+          name: Install Playwright
+          command: |
+            npx playwright install
+      - run:
+          name: Install Fonts
+          command: ./.circleci/install-fonts.sh
+      - run: yarn run test:rendering
       - store_test_results:
-          path: test-results
+          path: ./test/rendering/reports/xml/report.xml
       - store_artifacts:
-          path: ./test/rendering/__artifacts__
+          path: ./test/rendering/suites
+      - store_artifacts:
+          path: ./test/rendering/reports/html
+
+  test-integration:
+    executor: browser-node
+    steps:
+      - use_workspace
+      - run:
+          name: Install Playwright
+          command: |
+            npx playwright install
+      - run: yarn run test:integration
+      - store_test_results:
+          path: ./test/integration/reports/xml/report.xml
+      - store_artifacts:
+          path: ./test/integration/suites
+      - store_artifacts:
+          path: ./test/integration/reports/html
 
   publish-dev:
     executor: docker-node
@@ -252,6 +278,9 @@ workflows:
       - test-rendering:
           requires:
             - build
+      - test-integration:
+          requires:
+            - build
       - api-governance:
           context: api-compliance
           requires:
@@ -277,6 +306,10 @@ workflows:
           filters: *filter_auto_release
           requires:
             - install_build_auto
+      - test-integration:
+          filters: *filter_auto_release
+          requires:
+            - install_build_auto
       - publish:
           filters: *filter_auto_release
           requires:
@@ -284,3 +317,4 @@ workflows:
             - lint
             - test-unit
             - test-rendering
+            - test-integration
