@@ -17,7 +17,7 @@ function showBinCount(data) {
 }
 
 export default function propertyDefinition(env) {
-  const { translator } = env;
+  const { translator, flags } = env;
 
   const stylingPanelEnabled = env?.flags?.isEnabled('SENSECLIENT_IM_2021_STYLINGPANEL_HISTOGRAM');
   const bkgOptionsEnabled = env?.flags?.isEnabled('SENSECLIENT_IM_2021_HISTOGRAM_BG');
@@ -82,7 +82,7 @@ export default function propertyDefinition(env) {
     },
   };
   const chartID = 'object.histogram';
-  const fontResolver = getChartFontResolver(theme, translator, chartID, createFontResolver);
+  const fontResolver = getChartFontResolver(theme, translator, chartID, createFontResolver, flags);
   const styleOptions = ChartStyleComponent(fontResolver, theme, chartID);
   const presentation = {
     type: 'items',

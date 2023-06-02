@@ -76,7 +76,7 @@ export default function propertyDefinition(env) {
   };
 
   const theme = env.anything.sense.theme;
-  const fontResolver = getChartFontResolver(theme, translator, waterfallUtils.chartID, createFontResolver);
+  const fontResolver = getChartFontResolver(theme, translator, waterfallUtils.chartID, createFontResolver, flags);
   const styleOptions = ChartStyleComponent(fontResolver, theme, waterfallUtils.chartID);
   const presentation = {
     type: 'items',

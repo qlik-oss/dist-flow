@@ -235,7 +235,7 @@ export default function propertyDefinition(env) {
       },
     },
   };
-  const fontResolver = getChartFontResolver(theme, translator, chartID, createFontResolver);
+  const fontResolver = getChartFontResolver(theme, translator, chartID, createFontResolver, flags);
   const styleOptions = ChartStyleComponent(fontResolver, theme, chartID);
   const presentation = {
     type: 'items',

@@ -58,10 +58,11 @@ const ChartStyleComponent = (fontResolver, theme, chartId) => {
   return propertyDefs;
 };
 
-export const getChartFontResolver = (theme, translator, chartId, createFontResolver) =>
+export const getChartFontResolver = (theme, translator, chartId, createFontResolver, flags) =>
   createFontResolver({
     theme,
     translator,
+    flags,
     config: {
       id: chartId,
       paths: ['axis.title', 'axis.label.name', 'label.value', 'legend.title', 'legend.label'],
