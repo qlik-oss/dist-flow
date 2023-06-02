@@ -1,6 +1,6 @@
 {
   "name": "@nebula.js/sn-waterfall",
-  "version": "0.34.1",
+  "version": "0.35.0",
   "description": "Waterfall supernova",
   "author": "QlikTech International AB",
   "license": "MIT",
@@ -45,7 +45,7 @@
     "jquery": "3.7.0",
     "picasso-plugin-q": "2.2.3",
     "picasso.js": "2.2.3",
-    "qlik-chart-modules": "0.55.0",
+    "qlik-chart-modules": "0.56.0",
     "qlik-object-conversion": "0.16.2"
   },
   "peerDependencies": {

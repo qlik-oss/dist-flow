@@ -1,6 +1,6 @@
 {
   "name": "@nebula.js/sn-distributionplot",
-  "version": "0.38.1",
+  "version": "0.39.0",
   "description": "Distributionplot supernova",
   "author": "QlikTech International AB",
   "license": "MIT",
@@ -46,7 +46,7 @@
     "picasso-plugin-hammer": "2.2.3",
     "picasso-plugin-q": "2.2.3",
     "picasso.js": "2.2.3",
-    "qlik-chart-modules": "0.55.0",
+    "qlik-chart-modules": "0.56.0",
     "qlik-object-conversion": "0.16.2"
   },
   "peerDependencies": {

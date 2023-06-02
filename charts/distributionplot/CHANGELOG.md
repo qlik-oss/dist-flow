@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.39.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.38.1...@nebula.js/sn-distributionplot@0.39.0) (2023-06-02)
+
+### Features
+
+- add legend styling to dist and waterfall ([#286](https://github.com/qlik-oss/nebula.js/issues/286)) ([2057841](https://github.com/qlik-oss/nebula.js/commit/2057841820753266c546283aaf7a25e5594120e6))
+
 ## [0.38.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.38.0...@nebula.js/sn-distributionplot@0.38.1) (2023-03-30)
 
 ### Bug Fixes

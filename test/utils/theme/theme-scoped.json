@@ -1,0 +1,232 @@
+{
+  "_variables": {
+    "@B20": "#333333",
+    "@B35": "#595959",
+    "@B55": "#8b8b8b",
+    "@B80": "#cdcdcd",
+    "@B90": "#e5e5e5",
+    "@B95": "#F2F2F2",
+    "@B98": "#fbfbfb"
+  },
+  "_inherit": false,
+  "fontSize": "13px",
+  "fontFamily": "Arial",
+  "object": {
+    "referenceLine": {
+      "outOfBounds": {
+        "color": "#e6e6e6",
+        "backgroundColor": "#737373"
+      }
+    },
+    "axis": {
+      "title": {
+        "fontSize": "12px",
+        "color": "@B20"
+      },
+      "label": {
+        "name": {
+          "color": "@B35",
+          "fontSize": "12px"
+        }
+      },
+      "line": {
+        "major": {
+          "color": "@B80"
+        }
+      }
+    },
+    "grid": {
+      "line": {
+        "highContrast": {
+          "color": "@B60"
+        },
+        "major": {
+          "color": "@B80"
+        },
+        "minor": {
+          "color": "@B90"
+        }
+      }
+    },
+    "legend": {
+      "title": {
+        "fontSize": "15px",
+        "color": "@B20"
+      }
+    },
+    "boxPlot": {
+      "box": {
+        "whisker": {
+          "stroke": "@B35"
+        },
+        "line": {
+          "stroke": "@B35"
+        },
+        "box": {
+          "fill": "@B90",
+          "stroke": "@B35"
+        }
+      }
+    },
+    "distributionPlot": {
+      "box": {
+        "fill": "@B90"
+      }
+    },
+    "histogram": {
+      "label": {
+        "value": {
+          "color": "@B35",
+          "fontSize": "12px"
+        }
+      }
+    },
+    "waterfallChart": {
+      "label": {
+        "value": {
+          "color": "@B35",
+          "fontSize": "12px"
+        }
+      },
+      "value": {
+        "color": {
+          "default": "@B35",
+          "dark": "@B35",
+          "light": "@B90"
+        }
+      },
+      "shape": {
+        "positiveValue": {
+          "fill": "#4477AA"
+        },
+        "negativeValue": {
+          "fill": "#cc6677"
+        },
+        "subtotal": {
+          "fill": "#c3c3c3"
+        },
+        "bridge": {
+          "stroke": "@B50"
+        }
+      }
+    }
+  },
+  "dataColors": {
+    "primaryColor": "#26a0a7",
+    "othersColor": "#a5a5a5",
+    "errorColor": "#ff4444",
+    "nullColor": "#d2d2d2"
+  },
+  "scales": [
+    {
+      "name": "Sequential Gradient",
+      "translation": "properties.colorScheme.sequential",
+      "type": "gradient",
+      "propertyValue": "sg",
+      "scale": ["#26a0a7", "#c7ea8b"]
+    },
+    {
+      "name": "Sequential Classes",
+      "translation": "properties.colorScheme.sequentialC",
+      "propertyValue": "sc",
+      "type": "class",
+      "scale": ["#26a0a7", "#c7ea8b"]
+    },
+    {
+      "name": "Diverging gradient",
+      "translation": "properties.colorScheme.diverging",
+      "propertyValue": "dg",
+      "type": "gradient",
+      "scale": ["#26a0a7", "#c3ea8c", "#ec983d"]
+    },
+    {
+      "name": "Diverging Classes",
+      "translation": "properties.colorScheme.divergingC",
+      "propertyValue": "dc",
+      "type": "class",
+      "scale": ["#26a0a7", "#c3ea8c", "#ec983d"]
+    }
+  ],
+  "palettes": {
+    "data": [
+      {
+        "name": "12 Colors",
+        "translation": "properties.colorNumberOfColors.12",
+        "propertyValue": "12",
+        "type": "pyramid",
+        "scale": [
+          ["#4477aa"],
+          ["#4477aa", "#cc6677"],
+          ["#4477aa", "#ddcc77", "#cc6677"],
+          ["#4477aa", "#117733", "#ddcc77", "#cc6677"],
+          ["#332288", "#88ccee", "#117733", "#ddcc77", "#cc6677"],
+          ["#332288", "#88ccee", "#117733", "#ddcc77", "#cc6677", "#aa4499"],
+          ["#332288", "#44aa99", "#88ccee", "#117733", "#ddcc77", "#cc6677", "#aa4499"],
+          ["#332288", "#44aa99", "#88ccee", "#117733", "#999933", "#ddcc77", "#cc6677", "#aa4499"],
+          ["#332288", "#44aa99", "#88ccee", "#117733", "#999933", "#ddcc77", "#cc6677", "#882255", "#aa4499"],
+          [
+            "#332288",
+            "#44aa99",
+            "#88ccee",
+            "#117733",
+            "#999933",
+            "#ddcc77",
+            "#661100",
+            "#cc6677",
+            "#882255",
+            "#aa4499"
+          ],
+          [
+            "#332288",
+            "#6699cc",
+            "#44aa99",
+            "#88ccee",
+            "#117733",
+            "#999933",
+            "#ddcc77",
+            "#661100",
+            "#cc6677",
+            "#882255",
+            "#aa4499"
+          ],
+          [
+            "#332288",
+            "#6699cc",
+            "#88ccee",
+            "#44aa99",
+            "#117733",
+            "#999933",
+            "#ddcc77",
+            "#661100",
+            "#cc6677",
+            "#aa4466",
+            "#882255",
+            "#aa4499"
+          ]
+        ]
+      }
+    ],
+    "ui": [
+      {
+        "name": "Palette",
+        "colors": [
+          "#ffffff",
+          "#46c646",
+          "#276e27",
+          "#b6d7ea",
+          "#7db8da",
+          "#4477aa",
+          "#8e477d",
+          "#ffcf02",
+          "#f8981d",
+          "#f93f17",
+          "#633d0c",
+          "#b0afae",
+          "#7b7a78",
+          "#545352",
+          "#000000"
+        ]
+      }
+    ]
+  }
+}
