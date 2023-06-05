@@ -2,6 +2,7 @@ import {
   useConstraints,
   useEffect,
   useElement,
+  useMemo,
   useModel,
   usePromise,
   useRenderState,
@@ -25,7 +26,6 @@ import ext from './ext';
 
 export default function supernova(env) {
   locale(env.translator);
-  const picasso = picassoSetup();
   const dataDefinition = data(env);
 
   return {
@@ -40,6 +40,8 @@ export default function supernova(env) {
       const constraints = useConstraints();
       const element = useElement();
       const environment = useEnvironment();
+      const renderer = environment.options.renderer;
+      const picasso = useMemo(() => picassoSetup(renderer), [renderer]);
       const lasso = useLasso();
       const model = useModel();
       const selections = useSelections();

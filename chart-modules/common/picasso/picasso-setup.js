@@ -5,10 +5,10 @@ import Hammer from 'hammerjs';
 import eventArea from './plugins/event-area';
 import disclaimer from './disclaimer/disclaimer-component.jsx';
 
-export default function setup() {
+export default function setup(renderer) {
   const picasso = picassojs();
   // default to use canvas renderer
-  picasso.renderer.prio(['canvas']);
+  picasso.renderer.prio([renderer || 'canvas']);
 
   // TODO: investigate picasso warnings
   // if (DebugFlags.DEVELOPER) {

@@ -2,6 +2,7 @@ import {
   useConstraints,
   useEffect,
   useElement,
+  useMemo,
   useModel,
   usePromise,
   useRenderState,
@@ -33,7 +34,6 @@ function getBackedApi(model, layout) {
 
 export default function supernova(env) {
   locale(env.translator);
-  const picasso = picassoSetup();
 
   return {
     qae: qae(env),
@@ -41,6 +41,8 @@ export default function supernova(env) {
     component() {
       const element = useElement();
       const environment = useEnvironment();
+      const renderer = environment.options.renderer;
+      const picasso = useMemo(() => picassoSetup(renderer), [renderer]);
       const selections = useSelections();
       const layout = useStaleLayout();
       const model = useModel();
