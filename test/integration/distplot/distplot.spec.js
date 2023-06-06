@@ -26,7 +26,7 @@ test.describe('distplot', () => {
     s.close();
   });
 
-  test.describe.only('Interaction', () => {
+  test.describe('Interaction', () => {
     test.describe('Brushing', () => {
       test('select by point ', async () => {
         const renderUrl = await route.renderFixture('distplot_with_others.fix.js');
