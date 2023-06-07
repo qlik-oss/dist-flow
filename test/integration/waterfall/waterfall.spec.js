@@ -34,7 +34,6 @@ test.describe('waterfallchart', () => {
         const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(renderUrl, { waitUntil: 'networkidle' });
-        // await page.pause();
         // positive
         await page.locator('[data-key="box-marker"] g rect[data-label="Northeast Revenue"]').hover();
         expect(await getTooltipContent(page)).toEqual('Northeast Revenue: 7.23M');

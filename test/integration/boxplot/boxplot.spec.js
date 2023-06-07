@@ -77,7 +77,7 @@ test.describe('boxplot', () => {
     });
 
     test.describe('Tooltip', () => {
-      test('Point data and box data', async () => {
+      test('point data and box data', async () => {
         const renderUrl = await route.renderFixture('boxplot_basic_4.fix.js');
         const browser = await chromium.launch();
         const context = await browser.newContext();
