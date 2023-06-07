@@ -46,29 +46,7 @@ test.describe('boxplot', () => {
         await page.click('[data-key="box-marker"] g rect[data-label="Greg Kaphammer"]');
         await checkScreenshotBrushing('[data-key="lasso"]', page, 'boxplot_brush_box_selection.png');
       });
-      test('legend single selection', async () => {
-        const renderUrl = await route.renderFixture('boxplot_basic_4.fix.js');
-        const browser = await chromium.launch();
-        const context = await browser.newContext();
-        const page = await context.newPage();
-        await page.goto(renderUrl, { waitUntil: 'networkidle' });
-        const source = await page.waitForSelector('[data-key="x-axis"]');
-        const sourceRect = await source.boundingBox();
-
-        const from = {
-          x: sourceRect.x + sourceRect.width / 4,
-          y: sourceRect.y + sourceRect.height / 2,
-        };
-
-        const to = {
-          x: sourceRect.x + sourceRect.width / 2,
-          y: sourceRect.y + sourceRect.height / 2,
-        };
-
-        await drag(page, from, to, { steps: 30 });
-        await checkScreenshotBrushing('[data-key="lasso"]', page, 'boxplot_brush_legend_single.png');
-      });
-      test('Select by X-axis range ', async () => {
+      test('select by X-axis range ', async () => {
         const renderUrl = await route.renderFixture('boxplot_basic_4.fix.js');
         const browser = await chromium.launch();
         const context = await browser.newContext();
