@@ -1,0 +1,471 @@
+export default () => ({
+  instanceConfig: {
+    context: {
+      theme: 'senseish',
+    },
+  },
+  snConfig: {
+    options: {
+      renderer: 'svg',
+    },
+  },
+  genericObjects: [
+    {
+      getLayout() {
+        return {
+          qInfo: {
+            qId: 'aa7b0f4a-fbbe-4b37-b7b6-950cdb7cd6ec',
+            qType: 'embeddedsnapshot',
+          },
+          qMeta: {
+            privileges: ['read', 'update', 'delete', 'publish'],
+            title: '',
+            description: '',
+            annotation: '',
+          },
+          qBookmark: {
+            qStateData: [
+              {
+                qStateName: '$',
+                qFieldItems: [],
+              },
+              {
+                qStateName: 'state 2',
+                qFieldItems: [],
+              },
+            ],
+            qUtcModifyTime: 44469.38332175926,
+            qVariableItems: [],
+            qPatches: [],
+          },
+          qFieldInfos: [],
+          creationDate: '2021-09-30T09:11:59.626Z',
+          qSelectionInfo: {},
+          qHyperCube: {
+            qSize: {
+              qcx: 1,
+              qcy: 12,
+            },
+            qDimensionInfo: [
+              {
+                qFallbackTitle: 'Month',
+                qApprMaxGlyphCount: 3,
+                qCardinal: 12,
+                qSortIndicator: 'A',
+                qGroupFallbackTitles: ['Month'],
+                qGroupPos: 0,
+                qStateCounts: {
+                  qLocked: 0,
+                  qSelected: 0,
+                  qOption: 12,
+                  qDeselected: 0,
+                  qAlternative: 0,
+                  qExcluded: 0,
+                  qSelectedExcluded: 0,
+                  qLockedExcluded: 0,
+                },
+                qTags: ['$numeric', '$integer'],
+                qDimensionType: 'N',
+                qGrouping: 'N',
+                qNumFormat: {
+                  qType: 'U',
+                  qnDec: 0,
+                  qUseThou: 0,
+                },
+                qIsAutoFormat: true,
+                qGroupFieldDefs: ['Month'],
+                qMin: 1,
+                qMax: 12,
+                qContinuousAxes: true,
+                qAttrExprInfo: [],
+                qAttrDimInfo: [],
+                qCardinalities: {
+                  qCardinal: 12,
+                  qHypercubeCardinal: 0,
+                  qAllValuesCardinal: -1,
+                },
+                autoSort: true,
+                cId: 'YdRETeS',
+                othersLabel: 'Others',
+              },
+            ],
+            qMeasureInfo: [],
+            qEffectiveInterColumnSortOrder: [0],
+            qGrandTotalRow: [],
+            qDataPages: [],
+            qPivotDataPages: [],
+            qStackedDataPages: [],
+            qMode: 'S',
+            qNoOfLeftDims: -1,
+            qTreeNodesOnDim: [],
+            qColumnOrder: [],
+          },
+          bins: {
+            auto: true,
+            binMode: 'maxCount',
+            binCount: '',
+            binSize: 10,
+            offset: 0,
+            countDistinct: false,
+          },
+          refLine: {
+            refLines: [],
+          },
+          showTitles: true,
+          title: '',
+          subtitle: '',
+          footnote: '',
+          disableNavMenu: false,
+          showDetails: false,
+          gridlines: {
+            auto: true,
+            spacing: 2,
+          },
+          dataPoint: {
+            showLabels: true,
+          },
+          color: {
+            bar: {
+              paletteColor: {
+                index: 9,
+                color: '#f8981d',
+              },
+            },
+          },
+          measureAxis: {
+            show: 'all',
+            dock: 'near',
+            spacing: 1,
+            autoMinMax: true,
+            minMax: 'min',
+            min: 0,
+            max: 10,
+            label: 'Other label',
+          },
+          dimensionAxis: {
+            show: 'all',
+            label: 'auto',
+            dock: 'near',
+          },
+          visualization: 'histogram',
+          version: '0.25.5',
+          sorting: {
+            autoSort: true,
+          },
+          qUndoExclude: {
+            hashCode: -1547486114,
+            box: {
+              qHyperCube: {
+                qSize: {
+                  qcx: 2,
+                  qcy: 11,
+                },
+                qDimensionInfo: [
+                  {
+                    qFallbackTitle: 'Month',
+                    qApprMaxGlyphCount: 14,
+                    qCardinal: 11,
+                    qSortIndicator: 'A',
+                    qGroupFallbackTitles: ['Month'],
+                    qGroupPos: 0,
+                    qStateCounts: {
+                      qLocked: 0,
+                      qSelected: 0,
+                      qOption: 11,
+                      qDeselected: 0,
+                      qAlternative: 0,
+                      qExcluded: 0,
+                      qSelectedExcluded: 0,
+                      qLockedExcluded: 0,
+                    },
+                    qTags: ['$numeric'],
+                    qDimensionType: 'N',
+                    qGrouping: 'N',
+                    qNumFormat: {
+                      qType: 'U',
+                      qnDec: 0,
+                      qUseThou: 0,
+                    },
+                    qIsAutoFormat: true,
+                    qGroupFieldDefs: ['=Class(aggr([Month],[Month]),1.1)'],
+                    qMin: 0,
+                    qMax: 11,
+                    qContinuousAxes: true,
+                    qAttrExprInfo: [],
+                    qAttrDimInfo: [],
+                    qIsCalculated: true,
+                    qCardinalities: {
+                      qCardinal: 11,
+                      qHypercubeCardinal: 11,
+                      qAllValuesCardinal: -1,
+                    },
+                  },
+                ],
+                qMeasureInfo: [
+                  {
+                    qFallbackTitle: 'Other label',
+                    qApprMaxGlyphCount: 3,
+                    qCardinal: 0,
+                    qSortIndicator: 'N',
+                    qNumFormat: {
+                      qType: 'I',
+                      qnDec: 0,
+                      qUseThou: 1,
+                      qFmt: '###0',
+                      qDec: '.',
+                    },
+                    qMin: 38,
+                    qMax: 89,
+                    qIsAutoFormat: true,
+                    qAttrExprInfo: [],
+                    qAttrDimInfo: [],
+                    qTrendLines: [],
+                  },
+                ],
+                qEffectiveInterColumnSortOrder: [0, 1],
+                qGrandTotalRow: [
+                  {
+                    qText: '528',
+                    qNum: 528,
+                    qElemNumber: -1,
+                    qState: 'X',
+                    qIsTotalCell: true,
+                  },
+                ],
+                qDataPages: [
+                  {
+                    qMatrix: [
+                      [
+                        {
+                          qText: '0 <= x < 1.1',
+                          qNum: 0,
+                          qElemNumber: 2,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '51',
+                          qNum: 51,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                      [
+                        {
+                          qText: '1.1 <= x < 2.2',
+                          qNum: 1.1,
+                          qElemNumber: 8,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '40',
+                          qNum: 40,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                      [
+                        {
+                          qText: '2.2 <= x < 3.3',
+                          qNum: 2.2,
+                          qElemNumber: 9,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '38',
+                          qNum: 38,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                      [
+                        {
+                          qText: '3.3 <= x < 4.4',
+                          qNum: 3.3000000000000003,
+                          qElemNumber: 0,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '44',
+                          qNum: 44,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                      [
+                        {
+                          qText: '4.4 <= x < 5.5',
+                          qNum: 4.4,
+                          qElemNumber: 10,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '47',
+                          qNum: 47,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                      [
+                        {
+                          qText: '5.5 <= x < 6.6',
+                          qNum: 5.5,
+                          qElemNumber: 1,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '42',
+                          qNum: 42,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                      [
+                        {
+                          qText: '6.6 <= x < 7.7',
+                          qNum: 6.6000000000000005,
+                          qElemNumber: 7,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '45',
+                          qNum: 45,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                      [
+                        {
+                          qText: '7.7 <= x < 8.8',
+                          qNum: 7.700000000000001,
+                          qElemNumber: 5,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '42',
+                          qNum: 42,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                      [
+                        {
+                          qText: '8.8 <= x < 9.9',
+                          qNum: 8.8,
+                          qElemNumber: 3,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '44',
+                          qNum: 44,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                      [
+                        {
+                          qText: '9.9 <= x < 11',
+                          qNum: 9.9,
+                          qElemNumber: 6,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '46',
+                          qNum: 46,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                      [
+                        {
+                          qText: '11 <= x < 12.1',
+                          qNum: 11,
+                          qElemNumber: 4,
+                          qState: 'O',
+                          qInExtRow: true,
+                        },
+                        {
+                          qText: '89',
+                          qNum: 89,
+                          qElemNumber: 0,
+                          qState: 'L',
+                          qInExtRow: true,
+                        },
+                      ],
+                    ],
+                    qTails: [
+                      {
+                        qUp: 0,
+                        qDown: 0,
+                      },
+                    ],
+                    qArea: {
+                      qLeft: 0,
+                      qTop: 0,
+                      qWidth: 2,
+                      qHeight: 11,
+                    },
+                  },
+                ],
+                qPivotDataPages: [],
+                qStackedDataPages: [],
+                qMode: 'S',
+                qNoOfLeftDims: -1,
+                qTreeNodesOnDim: [],
+                qColumnOrder: [],
+              },
+            },
+            bins: {
+              binSize: 1.1,
+              offset: 0,
+              binCount: 11,
+            },
+          },
+          snapshotData: {
+            object: {
+              size: {
+                w: 945,
+                h: 391,
+              },
+            },
+            rtl: false,
+            content: {
+              chartData: {},
+              size: {},
+            },
+            parent: {
+              h: 857,
+              w: 1920,
+            },
+          },
+          visualizationType: 'histogram',
+          sourceObjectId: 'AsbFtUA',
+          sheetId: '9999b835-dad7-4fa0-83bf-621b5312c430',
+          timestamp: 1632993119620,
+          isClone: false,
+          supportExport: true,
+        };
+      },
+      getEffectiveProperties: {},
+    },
+  ],
+});

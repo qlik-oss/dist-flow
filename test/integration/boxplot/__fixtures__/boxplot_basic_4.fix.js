@@ -4,6 +4,11 @@ export default () => ({
       theme: 'senseish',
     },
   },
+  snConfig: {
+    options: {
+      renderer: 'svg',
+    },
+  },
   genericObjects: [
     {
       getLayout() {

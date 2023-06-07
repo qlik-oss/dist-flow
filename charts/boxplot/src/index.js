@@ -2,6 +2,7 @@ import {
   useConstraints,
   useEffect,
   useElement,
+  useMemo,
   useModel,
   usePromise,
   useRenderState,
@@ -98,13 +99,13 @@ function useUpdate(instance, environment) {
 
 export default function supernova(env) {
   locale(env.translator);
-  const picasso = picassoSetup();
-
   return {
     qae: qae(env),
     ext: ext(env),
     component() {
       const environment = useEnvironment();
+      const renderer = environment.options.renderer;
+      const picasso = useMemo(() => picassoSetup(renderer), [renderer]);
       const instance = useView(env, picasso, environment);
       useUpdate(instance, environment);
       useResize(instance);
