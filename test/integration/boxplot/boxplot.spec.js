@@ -83,11 +83,9 @@ test.describe('boxplot', () => {
         const context = await browser.newContext();
         const page = await context.newPage();
         await page.goto(renderUrl, { waitUntil: 'networkidle' });
-        const selector = page.locator('[data-key="point-marker"] g circle[data-label="Central"]').nth(1);
-        await selector.hover('[data-key="point-marker"] g circle[data-label="Central"]');
+        await page.locator('[data-key="point-marker"] g circle[data-label="Central"]').nth(1).hover();
         expect(await getTooltipContent(page)).toEqual('Central, Greg Ballantyne Actual Amount: 3.26M');
-        page.locator('[data-key="box-marker"] g rect[data-label="Greg Ballantyne"]');
-        await page.hover('[data-key="box-marker"] g rect[data-label="Greg Ballantyne"]');
+        await page.locator('[data-key="box-marker"] g rect[data-label="Greg Ballantyne"]').hover();
         expect(await getTooltipContent(page)).toEqual(
           'Greg Ballantyne - Actual Amount    Box end + 1.5 IQR: 2.94M    Third quartile: 1.22M    Median: 314.72k    First quartile: 73.65k    Box start - 1.5 IQR: 16.19k'
         );
