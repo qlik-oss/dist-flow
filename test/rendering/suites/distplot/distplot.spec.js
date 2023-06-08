@@ -10,6 +10,7 @@ TestGenerator.fromFixtures({
       SENSECLIENT_IM_2018_DIST_BG: true,
       SENSECLIENT_IM_2018_STYLINGPANEL_DIST_PLOT: true,
       CLIENT_IM_3364: true,
+      CLIENT_IM_3051: true,
     },
     port: 8015,
   },
