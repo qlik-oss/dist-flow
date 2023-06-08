@@ -402,6 +402,19 @@ export default () => ({
                 },
               },
             },
+            {
+              key: 'legend',
+              legend: {
+                label: {
+                  fontFamily: 'Georgia, serif',
+                  fontSize: '16px',
+                  fontColor: {
+                    index: -1,
+                    color: '#20d91e',
+                  },
+                },
+              },
+            },
           ],
           legend: {
             show: true,
