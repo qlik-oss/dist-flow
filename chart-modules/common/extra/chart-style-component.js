@@ -97,7 +97,7 @@ export const getValueLabelStyle = (chartId, theme, layout, flags) => {
   const fontFamily = value?.value?.fontFamily || theme.getStyle(chartId, 'label.value.name', 'fontFamily');
   let fontSize = value?.value?.fontSize || theme.getStyle(chartId, 'label.value.size', 'fontSize');
   fontSize = parseFloat(fontSize);
-  const fill = value?.value?.fontColor?.color || theme.getStyle(chartId, 'label.value.color', 'color');
+  const fill = value?.value?.fontColor?.color;
   return {
     fontFamily,
     fontSize,

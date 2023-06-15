@@ -21,7 +21,10 @@ function createLabelSettings(layout, theme, chartId, flags) {
                   placements: [
                     { fill: boxFillColor },
                     {
-                      fill: flags.isEnabled('CLIENT_IM_3364') ? boxFillColor : chartStyleUtils.getInverse(boxFillColor),
+                      fill:
+                        flags.isEnabled('CLIENT_IM_3364') && valueLabelSettings.fill
+                          ? boxFillColor
+                          : chartStyleUtils.getInverse(boxFillColor),
                     },
                   ],
                 },

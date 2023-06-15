@@ -178,7 +178,7 @@ function getBarLabelSettings(theme, layout, flags) {
                     { fill: outsideValueColor },
                     {
                       fill(s) {
-                        return flags.isEnabled('CLIENT_IM_3364')
+                        return flags.isEnabled('CLIENT_IM_3364') && valueLabelSettings?.fill
                           ? outsideValueColor
                           : getInsideValueColor(s.data.boxColor.value, darkColor, lightColor);
                       },
