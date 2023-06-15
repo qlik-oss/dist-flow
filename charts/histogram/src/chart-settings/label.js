@@ -7,7 +7,7 @@ import { getValueLabelStyle } from '@qlik/common/extra/chart-style-component';
 
 function createLabelSettings(layout, theme, chartId, flags) {
   const valueLabelSettings = getValueLabelStyle(chartId, theme, layout, flags);
-  const boxFillColor = valueLabelSettings.fill || theme.getColorPickerColor(layout.color.bar.paletteColor);
+  const boxFillColor = valueLabelSettings.fill || theme.getStyle(chartId, 'value.color', 'default');
 
   return {
     settings: {
