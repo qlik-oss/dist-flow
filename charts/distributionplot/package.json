@@ -43,9 +43,9 @@
     "extend": "3.0.2",
     "hammerjs": "2.0.8",
     "jquery": "3.7.0",
-    "picasso-plugin-hammer": "2.2.3",
-    "picasso-plugin-q": "2.2.3",
-    "picasso.js": "2.2.3",
+    "picasso-plugin-hammer": "2.2.4",
+    "picasso-plugin-q": "2.2.4",
+    "picasso.js": "2.2.4",
     "qlik-chart-modules": "0.56.0",
     "qlik-object-conversion": "0.16.2"
   },
