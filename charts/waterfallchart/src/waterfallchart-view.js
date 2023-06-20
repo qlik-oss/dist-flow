@@ -1,12 +1,13 @@
 import ChartView from '@qlik/common/picasso/chart-view';
 import ChartBuilder from '@qlik/common/picasso/chart-builder/chart-builder';
-import chartStyleUtils from '@qlik/common/extra/chart-style-utils';
+import Color from '@qlik/common/extra/color';
 import ScrollHandler from '@qlik/common/picasso/scroll/scroll-handler';
 import DependentInteractions from '@qlik/common/picasso/selections/dependent-interactions';
 import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import formatting from '@qlik/common/picasso/formatting';
 import stringUtil from '@qlik/common/extra/string-util';
 import { getAxisLabelStyle, getValueLabelStyle, getLegendLabelStyle } from '@qlik/common/extra/chart-style-component';
+import { themeService as createThemeService } from 'qlik-chart-modules';
 import CubeGenerator from './waterfallchart-cube-generator-by-measures';
 import waterfallUtils from './waterfallchart-utils';
 import tickGenerator from './waterfallchart-tick-generator';
@@ -147,21 +148,19 @@ function getBarSettings(tooltipSettings, layout) {
   };
 }
 
-function getInsideValueColor(boxColor, darkColor, lightColor) {
-  return chartStyleUtils.getBestContrast(boxColor, darkColor, lightColor);
-}
-
 function getLabel(context) {
   const measure = context.data.measure;
   const field = context.dataset(measure.source.key).field(measure.source.field);
   return formatting.formatMeasureValue(field, measure);
 }
 
-function getBarLabelSettings(theme, layout, flags) {
+function getBarLabelSettings(theme, layout, flags, themeService) {
   const valueLabelSettings = getValueLabelStyle(chartID, theme, layout, flags);
-  const outsideValueColor = valueLabelSettings?.fill || theme.getStyle(chartID, 'value.color', 'default');
-  const darkColor = theme.getStyle(chartID, 'value.color', 'dark');
-  const lightColor = theme.getStyle(chartID, 'value.color', 'light');
+  const styles = themeService.getStyles();
+  const outsideValueColor = valueLabelSettings?.fill || styles.label.value.color;
+  const darkColor = styles.label.value.darkColor;
+  const lightColor = styles.label.value.lightColor;
+  const getContrastColor = (s) => (Color.isDark(s.data.boxColor.value) ? lightColor : darkColor);
   return {
     settings: {
       sources: [
@@ -180,7 +179,7 @@ function getBarLabelSettings(theme, layout, flags) {
                       fill(s) {
                         return flags.isEnabled('CLIENT_IM_3364') && valueLabelSettings?.fill
                           ? outsideValueColor
-                          : getInsideValueColor(s.data.boxColor.value, darkColor, lightColor);
+                          : getContrastColor(s);
                       },
                     },
                     {
@@ -393,8 +392,14 @@ function createChartSettings(layout) {
     });
   }
 
+  const themeService = createThemeService({
+    theme,
+    config: {
+      id: chartID,
+    },
+  });
   if (layout.dataPoint.showLabels) {
-    chartBuilder.addComponent('labels', getBarLabelSettings(theme, layout, this.flags));
+    chartBuilder.addComponent('labels', getBarLabelSettings(theme, layout, this.flags, themeService));
   }
 
   // Add snapshot settings
