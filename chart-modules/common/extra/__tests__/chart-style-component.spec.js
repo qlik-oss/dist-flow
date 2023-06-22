@@ -84,7 +84,7 @@ describe('Styling options', () => {
     };
   });
 
-  it('should get corrext getAxisTitleStyle', () => {
+  it('should get correct getAxisTitleStyle', () => {
     const component = {
       key: 'axis',
       axis: { title: { fontFamily: 'aTitleFont, sans-serif', fontSize: '1000', fontColor: { color: 'red' } } },
@@ -110,19 +110,42 @@ describe('Styling options', () => {
     expect(style.labels.fill).toEqual('green');
   });
 
-  it('should get corrext getValueLabelStyle', () => {
+  it('should get correct getValueLabelStyle', () => {
     const component = {
       key: 'value',
       label: { value: { fontFamily: 'vLabelFont, sans-serif', fontSize: '3000', fontColor: { color: 'blue' } } },
     };
     layout.components = [component];
-    const style = getValueLabelStyle(chartId, theme, layout, flags);
+    const style = getValueLabelStyle(chartId, {}, layout, flags);
     expect(style.fontFamily).toEqual('vLabelFont, sans-serif');
     expect(style.fontSize).toEqual(3000);
     expect(style.fill).toEqual('blue');
   });
 
-  it('should get corrext getLegendTitleStyle', () => {
+  it('should get default values for getValueLabelStyle when FF is disabled', () => {
+    const component = {
+      key: 'value',
+      label: { value: { fontFamily: 'vLabelFont, sans-serif', fontSize: '3000', fontColor: { color: 'blue' } } },
+    };
+    flags = {
+      isEnabled: () => false,
+    };
+    const styles = {
+      label: {
+        value: {
+          fontSize: 11,
+          fontFamily: 'My Font family',
+        },
+      },
+    };
+    layout.components = [component];
+    const style = getValueLabelStyle(chartId, styles, layout, flags);
+    expect(style.fontFamily).toEqual('My Font family');
+    expect(style.fontSize).toEqual(11);
+    expect(style.fill).toEqual(undefined);
+  });
+
+  it('should get correct getLegendTitleStyle', () => {
     const component = {
       key: 'legend',
       legend: { title: { fontFamily: 'lTitleFont, sans-serif', fontSize: '4000', fontColor: { color: 'purple' } } },
@@ -134,7 +157,7 @@ describe('Styling options', () => {
     expect(style.color).toEqual('purple');
   });
 
-  it('should get corrext getLegendLabelStyle', () => {
+  it('should get correct getLegendLabelStyle', () => {
     const component = {
       key: 'legend',
       legend: { label: { fontFamily: 'lLabelFont, sans-serif', fontSize: '5000', fontColor: { color: 'yellow' } } },

@@ -222,7 +222,7 @@ function createChartSettings(chartView, layout) {
   chartBuilder.addComponent('box-marker', boxMarkerSettings);
 
   if (layout.dataPoint && layout.dataPoint.showLabels) {
-    const binLabelSettings = Label.createSettings(layout, theme, chartID, chartView.flags, themeService);
+    const binLabelSettings = Label.createSettings(layout, themeService, chartID, chartView.flags);
     chartBuilder.addComponent('labels', binLabelSettings);
   }
 

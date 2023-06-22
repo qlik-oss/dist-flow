@@ -92,10 +92,10 @@ export const getAxisLabelStyle = (chartId, theme, layout, flags) => {
   };
 };
 
-export const getValueLabelStyle = (chartId, theme, layout, flags) => {
+export const getValueLabelStyle = (chartId, styles, layout, flags) => {
   const value = flags.isEnabled('CLIENT_IM_3364') ? overrides('value', layout)?.label : {};
-  const fontFamily = value?.value?.fontFamily || theme.getStyle(chartId, 'label.value.name', 'fontFamily');
-  let fontSize = value?.value?.fontSize || theme.getStyle(chartId, 'label.value.size', 'fontSize');
+  const fontFamily = value?.value?.fontFamily || styles.label.value.fontFamily;
+  let fontSize = value?.value?.fontSize || styles.label.value.fontSize;
   fontSize = parseFloat(fontSize);
   const fill = value?.value?.fontColor?.color;
   return {

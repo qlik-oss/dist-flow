@@ -6,7 +6,7 @@ import DependentInteractions from '@qlik/common/picasso/selections/dependent-int
 import TooltipHandler from '@qlik/common/picasso/tooltip/tooltips-handler';
 import formatting from '@qlik/common/picasso/formatting';
 import stringUtil from '@qlik/common/extra/string-util';
-import { getAxisLabelStyle, getValueLabelStyle, getLegendLabelStyle } from '@qlik/common/extra/chart-style-component';
+import { getAxisLabelStyle, getLegendLabelStyle, getValueLabelStyle } from '@qlik/common/extra/chart-style-component';
 import { themeService as createThemeService } from 'qlik-chart-modules';
 import CubeGenerator from './waterfallchart-cube-generator-by-measures';
 import waterfallUtils from './waterfallchart-utils';
@@ -154,13 +154,13 @@ function getLabel(context) {
   return formatting.formatMeasureValue(field, measure);
 }
 
-function getBarLabelSettings(theme, layout, flags, themeService) {
-  const valueLabelSettings = getValueLabelStyle(chartID, theme, layout, flags);
+function getBarLabelSettings(themeService, layout, flags) {
   const styles = themeService.getStyles();
+  const valueLabelSettings = getValueLabelStyle(chartID, styles, layout, flags);
   const outsideValueColor = valueLabelSettings?.fill || styles.label.value.color;
   const darkColor = styles.label.value.darkColor;
   const lightColor = styles.label.value.lightColor;
-  const getContrastColor = (s) => (Color.isDark(s.data.boxColor.value) ? lightColor : darkColor);
+  const getContrastColor = () => (ctx) => Color.isDark(ctx.node.attrs.fill) ? lightColor : darkColor;
   return {
     settings: {
       sources: [
@@ -176,11 +176,10 @@ function getBarLabelSettings(theme, layout, flags, themeService) {
                   placements: [
                     { fill: outsideValueColor },
                     {
-                      fill(s) {
-                        return flags.isEnabled('CLIENT_IM_3364') && valueLabelSettings?.fill
+                      fill:
+                        flags.isEnabled('CLIENT_IM_3364') && valueLabelSettings?.fill
                           ? outsideValueColor
-                          : getContrastColor(s);
-                      },
+                          : getContrastColor(),
                     },
                     {
                       position: 'opposite',
@@ -399,7 +398,7 @@ function createChartSettings(layout) {
     },
   });
   if (layout.dataPoint.showLabels) {
-    chartBuilder.addComponent('labels', getBarLabelSettings(theme, layout, this.flags, themeService));
+    chartBuilder.addComponent('labels', getBarLabelSettings(themeService, layout, this.flags));
   }
 
   // Add snapshot settings
