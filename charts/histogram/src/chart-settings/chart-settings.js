@@ -70,7 +70,7 @@ function createChartSettings(chartView, layout) {
   const themeService = createThemeService({
     theme,
     config: {
-      id: chartID,
+      id: 'histogram',
     },
   });
 

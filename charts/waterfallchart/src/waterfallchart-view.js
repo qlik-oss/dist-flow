@@ -394,7 +394,7 @@ function createChartSettings(layout) {
   const themeService = createThemeService({
     theme,
     config: {
-      id: chartID,
+      id: 'waterfallChart',
     },
   });
   if (layout.dataPoint.showLabels) {
