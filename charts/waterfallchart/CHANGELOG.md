@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.36.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.35.0...@nebula.js/sn-waterfall@0.36.0) (2023-07-24)
+
+### Bug Fixes
+
+- providing feature flag to font resolver in qlik-chart-modules ([#289](https://github.com/qlik-oss/nebula.js/issues/289)) ([d42062c](https://github.com/qlik-oss/nebula.js/commit/d42062c1bd6d5eb07d490269775fc65cee5575e8))
+
+### Features
+
+- support renderer option ([#292](https://github.com/qlik-oss/nebula.js/issues/292)) ([f928a50](https://github.com/qlik-oss/nebula.js/commit/f928a50c6173a19291e3abc9a2b7f045ee58bd2b))
+
 # [0.35.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.34.1...@nebula.js/sn-waterfall@0.35.0) (2023-06-02)
 
 ### Features
