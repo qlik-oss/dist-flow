@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.34.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.34.0...@nebula.js/sn-histogram@0.34.1) (2023-08-09)
+
+### Bug Fixes
+
+- charts decide the color based on the contrast ([#299](https://github.com/qlik-oss/nebula.js/issues/299)) ([d822cbb](https://github.com/qlik-oss/nebula.js/commit/d822cbbd51d3a441a341790c0ea922820f9226b2))
+
 # [0.34.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.33.2...@nebula.js/sn-histogram@0.34.0) (2023-07-24)
 
 ### Bug Fixes
