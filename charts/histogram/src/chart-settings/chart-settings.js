@@ -1,4 +1,4 @@
-import { getValue } from 'qlik-chart-modules';
+import { getValue, themeService as createThemeService } from 'qlik-chart-modules';
 import ChartBuilder from '@qlik/common/picasso/chart-builder/chart-builder';
 import DependentInteractions from '@qlik/common/picasso/selections/dependent-interactions';
 import { getAxisLabelStyle, getAxisTitleStyle } from '@qlik/common/extra/chart-style-component';
@@ -66,6 +66,12 @@ function createChartSettings(chartView, layout) {
     chartID,
     theme,
     isRtl,
+  });
+  const themeService = createThemeService({
+    theme,
+    config: {
+      id: 'histogram',
+    },
   });
 
   let basicSelectionSettings = {};
@@ -216,7 +222,7 @@ function createChartSettings(chartView, layout) {
   chartBuilder.addComponent('box-marker', boxMarkerSettings);
 
   if (layout.dataPoint && layout.dataPoint.showLabels) {
-    const binLabelSettings = Label.createSettings(layout, theme, chartID, chartView.flags);
+    const binLabelSettings = Label.createSettings(layout, themeService, chartID, chartView.flags);
     chartBuilder.addComponent('labels', binLabelSettings);
   }
 
