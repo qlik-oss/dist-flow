@@ -160,7 +160,7 @@ function getBarLabelSettings(themeService, layout, flags) {
   const outsideValueColor = valueLabelSettings?.fill || styles.label.value.color;
   const darkColor = styles.label.value.darkColor;
   const lightColor = styles.label.value.lightColor;
-  const getContrastColor = () => (ctx) => Color.isDark(ctx.node.attrs.fill) ? lightColor : darkColor;
+  const getContrastColor = () => (ctx) => (Color.isDark(ctx.node.attrs.fill) ? lightColor : darkColor);
   return {
     settings: {
       sources: [
