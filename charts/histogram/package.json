@@ -45,7 +45,7 @@
     "picasso-plugin-hammer": "2.2.4",
     "picasso-plugin-q": "2.2.4",
     "picasso.js": "2.2.4",
-    "qlik-chart-modules": "0.56.0",
+    "qlik-chart-modules": "0.59.0",
     "qlik-object-conversion": "0.16.2"
   },
   "peerDependencies": {
