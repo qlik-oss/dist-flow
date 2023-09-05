@@ -8,6 +8,5 @@
   },
   "ignoreChanges": ["**/*.md", "**/*.spec.js", "**/__tests__/**"],
   "version": "independent",
-  "npmClient": "yarn",
-  "useWorkspaces": true
+  "npmClient": "yarn"
 }
