@@ -564,5 +564,11 @@
       "ja-JP": "99 番目の百分位数",
       "ru-RU": "99-й процентиль"
     }
+  },
+  "properties.compression.providingOverviewOf": {
+    "id": "properties.compression.providingOverviewOf",
+    "locale": {
+      "en-US": "Providing overview of {0} dimension values."
+    }
   }
 }
