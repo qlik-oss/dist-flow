@@ -31,3 +31,10 @@ export function exportProperties({ propertyTree, hypercubePath = HYPERCUBE_PATH,
 
   return exportFormat;
 }
+
+export function exportTableProperties({ propertyTree }) {
+  if (propertyTree.qProperty.qLayoutExclude?.quarantine?.storedFilters) {
+    delete propertyTree.qProperty.qLayoutExclude.quarantine.storedFilters;
+  }
+  return exportProperties({ propertyTree, hypercubePath: 'qUndoExclude.box' });
+}

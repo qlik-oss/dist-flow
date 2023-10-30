@@ -1,7 +1,7 @@
 import data from './boxplot-data';
 import softDefinition from './boxplot-explore-properties';
 import pp from './boxplot-properties';
-import { importProperties, exportProperties } from './boxplot-import-export';
+import { importProperties, exportProperties, exportTableProperties } from './boxplot-import-export';
 
 const HYPERCUBE_PATH = 'boxplotDef';
 
@@ -43,10 +43,7 @@ export default function ext(env) {
       return exportProperties({ propertyTree, viewDataMode });
     },
     exportTableProperties(propertyTree) {
-      if (propertyTree.qProperty.qLayoutExclude?.quarantine?.storedFilters) {
-        delete propertyTree.qProperty.qLayoutExclude.quarantine.storedFilters;
-      }
-      return exportProperties({ propertyTree, hypercubePath: 'qUndoExclude.box' });
+      return exportTableProperties({ propertyTree });
     },
   };
 }
