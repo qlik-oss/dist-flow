@@ -1,7 +1,7 @@
 import data from './boxplot-data';
 import softDefinition from './boxplot-explore-properties';
 import pp from './boxplot-properties';
-import { importProperties, exportProperties, exportTableProperties } from './boxplot-import-export';
+import { importProperties, exportProperties } from './boxplot-import-export';
 
 const HYPERCUBE_PATH = 'boxplotDef';
 
@@ -43,7 +43,7 @@ export default function ext(env) {
       return exportProperties({ propertyTree, viewDataMode });
     },
     exportTableProperties(propertyTree) {
-      return exportTableProperties({ propertyTree });
+      return exportProperties({ propertyTree, viewDataMode: true });
     },
   };
 }
