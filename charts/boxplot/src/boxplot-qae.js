@@ -1,6 +1,6 @@
 import properties from './boxplot-object-properties';
 import data from './boxplot-data';
-import { importProperties, exportProperties, exportTableProperties } from './boxplot-import-export';
+import { importProperties, exportProperties } from './boxplot-import-export';
 
 export default (env) => {
   const dataDefinition = data(env);
@@ -13,6 +13,5 @@ export default (env) => {
       return importProperties({ dataDefinition, exportFormat, initialProperties });
     },
     exportProperties,
-    exportTableProperties,
   };
 };

@@ -35,11 +35,11 @@ export default function supernova(env) {
       data: {
         targets: [dataDefinition],
       },
-      exportTableProperties: ({ propertyTree }) => {
-        // the hypercube that will be used for "building" the table is under `qUndoExclude.box.qHyperCubeDef`
-        const hypercubePath = 'qUndoExclude.box';
-        return conversion.hypercube.exportProperties({ propertyTree, hypercubePath });
-      },
+      exportProperties: ({ propertyTree, hypercubePath, viewDataMode }) =>
+        conversion.hypercube.exportProperties({
+          propertyTree,
+          hypercubePath: viewDataMode ? 'qUndoExclude.box' : hypercubePath,
+        }),
     },
     ext: ext(env),
     component() {
