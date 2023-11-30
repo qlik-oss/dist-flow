@@ -48,7 +48,7 @@ export default function ext(env) {
     exportTableProperties(propertyTree) {
       // the hypercube that will be used for "building" the table is under `qUndoExclude.box.qHyperCubeDef`
       const hypercubePath = VIEW_DATA_HYPERCUBE_PATH;
-      return conversion.hypercube.exportProperties({ propertyTree, hypercubePath });
+      return conversion.hypercube.exportProperties({ propertyTree, hypercubePath, viewData: true });
     },
     getExportRawDataOptions: histogramExport.getExportRawDataOptions,
   };
