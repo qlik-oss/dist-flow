@@ -43,10 +43,7 @@ export default function ext(env) {
       return exportProperties({ propertyTree, viewDataMode });
     },
     exportTableProperties(propertyTree) {
-      if (propertyTree.qProperty.qLayoutExclude?.quarantine?.storedFilters) {
-        delete propertyTree.qProperty.qLayoutExclude.quarantine.storedFilters;
-      }
-      return exportProperties({ propertyTree, hypercubePath: 'qUndoExclude.box' });
+      return exportProperties({ propertyTree, viewDataMode: true });
     },
   };
 }

@@ -4,6 +4,8 @@ import exploreProperties from './histogram-explore-properties';
 import histogramExport from './histogram-export';
 import data from './histogram-data';
 
+const VIEW_DATA_HYPERCUBE_PATH = 'qUndoExclude.box';
+
 export default function ext(env) {
   if (!env.anything?.sense) {
     return undefined;
@@ -36,13 +38,17 @@ export default function ext(env) {
       });
     },
     exportProperties(propertyTree, hyperCubePath, viewDataMode) {
-      return conversion.hypercube.exportProperties({ propertyTree, hyperCubePath, viewDataMode });
+      return conversion.hypercube.exportProperties({
+        propertyTree,
+        hyperCubePath: viewDataMode ? VIEW_DATA_HYPERCUBE_PATH : hyperCubePath,
+        viewDataMode,
+      });
     },
     requireNumericDimension: true,
     exportTableProperties(propertyTree) {
       // the hypercube that will be used for "building" the table is under `qUndoExclude.box.qHyperCubeDef`
-      const hypercubePath = 'qUndoExclude.box';
-      return conversion.hypercube.exportProperties({ propertyTree, hypercubePath });
+      const hypercubePath = VIEW_DATA_HYPERCUBE_PATH;
+      return conversion.hypercube.exportProperties({ propertyTree, hypercubePath, viewData: true });
     },
     getExportRawDataOptions: histogramExport.getExportRawDataOptions,
   };

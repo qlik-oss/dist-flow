@@ -17,6 +17,7 @@ import useLasso from '@qlik/common/nebula/use-lasso';
 import useResize from '@qlik/common/nebula/resize';
 import useEnvironment from '@qlik/common/nebula/use-environment';
 import setupSnapshot from '@qlik/common/nebula/snapshot';
+import conversion from 'qlik-object-conversion';
 
 import properties from './object-properties';
 import data from './histogram-data';
@@ -34,6 +35,11 @@ export default function supernova(env) {
       data: {
         targets: [dataDefinition],
       },
+      exportProperties: ({ propertyTree, hypercubePath, viewDataMode }) =>
+        conversion.hypercube.exportProperties({
+          propertyTree,
+          hypercubePath: viewDataMode ? 'qUndoExclude.box' : hypercubePath,
+        }),
     },
     ext: ext(env),
     component() {
