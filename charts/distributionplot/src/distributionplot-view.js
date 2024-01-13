@@ -523,6 +523,7 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
       chartID: CONSTANTS.CHART_ID,
       theme,
       isRtl,
+      flags: this.flags,
     });
 
     if (hyperCube.qStackedDataPages[0].qData.length === 0) {

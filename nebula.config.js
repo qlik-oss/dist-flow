@@ -15,4 +15,9 @@ module.exports = {
     replacementStrings,
     sourcemap: true,
   },
+  serve: {
+    flags: {
+      IM_5791_SVG_LABEL_RENDERING: true,
+    },
+  },
 };

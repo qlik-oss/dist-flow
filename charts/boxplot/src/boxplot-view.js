@@ -590,6 +590,7 @@ const BoxPlot = ChartView.extend('BoxPlot', {
       chartID,
       theme,
       isRtl,
+      flags: this.flags,
     });
 
     let dimAxisSelectionSettings = {};
