@@ -1,4 +1,5 @@
 import extend from 'extend';
+import getTextRenderer from './util/get-text-renderer';
 
 function getLabel(context) {
   const end = context.data.end;
@@ -15,6 +16,7 @@ function labels(settings, options) {
   const defaultSettings = {
     key: 'labels',
     type: 'labels',
+    renderer: getTextRenderer(options.flags),
     displayOrder: 1,
     settings: {
       sources: [

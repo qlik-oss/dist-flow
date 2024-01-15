@@ -66,6 +66,7 @@ function createChartSettings(chartView, layout) {
     chartID,
     theme,
     isRtl,
+    flags: chartView.flags,
   });
   const themeService = createThemeService({
     theme,

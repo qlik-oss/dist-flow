@@ -1,4 +1,5 @@
 import extend from 'extend';
+import getTextRenderer from './util/get-text-renderer';
 
 const directions = {
   left: 'left',
@@ -27,9 +28,9 @@ function legend(settings, options) {
   const defaultSettings = {
     key: 'legend',
     type: 'legend-cat',
+    renderer: getTextRenderer(options.flags),
     dock,
     show,
-
     scale: {
       type: 'color',
     },

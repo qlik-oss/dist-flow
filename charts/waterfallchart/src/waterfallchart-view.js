@@ -290,6 +290,7 @@ function createChartSettings(layout) {
     chartID,
     theme,
     isRtl,
+    flags: this.flags,
   });
   const width = this.picassoElement.clientWidth;
   const height = this.picassoElement.clientHeight;
