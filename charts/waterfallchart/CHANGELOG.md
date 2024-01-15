@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.36.3](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.36.2...@nebula.js/sn-waterfall@0.36.3) (2024-01-15)
+
+### Bug Fixes
+
+- use SVG renderer for labels ([#326](https://github.com/qlik-oss/nebula.js/issues/326)) ([61d5148](https://github.com/qlik-oss/nebula.js/commit/61d514896d9867160c512e6bb2dcd4bf6646303a))
+
 ## [0.36.2](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-waterfall@0.36.1...@nebula.js/sn-waterfall@0.36.2) (2023-09-05)
 
 **Note:** Version bump only for package @nebula.js/sn-waterfall

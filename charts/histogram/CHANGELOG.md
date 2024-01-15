@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.35.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.34.2...@nebula.js/sn-histogram@0.35.0) (2024-01-15)
+
+### Bug Fixes
+
+- use SVG renderer for labels ([#326](https://github.com/qlik-oss/nebula.js/issues/326)) ([61d5148](https://github.com/qlik-oss/nebula.js/commit/61d514896d9867160c512e6bb2dcd4bf6646303a))
+
+### Features
+
+- export table properties for histogram and boxplot ([#319](https://github.com/qlik-oss/nebula.js/issues/319)) ([7f28b67](https://github.com/qlik-oss/nebula.js/commit/7f28b6723ab7e44e34220fa0e5289359db0d43ba))
+
 ## [0.34.2](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.34.1...@nebula.js/sn-histogram@0.34.2) (2023-09-05)
 
 **Note:** Version bump only for package @nebula.js/sn-histogram

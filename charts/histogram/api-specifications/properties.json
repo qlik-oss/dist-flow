@@ -3,7 +3,7 @@
   "info": {
     "name": "@nebula.js/sn-histogram:properties",
     "description": "Histogram generic object definition",
-    "version": "0.34.2",
+    "version": "0.35.0",
     "license": "MIT",
     "stability": "experimental",
     "x-qlik-visibility": "private"
