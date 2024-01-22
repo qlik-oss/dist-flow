@@ -9,7 +9,7 @@ NUM_N=$(echo "$TAGS" | grep "@nebula.js" | wc -l)
 
 set -o pipefail;
 
-PUBLISH_CMD="npm publish";
+PUBLISH_CMD="pnpm publish";
 
 # add dist tag if prerelease
 if [[ "$DIST_FLOW_RELEASE" == "prerelease" || "$TAGS" == *"next"* ]]; then

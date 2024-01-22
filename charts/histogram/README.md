@@ -8,7 +8,7 @@ Requires `@nebula.js/stardust` version `1.4.0` or later.
 
 ## Installing
 
-If you use npm: `npm install @nebula.js/sn-histogram`. You can also load through the script tag directly from [https://unpkg.com](https://unpkg.com/@nebula.js/sn-histogram).
+If you use pnpm: `pnpm install @nebula.js/sn-histogram`. You can also load through the script tag directly from [https://unpkg.com](https://unpkg.com/@nebula.js/sn-histogram).
 
 ## Usage
 

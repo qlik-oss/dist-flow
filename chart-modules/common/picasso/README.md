@@ -2,7 +2,6 @@
 
 The foundation of using Picasso in the Sense Client.
 
-
 ## Contents and responsibility
 
 The chart base has the main responsibility to provide base functionality for charts in Qlik Sense using Picasso. This includes:
@@ -13,7 +12,6 @@ The chart base has the main responsibility to provide base functionality for cha
 - Reusable utility functions
 - Property panel components
 - Soft property panel components
-
 
 ## Architecture
 
@@ -34,7 +32,6 @@ Waterfall chart
       |
    Picasso
 ```
-
 
 ### Folder structure
 
@@ -73,19 +70,15 @@ This structure enables grouping on a component level and should make it easy to 
 
 API:s should be general and may not contain any references to visualizations. Prefer a functional approach where possible to avoid keeping too much state in components (state keeping should ideally be left to the user of the components, the chart-view). A good flow to think of is that the chart-view should feed components with data, simply rendering and updating them. Binding events and such should be done in the chart-view (or in the charts themselves).
 
-
 ## Testing
 
 Prefer unit tests over component tests. If you want to unit test a file `tooltip.js`, put your tests in the file `tooltip.spec.js` in the same folder.
 
-We have an aim of 80% unit test coverage. You can see the current coverage at: https://rd-pawds-sense.rdlund.qliktech.com/extensions/PASA444/PASA444.html. To generate a coverage report locally, run the command `npm run test:coverage` in the root folder of this project (the report will be generated in the `results/coverage` folder, go there and open the `index.html` file in the subdirectory in your browser).
-
+We have an aim of 80% unit test coverage. You can see the current coverage at: https://rd-pawds-sense.rdlund.qliktech.com/extensions/PASA444/PASA444.html. To generate a coverage report locally, run the command `pnpm run test:coverage` in the root folder of this project (the report will be generated in the `results/coverage` folder, go there and open the `index.html` file in the subdirectory in your browser).
 
 ## Additional linting
 
 Lint rules are a bit stricter within this folder in an effort trying to prevent error-prone coding styles.
-
-
 
 ## What should be in the chart base and what should not?
 
@@ -96,7 +89,6 @@ To know if a component should be in the chart base, it has to fulfill the follow
 - The component is reusable for more than one chart (current or future)
 - The component is testable
 - The component will make us save time (in MS22)
-
 
 ## Future work
 
