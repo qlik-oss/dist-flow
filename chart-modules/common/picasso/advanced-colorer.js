@@ -197,6 +197,10 @@ function resolveColorByPropertyDef(properties, isDim, dimensions, exclDimensions
               attribExps.isCustomFormatted = isCustomFormatted;
             }
           }
+
+          if (attribExps.label && attribExps.label.charAt(0) === '=') {
+            attribExps.labelExpRef = 'color.altLabel';
+          }
           break;
         case 'libraryItem':
           if (!isDim) {

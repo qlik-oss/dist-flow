@@ -35,6 +35,7 @@
     "build": "nebula build --config ../../nebula.config.js",
     "lint": "eslint src",
     "start": "nebula serve --type distributionplot --config ../../nebula.config.js",
+    "start:mfe": "nebula serve --type distributionplot --config ../../nebula.config.js --mfe",
     "sense": "nebula sense --partial",
     "sense:watch": "node ../../scripts/sense-watch"
   },
