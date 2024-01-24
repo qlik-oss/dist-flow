@@ -9,7 +9,7 @@ module.exports = {
     '^.+\\.jsx?$': 'babel-jest',
     // '^.+\\.html$': '<rootDir>/jest/__mocks__/html-loader.js',
   },
-  transformIgnorePatterns: ['<rootDir>/node_modules/(?!d3|internmap)'],
+  transformIgnorePatterns: [],
 
   setupFilesAfterEnv: ['<rootDir>/jest/setup.js'],
 

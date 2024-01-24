@@ -9,13 +9,13 @@
     "sense": "lerna run --stream sense",
     "sense:watch": "lerna run --stream --no-sort --concurrency 99 sense:watch",
     "specs": "node scripts/generate-specs.js",
-    "test": "npm run test:unit",
+    "test": "pnpm run test:unit",
     "test:rendering": "playwright test --config=./test/rendering/playwright.config.rendering.js --quiet",
     "test:rendering:ci": "node ./scripts/rendering-test.js",
     "test:rendering:debug": "cross-env DEBUG=true playwright test --config=./test/rendering/playwright.config.rendering.js --headed",
     "test:integration": "playwright test --config=./test/integration/playwright.config.integration.js --quiet --workers=1",
     "test:unit": "jest",
-    "version": "yarn specs && git add **/*/api-specifications"
+    "version": "pnpm specs && git add **/*/api-specifications"
   },
   "keywords": [],
   "author": "",
@@ -35,6 +35,7 @@
     "babel-jest": "29.5.0",
     "babel-loader": "9.1.2",
     "chai": "4.3.7",
+    "cross-env": "7.0.3",
     "enigma.js": "2.11.0",
     "eslint": "8.43.0",
     "eslint-config-airbnb": "19.0.4",
@@ -48,9 +49,9 @@
     "fs-extra": "11.1.1",
     "html-webpack-plugin": "5.5.3",
     "jest": "29.5.0",
-    "jest-environment-jsdom": "29.5.0",
     "jest-canvas-mock": "2.5.1",
     "jest-circus": "29.5.0",
+    "jest-environment-jsdom": "29.5.0",
     "jest-junit": "16.0.0",
     "jsdoc-to-markdown": "8.0.0",
     "lerna": "8.0.0",
@@ -62,11 +63,9 @@
     "webpack": "5.87.0",
     "webpack-dev-server": "3.11.3"
   },
-  "workspaces": [
-    "charts/*",
-    "chart-modules/*"
-  ],
-  "resolutions": {
-    "**/caniuse-lite": "1.0.30001504"
+  "pnpm": {
+    "overrides": {
+      "caniuse-lite": "1.0.30001504"
+    }
   }
 }

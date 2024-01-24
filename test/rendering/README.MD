@@ -5,7 +5,7 @@ and on local dev (MacOS). So if tests are run locally some will fail.
 
 Here is how you do it:
 
-- Step 1: run `yarn test:rendering:ci` 
+- Step 1: run `pnpm test:rendering:ci`
 
 # Tests Histogram
 
