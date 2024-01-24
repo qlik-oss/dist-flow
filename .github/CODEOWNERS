@@ -1,0 +1,8 @@
+* @qlik-oss/v-a @qlik-oss/v-p
+
+/charts/boxplot @qlik-oss/v-p
+/charts/distributionplot @qlik-oss/v-a
+/charts/histogram @qlik-oss/v-p
+/charts/waterfallchart @qlik-oss/v-a
+
+/chart-modules/common/locale/all.json @qlik-oss/globalization @qlik-oss/product-content-media-docs-team
