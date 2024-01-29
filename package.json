@@ -34,7 +34,7 @@
     "@testing-library/jest-dom": "6.1.0",
     "babel-jest": "29.5.0",
     "babel-loader": "9.1.2",
-    "chai": "4.3.7",
+    "chai": "5.0.3",
     "cross-env": "7.0.3",
     "enigma.js": "2.11.0",
     "eslint": "8.43.0",
