@@ -54,8 +54,6 @@ function generateHyperCube(layout, properties, app, translator) {
   properties.qUndoExclude.qHyperCubeDef.qInterColumnSortOrder = [1, 0];
 
   return Promise.resolve();
-
-  /* eslint-enable no-param-reassign */
 }
 
 export default {
