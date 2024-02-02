@@ -61,7 +61,7 @@
     "sinon": "17.0.1",
     "sinon-chai": "3.7.0",
     "webpack": "5.87.0",
-    "webpack-dev-server": "3.11.3"
+    "webpack-dev-server": "4.15.1"
   },
   "pnpm": {
     "overrides": {
