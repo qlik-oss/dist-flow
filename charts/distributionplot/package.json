@@ -43,12 +43,12 @@
     "@qlik/common": "0.0.1",
     "extend": "3.0.2",
     "hammerjs": "2.0.8",
-    "jquery": "3.7.0",
-    "picasso-plugin-hammer": "2.2.4",
-    "picasso-plugin-q": "2.2.4",
-    "picasso.js": "2.2.4",
-    "qlik-chart-modules": "0.59.0",
-    "qlik-object-conversion": "0.16.2"
+    "jquery": "3.7.1",
+    "picasso-plugin-hammer": "2.2.7",
+    "picasso-plugin-q": "2.2.7",
+    "picasso.js": "2.2.7",
+    "qlik-chart-modules": "0.63.0",
+    "qlik-object-conversion": "0.16.4"
   },
   "peerDependencies": {
     "@nebula.js/stardust": ">=1.4.0"
