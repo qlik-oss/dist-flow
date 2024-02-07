@@ -200,6 +200,7 @@ jobs:
     steps:
       - checkout
       - setup_write_access
+      - install_pnpm
       - run:
           name: Setup git user
           command: |
