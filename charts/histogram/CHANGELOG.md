@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.35.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.35.0...@nebula.js/sn-histogram@0.35.1) (2024-02-07)
+
+**Note:** Version bump only for package @nebula.js/sn-histogram
+
 # [0.35.0](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-histogram@0.34.2...@nebula.js/sn-histogram@0.35.0) (2024-01-15)
 
 ### Bug Fixes

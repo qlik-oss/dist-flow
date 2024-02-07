@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.4](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.40.3...@nebula.js/sn-distributionplot@0.40.4) (2024-02-07)
+
+### Bug Fixes
+
+- **QB-24411:** add color.altLabel to color definition ([#330](https://github.com/qlik-oss/nebula.js/issues/330)) ([764b71b](https://github.com/qlik-oss/nebula.js/commit/764b71b825957b9b3024148e0b7374a0551a9633))
+
 ## [0.40.3](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.40.2...@nebula.js/sn-distributionplot@0.40.3) (2024-01-15)
 
 ### Bug Fixes
