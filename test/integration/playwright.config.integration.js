@@ -2,7 +2,7 @@ const config = {
   reporter: [
     ['dot'],
     ['html', { outputFolder: './reports/html' }],
-    ['junit', { outputFile: './test/integration/reports/xml/report.xml' }],
+    ['junit', { outputFile: './reports/xml/report.xml' }],
   ],
   testDir: './',
   forbidOnly: !!process.env.CI,
