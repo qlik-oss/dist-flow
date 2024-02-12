@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.5](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.40.4...@nebula.js/sn-distributionplot@0.40.5) (2024-02-12)
+
+### Bug Fixes
+
+- add fallback if scheme doesn't exist ([#335](https://github.com/qlik-oss/nebula.js/issues/335)) ([0ee3dbf](https://github.com/qlik-oss/nebula.js/commit/0ee3dbf73c981c88b85471715d2a20cd2a9ca21e))
+
 ## [0.40.4](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.40.3...@nebula.js/sn-distributionplot@0.40.4) (2024-02-07)
 
 ### Bug Fixes

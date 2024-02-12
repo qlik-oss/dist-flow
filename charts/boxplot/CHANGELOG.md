@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.38.2](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.38.1...@nebula.js/sn-boxplot@0.38.2) (2024-02-12)
+
+### Bug Fixes
+
+- add fallback if scheme doesn't exist ([#335](https://github.com/qlik-oss/nebula.js/issues/335)) ([0ee3dbf](https://github.com/qlik-oss/nebula.js/commit/0ee3dbf73c981c88b85471715d2a20cd2a9ca21e))
+
 ## [0.38.1](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.38.0...@nebula.js/sn-boxplot@0.38.1) (2024-02-07)
 
 **Note:** Version bump only for package @nebula.js/sn-boxplot
