@@ -36,6 +36,32 @@ commands:
       - add_ssh_keys:
           fingerprints:
             - "d3:8b:35:a0:d4:6c:eb:76:68:1d:c1:48:27:7b:81:37"
+  run_playwright:
+    parameters:
+      command:
+        type: enum
+        enum:
+          - rendering
+          - integration
+    steps:
+      - use_workspace
+      - browser-tools/install-chrome
+      - browser-tools/install-chromedriver
+      - run:
+          name: Install Playwright
+          command: |
+            npx playwright install
+      - run:
+          name: Install Fonts
+          command: ./.circleci/install-fonts.sh
+      - run: pnpm run test:<<parameters.command>>
+      - store_test_results:
+          path: ./test/<<parameters.command>>/reports/xml/report.xml
+      - store_artifacts:
+          path: ./test-results/
+      - store_artifacts:
+          path: ./test/<<parameters.command>>/reports/html
+
 jobs:
   install:
     executor: docker-node
@@ -68,7 +94,8 @@ jobs:
           name: Build packages
           command: |
             set +e
-            NODE_ENV=production pnpm run build --concurrency 2
+            NODE_ENV=production
+            pnpm run build --concurrency 2
             pnpm run sense --concurrency 2
       - persist_to_workspace:
           root: ~/dist-flow-charts
@@ -104,41 +131,14 @@ jobs:
   test-rendering:
     executor: browser-node
     steps:
-      - use_workspace
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
-      - run:
-          name: Install Playwright
-          command: |
-            npx playwright install
-      - run:
-          name: Install Fonts
-          command: ./.circleci/install-fonts.sh
-      - run: pnpm run test:rendering
-      - store_test_results:
-          path: ./test/rendering/reports/xml/report.xml
-      - store_artifacts:
-          path: ./test/rendering/suites
-      - store_artifacts:
-          path: ./test/rendering/reports/html
+      - run_playwright:
+          command: rendering
 
   test-integration:
     executor: browser-node
     steps:
-      - use_workspace
-      - browser-tools/install-chrome
-      - browser-tools/install-chromedriver
-      - run:
-          name: Install Playwright
-          command: |
-            npx playwright install
-      - run: pnpm run test:integration
-      - store_test_results:
-          path: ./test/integration/reports/xml/report.xml
-      - store_artifacts:
-          path: ./test/integration/suites
-      - store_artifacts:
-          path: ./test/integration/reports/html
+      - run_playwright:
+          command: integration
 
   publish-dev:
     executor: docker-node
