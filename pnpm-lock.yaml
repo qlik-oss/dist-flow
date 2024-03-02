@@ -190,8 +190,8 @@ importers:
         specifier: 2.2.7
         version: 2.2.7
       qlik-chart-modules:
-        specifier: 0.67.0
-        version: 0.67.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.68.0
+        version: 0.68.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
       qlik-object-conversion:
         specifier: 0.16.4
         version: 0.16.4
@@ -224,8 +224,8 @@ importers:
         specifier: 2.2.7
         version: 2.2.7
       qlik-chart-modules:
-        specifier: 0.67.0
-        version: 0.67.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.68.0
+        version: 0.68.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
       qlik-object-conversion:
         specifier: 0.16.4
         version: 0.16.4
@@ -258,8 +258,8 @@ importers:
         specifier: 2.2.7
         version: 2.2.7
       qlik-chart-modules:
-        specifier: 0.67.0
-        version: 0.67.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.68.0
+        version: 0.68.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
       qlik-object-conversion:
         specifier: 0.16.4
         version: 0.16.4
@@ -292,8 +292,8 @@ importers:
         specifier: 2.2.7
         version: 2.2.7
       qlik-chart-modules:
-        specifier: 0.67.0
-        version: 0.67.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.68.0
+        version: 0.68.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
       qlik-object-conversion:
         specifier: 0.16.4
         version: 0.16.4
@@ -15026,6 +15026,23 @@ packages:
       '@mui/material': 5.15.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /qlik-chart-modules@0.68.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-jNDlwXGhyHeIuctTWQN3Nn8Vn6cT2Mibt1c6I1INf2dw7k4HBecS1FQenLYRanEyOHw3U2+gzm6u+isBKh36qw==}
+    peerDependencies:
+      '@emotion/react': ^11.0.0
+      '@emotion/styled': ^11.0.0
+      '@mui/material': ^5.0.0
+      react: '>=18.2.0'
+      react-dom: '>=18.2.0'
+    dependencies:
+      '@emotion/react': 11.11.3(react@18.2.0)
+      '@emotion/styled': 11.11.0(@emotion/react@11.11.3)(react@18.2.0)
+      '@mui/material': 5.15.7(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: true
 
   /qlik-modifiers@0.9.1:
     resolution: {integrity: sha512-PXF3xyIh+1KBpQ+YUt/pfpPT1Z6BLaxQnoqVswrouw3XguceN6Iv1r2yVNbxsehhPoVwulv8HR5eKG6F0LmPpA==}
