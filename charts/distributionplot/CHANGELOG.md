@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.40.6](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.40.5...@nebula.js/sn-distributionplot@0.40.6) (2024-03-26)
+
+### Bug Fixes
+
+- showing limitation message when 3000 data points ([#342](https://github.com/qlik-oss/nebula.js/issues/342)) ([96c8b3d](https://github.com/qlik-oss/nebula.js/commit/96c8b3d4d0d3a25644ead82dbbb6cba72e963a2f))
+
 ## [0.40.5](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-distributionplot@0.40.4...@nebula.js/sn-distributionplot@0.40.5) (2024-02-12)
 
 ### Bug Fixes
