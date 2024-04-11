@@ -699,8 +699,8 @@ const DistributionPlot = ChartView.extend('DistributionPlot', {
 
       // ref-lines
       refLines: layout.refLine && layout.refLine.refLines,
-      axisTitleStyle: getAxisTitleStyle(CONSTANTS.CHART_ID, theme, layout, this.flags),
-      axisLabelStyle: getAxisLabelStyle(CONSTANTS.CHART_ID, theme, layout, this.flags),
+      axisTitleStyle: getAxisTitleStyle(CONSTANTS.CHART_ID, theme, layout),
+      axisLabelStyle: getAxisLabelStyle(CONSTANTS.CHART_ID, theme, layout),
     });
 
     // Box marker

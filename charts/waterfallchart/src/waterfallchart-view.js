@@ -154,9 +154,9 @@ function getLabel(context) {
   return formatting.formatMeasureValue(field, measure);
 }
 
-function getBarLabelSettings(themeService, layout, flags) {
+function getBarLabelSettings(themeService, layout) {
   const styles = themeService.getStyles();
-  const valueLabelSettings = getValueLabelStyle(chartID, styles, layout, flags);
+  const valueLabelSettings = getValueLabelStyle(chartID, styles, layout);
   const outsideValueColor = valueLabelSettings?.fill || styles.label.value.color;
   const darkColor = styles.label.value.darkColor;
   const lightColor = styles.label.value.lightColor;
@@ -176,10 +176,7 @@ function getBarLabelSettings(themeService, layout, flags) {
                   placements: [
                     { fill: outsideValueColor },
                     {
-                      fill:
-                        flags.isEnabled('CLIENT_IM_3364') && valueLabelSettings?.fill
-                          ? outsideValueColor
-                          : getContrastColor(),
+                      fill: valueLabelSettings?.fill ? outsideValueColor : getContrastColor(),
                     },
                     {
                       position: 'opposite',
@@ -377,7 +374,7 @@ function createChartSettings(layout) {
     refLines: layout.refLine && layout.refLine.refLines,
 
     brushActions: this._dependentActions.gestures,
-    axisLabelStyle: getAxisLabelStyle(chartID, theme, layout, this.flags),
+    axisLabelStyle: getAxisLabelStyle(chartID, theme, layout),
   });
 
   chartBuilder.addComponent('box-marker', getBarSettings(tooltipSettings, layout));
@@ -399,7 +396,7 @@ function createChartSettings(layout) {
     },
   });
   if (layout.dataPoint.showLabels) {
-    chartBuilder.addComponent('labels', getBarLabelSettings(themeService, layout, this.flags));
+    chartBuilder.addComponent('labels', getBarLabelSettings(themeService, layout));
   }
 
   // Add snapshot settings

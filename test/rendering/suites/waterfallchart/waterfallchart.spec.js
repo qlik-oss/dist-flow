@@ -9,7 +9,6 @@ TestGenerator.fromFixtures({
     flags: {
       SENSECLIENT_IM_2020_STYLINGPANEL_WATERFALLCHART: true,
       SENSECLIENT_IM_2020_WATERFALLCHART_BG: true,
-      CLIENT_IM_3364: true,
       CLIENT_IM_3051: true,
     },
     port: 8017,

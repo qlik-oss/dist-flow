@@ -6,19 +6,16 @@
  */
 const getStylingItems = (flags, styleOptions) => {
   const items = {};
-
-  if (flags?.isEnabled('CLIENT_IM_3364')) {
-    items.axisLabelSection = {
-      translation: 'properties.axis.label',
-      component: 'panel-section',
-      items: styleOptions.getOptions('axis', 'axis.label.name'),
-    };
-    items.valueLabelSection = {
-      translation: 'properties.value.label',
-      component: 'panel-section',
-      items: styleOptions.getOptions('value', 'label.value'),
-    };
-  }
+  items.axisLabelSection = {
+    translation: 'properties.axis.label',
+    component: 'panel-section',
+    items: styleOptions.getOptions('axis', 'axis.label.name'),
+  };
+  items.valueLabelSection = {
+    translation: 'properties.value.label',
+    component: 'panel-section',
+    items: styleOptions.getOptions('value', 'label.value'),
+  };
 
   if (flags?.isEnabled('CLIENT_IM_3051')) {
     items.legendLabelSection = {

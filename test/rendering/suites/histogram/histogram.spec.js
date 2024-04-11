@@ -9,7 +9,6 @@ TestGenerator.fromFixtures({
     flags: {
       SENSECLIENT_IM_2021_HISTOGRAM_BG: true,
       SENSECLIENT_IM_2021_STYLINGPANEL_HISTOGRAM: true,
-      CLIENT_IM_3364: true,
     },
     port: 8016,
   },
