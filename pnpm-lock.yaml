@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  caniuse-lite: 1.0.30001504
+  caniuse-lite: 1.0.30001614
 
 importers:
 
@@ -39,8 +39,8 @@ importers:
         specifier: 4.14.0
         version: 4.14.0
       '@playwright/test':
-        specifier: 1.43.0
-        version: 1.43.0
+        specifier: 1.43.1
+        version: 1.43.1
       '@testing-library/jest-dom':
         specifier: 6.4.2
         version: 6.4.2(jest@29.7.0)
@@ -75,8 +75,8 @@ importers:
         specifier: 6.8.0
         version: 6.8.0(eslint@8.57.0)
       eslint-plugin-mocha:
-        specifier: 10.4.1
-        version: 10.4.1(eslint@8.57.0)
+        specifier: 10.4.3
+        version: 10.4.3(eslint@8.57.0)
       eslint-plugin-prettier:
         specifier: 5.1.3
         version: 5.1.3(eslint-config-prettier@9.1.0)(eslint@8.57.0)(prettier@3.2.5)
@@ -190,8 +190,8 @@ importers:
         specifier: 2.2.7
         version: 2.2.7
       qlik-chart-modules:
-        specifier: 0.70.0
-        version: 0.70.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.72.0
+        version: 0.72.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
       qlik-object-conversion:
         specifier: 0.16.4
         version: 0.16.4
@@ -224,8 +224,8 @@ importers:
         specifier: 2.2.7
         version: 2.2.7
       qlik-chart-modules:
-        specifier: 0.70.0
-        version: 0.70.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.72.0
+        version: 0.72.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
       qlik-object-conversion:
         specifier: 0.16.4
         version: 0.16.4
@@ -258,8 +258,8 @@ importers:
         specifier: 2.2.7
         version: 2.2.7
       qlik-chart-modules:
-        specifier: 0.70.0
-        version: 0.70.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.72.0
+        version: 0.72.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
       qlik-object-conversion:
         specifier: 0.16.4
         version: 0.16.4
@@ -292,8 +292,8 @@ importers:
         specifier: 2.2.7
         version: 2.2.7
       qlik-chart-modules:
-        specifier: 0.70.0
-        version: 0.70.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 0.72.0
+        version: 0.72.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
       qlik-object-conversion:
         specifier: 0.16.4
         version: 0.16.4
@@ -4583,12 +4583,12 @@ packages:
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dev: true
 
-  /@playwright/test@1.43.0:
-    resolution: {integrity: sha512-Ebw0+MCqoYflop7wVKj711ccbNlrwTBCtjY5rlbiY9kHL2bCYxq+qltK6uPsVBGGAOb033H2VO0YobcQVxoW7Q==}
+  /@playwright/test@1.43.1:
+    resolution: {integrity: sha512-HgtQzFgNEEo4TE22K/X7sYTYNqEMMTZmFS8kTq6m8hXj+m1D8TgwgIbumHddJa9h4yl4GkKb8/bgAl2+g7eDgA==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright: 1.43.0
+      playwright: 1.43.1
     dev: true
 
   /@popperjs/core@2.11.8:
@@ -6598,7 +6598,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001504
+      caniuse-lite: 1.0.30001614
       electron-to-chromium: 1.4.715
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
@@ -6609,7 +6609,7 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001504
+      caniuse-lite: 1.0.30001614
       electron-to-chromium: 1.4.715
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.23.0)
@@ -6816,13 +6816,13 @@ packages:
     resolution: {integrity: sha512-bsTwuIg/BZZK/vreVTYYbSWoe2F+71P7K5QGEX+pT250DZbfU1MQ5prOKpPR+LL6uWKK3KMwMCAS74QB3Um1uw==}
     dependencies:
       browserslist: 4.23.0
-      caniuse-lite: 1.0.30001504
+      caniuse-lite: 1.0.30001614
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
     dev: true
 
-  /caniuse-lite@1.0.30001504:
-    resolution: {integrity: sha512-5uo7eoOp2mKbWyfMXnGO9rJWOGU8duvzEiYITW+wivukL7yHH4gX9yuRaobu6El4jPxo6jKZfG+N6fB621GD/Q==}
+  /caniuse-lite@1.0.30001614:
+    resolution: {integrity: sha512-jmZQ1VpmlRwHgdP1/uiKzgiAuGOfLEJsYFP4+GBou/QQ4U6IOJCB4NP1c+1p9RGLpwObcT94jA5/uO+F1vBbog==}
     dev: true
 
   /catharsis@0.9.0:
@@ -8903,8 +8903,8 @@ packages:
       object.fromentries: 2.0.7
     dev: true
 
-  /eslint-plugin-mocha@10.4.1(eslint@8.57.0):
-    resolution: {integrity: sha512-G85ALUgKaLzuEuHhoW3HVRgPTmia6njQC3qCG6CEvA8/Ja9PDZnRZOuzekMki+HaViEQXINuYsmhp5WR5/4MfA==}
+  /eslint-plugin-mocha@10.4.3(eslint@8.57.0):
+    resolution: {integrity: sha512-emc4TVjq5Ht0/upR+psftuz6IBG5q279p+1dSRDeHf+NS9aaerBi3lXKo1SEzwC29hFIW21gO89CEWSvRsi8IQ==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       eslint: '>=7.0.0'
@@ -14697,18 +14697,18 @@ packages:
       find-up: 6.3.0
     dev: true
 
-  /playwright-core@1.43.0:
-    resolution: {integrity: sha512-iWFjyBUH97+pUFiyTqSLd8cDMMOS0r2ZYz2qEsPjH8/bX++sbIJT35MSwKnp1r/OQBAqC5XO99xFbJ9XClhf4w==}
+  /playwright-core@1.43.1:
+    resolution: {integrity: sha512-EI36Mto2Vrx6VF7rm708qSnesVQKbxEWvPrfA1IPY6HgczBplDx7ENtx+K2n4kJ41sLLkuGfmb0ZLSSXlDhqPg==}
     engines: {node: '>=16'}
     hasBin: true
     dev: true
 
-  /playwright@1.43.0:
-    resolution: {integrity: sha512-SiOKHbVjTSf6wHuGCbqrEyzlm6qvXcv7mENP+OZon1I07brfZLGdfWV0l/efAzVx7TF3Z45ov1gPEkku9q25YQ==}
+  /playwright@1.43.1:
+    resolution: {integrity: sha512-V7SoH0ai2kNt1Md9E3Gwas5B9m8KR2GVvwZnAI6Pg0m3sh7UvgiYhRrhsziCmqMJNouPckiOhk8T+9bSAK0VIA==}
     engines: {node: '>=16'}
     hasBin: true
     dependencies:
-      playwright-core: 1.43.0
+      playwright-core: 1.43.1
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
@@ -15370,8 +15370,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /qlik-chart-modules@0.70.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-7GqfrCaw0rWczCogdPJMhvqK3bLn2Of/qCjA7z47Z/EFS6SPhLDTktUrj+EGzBkZGkOSp4E8XVt4TSmsANKGPg==}
+  /qlik-chart-modules@0.72.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-acKTj3cEHgTvLOCsFqUDkr9X9yb6SQ9xVzQ8Jsoq3LIu7kYp7yqKlam0yVrU1uz0TUJKbDGvq6Xomu14lI7kOA==}
     peerDependencies:
       '@emotion/react': ^11.0.0
       '@emotion/styled': ^11.0.0
