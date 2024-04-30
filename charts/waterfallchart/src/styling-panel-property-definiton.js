@@ -5,20 +5,18 @@
  * @returns definition or undefined if nothing is toggled on by feature flags
  */
 const getStylingItems = (flags, styleOptions) => {
-  const items = {};
-
-  if (flags?.isEnabled('CLIENT_IM_3364')) {
-    items.axisLabelSection = {
+  const items = {
+    axisLabelSection: {
       translation: 'properties.axis.label',
       component: 'panel-section',
       items: styleOptions.getOptions('axis', 'axis.label.name'),
-    };
-    items.valueLabelSection = {
+    },
+    valueLabelSection: {
       translation: 'properties.value.label',
       component: 'panel-section',
       items: styleOptions.getOptions('value', 'label.value'),
-    };
-  }
+    },
+  };
 
   if (flags?.isEnabled('CLIENT_IM_3051')) {
     items.legendLabelSection = {

@@ -5,9 +5,9 @@ import Color from '@qlik/common/extra/color';
 // Implementation details
 //
 
-function createLabelSettings(layout, themeService, chartId, flags) {
+function createLabelSettings(layout, themeService, chartId) {
   const styles = themeService.getStyles();
-  const valueLabelSettings = getValueLabelStyle(chartId, styles, layout, flags);
+  const valueLabelSettings = getValueLabelStyle(chartId, styles, layout);
   const boxFillColor = valueLabelSettings.fill || styles.label.value.color;
   const getContrastColor = () => (ctx) =>
     Color.isDark(ctx.node.attrs.fill) ? styles.label.value.lightColor : styles.label.value.darkColor;
@@ -23,10 +23,7 @@ function createLabelSettings(layout, themeService, chartId, flags) {
                   placements: [
                     { fill: boxFillColor },
                     {
-                      fill:
-                        flags.isEnabled('CLIENT_IM_3364') && valueLabelSettings.fill
-                          ? boxFillColor
-                          : getContrastColor(),
+                      fill: valueLabelSettings.fill ? boxFillColor : getContrastColor(),
                     },
                   ],
                 },

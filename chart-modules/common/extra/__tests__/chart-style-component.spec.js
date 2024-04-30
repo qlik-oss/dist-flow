@@ -104,7 +104,7 @@ describe('Styling options', () => {
       },
     };
     layout.components = [component];
-    const style = getAxisLabelStyle(chartId, theme, layout, flags);
+    const style = getAxisLabelStyle(chartId, theme, layout);
     expect(style.labels.fontFamily).toEqual('aLabelFont, sans-serif');
     expect(style.labels.fontSize).toEqual('2000');
     expect(style.labels.fill).toEqual('green');
@@ -116,33 +116,10 @@ describe('Styling options', () => {
       label: { value: { fontFamily: 'vLabelFont, sans-serif', fontSize: '3000', fontColor: { color: 'blue' } } },
     };
     layout.components = [component];
-    const style = getValueLabelStyle(chartId, {}, layout, flags);
+    const style = getValueLabelStyle(chartId, {}, layout);
     expect(style.fontFamily).toEqual('vLabelFont, sans-serif');
     expect(style.fontSize).toEqual(3000);
     expect(style.fill).toEqual('blue');
-  });
-
-  it('should get default values for getValueLabelStyle when FF is disabled', () => {
-    const component = {
-      key: 'value',
-      label: { value: { fontFamily: 'vLabelFont, sans-serif', fontSize: '3000', fontColor: { color: 'blue' } } },
-    };
-    flags = {
-      isEnabled: () => false,
-    };
-    const styles = {
-      label: {
-        value: {
-          fontSize: 11,
-          fontFamily: 'My Font family',
-        },
-      },
-    };
-    layout.components = [component];
-    const style = getValueLabelStyle(chartId, styles, layout, flags);
-    expect(style.fontFamily).toEqual('My Font family');
-    expect(style.fontSize).toEqual(11);
-    expect(style.fill).toEqual(undefined);
   });
 
   it('should get correct getLegendTitleStyle', () => {

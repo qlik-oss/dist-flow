@@ -9,7 +9,6 @@ TestGenerator.fromFixtures({
     flags: {
       SENSECLIENT_IM_2019_BOXPLOT_BG: true,
       SENSECLIENT_IM_2019_STYLINGPANEL_BOXPLOT: true,
-      CLIENT_IM_3364: true,
     },
     port: 8014,
   },

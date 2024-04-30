@@ -775,8 +775,8 @@ const BoxPlot = ChartView.extend('BoxPlot', {
 
       // ref-lines
       refLines: layout.refLine && layout.refLine.refLines,
-      axisTitleStyle: getAxisTitleStyle(chartID, theme, layout, this.flags),
-      axisLabelStyle: getAxisLabelStyle(chartID, theme, layout, this.flags),
+      axisTitleStyle: getAxisTitleStyle(chartID, theme, layout),
+      axisLabelStyle: getAxisLabelStyle(chartID, theme, layout),
     });
 
     const settings = chartBuilder.getSettings();

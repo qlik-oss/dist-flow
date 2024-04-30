@@ -71,8 +71,8 @@ export const getChartFontResolver = (theme, translator, chartId, createFontResol
 
 const overrides = (key, layout) => (layout.components || []).find((c) => c.key === key);
 
-export const getAxisTitleStyle = (chartId, theme, layout, flags) => {
-  const axis = flags.isEnabled('CLIENT_IM_3364') ? overrides('axis', layout)?.axis : {};
+export const getAxisTitleStyle = (chartId, theme, layout) => {
+  const axis = overrides('axis', layout)?.axis;
   return {
     text: {
       fontFamily: axis?.title?.fontFamily || theme.getStyle(chartId, 'axis.title', 'fontFamily'),
@@ -81,8 +81,8 @@ export const getAxisTitleStyle = (chartId, theme, layout, flags) => {
     },
   };
 };
-export const getAxisLabelStyle = (chartId, theme, layout, flags) => {
-  const axis = flags.isEnabled('CLIENT_IM_3364') ? overrides('axis', layout)?.axis : {};
+export const getAxisLabelStyle = (chartId, theme, layout) => {
+  const axis = overrides('axis', layout)?.axis;
   return {
     labels: {
       fontFamily: axis?.label?.name?.fontFamily || theme.getStyle(chartId, 'axis.label.name', 'fontFamily'),
@@ -92,8 +92,8 @@ export const getAxisLabelStyle = (chartId, theme, layout, flags) => {
   };
 };
 
-export const getValueLabelStyle = (chartId, styles, layout, flags) => {
-  const value = flags.isEnabled('CLIENT_IM_3364') ? overrides('value', layout)?.label : {};
+export const getValueLabelStyle = (chartId, styles, layout) => {
+  const value = overrides('value', layout)?.label;
   const fontFamily = value?.value?.fontFamily || styles.label.value.fontFamily;
   let fontSize = value?.value?.fontSize || styles.label.value.fontSize;
   fontSize = parseFloat(fontSize);

@@ -1,4 +1,4 @@
-const getStylingPanelDefinition = (bkgOptionsEnabled, styleOptions, flags) => ({
+const getStylingPanelDefinition = (bkgOptionsEnabled, styleOptions) => ({
   component: 'styling-panel',
   chartTitle: 'Object.BoxPlot',
   translation: 'LayerStyleEditor.component.styling',
@@ -6,20 +6,17 @@ const getStylingPanelDefinition = (bkgOptionsEnabled, styleOptions, flags) => ({
   ref: 'components',
   useGeneral: true,
   useBackground: bkgOptionsEnabled,
-  items:
-    flags && flags?.isEnabled('CLIENT_IM_3364')
-      ? {
-          axisTitleSection: {
-            translation: 'properties.axis.title',
-            component: 'panel-section',
-            items: styleOptions.getOptions('axis', 'axis.title'),
-          },
-          axisLabelSection: {
-            translation: 'properties.axis.label',
-            component: 'panel-section',
-            items: styleOptions.getOptions('axis', 'axis.label.name'),
-          },
-        }
-      : undefined,
+  items: {
+    axisTitleSection: {
+      translation: 'properties.axis.title',
+      component: 'panel-section',
+      items: styleOptions.getOptions('axis', 'axis.title'),
+    },
+    axisLabelSection: {
+      translation: 'properties.axis.label',
+      component: 'panel-section',
+      items: styleOptions.getOptions('axis', 'axis.label.name'),
+    },
+  },
 });
 export default getStylingPanelDefinition;
