@@ -22,16 +22,16 @@
   "license": "ISC",
   "devDependencies": {
     "@after-work.js/aw": "6.0.14",
-    "@babel/core": "7.24.4",
-    "@babel/eslint-parser": "7.24.1",
-    "@babel/preset-env": "7.24.4",
+    "@babel/core": "7.24.5",
+    "@babel/eslint-parser": "7.24.5",
+    "@babel/preset-env": "7.24.5",
     "@babel/preset-react": "7.24.1",
     "@nebula.js/cli": "4.14.0",
     "@nebula.js/cli-build": "4.14.0",
     "@nebula.js/cli-sense": "4.14.0",
     "@nebula.js/cli-serve": "4.14.0",
     "@playwright/test": "1.43.1",
-    "@testing-library/jest-dom": "6.4.2",
+    "@testing-library/jest-dom": "6.4.5",
     "babel-jest": "29.7.0",
     "babel-loader": "9.1.3",
     "chai": "4.4.1",
@@ -65,7 +65,7 @@
   },
   "pnpm": {
     "overrides": {
-      "caniuse-lite": "1.0.30001614"
+      "caniuse-lite": "1.0.30001615"
     }
   }
 }
