@@ -29,7 +29,7 @@
     "@nebula.js/cli": "4.14.0",
     "@nebula.js/cli-build": "4.14.0",
     "@nebula.js/cli-sense": "4.14.0",
-    "@nebula.js/cli-serve": "4.14.0",
+    "@nebula.js/cli-serve": "5.0.1",
     "@playwright/test": "1.43.1",
     "@testing-library/jest-dom": "6.4.5",
     "babel-jest": "29.7.0",
