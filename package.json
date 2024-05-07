@@ -28,7 +28,7 @@
     "@babel/preset-react": "7.24.1",
     "@nebula.js/cli": "4.14.0",
     "@nebula.js/cli-build": "4.14.0",
-    "@nebula.js/cli-sense": "4.14.0",
+    "@nebula.js/cli-sense": "5.0.1",
     "@nebula.js/cli-serve": "5.0.1",
     "@playwright/test": "1.43.1",
     "@testing-library/jest-dom": "6.4.5",

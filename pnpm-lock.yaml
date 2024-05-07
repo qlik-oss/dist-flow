@@ -28,13 +28,13 @@ importers:
         version: 7.24.1(@babel/core@7.24.5)
       '@nebula.js/cli':
         specifier: 4.14.0
-        version: 4.14.0(@nebula.js/cli-build@4.14.0)(@nebula.js/cli-sense@4.14.0)(@nebula.js/cli-serve@5.0.1)
+        version: 4.14.0(@nebula.js/cli-build@4.14.0)(@nebula.js/cli-sense@5.0.1)(@nebula.js/cli-serve@5.0.1)
       '@nebula.js/cli-build':
         specifier: 4.14.0
         version: 4.14.0
       '@nebula.js/cli-sense':
-        specifier: 4.14.0
-        version: 4.14.0
+        specifier: 5.0.1
+        version: 5.0.1
       '@nebula.js/cli-serve':
         specifier: 5.0.1
         version: 5.0.1
@@ -1948,7 +1948,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.24.5
-      '@babel/helper-plugin-utils': 7.24.0
+      '@babel/helper-plugin-utils': 7.24.5
     dev: true
 
   /@babel/plugin-syntax-unicode-sets-regex@7.18.6(@babel/core@7.24.0):
@@ -5266,22 +5266,22 @@ packages:
       inquirer: 8.2.6
     dev: true
 
-  /@nebula.js/cli-sense@4.14.0:
-    resolution: {integrity: sha512-GgMB9JRA+Yrg8D+dT1fkSVdODeiOQkJQUwbv7OgYjiprEevKo+yQMcHyGnT9N3B0c09Uyri2qTXKsvOWj50Vcg==}
+  /@nebula.js/cli-sense@5.0.1:
+    resolution: {integrity: sha512-9RgBRu5sbhElZjXMyY1ulKiKiBeK+3ZP9V58QsS+wygZEmAR6dgbcxw1JEBWKm/Yn2L4vBuX3yQDZVlQvtAtzw==}
     dependencies:
-      '@babel/cli': 7.23.9(@babel/core@7.24.0)
-      '@babel/core': 7.24.0
-      '@babel/preset-env': 7.24.0(@babel/core@7.24.0)
-      '@nebula.js/stardust': 4.14.0
-      '@rollup/plugin-babel': 6.0.4(@babel/core@7.24.0)(rollup@4.13.0)
-      '@rollup/plugin-commonjs': 25.0.7(rollup@4.13.0)
-      '@rollup/plugin-node-resolve': 15.2.3(rollup@4.13.0)
-      '@rollup/plugin-replace': 5.0.5(rollup@4.13.0)
-      '@rollup/plugin-terser': 0.4.4(rollup@4.13.0)
+      '@babel/cli': 7.24.1(@babel/core@7.24.4)
+      '@babel/core': 7.24.4
+      '@babel/preset-env': 7.24.4(@babel/core@7.24.4)
+      '@nebula.js/stardust': 5.0.1
+      '@rollup/plugin-babel': 6.0.4(@babel/core@7.24.4)(rollup@4.14.2)
+      '@rollup/plugin-commonjs': 25.0.7(rollup@4.14.2)
+      '@rollup/plugin-node-resolve': 15.2.3(rollup@4.14.2)
+      '@rollup/plugin-replace': 5.0.5(rollup@4.14.2)
+      '@rollup/plugin-terser': 0.4.4(rollup@4.14.2)
       extend: 3.0.2
       fs-extra: 11.2.0
       node-event-emitter: 0.0.1
-      rollup: 4.13.0
+      rollup: 4.14.2
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@types/babel__core'
@@ -5327,7 +5327,7 @@ packages:
       - webpack-bundle-analyzer
     dev: true
 
-  /@nebula.js/cli@4.14.0(@nebula.js/cli-build@4.14.0)(@nebula.js/cli-sense@4.14.0)(@nebula.js/cli-serve@5.0.1):
+  /@nebula.js/cli@4.14.0(@nebula.js/cli-build@4.14.0)(@nebula.js/cli-sense@5.0.1)(@nebula.js/cli-serve@5.0.1):
     resolution: {integrity: sha512-50nEG19k+LYglT+dJmPK9nJlT4W0VubHu83RKwfVsB/Igtl8tDXy1/32/z98HviCEwlbHercySXD1aumvq8uOQ==}
     engines: {node: '>=18.10.0'}
     hasBin: true
@@ -5338,7 +5338,7 @@ packages:
     dependencies:
       '@nebula.js/cli-build': 4.14.0
       '@nebula.js/cli-create': 4.14.0
-      '@nebula.js/cli-sense': 4.14.0
+      '@nebula.js/cli-sense': 5.0.1
       '@nebula.js/cli-serve': 5.0.1
       import-cwd: 3.0.0
       yargs: 17.7.2
@@ -5352,10 +5352,8 @@ packages:
     resolution: {integrity: sha512-zOJ7T9oceFA2Ms1sxX7l9WjZ8QiYNP98/W8a+wzpvt2CHTLttCV384C+o/wxKrrmCTNp2ZDY68ZEGn28Yd6Qxw==}
     dev: false
 
-  /@nebula.js/stardust@4.14.0:
-    resolution: {integrity: sha512-OrO95DS2QxWOUaZbWSNMzzMtBCwi65Y+G4SWPJ5hNH4MAAhIPbaQN8NT142RpcKSLCzctqEBwLiG16NxHZFkrw==}
-    dependencies:
-      '@types/qlik-engineapi': 12.67.16
+  /@nebula.js/stardust@5.0.1:
+    resolution: {integrity: sha512-u0ItsO5Fk12RcbqeQICG9K8WdQV9nRfuagkrxtEWb5BRO+E9/VtaqvcpPvk+/1KOF6QJGCjI9sSmP0yDbcFPtQ==}
     dev: true
 
   /@nicolo-ribaudo/chokidar-2@2.1.8-no-fsevents.3:
@@ -6660,10 +6658,6 @@ packages:
 
   /@types/prop-types@15.7.11:
     resolution: {integrity: sha512-ga8y9v9uyeiLdpKddhxYQkxNDrfvuPrlFb0N1qnZZByvcElJaXthF1UhvCh9TLWJBEHeNtdnbysW7Y6Uq8CVng==}
-
-  /@types/qlik-engineapi@12.67.16:
-    resolution: {integrity: sha512-NiwMX6zrV162lRcupTdrgoT2YtKZy97zJ70rRGLdJTWcaMOWUgAhM1ufzhmp3ir1KlNArI4Ds8ojfxA80SpwKQ==}
-    dev: true
 
   /@types/qs@6.9.11:
     resolution: {integrity: sha512-oGk0gmhnEJK4Yyk+oI7EfXsLayXatCWPHary1MtcmbAifkobT9cM9yutG/hZKIseOU0MqbIwQ/u2nn/Gb+ltuQ==}
@@ -13674,7 +13668,7 @@ packages:
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
-      '@babel/parser': 7.24.4
+      '@babel/parser': 7.24.5
       '@jsdoc/salty': 0.2.7
       '@types/markdown-it': 12.2.3
       bluebird: 3.7.2
