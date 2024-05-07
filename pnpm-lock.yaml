@@ -27,8 +27,8 @@ importers:
         specifier: 7.24.1
         version: 7.24.1(@babel/core@7.24.5)
       '@nebula.js/cli':
-        specifier: 4.14.0
-        version: 4.14.0(@nebula.js/cli-build@4.14.0)(@nebula.js/cli-sense@4.14.0)(@nebula.js/cli-serve@5.0.1)
+        specifier: 5.0.1
+        version: 5.0.1(@nebula.js/cli-build@4.14.0)(@nebula.js/cli-sense@4.14.0)(@nebula.js/cli-serve@5.0.1)
       '@nebula.js/cli-build':
         specifier: 4.14.0
         version: 4.14.0
@@ -5257,11 +5257,11 @@ packages:
       - ts-node
     dev: true
 
-  /@nebula.js/cli-create@4.14.0:
-    resolution: {integrity: sha512-p2r3yMuwH4aao5gl1pVjOuhgSzZQTAyQQO8tLQV2limpdxPOMO20AI4HlTJKLoLUayMoexEcBdcjMLUAY4xKqQ==}
+  /@nebula.js/cli-create@5.0.1:
+    resolution: {integrity: sha512-+nfpvKUd3AEpcw3yY01PnB4XIVTn6QFcoSK7mpRnHLK3jymXWl+QW8YJwL33HK++cuMZQQ1L0GfAEKVjcLqOpA==}
     dependencies:
       chalk: 4.1.2
-      ejs: 3.1.9
+      ejs: 3.1.10
       fs-extra: 11.2.0
       inquirer: 8.2.6
     dev: true
@@ -5327,17 +5327,17 @@ packages:
       - webpack-bundle-analyzer
     dev: true
 
-  /@nebula.js/cli@4.14.0(@nebula.js/cli-build@4.14.0)(@nebula.js/cli-sense@4.14.0)(@nebula.js/cli-serve@5.0.1):
-    resolution: {integrity: sha512-50nEG19k+LYglT+dJmPK9nJlT4W0VubHu83RKwfVsB/Igtl8tDXy1/32/z98HviCEwlbHercySXD1aumvq8uOQ==}
+  /@nebula.js/cli@5.0.1(@nebula.js/cli-build@4.14.0)(@nebula.js/cli-sense@4.14.0)(@nebula.js/cli-serve@5.0.1):
+    resolution: {integrity: sha512-h8TQmMHKWJDuy81QwIpOGhkkU6zpojBalQz4DGGLA7BCQYiCEAxHOAqUr5gK9ccG8Jwq+MB9J7Tv373XvaPpiA==}
     engines: {node: '>=18.10.0'}
     hasBin: true
     peerDependencies:
-      '@nebula.js/cli-build': ^4.0.0
-      '@nebula.js/cli-sense': ^4.0.0
-      '@nebula.js/cli-serve': ^4.0.0
+      '@nebula.js/cli-build': ^5.0.0
+      '@nebula.js/cli-sense': ^5.0.0
+      '@nebula.js/cli-serve': ^5.0.0
     dependencies:
       '@nebula.js/cli-build': 4.14.0
-      '@nebula.js/cli-create': 4.14.0
+      '@nebula.js/cli-create': 5.0.1
       '@nebula.js/cli-sense': 4.14.0
       '@nebula.js/cli-serve': 5.0.1
       import-cwd: 3.0.0
@@ -9843,6 +9843,14 @@ packages:
 
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
+    dev: true
+
+  /ejs@3.1.10:
+    resolution: {integrity: sha512-UeJmFfOrAQS8OJWPZ4qtgHyWExa088/MtK5UEyoJGFH67cDEXkZSviOiKRCZ4Xij0zxI3JECgYs3oKx+AizQBA==}
+    engines: {node: '>=0.10.0'}
+    hasBin: true
+    dependencies:
+      jake: 10.8.7
     dev: true
 
   /ejs@3.1.9:
