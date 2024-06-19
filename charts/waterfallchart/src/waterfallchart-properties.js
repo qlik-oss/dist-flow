@@ -83,7 +83,7 @@ export default function propertyDefinition(env) {
     translation: 'properties.presentation',
     grouped: true,
     items: {
-      styleEditor: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled, styleOptions, flags),
+      stylingPanel: stylingPanelEnabled && getStylingPanelDefinition(bkgOptionsEnabled, styleOptions, flags),
       gridLines: {
         type: 'items',
         snapshot: {
