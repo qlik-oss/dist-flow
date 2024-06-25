@@ -10,7 +10,7 @@ executors:
     working_directory: ~/dist-flow-charts
   browser-node:
     docker:
-      - image: cimg/node:22.2.0-browsers
+      - image: cimg/node:22.3.0-browsers
       - image: mcr.microsoft.com/playwright:focal
     working_directory: ~/dist-flow-charts
 
