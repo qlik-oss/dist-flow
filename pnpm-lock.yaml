@@ -181,14 +181,14 @@ importers:
         specifier: 3.7.1
         version: 3.7.1
       picasso-plugin-hammer:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       picasso-plugin-q:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       picasso.js:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       qlik-chart-modules:
         specifier: 0.72.0
         version: 0.72.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
@@ -215,14 +215,14 @@ importers:
         specifier: 3.7.1
         version: 3.7.1
       picasso-plugin-hammer:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       picasso-plugin-q:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       picasso.js:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       qlik-chart-modules:
         specifier: 0.72.0
         version: 0.72.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
@@ -249,14 +249,14 @@ importers:
         specifier: 3.7.1
         version: 3.7.1
       picasso-plugin-hammer:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       picasso-plugin-q:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       picasso.js:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       qlik-chart-modules:
         specifier: 0.72.0
         version: 0.72.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
@@ -286,11 +286,11 @@ importers:
         specifier: 3.7.1
         version: 3.7.1
       picasso-plugin-q:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       picasso.js:
-        specifier: 2.2.7
-        version: 2.2.7
+        specifier: 2.2.8
+        version: 2.2.8
       qlik-chart-modules:
         specifier: 0.72.0
         version: 0.72.0(@emotion/react@11.11.3)(@emotion/styled@11.11.0)(@mui/material@5.15.7)(react-dom@18.2.0)(react@18.2.0)
@@ -13672,24 +13672,24 @@ packages:
     resolution: {integrity: sha512-BEi+4yN59x+U1ktUaj8V0JE1O8Pf1PGr9Yw/97xwOU4fUIrfFytYYkj+DTVrwbhfVBGfNVBSw0ZFCQccCW+qVA==}
     dev: false
 
-  /picasso-plugin-hammer@2.2.7:
-    resolution: {integrity: sha512-D2zgk7EKGbpsncfQbcCcBTG7kjE81t8mAfjS7s4dGyvg0BxeTOIUHmbRXE2q7VhZcwwPj6pjlIn8iEzw8/VpuA==}
+  /picasso-plugin-hammer@2.2.8:
+    resolution: {integrity: sha512-TRElRFDyNBeR0hgWJwCqgV5QSOB1ZoKjYaEUaLD58Kuk3ULXSHOiTp6d6HRgdUK8SY/xnmTK/cFj38ihQinu0A==}
     dev: true
 
   /picasso-plugin-q@2.2.4:
     resolution: {integrity: sha512-CBgdGeGJC5qxdW2ZzvlXnBBYJEi6mqoSerrPDOH6+tQRdTdEJm7wIl2D+VUmN5nLZNhY64qLgnDKypXRAjKv4g==}
     dev: false
 
-  /picasso-plugin-q@2.2.7:
-    resolution: {integrity: sha512-wR8DqQg3b+bUi1IrNNrCObdHZwp7mX074DIFFSP+1WK5IoxQiUIryN+Cht3oi6Ranjui7nW08BNWPNh/Yu+ogg==}
+  /picasso-plugin-q@2.2.8:
+    resolution: {integrity: sha512-vs8SHCE+8lvBPDUQhOMGFSx8YxecSGLZoIPdXcLM56Co6yk1a2AeGIPax9amLUPg/+q3IkvRlPsoE07jDc9k3w==}
     dev: true
 
   /picasso.js@2.2.4:
     resolution: {integrity: sha512-x+eSGDP5FtCugGoPJ2I2PvEZjTDDwPhcLMWaynPWnS7KPPCv5KOz2E2AsDRsBqO5xkV8boZppwZqv0dNnxIKjg==}
     dev: false
 
-  /picasso.js@2.2.7:
-    resolution: {integrity: sha512-4FkdC8XU0qiy9CdwiIvhbpg36EPxZpRcmDSAFIZacu8VOBXIgBsrTUEhblX2lDI0J5I+C/R/Zbhfy1Fys8x5cQ==}
+  /picasso.js@2.2.8:
+    resolution: {integrity: sha512-JZ2xIESQZ2/qgEVBOLXlV1WaDqMumaYtDkm/+IVZcsfNXND7KbrdJZP4ZZk2qhxhYLVeTiiprzLiYkIFDtWtGg==}
     dev: true
 
   /picocolors@0.2.1:
