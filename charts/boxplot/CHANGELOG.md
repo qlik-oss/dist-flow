@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.38.5](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.38.4...@nebula.js/sn-boxplot@0.38.5) (2024-06-28)
+
+### Bug Fixes
+
+- **IM-6456:** use default styling panel ([#368](https://github.com/qlik-oss/nebula.js/issues/368)) ([ad012f5](https://github.com/qlik-oss/nebula.js/commit/ad012f58f714c4c8873a29d81a1377c88e9fdbee))
+
 ## [0.38.4](https://github.com/qlik-oss/nebula.js/compare/@nebula.js/sn-boxplot@0.38.3...@nebula.js/sn-boxplot@0.38.4) (2024-04-30)
 
 **Note:** Version bump only for package @nebula.js/sn-boxplot
