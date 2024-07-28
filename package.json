@@ -23,7 +23,7 @@
   "devDependencies": {
     "@after-work.js/aw": "6.0.14",
     "@babel/core": "7.24.9",
-    "@babel/eslint-parser": "7.25.0",
+    "@babel/eslint-parser": "7.25.1",
     "@babel/preset-env": "7.25.0",
     "@babel/preset-react": "7.24.7",
     "@nebula.js/cli": "5.3.0",
