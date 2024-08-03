@@ -126,8 +126,8 @@ importers:
         specifier: 18.0.0
         version: 18.0.0
       sinon-chai:
-        specifier: 3.7.0
-        version: 3.7.0(chai@4.5.0)(sinon@18.0.0)
+        specifier: 4.0.0
+        version: 4.0.0(chai@4.5.0)(sinon@18.0.0)
       webpack:
         specifier: 5.93.0
         version: 5.93.0(webpack-cli@5.1.4)
@@ -16581,10 +16581,10 @@ packages:
       sinon: 7.5.0
     dev: true
 
-  /sinon-chai@3.7.0(chai@4.5.0)(sinon@18.0.0):
-    resolution: {integrity: sha512-mf5NURdUaSdnatJx3uhoBOrY9dtL19fiOtAdT1Azxg3+lNJFiuN0uzaU3xX1LeAfL17kHQhTAJgpsfhbMJMY2g==}
+  /sinon-chai@4.0.0(chai@4.5.0)(sinon@18.0.0):
+    resolution: {integrity: sha512-cWqO7O2I4XfJDWyWElAQ9D/dtdh5Mo0RHndsfiiYyjWnlPzBJdIvjCVURO4EjyYaC3BjV+ISNXCfTXPXTEIEWA==}
     peerDependencies:
-      chai: ^4.0.0
+      chai: ^5.0.0
       sinon: '>=4.0.0'
     dependencies:
       chai: 4.5.0
