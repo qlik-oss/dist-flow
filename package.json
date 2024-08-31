@@ -26,10 +26,10 @@
     "@babel/eslint-parser": "7.25.1",
     "@babel/preset-env": "7.25.4",
     "@babel/preset-react": "7.24.7",
-    "@nebula.js/cli": "5.4.0",
-    "@nebula.js/cli-build": "5.4.0",
-    "@nebula.js/cli-sense": "5.4.0",
-    "@nebula.js/cli-serve": "5.4.0",
+    "@nebula.js/cli": "5.4.2",
+    "@nebula.js/cli-build": "5.4.2",
+    "@nebula.js/cli-sense": "5.4.2",
+    "@nebula.js/cli-serve": "5.4.2",
     "@playwright/test": "1.46.1",
     "@testing-library/jest-dom": "6.5.0",
     "babel-jest": "29.7.0",
@@ -65,7 +65,7 @@
   },
   "pnpm": {
     "overrides": {
-      "caniuse-lite": "1.0.30001653"
+      "caniuse-lite": "1.0.30001655"
     }
   }
 }
