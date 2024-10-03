@@ -37,8 +37,6 @@ dirs.forEach((dir) => {
 
     const scriptAppyCmd = `${scriptAppyBaseCmd} ${propsConfPath}`;
 
-    console.log(scriptAppyCmd);
-
     exec(scriptAppyCmd);
 
     const {
