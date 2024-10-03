@@ -1,13 +1,15 @@
 /**
  * Settings for subtotal
- * @typedef {object} subtotalProperties
+ * @name subtotalProperties
+ * @type object
  * @property {boolean} enable=false Option to add a subtotal after a measure.
  * @property {string} label='Subtotal' Label of the subtotal added after a measure.
  */
 
 /**
  * Extends `NxInlineMeasureDef`, see Engine API: `NxInlineMeasureDef`.
- * @typedef {object} InlineMeasureDef
+ * @name InlineMeasureDef
+ * @type object
  * @extends NxInlineMeasureDef
  * @property {subtotalProperties} subtotal subtotal settings.
  * @property {'NORMAL'|'INVERSE'|'SUBTOTAL'} valueType='NORMAL' Measure operation.
@@ -15,14 +17,16 @@
 
 /**
  * Extends `NxMeasure`, see Engine API: `NxMeasure`.
- * @typedef {object} MeasureProperties
+ * @name MeasureProperties
+ * @type object
  * @extends NxMeasure
  * @property {InlineMeasureDef} qDef
  */
 
 /**
  * Field attributes structure.
- * @typedef {object} FieldAttributes
+ * @name FieldAttributes
+ * @type object
  * @property {string} dec - Defines the decimal separator.
  * @property {string} Fmt - Defines the format pattern that applies to qText.
  * @property {number} nDec - Number of decimals.
@@ -33,20 +37,23 @@
 
 /**
  * Color information structure. Holds the actual color and index in palette.
- * @typedef {object} paletteColor
+ * @name paletteColor
+ * @type object
  * @property {string} color - Color as hex string (mandatory if index: -1)
  * @property {number} index - Index in palette
  */
 
 /**
  * Styling settings for reference line
- * @typedef {object} refLineStyle
+ * @name refLineStyle
+ * @type object
  * @property {number} [lineThickness=2] Set the thickness for this reference line.
  * @property {string} [lineType=''] Set the dash type for this reference line.
  */
 
 /**
- * @typedef {object} refLine
+ * @name refLine
+ * @type object
  * @property {boolean|ValueExpression} show=true Set to true to display this reference line.
  * @property {string} label Reference line label.
  * @property {boolean} [showLabel=true] Set to true to show the label of this reference line.

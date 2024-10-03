@@ -27,24 +27,30 @@ dirs.forEach((dir) => {
   if (hasSpecConf) {
     console.log(`Generating specification for ${dir}...`);
 
-    let scriptAppyBin = path.resolve(__dirname, '../node_modules/.bin/scriptappy-from-jsdoc');
     let toMarkdownBin = path.resolve(__dirname, '../node_modules/.bin/jsdoc2md');
+
     if (process.platform === 'win32') {
-      scriptAppyBin += '.cmd';
       toMarkdownBin += '.cmd';
     }
 
-    const scriptAppyCmd = `${scriptAppyBin} -c ${propsConfPath}`;
+    const scriptAppyBaseCmd = 'sy from-jsdoc -c';
+
+    const scriptAppyCmd = `${scriptAppyBaseCmd} ${propsConfPath}`;
+
+    console.log(scriptAppyCmd);
+
     exec(scriptAppyCmd);
 
     const {
       glob,
       output: { file },
-    } = require(propsConfPath); // eslint-disable-line import/no-dynamic-require, global-require
+    } = require(propsConfPath).fromJsdoc; // eslint-disable-line import/no-dynamic-require, global-require
+
     const toMarkdownCmd = `${toMarkdownBin} -t ${markdownTemplatePath} ${glob.join(' ')} > ${path.join(
       file,
       '../api.md'
     )}`;
+
     exec(toMarkdownCmd);
   }
 });
