@@ -22,15 +22,15 @@
   "license": "ISC",
   "devDependencies": {
     "@after-work.js/aw": "6.0.14",
-    "@babel/core": "7.25.2",
-    "@babel/eslint-parser": "7.25.1",
-    "@babel/preset-env": "7.25.4",
-    "@babel/preset-react": "7.24.7",
-    "@nebula.js/cli": "5.4.2",
-    "@nebula.js/cli-build": "5.4.2",
-    "@nebula.js/cli-sense": "5.4.2",
-    "@nebula.js/cli-serve": "5.4.2",
-    "@playwright/test": "1.47.2",
+    "@babel/core": "7.25.8",
+    "@babel/eslint-parser": "7.25.8",
+    "@babel/preset-env": "7.25.8",
+    "@babel/preset-react": "7.25.7",
+    "@nebula.js/cli": "5.6.0",
+    "@nebula.js/cli-build": "5.6.0",
+    "@nebula.js/cli-sense": "5.6.0",
+    "@nebula.js/cli-serve": "5.6.0",
+    "@playwright/test": "1.48.0",
     "@scriptappy/cli": "0.10.0",
     "@testing-library/jest-dom": "6.5.0",
     "babel-jest": "29.7.0",
@@ -41,11 +41,11 @@
     "eslint": "8.57.1",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-import": "2.30.0",
+    "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsx-a11y": "6.10.0",
     "eslint-plugin-mocha": "10.5.0",
     "eslint-plugin-prettier": "5.2.1",
-    "eslint-plugin-react": "7.37.0",
+    "eslint-plugin-react": "7.37.1",
     "extend": "3.0.2",
     "fs-extra": "11.2.0",
     "html-webpack-plugin": "5.6.0",
@@ -65,7 +65,7 @@
   },
   "pnpm": {
     "overrides": {
-      "caniuse-lite": "1.0.30001664"
+      "caniuse-lite": "1.0.30001668"
     }
   }
 }
