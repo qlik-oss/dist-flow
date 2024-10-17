@@ -1,5 +1,5 @@
 {
-  "scriptappy": "1.0.0",
+  "scriptappy": "1.1.0",
   "info": {
     "name": "@nebula.js/sn-histogram:properties",
     "description": "Histogram generic object definition",
@@ -14,7 +14,6 @@
       "entries": {
         "bins": {
           "description": "Bin settings.",
-          "kind": "object",
           "entries": {
             "auto": {
               "description": "Auto mode generates a nice looking histogram without special parameters.",
@@ -41,38 +40,38 @@
               "description": "Used to know where to start displaying bars on x-axis.",
               "type": "number"
             }
-          }
+          },
+          "kind": "object"
         },
         "color": {
           "description": "Color settings.",
-          "kind": "object",
           "entries": {
             "bar": {
-              "kind": "object",
               "entries": {
                 "paletteColor": {
                   "description": "The paletteColor object is used to define the bar color.",
                   "defaultValue": "{ index: 6 }",
                   "type": "#/definitions/paletteColor"
                 }
-              }
+              },
+              "kind": "object"
             }
-          }
+          },
+          "kind": "object"
         },
         "dataPoint": {
           "description": "Data points",
-          "kind": "object",
           "entries": {
             "showLabels": {
               "description": "Show labels on bars",
               "defaultValue": false,
               "type": "boolean"
             }
-          }
+          },
+          "kind": "object"
         },
         "dimensionAxis": {
           "description": "Dimension axis settings.",
-          "kind": "object",
           "entries": {
             "dock": {
               "description": "Axis docking position",
@@ -87,14 +86,12 @@
                   "kind": "literal",
                   "value": "'far'"
                 }
-              ],
-              "type": "string"
+              ]
             },
             "label": {
               "description": "Label orientation",
-              "defaultValue": "auto",
-              "kind": "literal",
-              "value": "'auto'"
+              "value": "'auto'",
+              "kind": "literal"
             },
             "show": {
               "description": "Labels and title",
@@ -117,10 +114,10 @@
                   "kind": "literal",
                   "value": "'none'"
                 }
-              ],
-              "type": "string"
+              ]
             }
-          }
+          },
+          "kind": "object"
         },
         "footnote": {
           "description": "Visualization footnote.",
@@ -134,12 +131,10 @@
             {
               "type": "StringExpression"
             }
-          ],
-          "type": "any"
+          ]
         },
         "gridlines": {
           "description": "Grid lines settings.",
-          "kind": "object",
           "entries": {
             "auto": {
               "description": "Automatic grid line spacing.",
@@ -163,14 +158,13 @@
                   "kind": "literal",
                   "value": 3
                 }
-              ],
-              "type": "number"
+              ]
             }
-          }
+          },
+          "kind": "object"
         },
         "measureAxis": {
           "description": "Measure axis settings.",
-          "kind": "object",
           "entries": {
             "autoMinMax": {
               "description": "Automatic max/min",
@@ -190,8 +184,7 @@
                   "kind": "literal",
                   "value": "'far'"
                 }
-              ],
-              "type": "string"
+              ]
             },
             "label": {
               "description": "Label to show on the measure axis, if left empty it defaults to 'Frequency'",
@@ -205,8 +198,7 @@
                 {
                   "type": "StringExpression"
                 }
-              ],
-              "type": "any"
+              ]
             },
             "max": {
               "description": "Axis max value. `\"autoMinMax\"` must be set to false and `\"minMax\"`\nmust be set to `\"max\"` or `\"minMax\"` to use this property",
@@ -219,8 +211,7 @@
                 {
                   "type": "ValueExpression"
                 }
-              ],
-              "type": "any"
+              ]
             },
             "min": {
               "description": "Axis min value. `\"autoMinMax\"` must be set to false and `\"minMax\"`\nmust be set to `\"min\"` or `\"minMax\"` to use this property",
@@ -233,8 +224,7 @@
                 {
                   "type": "ValueExpression"
                 }
-              ],
-              "type": "any"
+              ]
             },
             "minMax": {
               "description": "Set custom max/min",
@@ -253,8 +243,7 @@
                   "kind": "literal",
                   "value": "'minMax'"
                 }
-              ],
-              "type": "string"
+              ]
             },
             "show": {
               "description": "Labels and title",
@@ -277,15 +266,15 @@
                   "kind": "literal",
                   "value": "'none'"
                 }
-              ],
-              "type": "string"
+              ]
             },
             "spacing": {
               "description": "Axis scale",
               "defaultValue": 1,
               "type": "number"
             }
-          }
+          },
+          "kind": "object"
         },
         "qHyperCubeDef": {
           "description": "Extends `HyperCubeDef`, see Engine API: `HyperCubeDef`.",
@@ -294,12 +283,10 @@
               "type": "HyperCubeDef"
             }
           ],
-          "kind": "object",
-          "entries": {}
+          "kind": "object"
         },
         "refLine": {
           "description": "Reference lines settings",
-          "kind": "object",
           "entries": {
             "refLines": {
               "description": "Array of measure based reference line definitions",
@@ -308,7 +295,8 @@
                 "type": "#/definitions/refLine"
               }
             }
-          }
+          },
+          "kind": "object"
         },
         "showTitles": {
           "description": "Show title for the visualization.",
@@ -318,15 +306,14 @@
         },
         "sorting": {
           "description": "Wrapper for sorting properties which will be set on the outer dimension.",
-          "kind": "object",
           "entries": {
             "autoSort": {
               "description": "Sort automatically",
-              "defaultValue": true,
-              "kind": "literal",
-              "value": "true"
+              "value": "true",
+              "kind": "literal"
             }
-          }
+          },
+          "kind": "object"
         },
         "subtitle": {
           "description": "Visualization subtitle.",
@@ -340,8 +327,7 @@
             {
               "type": "StringExpression"
             }
-          ],
-          "type": "any"
+          ]
         },
         "title": {
           "description": "Visualization title.",
@@ -355,8 +341,7 @@
             {
               "type": "StringExpression"
             }
-          ],
-          "type": "any"
+          ]
         },
         "version": {
           "description": "Current version of this generic object definition.",
@@ -383,6 +368,13 @@
     "refLine": {
       "kind": "object",
       "entries": {
+        "label": {
+          "description": "Reference line label.",
+          "type": "string"
+        },
+        "paletteColor": {
+          "type": "#/definitions/paletteColor"
+        },
         "show": {
           "description": "Set to true to display this reference line.",
           "defaultValue": true,
@@ -394,12 +386,13 @@
             {
               "type": "ValueExpression"
             }
-          ],
-          "type": "any"
+          ]
         },
-        "label": {
-          "description": "Reference line label.",
-          "type": "string"
+        "coloredBackground": {
+          "description": "Set to true to fill the label and/or value of this reference line with this color",
+          "optional": true,
+          "defaultValue": false,
+          "type": "boolean"
         },
         "showLabel": {
           "description": "Set to true to show the label of this reference line.",
@@ -413,19 +406,10 @@
           "defaultValue": true,
           "type": "boolean"
         },
-        "paletteColor": {
-          "type": "#/definitions/paletteColor"
-        },
         "style": {
           "description": "Styling settings for reference line",
           "optional": true,
           "type": "#/definitions/refLineStyle"
-        },
-        "coloredBackground": {
-          "description": "Set to true to fill the label and/or value of this reference line with this color",
-          "optional": true,
-          "defaultValue": false,
-          "type": "boolean"
         }
       }
     },

@@ -2,20 +2,23 @@ import BINNING_DEFAULTS from './binning-defaults';
 
 /**
  * Color information structure. Holds the actual color and index in palette.
- * @typedef {object} paletteColor
+ * @name paletteColor
+ * @type object
  * @property {string} color - Color as hex string (mandatory if index: -1)
  * @property {number} index - Index in palette
  */
 
 /**
  * Styling settings for reference line
- * @typedef {object} refLineStyle
+ * @name refLineStyle
+ * @type object
  * @property {number} [lineThickness=2] Set the thickness for this reference line.
  * @property {string} [lineType=''] Set the dash type for this reference line.
  */
 
 /**
- * @typedef {object} refLine
+ * @name refLine
+ * @type object
  * @property {boolean|ValueExpression} show=true Set to true to display this reference line.
  * @property {string} label Reference line label.
  * @property {boolean} [showLabel=true] Set to true to show the label of this reference line.
